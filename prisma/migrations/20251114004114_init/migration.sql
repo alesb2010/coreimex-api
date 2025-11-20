@@ -1,0 +1,33 @@
+-- CreateTable
+CREATE TABLE "Product" (
+    "id" SERIAL NOT NULL,
+    "sku" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "comercial_name" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
+    "origin_country" TEXT NOT NULL,
+    "price_comercial" DOUBLE PRECISION NOT NULL,
+    "price_local" DOUBLE PRECISION NOT NULL,
+    "currnecy" TEXT NOT NULL,
+    "comission" DOUBLE PRECISION NOT NULL,
+    "incoterm" TEXT[],
+    "regulator_organ_number" TEXT NOT NULL,
+    "sanity_rules" TEXT[],
+    "pack_type" TEXT NOT NULL,
+    "quantity_per_pack" DOUBLE PRECISION NOT NULL,
+    "quantity_per_container" DOUBLE PRECISION NOT NULL,
+    "container_type" TEXT NOT NULL,
+    "country_from" TEXT NOT NULL,
+    "supply_origin_country" TEXT NOT NULL,
+    "port_origin" TEXT NOT NULL,
+    "port_destination" TEXT NOT NULL,
+    "documents_required" TEXT[],
+    "record_owner" TEXT NOT NULL,
+    "observation" TEXT NOT NULL,
+    "attached_files" TEXT[],
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "status" TEXT NOT NULL,
+
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
+);
