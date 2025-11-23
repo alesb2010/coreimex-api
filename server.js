@@ -19,6 +19,14 @@ await fastify.register(import('@fastify/swagger'), {
       description: 'API documentation for COREIMEX',
       version: '1.0.0'
     },
+    securityDefinitions: {
+      bearerAuth: {
+        type: 'apiKey',
+        name: 'Authorization',
+        in: 'header',
+        description: 'Enter JWT token in format: Bearer <token>'
+      }
+    },
     tags: [
       { name: 'Products', description: 'Product management endpoints' },
       { name: 'Sellers', description: 'Seller management endpoints' },
@@ -47,14 +55,17 @@ await fastify.register(import('@fastify/swagger-ui'), {
   theme: { title: 'Documentation COREIMEX API' }
 })
 
+await fastify.register(import('./plugins/auth.js'));
+
 // Register routers
-await fastify.register(import('./routers/products.js'), { prisma });
-await fastify.register(import('./routers/sellers.js'), { prisma });
-await fastify.register(import('./routers/clients.js'), { prisma });
-await fastify.register(import('./routers/contracts.js'), { prisma });
-await fastify.register(import('./routers/brokerageInvoices.js'), { prisma });
-await fastify.register(import('./routers/arbitrationRules.js'), { prisma });
-await fastify.register(import('./routers/specialConditions.js'), { prisma });
+await fastify.register(import('./routers/auth.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/products.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/sellers.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/clients.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/contracts.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/brokerageInvoices.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/arbitrationRules.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/specialConditions.js'), { prefix: '/api/v1/', prisma });
 
 const PORT = process.env.PORT || 4000;
 fastify.listen({ port: PORT, host: "0.0.0.0" }, (err, address) => {

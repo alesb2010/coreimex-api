@@ -3,8 +3,10 @@ async function arbitrationRulesRoutes(fastify, options) {
 
   // GET all arbitration rules
   fastify.get("/arbitration-rules", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Arbitration Rules']
+      tags: ['Arbitration Rules'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     return prisma.arbitrationRule.findMany({});
@@ -12,8 +14,10 @@ async function arbitrationRulesRoutes(fastify, options) {
 
   // GET arbitration rule by ID
   fastify.get("/arbitration-rules/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Arbitration Rules']
+      tags: ['Arbitration Rules'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -29,8 +33,10 @@ async function arbitrationRulesRoutes(fastify, options) {
 
   // POST create arbitration rule
   fastify.post("/arbitration-rules", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Arbitration Rules']
+      tags: ['Arbitration Rules'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const data = request.body;
@@ -42,8 +48,10 @@ async function arbitrationRulesRoutes(fastify, options) {
 
   // PUT update arbitration rule
   fastify.put("/arbitration-rules/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Arbitration Rules']
+      tags: ['Arbitration Rules'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -61,8 +69,10 @@ async function arbitrationRulesRoutes(fastify, options) {
 
   // DELETE arbitration rule
   fastify.delete("/arbitration-rules/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Arbitration Rules']
+      tags: ['Arbitration Rules'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;

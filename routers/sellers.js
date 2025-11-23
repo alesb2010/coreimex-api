@@ -3,8 +3,10 @@ async function sellersRoutes(fastify, options) {
 
   // GET all sellers
   fastify.get("/sellers", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Sellers']
+      tags: ['Sellers'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     return prisma.seller.findMany({});
@@ -12,8 +14,10 @@ async function sellersRoutes(fastify, options) {
 
   // GET seller by ID
   fastify.get("/sellers/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Sellers']
+      tags: ['Sellers'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -29,8 +33,10 @@ async function sellersRoutes(fastify, options) {
 
   // POST create seller
   fastify.post("/sellers", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Sellers']
+      tags: ['Sellers'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const data = request.body;
@@ -42,8 +48,10 @@ async function sellersRoutes(fastify, options) {
 
   // PUT update seller
   fastify.put("/sellers/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Sellers']
+      tags: ['Sellers'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -61,8 +69,10 @@ async function sellersRoutes(fastify, options) {
 
   // DELETE seller
   fastify.delete("/sellers/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Sellers']
+      tags: ['Sellers'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;

@@ -3,8 +3,10 @@ async function specialConditionsRoutes(fastify, options) {
 
   // GET all special conditions
   fastify.get("/special-conditions", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Special Conditions']
+      tags: ['Special Conditions'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     return prisma.specialCondition.findMany({});
@@ -12,8 +14,10 @@ async function specialConditionsRoutes(fastify, options) {
 
   // GET special condition by ID
   fastify.get("/special-conditions/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Special Conditions']
+      tags: ['Special Conditions'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -29,8 +33,10 @@ async function specialConditionsRoutes(fastify, options) {
 
   // POST create special condition
   fastify.post("/special-conditions", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Special Conditions']
+      tags: ['Special Conditions'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const data = request.body;
@@ -42,8 +48,10 @@ async function specialConditionsRoutes(fastify, options) {
 
   // PUT update special condition
   fastify.put("/special-conditions/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Special Conditions']
+      tags: ['Special Conditions'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -61,8 +69,10 @@ async function specialConditionsRoutes(fastify, options) {
 
   // DELETE special condition
   fastify.delete("/special-conditions/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Special Conditions']
+      tags: ['Special Conditions'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;

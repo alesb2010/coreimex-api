@@ -3,8 +3,10 @@ async function productsRoutes(fastify, options) {
 
     // GET all products
     fastify.get("/products", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Products']
+            tags: ['Products'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         return prisma.product.findMany({});
@@ -12,8 +14,10 @@ async function productsRoutes(fastify, options) {
 
     // GET product by ID
     fastify.get("/products/:id", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Products']
+            tags: ['Products'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         const { id } = request.params;
@@ -29,8 +33,10 @@ async function productsRoutes(fastify, options) {
 
     // POST create product
     fastify.post("/products", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Products']
+            tags: ['Products'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         const data = request.body;
@@ -42,8 +48,10 @@ async function productsRoutes(fastify, options) {
 
     // PUT update product
     fastify.put("/products/:id", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Products']
+            tags: ['Products'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         const { id } = request.params;
@@ -61,8 +69,10 @@ async function productsRoutes(fastify, options) {
 
     // DELETE product
     fastify.delete("/products/:id", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Products']
+            tags: ['Products'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         const { id } = request.params;

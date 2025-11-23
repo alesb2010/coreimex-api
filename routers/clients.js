@@ -3,8 +3,10 @@ async function clientsRoutes(fastify, options) {
 
   // GET all clients
   fastify.get("/clients", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Clients']
+      tags: ['Clients'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     return prisma.client.findMany({});
@@ -12,8 +14,10 @@ async function clientsRoutes(fastify, options) {
 
   // GET client by ID
   fastify.get("/clients/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Clients']
+      tags: ['Clients'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -29,8 +33,10 @@ async function clientsRoutes(fastify, options) {
 
   // POST create client
   fastify.post("/clients", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Clients']
+      tags: ['Clients'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const data = request.body;
@@ -42,8 +48,10 @@ async function clientsRoutes(fastify, options) {
 
   // PUT update client
   fastify.put("/clients/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Clients']
+      tags: ['Clients'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -61,8 +69,10 @@ async function clientsRoutes(fastify, options) {
 
   // DELETE client
   fastify.delete("/clients/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Clients']
+      tags: ['Clients'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;

@@ -3,8 +3,10 @@ async function contractsRoutes(fastify, options) {
 
     // GET all contracts
     fastify.get("/contracts", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Contracts']
+            tags: ['Contracts'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         return prisma.contract.findMany({});
@@ -12,8 +14,10 @@ async function contractsRoutes(fastify, options) {
 
     // GET contract by ID
     fastify.get("/contracts/:id", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Contracts']
+            tags: ['Contracts'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         const { id } = request.params;
@@ -29,8 +33,10 @@ async function contractsRoutes(fastify, options) {
 
     // POST create contract
     fastify.post("/contracts", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Contracts']
+            tags: ['Contracts'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         const data = request.body;
@@ -42,8 +48,10 @@ async function contractsRoutes(fastify, options) {
 
     // PUT update contract
     fastify.put("/contracts/:id", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Contracts']
+            tags: ['Contracts'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         const { id } = request.params;
@@ -61,8 +69,10 @@ async function contractsRoutes(fastify, options) {
 
     // DELETE contract
     fastify.delete("/contracts/:id", {
+        preHandler: [fastify.authenticate],
         schema: {
-            tags: ['Contracts']
+            tags: ['Contracts'],
+            security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
         const { id } = request.params;

@@ -3,8 +3,10 @@ async function brokerageInvoicesRoutes(fastify, options) {
 
   // GET all brokerage invoices
   fastify.get("/brokerage-invoices", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Brokerage Invoices']
+      tags: ['Brokerage Invoices'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     return prisma.brokerageInvoice.findMany({});
@@ -12,8 +14,10 @@ async function brokerageInvoicesRoutes(fastify, options) {
 
   // GET brokerage invoice by ID
   fastify.get("/brokerage-invoices/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Brokerage Invoices']
+      tags: ['Brokerage Invoices'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -29,8 +33,10 @@ async function brokerageInvoicesRoutes(fastify, options) {
 
   // POST create brokerage invoice
   fastify.post("/brokerage-invoices", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Brokerage Invoices']
+      tags: ['Brokerage Invoices'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const data = request.body;
@@ -42,8 +48,10 @@ async function brokerageInvoicesRoutes(fastify, options) {
 
   // PUT update brokerage invoice
   fastify.put("/brokerage-invoices/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Brokerage Invoices']
+      tags: ['Brokerage Invoices'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
@@ -61,8 +69,10 @@ async function brokerageInvoicesRoutes(fastify, options) {
 
   // DELETE brokerage invoice
   fastify.delete("/brokerage-invoices/:id", {
+    preHandler: [fastify.authenticate],
     schema: {
-      tags: ['Brokerage Invoices']
+      tags: ['Brokerage Invoices'],
+      security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
     const { id } = request.params;
