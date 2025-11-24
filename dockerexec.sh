@@ -1,1 +1,1 @@
-sudo docker -t build ghcr.io/alesb2010/coreimex-api . && sudo docker ghcr.io/alesb2010/coreimex-api
+sudo docker build -t ghcr.io/alesb2010/coreimex-api . && sudo docker push ghcr.io/alesb2010/coreimex-api
