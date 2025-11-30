@@ -30,7 +30,7 @@ await fastify.register(import('@fastify/swagger'), {
     tags: [
       { name: 'Products', description: 'Product management endpoints' },
       { name: 'Sellers', description: 'Seller management endpoints' },
-      { name: 'Clients', description: 'Client management endpoints' },
+      { name: 'Customers', description: 'Customer management endpoints' },
       { name: 'Contracts', description: 'Contract management endpoints' },
       { name: 'Brokerage Invoices', description: 'Brokerage invoice management endpoints' },
       { name: 'Arbitration Rules', description: 'Arbitration rule management endpoints' },
@@ -61,7 +61,7 @@ await fastify.register(import('./plugins/auth.js'));
 await fastify.register(import('./routers/auth.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/products.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/sellers.js'), { prefix: '/api/v1/', prisma });
-await fastify.register(import('./routers/clients.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/customers.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/contracts.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/brokerageInvoices.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/arbitrationRules.js'), { prefix: '/api/v1/', prisma });

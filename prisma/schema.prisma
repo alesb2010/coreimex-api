@@ -1,6 +1,7 @@
-generator client {
+generator customer {
   provider = "prisma-client-js"
   output   = "../generated/prisma/client"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -74,7 +75,7 @@ model Seller {
   status       String
 }
 
-model Client {
+model Customer {
   id           Int        @id @default(autoincrement())
   name         String
   full_name    String
@@ -102,12 +103,12 @@ model Contract {
   date_expiration                  DateTime
   date_signature                   DateTime
   date_expiration_signature        DateTime
-  date_signature_client            DateTime
-  date_expiration_signature_client DateTime
+  date_signature_customer            DateTime
+  date_expiration_signature_customer DateTime
   date_signature_seller            DateTime
   date_expiration_signature_seller DateTime
-  client_id                        Int
-  client                           Client             @relation(fields: [client_id], references: [id])
+  customer_id                        Int
+  customer                         Customer             @relation(fields: [customer_id], references: [id])
   seller_id                        Int
   seller                           Seller             @relation(fields: [seller_id], references: [id])
   products_id                      Int[]
@@ -132,21 +133,21 @@ model Contract {
   payment_status                   String
   payment_notes                    String
   payment_attachments              String[]
-  payment_notes_client             String
-  payment_attachments_client       String[]
+  payment_notes_customer             String
+  payment_attachments_customer       String[]
   payment_notes_seller             String
   payment_attachments_seller       String[]
   special_terms                    String[]
   business_terms                   String[]
   legal_terms                      String[]
   other_terms                      String[]
-  other_terms_client               String[]
+  other_terms_customer               String[]
   other_terms_seller               String[]
-  other_terms_client_seller        String[]
-  other_terms_seller_client        String[]
-  other_terms_client_seller_client String[]
-  other_terms_seller_client_seller String[]
-  commission_client                Float
+  other_terms_customer_seller        String[]
+  other_terms_seller_customer        String[]
+  other_terms_customer_seller_customer String[]
+  other_terms_seller_customer_seller String[]
+  commission_customer                Float
   commission_seller                Float
   comission_total                  Float
   attachments                      String[]
