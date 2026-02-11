@@ -39,7 +39,21 @@ async function customersRoutes(fastify, options) {
       security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
-    const data = request.body;
+    const body = request.body;
+
+    // Only pick valid Customer fields from schema
+    const allowedFields = [
+      'name', 'full_name', 'full_address', 'country', 'tax_id', 'contact_name',
+      'whatsapp', 'phone', 'email', 'website', 'note', 'description',
+      'active', 'status', 'deleted'
+    ];
+    const data = {};
+    for (const field of allowedFields) {
+      if (field in body) {
+        data[field] = body[field];
+      }
+    }
+
     const customer = await prisma.customer.create({
       data,
     });
@@ -55,7 +69,21 @@ async function customersRoutes(fastify, options) {
     }
   }, async (request, reply) => {
     const { id } = request.params;
-    const data = request.body;
+    const body = request.body;
+
+    // Only pick valid Customer fields from schema
+    const allowedFields = [
+      'name', 'full_name', 'full_address', 'country', 'tax_id', 'contact_name',
+      'whatsapp', 'phone', 'email', 'website', 'note', 'description',
+      'active', 'status', 'deleted'
+    ];
+    const data = {};
+    for (const field of allowedFields) {
+      if (field in body) {
+        data[field] = body[field];
+      }
+    }
+
     try {
       const customer = await prisma.customer.update({
         where: { id: parseInt(id) },
@@ -63,7 +91,12 @@ async function customersRoutes(fastify, options) {
       });
       return customer;
     } catch (error) {
-      reply.code(404).send({ error: "customer not found" });
+      if (error.code === 'P2025') {
+        reply.code(404).send({ error: "Customer not found" });
+      } else {
+        request.log.error(error);
+        reply.code(400).send({ error: error.message });
+      }
     }
   });
 
@@ -82,7 +115,12 @@ async function customersRoutes(fastify, options) {
       });
       reply.code(204).send();
     } catch (error) {
-      reply.code(404).send({ error: "customer not found" });
+      if (error.code === 'P2025') {
+        reply.code(404).send({ error: "Customer not found" });
+      } else {
+        request.log.error(error);
+        reply.code(400).send({ error: error.message });
+      }
     }
   });
 }

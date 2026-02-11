@@ -93,84 +93,59 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.ArbitrationRuleScalarFieldEnum = {
   id: 'id',
-  email: 'email',
-  password: 'password',
   name: 'name',
-  role: 'role',
-  active: 'active',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.ProductScalarFieldEnum = {
-  id: 'id',
-  sku: 'sku',
-  name: 'name',
-  comercial_name: 'comercial_name',
-  category: 'category',
-  origin_country: 'origin_country',
-  price_comercial: 'price_comercial',
-  price_local: 'price_local',
-  currency: 'currency',
-  comission: 'comission',
-  incoterm: 'incoterm',
-  regulator_organ_number: 'regulator_organ_number',
-  sanity_rules: 'sanity_rules',
-  pack_type: 'pack_type',
-  quantity_per_pack: 'quantity_per_pack',
-  quantity_per_container: 'quantity_per_container',
-  container_type: 'container_type',
-  country_from: 'country_from',
-  supply_origin_country: 'supply_origin_country',
-  port_origin: 'port_origin',
-  port_destination: 'port_destination',
-  documents_required: 'documents_required',
-  record_owner: 'record_owner',
-  observation: 'observation',
-  attached_files: 'attached_files',
-  sellersId: 'sellersId',
+  description: 'description',
+  order: 'order',
+  type: 'type',
+  note: 'note',
+  attachments: 'attachments',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  deleted: 'deleted'
 };
 
-exports.Prisma.SellerScalarFieldEnum = {
+exports.Prisma.BrokerageInvoiceScalarFieldEnum = {
   id: 'id',
+  contract_id: 'contract_id',
+  comission_total_usd: 'comission_total_usd',
+  comission_total_brl: 'comission_total_brl',
+  bl_date: 'bl_date',
+  bl_number: 'bl_number',
+  bl_attachments: 'bl_attachments',
+  ptax: 'ptax',
+  attachments: 'attachments',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  deleted: 'deleted'
+};
+
+exports.Prisma.ContactScalarFieldEnum = {
+  id: 'id',
+  position: 'position',
+  whatsapp: 'whatsapp',
+  customer_id: 'customer_id',
+  seller_id: 'seller_id',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  address: 'address',
+  city: 'city',
   company_name: 'company_name',
-  full_address: 'full_address',
   country: 'country',
-  tax_id: 'tax_id',
-  contact_name: 'contact_name',
-  whatsapp: 'whatsapp',
-  phone: 'phone',
-  email: 'email',
-  website: 'website',
-  note: 'note',
   description: 'description',
-  createdAt: 'createdAt',
-  active: 'active',
-  status: 'status'
-};
-
-exports.Prisma.CustomerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
+  first_name: 'first_name',
   full_name: 'full_name',
-  full_address: 'full_address',
-  country: 'country',
-  tax_id: 'tax_id',
-  contact_name: 'contact_name',
-  whatsapp: 'whatsapp',
-  phone: 'phone',
+  last_name: 'last_name',
+  notes: 'notes',
+  state: 'state',
+  zip_code: 'zip_code',
   email: 'email',
-  website: 'website',
-  note: 'note',
-  description: 'description',
-  createdAt: 'createdAt',
-  active: 'active',
-  status: 'status'
+  phone: 'phone',
+  deleted: 'deleted'
 };
 
 exports.Prisma.ContractScalarFieldEnum = {
@@ -181,11 +156,8 @@ exports.Prisma.ContractScalarFieldEnum = {
   date_expiration: 'date_expiration',
   date_signature: 'date_signature',
   date_expiration_signature: 'date_expiration_signature',
-  date_signature_customer: 'date_signature_customer',
-  date_expiration_signature_customer: 'date_expiration_signature_customer',
   date_signature_seller: 'date_signature_seller',
   date_expiration_signature_seller: 'date_expiration_signature_seller',
-  customer_id: 'customer_id',
   seller_id: 'seller_id',
   products_id: 'products_id',
   bording_date: 'bording_date',
@@ -205,64 +177,129 @@ exports.Prisma.ContractScalarFieldEnum = {
   payment_status: 'payment_status',
   payment_notes: 'payment_notes',
   payment_attachments: 'payment_attachments',
-  payment_notes_customer: 'payment_notes_customer',
-  payment_attachments_customer: 'payment_attachments_customer',
   payment_notes_seller: 'payment_notes_seller',
   payment_attachments_seller: 'payment_attachments_seller',
   special_terms: 'special_terms',
   business_terms: 'business_terms',
   legal_terms: 'legal_terms',
   other_terms: 'other_terms',
-  other_terms_customer: 'other_terms_customer',
   other_terms_seller: 'other_terms_seller',
-  other_terms_customer_seller: 'other_terms_customer_seller',
-  other_terms_seller_customer: 'other_terms_seller_customer',
-  other_terms_customer_seller_customer: 'other_terms_customer_seller_customer',
-  other_terms_seller_customer_seller: 'other_terms_seller_customer_seller',
-  commission_customer: 'commission_customer',
   commission_seller: 'commission_seller',
   comission_total: 'comission_total',
   attachments: 'attachments',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  commission_customer: 'commission_customer',
+  customer_id: 'customer_id',
+  date_expiration_signature_customer: 'date_expiration_signature_customer',
+  date_signature_customer: 'date_signature_customer',
+  other_terms_customer: 'other_terms_customer',
+  other_terms_customer_seller: 'other_terms_customer_seller',
+  other_terms_customer_seller_customer: 'other_terms_customer_seller_customer',
+  other_terms_seller_customer: 'other_terms_seller_customer',
+  other_terms_seller_customer_seller: 'other_terms_seller_customer_seller',
+  payment_attachments_customer: 'payment_attachments_customer',
+  payment_notes_customer: 'payment_notes_customer',
+  deleted: 'deleted'
 };
 
 exports.Prisma.ContractProductScalarFieldEnum = {
   id: 'id',
   contract_id: 'contract_id',
   product_id: 'product_id',
+  price: 'price',
+  quantity: 'quantity',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  deleted: 'deleted'
 };
 
-exports.Prisma.BrokerageInvoiceScalarFieldEnum = {
-  id: 'id',
-  contract_id: 'contract_id',
-  comission_total_usd: 'comission_total_usd',
-  comission_total_brl: 'comission_total_brl',
-  bl_date: 'bl_date',
-  bl_number: 'bl_number',
-  bl_attachments: 'bl_attachments',
-  ptax: 'ptax',
-  attachments: 'attachments',
-  createdAt: 'createdAt',
-  active: 'active',
-  status: 'status'
-};
-
-exports.Prisma.ArbitrationRuleScalarFieldEnum = {
+exports.Prisma.CustomerScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  description: 'description',
-  order: 'order',
-  type: 'type',
+  full_name: 'full_name',
+  full_address: 'full_address',
+  country: 'country',
+  tax_id: 'tax_id',
+  contact_name: 'contact_name',
+  whatsapp: 'whatsapp',
+  phone: 'phone',
+  email: 'email',
+  website: 'website',
   note: 'note',
-  attachments: 'attachments',
+  description: 'description',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  deleted: 'deleted'
+};
+
+exports.Prisma.FileScalarFieldEnum = {
+  id: 'id',
+  filename: 'filename',
+  objectKey: 'objectKey',
+  mimetype: 'mimetype',
+  size: 'size',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  uploadedBy: 'uploadedBy',
+  createdAt: 'createdAt',
+  active: 'active',
+  deleted: 'deleted'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  sku: 'sku',
+  name: 'name',
+  comercial_name: 'comercial_name',
+  category: 'category',
+  origin_country: 'origin_country',
+  price_comercial: 'price_comercial',
+  price_local: 'price_local',
+  comission: 'comission',
+  incoterm: 'incoterm',
+  regulator_organ_number: 'regulator_organ_number',
+  sanity_rules: 'sanity_rules',
+  pack_type: 'pack_type',
+  quantity_per_pack: 'quantity_per_pack',
+  quantity_per_container: 'quantity_per_container',
+  container_type: 'container_type',
+  country_from: 'country_from',
+  supply_origin_country: 'supply_origin_country',
+  port_origin: 'port_origin',
+  port_destination: 'port_destination',
+  documents_required: 'documents_required',
+  record_owner: 'record_owner',
+  observation: 'observation',
+  attached_files: 'attached_files',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  currency: 'currency',
+  sellersId: 'sellersId',
+  deleted: 'deleted'
+};
+
+exports.Prisma.SellerScalarFieldEnum = {
+  id: 'id',
+  company_name: 'company_name',
+  full_address: 'full_address',
+  country: 'country',
+  tax_id: 'tax_id',
+  contact_name: 'contact_name',
+  whatsapp: 'whatsapp',
+  phone: 'phone',
+  email: 'email',
+  website: 'website',
+  note: 'note',
+  description: 'description',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  deleted: 'deleted'
 };
 
 exports.Prisma.SpecialConditionScalarFieldEnum = {
@@ -276,7 +313,20 @@ exports.Prisma.SpecialConditionScalarFieldEnum = {
   order: 'order',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  deleted: 'deleted'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  name: 'name',
+  role: 'role',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  superTokensUserId: 'superTokensUserId',
+  deleted: 'deleted'
 };
 
 exports.Prisma.SortOrder = {
@@ -284,9 +334,20 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -296,15 +357,17 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User',
-  Product: 'Product',
-  Seller: 'Seller',
-  Customer: 'Customer',
+  ArbitrationRule: 'ArbitrationRule',
+  BrokerageInvoice: 'BrokerageInvoice',
+  Contact: 'Contact',
   Contract: 'Contract',
   ContractProduct: 'ContractProduct',
-  BrokerageInvoice: 'BrokerageInvoice',
-  ArbitrationRule: 'ArbitrationRule',
-  SpecialCondition: 'SpecialCondition'
+  Customer: 'Customer',
+  File: 'File',
+  Product: 'Product',
+  Seller: 'Seller',
+  SpecialCondition: 'SpecialCondition',
+  User: 'User'
 };
 /**
  * Create the Client
@@ -362,13 +425,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator customer {\n  provider      = \"prisma-client-js\"\n  output        = \"../generated/prisma/client\"\n  binaryTargets = [\"native\", \"linux-musl-openssl-3.0.x\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        Int      @id @default(autoincrement())\n  email     String   @unique\n  password  String\n  name      String?\n  role      String   @default(\"user\") // e.g., \"admin\", \"user\"\n  active    Boolean  @default(true)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Product {\n  id                     Int               @id @default(autoincrement())\n  sku                    String\n  name                   String\n  comercial_name         String\n  category               String\n  origin_country         String\n  price_comercial        Float\n  price_local            Float\n  currency               String\n  comission              Float\n  incoterm               String[]\n  regulator_organ_number String\n  sanity_rules           String[]\n  pack_type              String\n  quantity_per_pack      Float\n  quantity_per_container Float\n  container_type         String\n  country_from           String\n  supply_origin_country  String\n  port_origin            String\n  port_destination       String\n  documents_required     String[]\n  record_owner           String\n  observation            String\n  attached_files         String[]\n  sellers                Seller            @relation(fields: [sellersId], references: [id])\n  sellersId              Int               @default(0)\n  contracts              Contract[]        @relation(\"ContractProduct\")\n  contractProducts       ContractProduct[]\n  createdAt              DateTime          @default(now())\n  active                 Boolean           @default(true)\n  status                 String\n}\n\nmodel Seller {\n  id           Int        @id @default(autoincrement())\n  company_name String\n  full_address String\n  country      String\n  tax_id       String\n  contact_name String\n  whatsapp     String\n  phone        String[]\n  email        String[]\n  website      String\n  note         String\n  description  String\n  products     Product[]\n  contracts    Contract[]\n  createdAt    DateTime   @default(now())\n  active       Boolean    @default(true)\n  status       String\n}\n\nmodel Customer {\n  id           Int        @id @default(autoincrement())\n  name         String\n  full_name    String\n  full_address String\n  country      String\n  tax_id       String\n  contact_name String\n  whatsapp     String\n  phone        String[]\n  email        String[]\n  website      String\n  note         String\n  description  String\n  contracts    Contract[]\n  createdAt    DateTime   @default(now())\n  active       Boolean    @default(true)\n  status       String\n}\n\nmodel Contract {\n  id                                   Int                @id @default(autoincrement())\n  name                                 String\n  description                          String\n  date_creation                        DateTime\n  date_expiration                      DateTime\n  date_signature                       DateTime\n  date_expiration_signature            DateTime\n  date_signature_customer              DateTime\n  date_expiration_signature_customer   DateTime\n  date_signature_seller                DateTime\n  date_expiration_signature_seller     DateTime\n  customer_id                          Int\n  customer                             Customer           @relation(fields: [customer_id], references: [id])\n  seller_id                            Int\n  seller                               Seller             @relation(fields: [seller_id], references: [id])\n  products_id                          Int[]\n  products                             Product[]          @relation(\"ContractProduct\")\n  contractProducts                     ContractProduct[]\n  bording_date                         DateTime\n  mt_value                             Float\n  destination_country                  String\n  destination_port                     String\n  shipping_company                     String\n  shipment_date                        DateTime\n  si_sent                              Boolean\n  packing                              String[]\n  arbitration_rules                    ArbitrationRule[]\n  special_conditions                   SpecialCondition[]\n  incoterm                             String[]\n  payment_terms                        String\n  payment_method                       String\n  payment_currency                     String\n  payment_amount                       Float\n  payment_date                         DateTime\n  payment_status                       String\n  payment_notes                        String\n  payment_attachments                  String[]\n  payment_notes_customer               String\n  payment_attachments_customer         String[]\n  payment_notes_seller                 String\n  payment_attachments_seller           String[]\n  special_terms                        String[]\n  business_terms                       String[]\n  legal_terms                          String[]\n  other_terms                          String[]\n  other_terms_customer                 String[]\n  other_terms_seller                   String[]\n  other_terms_customer_seller          String[]\n  other_terms_seller_customer          String[]\n  other_terms_customer_seller_customer String[]\n  other_terms_seller_customer_seller   String[]\n  commission_customer                  Float\n  commission_seller                    Float\n  comission_total                      Float\n  attachments                          String[]\n  createdAt                            DateTime           @default(now())\n  active                               Boolean            @default(true)\n  status                               String\n  brokerageInvoices                    BrokerageInvoice[]\n}\n\nmodel ContractProduct {\n  id          Int      @id @default(autoincrement())\n  contract_id Int\n  contract    Contract @relation(fields: [contract_id], references: [id])\n  product_id  Int\n  product     Product  @relation(fields: [product_id], references: [id])\n  createdAt   DateTime @default(now())\n  active      Boolean  @default(true)\n  status      String\n}\n\nmodel BrokerageInvoice {\n  id                  Int      @id @default(autoincrement())\n  contract_id         Int\n  contract            Contract @relation(fields: [contract_id], references: [id])\n  comission_total_usd Float\n  comission_total_brl Float\n  bl_date             DateTime\n  bl_number           String\n  bl_attachments      String[]\n  ptax                Float\n  attachments         String[]\n  createdAt           DateTime @default(now())\n  active              Boolean  @default(true)\n  status              String\n}\n\nmodel ArbitrationRule {\n  id          Int        @id @default(autoincrement())\n  name        String\n  description String\n  order       Int\n  type        String\n  note        String\n  attachments String[]\n  contracts   Contract[]\n  createdAt   DateTime   @default(now())\n  active      Boolean    @default(true)\n  status      String\n}\n\nmodel SpecialCondition {\n  id          Int        @id @default(autoincrement())\n  name        String\n  description String\n  tags        String[]\n  type        String\n  note        String\n  attachments String[]\n  order       Int\n  contracts   Contract[]\n  createdAt   DateTime   @default(now())\n  active      Boolean    @default(true)\n  status      String\n}\n",
-  "inlineSchemaHash": "0abb63c19cc5b48a5352317b2c266ecaeb3e02b0ae76c81bd9baca4bd24472f2",
+  "inlineSchema": "generator customer {\n  provider      = \"prisma-client-js\"\n  output        = \"../generated/prisma/client\"\n  binaryTargets = [\"native\", \"linux-musl-openssl-3.0.x\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel ArbitrationRule {\n  id          Int        @id @default(autoincrement())\n  name        String\n  description String\n  order       Int\n  type        String\n  note        String\n  attachments String[]\n  createdAt   DateTime   @default(now())\n  active      Boolean    @default(true)\n  status      String\n  deleted     Boolean    @default(false)\n  Contract    Contract[]\n}\n\nmodel BrokerageInvoice {\n  id                  Int      @id @default(autoincrement())\n  contract_id         Int\n  comission_total_usd Float\n  comission_total_brl Float\n  bl_date             DateTime\n  bl_number           String\n  bl_attachments      String[]\n  ptax                Float\n  attachments         String[]\n  createdAt           DateTime @default(now())\n  active              Boolean  @default(true)\n  status              String\n  deleted             Boolean  @default(false)\n  Contract            Contract @relation(fields: [contract_id], references: [id])\n}\n\nmodel Contact {\n  id           Int       @id @default(autoincrement())\n  position     String?\n  whatsapp     String?\n  customer_id  Int?\n  seller_id    Int?\n  createdAt    DateTime  @default(now())\n  active       Boolean   @default(true)\n  status       String    @default(\"active\")\n  address      String?\n  city         String?\n  company_name String?\n  country      String?\n  description  String?\n  first_name   String\n  full_name    String?\n  last_name    String\n  notes        String?\n  state        String?\n  zip_code     String?\n  email        Json?\n  phone        Json?\n  deleted      Boolean   @default(false)\n  Customer     Customer? @relation(fields: [customer_id], references: [id])\n  Seller       Seller?   @relation(fields: [seller_id], references: [id])\n}\n\nmodel Contract {\n  id                                   Int                @id @default(autoincrement())\n  name                                 String\n  description                          String\n  date_creation                        DateTime?\n  date_expiration                      DateTime?\n  date_signature                       DateTime?\n  date_expiration_signature            DateTime?\n  date_signature_seller                DateTime?\n  date_expiration_signature_seller     DateTime?\n  seller_id                            Int\n  products_id                          Int[]\n  bording_date                         DateTime?\n  mt_value                             Float\n  destination_country                  String\n  destination_port                     String\n  shipping_company                     String\n  shipment_date                        DateTime?\n  si_sent                              Boolean\n  packing                              String[]\n  incoterm                             String[]\n  payment_terms                        String\n  payment_method                       String\n  payment_currency                     String\n  payment_amount                       Float\n  payment_date                         DateTime?\n  payment_status                       String\n  payment_notes                        String\n  payment_attachments                  String[]\n  payment_notes_seller                 String\n  payment_attachments_seller           String[]\n  special_terms                        String[]\n  business_terms                       String[]\n  legal_terms                          String[]\n  other_terms                          String[]\n  other_terms_seller                   String[]\n  commission_seller                    Float\n  comission_total                      Float\n  attachments                          String[]\n  createdAt                            DateTime           @default(now())\n  active                               Boolean            @default(true)\n  status                               String\n  commission_customer                  Float\n  customer_id                          Int\n  date_expiration_signature_customer   DateTime?\n  date_signature_customer              DateTime?\n  other_terms_customer                 String[]\n  other_terms_customer_seller          String[]\n  other_terms_customer_seller_customer String[]\n  other_terms_seller_customer          String[]\n  other_terms_seller_customer_seller   String[]\n  payment_attachments_customer         String[]\n  payment_notes_customer               String\n  deleted                              Boolean            @default(false)\n  BrokerageInvoice                     BrokerageInvoice[]\n  Customer                             Customer           @relation(fields: [customer_id], references: [id])\n  Seller                               Seller             @relation(fields: [seller_id], references: [id])\n  ContractProduct                      ContractProduct[]\n  ArbitrationRule                      ArbitrationRule[]\n  Product                              Product[]          @relation(\"ContractProduct\")\n  SpecialCondition                     SpecialCondition[]\n}\n\nmodel ContractProduct {\n  id          Int      @id @default(autoincrement())\n  contract_id Int\n  product_id  Int\n  price       Float? // price for this product in this contract\n  quantity    Float? // quantity of this product in this contract\n  createdAt   DateTime @default(now())\n  active      Boolean  @default(true)\n  status      String\n  deleted     Boolean  @default(false)\n  Contract    Contract @relation(fields: [contract_id], references: [id])\n  Product     Product  @relation(fields: [product_id], references: [id])\n}\n\nmodel Customer {\n  id           Int        @id @default(autoincrement())\n  name         String\n  full_name    String\n  full_address String\n  country      String\n  tax_id       String\n  contact_name String\n  whatsapp     String\n  phone        String[]\n  email        String[]\n  website      String\n  note         String\n  description  String\n  createdAt    DateTime   @default(now())\n  active       Boolean    @default(true)\n  status       String\n  deleted      Boolean    @default(false)\n  Contact      Contact[]\n  Contract     Contract[]\n}\n\nmodel File {\n  id         Int      @id @default(autoincrement())\n  filename   String\n  objectKey  String   @unique\n  mimetype   String\n  size       Int\n  entityType String?\n  entityId   Int?\n  uploadedBy String?\n  createdAt  DateTime @default(now())\n  active     Boolean  @default(true)\n  deleted    Boolean  @default(false)\n}\n\nmodel Product {\n  id                     Int               @id @default(autoincrement())\n  sku                    String\n  name                   String\n  comercial_name         String\n  category               String\n  origin_country         String\n  price_comercial        Float\n  price_local            Float\n  comission              Float\n  incoterm               String[]\n  regulator_organ_number String\n  sanity_rules           String[]\n  pack_type              String\n  quantity_per_pack      Float\n  quantity_per_container Float\n  container_type         String\n  country_from           String\n  supply_origin_country  String\n  port_origin            String\n  port_destination       String\n  documents_required     String[]\n  record_owner           String\n  observation            String\n  attached_files         String[]\n  createdAt              DateTime          @default(now())\n  active                 Boolean           @default(true)\n  status                 String\n  currency               String\n  sellersId              Int?\n  deleted                Boolean           @default(false)\n  ContractProduct        ContractProduct[]\n  Seller                 Seller?           @relation(fields: [sellersId], references: [id])\n  Contract               Contract[]        @relation(\"ContractProduct\")\n}\n\nmodel Seller {\n  id           Int        @id @default(autoincrement())\n  company_name String\n  full_address String\n  country      String\n  tax_id       String\n  contact_name String\n  whatsapp     String\n  phone        String[]\n  email        String[]\n  website      String\n  note         String\n  description  String\n  createdAt    DateTime   @default(now())\n  active       Boolean    @default(true)\n  status       String\n  deleted      Boolean    @default(false)\n  Contact      Contact[]\n  Contract     Contract[]\n  Product      Product[]\n}\n\nmodel SpecialCondition {\n  id          Int        @id @default(autoincrement())\n  name        String\n  description String\n  tags        String[]\n  type        String\n  note        String\n  attachments String[]\n  order       Int\n  createdAt   DateTime   @default(now())\n  active      Boolean    @default(true)\n  status      String\n  deleted     Boolean    @default(false)\n  Contract    Contract[]\n}\n\nmodel User {\n  id                Int      @id @default(autoincrement())\n  email             String   @unique\n  name              String?\n  role              String   @default(\"user\")\n  active            Boolean  @default(true)\n  createdAt         DateTime @default(now())\n  updatedAt         DateTime\n  superTokensUserId String   @unique\n  deleted           Boolean  @default(false)\n}\n",
+  "inlineSchemaHash": "f9638fba374e06f6dba4d38b4b90c959185ebf68b52cd4961877a4e60ac32a0c",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Product\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sku\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"comercial_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"origin_country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price_comercial\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"price_local\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"currency\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"comission\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"incoterm\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"regulator_organ_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sanity_rules\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pack_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quantity_per_pack\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"quantity_per_container\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"container_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country_from\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"supply_origin_country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"port_origin\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"port_destination\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"documents_required\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"record_owner\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"observation\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attached_files\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sellers\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"ProductToSeller\"},{\"name\":\"sellersId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"contracts\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractProduct\"},{\"name\":\"contractProducts\",\"kind\":\"object\",\"type\":\"ContractProduct\",\"relationName\":\"ContractProductToProduct\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"Seller\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"company_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"full_address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tax_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contact_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"whatsapp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"website\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"note\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"products\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ProductToSeller\"},{\"name\":\"contracts\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractToSeller\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"Customer\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"full_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"full_address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tax_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contact_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"whatsapp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"website\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"note\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contracts\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractToCustomer\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"Contract\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date_creation\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_expiration\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_signature\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_expiration_signature\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_signature_customer\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_expiration_signature_customer\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_signature_seller\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_expiration_signature_seller\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"ContractToCustomer\"},{\"name\":\"seller_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"ContractToSeller\"},{\"name\":\"products_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"products\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ContractProduct\"},{\"name\":\"contractProducts\",\"kind\":\"object\",\"type\":\"ContractProduct\",\"relationName\":\"ContractToContractProduct\"},{\"name\":\"bording_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"mt_value\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"destination_country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"destination_port\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shipping_company\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shipment_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"si_sent\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"packing\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"arbitration_rules\",\"kind\":\"object\",\"type\":\"ArbitrationRule\",\"relationName\":\"ArbitrationRuleToContract\"},{\"name\":\"special_conditions\",\"kind\":\"object\",\"type\":\"SpecialCondition\",\"relationName\":\"ContractToSpecialCondition\"},{\"name\":\"incoterm\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_method\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_currency\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_amount\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"payment_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"payment_status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_notes\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_notes_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_attachments_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_notes_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_attachments_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"special_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"legal_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_customer_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_seller_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_customer_seller_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_seller_customer_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"commission_customer\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"commission_seller\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"comission_total\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"brokerageInvoices\",\"kind\":\"object\",\"type\":\"BrokerageInvoice\",\"relationName\":\"BrokerageInvoiceToContract\"}],\"dbName\":null},\"ContractProduct\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"contract_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"contract\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractToContractProduct\"},{\"name\":\"product_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ContractProductToProduct\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"BrokerageInvoice\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"contract_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"contract\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"BrokerageInvoiceToContract\"},{\"name\":\"comission_total_usd\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"comission_total_brl\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"bl_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"bl_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bl_attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ptax\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"ArbitrationRule\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"order\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"note\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contracts\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ArbitrationRuleToContract\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"SpecialCondition\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tags\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"note\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"order\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"contracts\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractToSpecialCondition\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"ArbitrationRule\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"order\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"note\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"Contract\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ArbitrationRuleToContract\"}],\"dbName\":null},\"BrokerageInvoice\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"contract_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"comission_total_usd\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"comission_total_brl\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"bl_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"bl_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bl_attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ptax\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"Contract\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"BrokerageInvoiceToContract\"}],\"dbName\":null},\"Contact\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"position\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"whatsapp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"seller_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"city\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"company_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"first_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"full_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"notes\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"state\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"zip_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"Customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"ContactToCustomer\"},{\"name\":\"Seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"ContactToSeller\"}],\"dbName\":null},\"Contract\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date_creation\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_expiration\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_signature\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_expiration_signature\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_signature_seller\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_expiration_signature_seller\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"seller_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"products_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"bording_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"mt_value\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"destination_country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"destination_port\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shipping_company\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shipment_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"si_sent\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"packing\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"incoterm\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_method\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_currency\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_amount\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"payment_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"payment_status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_notes\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_notes_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_attachments_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"special_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"legal_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"commission_seller\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"comission_total\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"commission_customer\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"date_expiration_signature_customer\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"date_signature_customer\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"other_terms_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_customer_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_customer_seller_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_seller_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"other_terms_seller_customer_seller\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_attachments_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payment_notes_customer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"BrokerageInvoice\",\"kind\":\"object\",\"type\":\"BrokerageInvoice\",\"relationName\":\"BrokerageInvoiceToContract\"},{\"name\":\"Customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"ContractToCustomer\"},{\"name\":\"Seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"ContractToSeller\"},{\"name\":\"ContractProduct\",\"kind\":\"object\",\"type\":\"ContractProduct\",\"relationName\":\"ContractToContractProduct\"},{\"name\":\"ArbitrationRule\",\"kind\":\"object\",\"type\":\"ArbitrationRule\",\"relationName\":\"ArbitrationRuleToContract\"},{\"name\":\"Product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ContractProduct\"},{\"name\":\"SpecialCondition\",\"kind\":\"object\",\"type\":\"SpecialCondition\",\"relationName\":\"ContractToSpecialCondition\"}],\"dbName\":null},\"ContractProduct\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"contract_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"product_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"Contract\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractToContractProduct\"},{\"name\":\"Product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ContractProductToProduct\"}],\"dbName\":null},\"Customer\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"full_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"full_address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tax_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contact_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"whatsapp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"website\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"note\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"Contact\",\"kind\":\"object\",\"type\":\"Contact\",\"relationName\":\"ContactToCustomer\"},{\"name\":\"Contract\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractToCustomer\"}],\"dbName\":null},\"File\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"filename\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"objectKey\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"mimetype\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"size\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"entityType\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"entityId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"uploadedBy\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"}],\"dbName\":null},\"Product\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sku\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"comercial_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"origin_country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price_comercial\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"price_local\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"comission\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"incoterm\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"regulator_organ_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sanity_rules\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pack_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quantity_per_pack\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"quantity_per_container\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"container_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country_from\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"supply_origin_country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"port_origin\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"port_destination\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"documents_required\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"record_owner\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"observation\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attached_files\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"currency\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sellersId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"ContractProduct\",\"kind\":\"object\",\"type\":\"ContractProduct\",\"relationName\":\"ContractProductToProduct\"},{\"name\":\"Seller\",\"kind\":\"object\",\"type\":\"Seller\",\"relationName\":\"ProductToSeller\"},{\"name\":\"Contract\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractProduct\"}],\"dbName\":null},\"Seller\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"company_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"full_address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tax_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contact_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"whatsapp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"website\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"note\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"Contact\",\"kind\":\"object\",\"type\":\"Contact\",\"relationName\":\"ContactToSeller\"},{\"name\":\"Contract\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractToSeller\"},{\"name\":\"Product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ProductToSeller\"}],\"dbName\":null},\"SpecialCondition\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tags\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"note\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attachments\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"order\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"Contract\",\"kind\":\"object\",\"type\":\"Contract\",\"relationName\":\"ContractToSpecialCondition\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"superTokensUserId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

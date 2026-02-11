@@ -55,7 +55,21 @@ async function sellersRoutes(fastify, options) {
     }
   }, async (request, reply) => {
     const { id } = request.params;
-    const data = request.body;
+    const body = request.body;
+    
+    // Only pick valid Seller fields from schema
+    const allowedFields = [
+      'company_name', 'full_address', 'country', 'tax_id', 'contact_name',
+      'whatsapp', 'phone', 'email', 'website', 'note', 'description',
+      'active', 'status', 'deleted'
+    ];
+    const data = {};
+    for (const field of allowedFields) {
+      if (field in body) {
+        data[field] = body[field];
+      }
+    }
+    
     try {
       const seller = await prisma.seller.update({
         where: { id: parseInt(id) },
@@ -63,7 +77,12 @@ async function sellersRoutes(fastify, options) {
       });
       return seller;
     } catch (error) {
-      reply.code(404).send({ error: "Seller not found" });
+      if (error.code === 'P2025') {
+        reply.code(404).send({ error: "Seller not found" });
+      } else {
+        request.log.error(error);
+        reply.code(400).send({ error: error.message });
+      }
     }
   });
 
@@ -82,7 +101,12 @@ async function sellersRoutes(fastify, options) {
       });
       reply.code(204).send();
     } catch (error) {
-      reply.code(404).send({ error: "Seller not found" });
+      if (error.code === 'P2025') {
+        reply.code(404).send({ error: "Seller not found" });
+      } else {
+        request.log.error(error);
+        reply.code(400).send({ error: error.message });
+      }
     }
   });
 }

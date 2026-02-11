@@ -121,84 +121,59 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.ArbitrationRuleScalarFieldEnum = {
   id: 'id',
-  email: 'email',
-  password: 'password',
   name: 'name',
-  role: 'role',
-  active: 'active',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.ProductScalarFieldEnum = {
-  id: 'id',
-  sku: 'sku',
-  name: 'name',
-  comercial_name: 'comercial_name',
-  category: 'category',
-  origin_country: 'origin_country',
-  price_comercial: 'price_comercial',
-  price_local: 'price_local',
-  currency: 'currency',
-  comission: 'comission',
-  incoterm: 'incoterm',
-  regulator_organ_number: 'regulator_organ_number',
-  sanity_rules: 'sanity_rules',
-  pack_type: 'pack_type',
-  quantity_per_pack: 'quantity_per_pack',
-  quantity_per_container: 'quantity_per_container',
-  container_type: 'container_type',
-  country_from: 'country_from',
-  supply_origin_country: 'supply_origin_country',
-  port_origin: 'port_origin',
-  port_destination: 'port_destination',
-  documents_required: 'documents_required',
-  record_owner: 'record_owner',
-  observation: 'observation',
-  attached_files: 'attached_files',
-  sellersId: 'sellersId',
+  description: 'description',
+  order: 'order',
+  type: 'type',
+  note: 'note',
+  attachments: 'attachments',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  deleted: 'deleted'
 };
 
-exports.Prisma.SellerScalarFieldEnum = {
+exports.Prisma.BrokerageInvoiceScalarFieldEnum = {
   id: 'id',
+  contract_id: 'contract_id',
+  comission_total_usd: 'comission_total_usd',
+  comission_total_brl: 'comission_total_brl',
+  bl_date: 'bl_date',
+  bl_number: 'bl_number',
+  bl_attachments: 'bl_attachments',
+  ptax: 'ptax',
+  attachments: 'attachments',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  deleted: 'deleted'
+};
+
+exports.Prisma.ContactScalarFieldEnum = {
+  id: 'id',
+  position: 'position',
+  whatsapp: 'whatsapp',
+  customer_id: 'customer_id',
+  seller_id: 'seller_id',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  address: 'address',
+  city: 'city',
   company_name: 'company_name',
-  full_address: 'full_address',
   country: 'country',
-  tax_id: 'tax_id',
-  contact_name: 'contact_name',
-  whatsapp: 'whatsapp',
-  phone: 'phone',
-  email: 'email',
-  website: 'website',
-  note: 'note',
   description: 'description',
-  createdAt: 'createdAt',
-  active: 'active',
-  status: 'status'
-};
-
-exports.Prisma.CustomerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
+  first_name: 'first_name',
   full_name: 'full_name',
-  full_address: 'full_address',
-  country: 'country',
-  tax_id: 'tax_id',
-  contact_name: 'contact_name',
-  whatsapp: 'whatsapp',
-  phone: 'phone',
+  last_name: 'last_name',
+  notes: 'notes',
+  state: 'state',
+  zip_code: 'zip_code',
   email: 'email',
-  website: 'website',
-  note: 'note',
-  description: 'description',
-  createdAt: 'createdAt',
-  active: 'active',
-  status: 'status'
+  phone: 'phone',
+  deleted: 'deleted'
 };
 
 exports.Prisma.ContractScalarFieldEnum = {
@@ -209,11 +184,8 @@ exports.Prisma.ContractScalarFieldEnum = {
   date_expiration: 'date_expiration',
   date_signature: 'date_signature',
   date_expiration_signature: 'date_expiration_signature',
-  date_signature_customer: 'date_signature_customer',
-  date_expiration_signature_customer: 'date_expiration_signature_customer',
   date_signature_seller: 'date_signature_seller',
   date_expiration_signature_seller: 'date_expiration_signature_seller',
-  customer_id: 'customer_id',
   seller_id: 'seller_id',
   products_id: 'products_id',
   bording_date: 'bording_date',
@@ -233,64 +205,129 @@ exports.Prisma.ContractScalarFieldEnum = {
   payment_status: 'payment_status',
   payment_notes: 'payment_notes',
   payment_attachments: 'payment_attachments',
-  payment_notes_customer: 'payment_notes_customer',
-  payment_attachments_customer: 'payment_attachments_customer',
   payment_notes_seller: 'payment_notes_seller',
   payment_attachments_seller: 'payment_attachments_seller',
   special_terms: 'special_terms',
   business_terms: 'business_terms',
   legal_terms: 'legal_terms',
   other_terms: 'other_terms',
-  other_terms_customer: 'other_terms_customer',
   other_terms_seller: 'other_terms_seller',
-  other_terms_customer_seller: 'other_terms_customer_seller',
-  other_terms_seller_customer: 'other_terms_seller_customer',
-  other_terms_customer_seller_customer: 'other_terms_customer_seller_customer',
-  other_terms_seller_customer_seller: 'other_terms_seller_customer_seller',
-  commission_customer: 'commission_customer',
   commission_seller: 'commission_seller',
   comission_total: 'comission_total',
   attachments: 'attachments',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  commission_customer: 'commission_customer',
+  customer_id: 'customer_id',
+  date_expiration_signature_customer: 'date_expiration_signature_customer',
+  date_signature_customer: 'date_signature_customer',
+  other_terms_customer: 'other_terms_customer',
+  other_terms_customer_seller: 'other_terms_customer_seller',
+  other_terms_customer_seller_customer: 'other_terms_customer_seller_customer',
+  other_terms_seller_customer: 'other_terms_seller_customer',
+  other_terms_seller_customer_seller: 'other_terms_seller_customer_seller',
+  payment_attachments_customer: 'payment_attachments_customer',
+  payment_notes_customer: 'payment_notes_customer',
+  deleted: 'deleted'
 };
 
 exports.Prisma.ContractProductScalarFieldEnum = {
   id: 'id',
   contract_id: 'contract_id',
   product_id: 'product_id',
+  price: 'price',
+  quantity: 'quantity',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  deleted: 'deleted'
 };
 
-exports.Prisma.BrokerageInvoiceScalarFieldEnum = {
-  id: 'id',
-  contract_id: 'contract_id',
-  comission_total_usd: 'comission_total_usd',
-  comission_total_brl: 'comission_total_brl',
-  bl_date: 'bl_date',
-  bl_number: 'bl_number',
-  bl_attachments: 'bl_attachments',
-  ptax: 'ptax',
-  attachments: 'attachments',
-  createdAt: 'createdAt',
-  active: 'active',
-  status: 'status'
-};
-
-exports.Prisma.ArbitrationRuleScalarFieldEnum = {
+exports.Prisma.CustomerScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  description: 'description',
-  order: 'order',
-  type: 'type',
+  full_name: 'full_name',
+  full_address: 'full_address',
+  country: 'country',
+  tax_id: 'tax_id',
+  contact_name: 'contact_name',
+  whatsapp: 'whatsapp',
+  phone: 'phone',
+  email: 'email',
+  website: 'website',
   note: 'note',
-  attachments: 'attachments',
+  description: 'description',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  deleted: 'deleted'
+};
+
+exports.Prisma.FileScalarFieldEnum = {
+  id: 'id',
+  filename: 'filename',
+  objectKey: 'objectKey',
+  mimetype: 'mimetype',
+  size: 'size',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  uploadedBy: 'uploadedBy',
+  createdAt: 'createdAt',
+  active: 'active',
+  deleted: 'deleted'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  sku: 'sku',
+  name: 'name',
+  comercial_name: 'comercial_name',
+  category: 'category',
+  origin_country: 'origin_country',
+  price_comercial: 'price_comercial',
+  price_local: 'price_local',
+  comission: 'comission',
+  incoterm: 'incoterm',
+  regulator_organ_number: 'regulator_organ_number',
+  sanity_rules: 'sanity_rules',
+  pack_type: 'pack_type',
+  quantity_per_pack: 'quantity_per_pack',
+  quantity_per_container: 'quantity_per_container',
+  container_type: 'container_type',
+  country_from: 'country_from',
+  supply_origin_country: 'supply_origin_country',
+  port_origin: 'port_origin',
+  port_destination: 'port_destination',
+  documents_required: 'documents_required',
+  record_owner: 'record_owner',
+  observation: 'observation',
+  attached_files: 'attached_files',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  currency: 'currency',
+  sellersId: 'sellersId',
+  deleted: 'deleted'
+};
+
+exports.Prisma.SellerScalarFieldEnum = {
+  id: 'id',
+  company_name: 'company_name',
+  full_address: 'full_address',
+  country: 'country',
+  tax_id: 'tax_id',
+  contact_name: 'contact_name',
+  whatsapp: 'whatsapp',
+  phone: 'phone',
+  email: 'email',
+  website: 'website',
+  note: 'note',
+  description: 'description',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  deleted: 'deleted'
 };
 
 exports.Prisma.SpecialConditionScalarFieldEnum = {
@@ -304,7 +341,20 @@ exports.Prisma.SpecialConditionScalarFieldEnum = {
   order: 'order',
   createdAt: 'createdAt',
   active: 'active',
-  status: 'status'
+  status: 'status',
+  deleted: 'deleted'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  name: 'name',
+  role: 'role',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  superTokensUserId: 'superTokensUserId',
+  deleted: 'deleted'
 };
 
 exports.Prisma.SortOrder = {
@@ -312,9 +362,20 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -324,15 +385,17 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User',
-  Product: 'Product',
-  Seller: 'Seller',
-  Customer: 'Customer',
+  ArbitrationRule: 'ArbitrationRule',
+  BrokerageInvoice: 'BrokerageInvoice',
+  Contact: 'Contact',
   Contract: 'Contract',
   ContractProduct: 'ContractProduct',
-  BrokerageInvoice: 'BrokerageInvoice',
-  ArbitrationRule: 'ArbitrationRule',
-  SpecialCondition: 'SpecialCondition'
+  Customer: 'Customer',
+  File: 'File',
+  Product: 'Product',
+  Seller: 'Seller',
+  SpecialCondition: 'SpecialCondition',
+  User: 'User'
 };
 
 /**

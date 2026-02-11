@@ -9,70 +9,140 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  name      String?
-  role      String   @default("user") // e.g., "admin", "user"
-  active    Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model ArbitrationRule {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  order       Int
+  type        String
+  note        String
+  attachments String[]
+  createdAt   DateTime   @default(now())
+  active      Boolean    @default(true)
+  status      String
+  deleted     Boolean    @default(false)
+  Contract    Contract[]
 }
 
-model Product {
-  id                     Int               @id @default(autoincrement())
-  sku                    String
-  name                   String
-  comercial_name         String
-  category               String
-  origin_country         String
-  price_comercial        Float
-  price_local            Float
-  currency               String
-  comission              Float
-  incoterm               String[]
-  regulator_organ_number String
-  sanity_rules           String[]
-  pack_type              String
-  quantity_per_pack      Float
-  quantity_per_container Float
-  container_type         String
-  country_from           String
-  supply_origin_country  String
-  port_origin            String
-  port_destination       String
-  documents_required     String[]
-  record_owner           String
-  observation            String
-  attached_files         String[]
-  sellers                Seller            @relation(fields: [sellersId], references: [id])
-  sellersId              Int               @default(0)
-  contracts              Contract[]        @relation("ContractProduct")
-  contractProducts       ContractProduct[]
-  createdAt              DateTime          @default(now())
-  active                 Boolean           @default(true)
-  status                 String
+model BrokerageInvoice {
+  id                  Int      @id @default(autoincrement())
+  contract_id         Int
+  comission_total_usd Float
+  comission_total_brl Float
+  bl_date             DateTime
+  bl_number           String
+  bl_attachments      String[]
+  ptax                Float
+  attachments         String[]
+  createdAt           DateTime @default(now())
+  active              Boolean  @default(true)
+  status              String
+  deleted             Boolean  @default(false)
+  Contract            Contract @relation(fields: [contract_id], references: [id])
 }
 
-model Seller {
-  id           Int        @id @default(autoincrement())
-  company_name String
-  full_address String
-  country      String
-  tax_id       String
-  contact_name String
-  whatsapp     String
-  phone        String[]
-  email        String[]
-  website      String
-  note         String
-  description  String
-  products     Product[]
-  contracts    Contract[]
-  createdAt    DateTime   @default(now())
-  active       Boolean    @default(true)
-  status       String
+model Contact {
+  id           Int       @id @default(autoincrement())
+  position     String?
+  whatsapp     String?
+  customer_id  Int?
+  seller_id    Int?
+  createdAt    DateTime  @default(now())
+  active       Boolean   @default(true)
+  status       String    @default("active")
+  address      String?
+  city         String?
+  company_name String?
+  country      String?
+  description  String?
+  first_name   String
+  full_name    String?
+  last_name    String
+  notes        String?
+  state        String?
+  zip_code     String?
+  email        Json?
+  phone        Json?
+  deleted      Boolean   @default(false)
+  Customer     Customer? @relation(fields: [customer_id], references: [id])
+  Seller       Seller?   @relation(fields: [seller_id], references: [id])
+}
+
+model Contract {
+  id                                   Int                @id @default(autoincrement())
+  name                                 String
+  description                          String
+  date_creation                        DateTime?
+  date_expiration                      DateTime?
+  date_signature                       DateTime?
+  date_expiration_signature            DateTime?
+  date_signature_seller                DateTime?
+  date_expiration_signature_seller     DateTime?
+  seller_id                            Int
+  products_id                          Int[]
+  bording_date                         DateTime?
+  mt_value                             Float
+  destination_country                  String
+  destination_port                     String
+  shipping_company                     String
+  shipment_date                        DateTime?
+  si_sent                              Boolean
+  packing                              String[]
+  incoterm                             String[]
+  payment_terms                        String
+  payment_method                       String
+  payment_currency                     String
+  payment_amount                       Float
+  payment_date                         DateTime?
+  payment_status                       String
+  payment_notes                        String
+  payment_attachments                  String[]
+  payment_notes_seller                 String
+  payment_attachments_seller           String[]
+  special_terms                        String[]
+  business_terms                       String[]
+  legal_terms                          String[]
+  other_terms                          String[]
+  other_terms_seller                   String[]
+  commission_seller                    Float
+  comission_total                      Float
+  attachments                          String[]
+  createdAt                            DateTime           @default(now())
+  active                               Boolean            @default(true)
+  status                               String
+  commission_customer                  Float
+  customer_id                          Int
+  date_expiration_signature_customer   DateTime?
+  date_signature_customer              DateTime?
+  other_terms_customer                 String[]
+  other_terms_customer_seller          String[]
+  other_terms_customer_seller_customer String[]
+  other_terms_seller_customer          String[]
+  other_terms_seller_customer_seller   String[]
+  payment_attachments_customer         String[]
+  payment_notes_customer               String
+  deleted                              Boolean            @default(false)
+  BrokerageInvoice                     BrokerageInvoice[]
+  Customer                             Customer           @relation(fields: [customer_id], references: [id])
+  Seller                               Seller             @relation(fields: [seller_id], references: [id])
+  ContractProduct                      ContractProduct[]
+  ArbitrationRule                      ArbitrationRule[]
+  Product                              Product[]          @relation("ContractProduct")
+  SpecialCondition                     SpecialCondition[]
+}
+
+model ContractProduct {
+  id          Int      @id @default(autoincrement())
+  contract_id Int
+  product_id  Int
+  price       Float? // price for this product in this contract
+  quantity    Float? // quantity of this product in this contract
+  createdAt   DateTime @default(now())
+  active      Boolean  @default(true)
+  status      String
+  deleted     Boolean  @default(false)
+  Contract    Contract @relation(fields: [contract_id], references: [id])
+  Product     Product  @relation(fields: [product_id], references: [id])
 }
 
 model Customer {
@@ -89,113 +159,84 @@ model Customer {
   website      String
   note         String
   description  String
-  contracts    Contract[]
   createdAt    DateTime   @default(now())
   active       Boolean    @default(true)
   status       String
+  deleted      Boolean    @default(false)
+  Contact      Contact[]
+  Contract     Contract[]
 }
 
-model Contract {
-  id                                   Int                @id @default(autoincrement())
-  name                                 String
-  description                          String
-  date_creation                        DateTime
-  date_expiration                      DateTime
-  date_signature                       DateTime
-  date_expiration_signature            DateTime
-  date_signature_customer              DateTime
-  date_expiration_signature_customer   DateTime
-  date_signature_seller                DateTime
-  date_expiration_signature_seller     DateTime
-  customer_id                          Int
-  customer                             Customer           @relation(fields: [customer_id], references: [id])
-  seller_id                            Int
-  seller                               Seller             @relation(fields: [seller_id], references: [id])
-  products_id                          Int[]
-  products                             Product[]          @relation("ContractProduct")
-  contractProducts                     ContractProduct[]
-  bording_date                         DateTime
-  mt_value                             Float
-  destination_country                  String
-  destination_port                     String
-  shipping_company                     String
-  shipment_date                        DateTime
-  si_sent                              Boolean
-  packing                              String[]
-  arbitration_rules                    ArbitrationRule[]
-  special_conditions                   SpecialCondition[]
-  incoterm                             String[]
-  payment_terms                        String
-  payment_method                       String
-  payment_currency                     String
-  payment_amount                       Float
-  payment_date                         DateTime
-  payment_status                       String
-  payment_notes                        String
-  payment_attachments                  String[]
-  payment_notes_customer               String
-  payment_attachments_customer         String[]
-  payment_notes_seller                 String
-  payment_attachments_seller           String[]
-  special_terms                        String[]
-  business_terms                       String[]
-  legal_terms                          String[]
-  other_terms                          String[]
-  other_terms_customer                 String[]
-  other_terms_seller                   String[]
-  other_terms_customer_seller          String[]
-  other_terms_seller_customer          String[]
-  other_terms_customer_seller_customer String[]
-  other_terms_seller_customer_seller   String[]
-  commission_customer                  Float
-  commission_seller                    Float
-  comission_total                      Float
-  attachments                          String[]
-  createdAt                            DateTime           @default(now())
-  active                               Boolean            @default(true)
-  status                               String
-  brokerageInvoices                    BrokerageInvoice[]
+model File {
+  id         Int      @id @default(autoincrement())
+  filename   String
+  objectKey  String   @unique
+  mimetype   String
+  size       Int
+  entityType String?
+  entityId   Int?
+  uploadedBy String?
+  createdAt  DateTime @default(now())
+  active     Boolean  @default(true)
+  deleted    Boolean  @default(false)
 }
 
-model ContractProduct {
-  id          Int      @id @default(autoincrement())
-  contract_id Int
-  contract    Contract @relation(fields: [contract_id], references: [id])
-  product_id  Int
-  product     Product  @relation(fields: [product_id], references: [id])
-  createdAt   DateTime @default(now())
-  active      Boolean  @default(true)
-  status      String
+model Product {
+  id                     Int               @id @default(autoincrement())
+  sku                    String
+  name                   String
+  comercial_name         String
+  category               String
+  origin_country         String
+  price_comercial        Float
+  price_local            Float
+  comission              Float
+  incoterm               String[]
+  regulator_organ_number String
+  sanity_rules           String[]
+  pack_type              String
+  quantity_per_pack      Float
+  quantity_per_container Float
+  container_type         String
+  country_from           String
+  supply_origin_country  String
+  port_origin            String
+  port_destination       String
+  documents_required     String[]
+  record_owner           String
+  observation            String
+  attached_files         String[]
+  createdAt              DateTime          @default(now())
+  active                 Boolean           @default(true)
+  status                 String
+  currency               String
+  sellersId              Int?
+  deleted                Boolean           @default(false)
+  ContractProduct        ContractProduct[]
+  Seller                 Seller?           @relation(fields: [sellersId], references: [id])
+  Contract               Contract[]        @relation("ContractProduct")
 }
 
-model BrokerageInvoice {
-  id                  Int      @id @default(autoincrement())
-  contract_id         Int
-  contract            Contract @relation(fields: [contract_id], references: [id])
-  comission_total_usd Float
-  comission_total_brl Float
-  bl_date             DateTime
-  bl_number           String
-  bl_attachments      String[]
-  ptax                Float
-  attachments         String[]
-  createdAt           DateTime @default(now())
-  active              Boolean  @default(true)
-  status              String
-}
-
-model ArbitrationRule {
-  id          Int        @id @default(autoincrement())
-  name        String
-  description String
-  order       Int
-  type        String
-  note        String
-  attachments String[]
-  contracts   Contract[]
-  createdAt   DateTime   @default(now())
-  active      Boolean    @default(true)
-  status      String
+model Seller {
+  id           Int        @id @default(autoincrement())
+  company_name String
+  full_address String
+  country      String
+  tax_id       String
+  contact_name String
+  whatsapp     String
+  phone        String[]
+  email        String[]
+  website      String
+  note         String
+  description  String
+  createdAt    DateTime   @default(now())
+  active       Boolean    @default(true)
+  status       String
+  deleted      Boolean    @default(false)
+  Contact      Contact[]
+  Contract     Contract[]
+  Product      Product[]
 }
 
 model SpecialCondition {
@@ -207,8 +248,21 @@ model SpecialCondition {
   note        String
   attachments String[]
   order       Int
-  contracts   Contract[]
   createdAt   DateTime   @default(now())
   active      Boolean    @default(true)
   status      String
+  deleted     Boolean    @default(false)
+  Contract    Contract[]
+}
+
+model User {
+  id                Int      @id @default(autoincrement())
+  email             String   @unique
+  name              String?
+  role              String   @default("user")
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime
+  superTokensUserId String   @unique
+  deleted           Boolean  @default(false)
 }

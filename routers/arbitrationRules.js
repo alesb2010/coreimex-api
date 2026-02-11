@@ -55,7 +55,20 @@ async function arbitrationRulesRoutes(fastify, options) {
     }
   }, async (request, reply) => {
     const { id } = request.params;
-    const data = request.body;
+    const body = request.body;
+
+    // Only pick valid ArbitrationRule fields from schema
+    const allowedFields = [
+      'name', 'description', 'order', 'type', 'note',
+      'attachments', 'active', 'status', 'deleted'
+    ];
+    const data = {};
+    for (const field of allowedFields) {
+      if (field in body) {
+        data[field] = body[field];
+      }
+    }
+
     try {
       const rule = await prisma.arbitrationRule.update({
         where: { id: parseInt(id) },
@@ -63,7 +76,12 @@ async function arbitrationRulesRoutes(fastify, options) {
       });
       return rule;
     } catch (error) {
-      reply.code(404).send({ error: "Arbitration rule not found" });
+      if (error.code === 'P2025') {
+        reply.code(404).send({ error: "Arbitration rule not found" });
+      } else {
+        request.log.error(error);
+        reply.code(400).send({ error: error.message });
+      }
     }
   });
 
@@ -82,7 +100,12 @@ async function arbitrationRulesRoutes(fastify, options) {
       });
       reply.code(204).send();
     } catch (error) {
-      reply.code(404).send({ error: "Arbitration rule not found" });
+      if (error.code === 'P2025') {
+        reply.code(404).send({ error: "Arbitration rule not found" });
+      } else {
+        request.log.error(error);
+        reply.code(400).send({ error: error.message });
+      }
     }
   });
 }
