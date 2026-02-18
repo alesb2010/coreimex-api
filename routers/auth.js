@@ -74,18 +74,20 @@ async function authRoutes(fastify, options) {
     fastify.post('/auth/register', {
         schema: {
             tags: ['Authentication'],
+            security: [{ bearerAuth: [] }],
             body: {
                 type: 'object',
                 required: ['email', 'password', 'name'],
                 properties: {
                     email: { type: 'string', format: 'email' },
                     password: { type: 'string', minLength: 6 },
-                    name: { type: 'string' }
+                    name: { type: 'string' },
+                    role: { type: 'string' }
                 }
             }
         }
     }, async (request, reply) => {
-        const { email, password, name } = request.body;
+        const { email, password, name, role } = request.body;
 
         try {
             // Correct SuperTokens signUp usage - pass tenantId, email, password
@@ -93,7 +95,7 @@ async function authRoutes(fastify, options) {
 
             if (signUpResponse.status === "OK") {
                 // Create session for the user
-                await Session.createNewSession(request, reply, "public", signUpResponse.recipeUserId);
+                // await Session.createNewSession(request, reply, "public", signUpResponse.recipeUserId);
 
                 // Create user in database
                 try {
@@ -104,7 +106,7 @@ async function authRoutes(fastify, options) {
                             superTokensUserId: signUpResponse.user.id,
                             email: email,
                             name: name,
-                            role: "user"
+                            role: role
                         }
                     });
 

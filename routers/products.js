@@ -1,5 +1,22 @@
+const API_PREFIX = '/api/v1';
+
+function mapFileToWithUrl(file) {
+    return {
+        ...file,
+        url: `${API_PREFIX}/files/${file.id}/download`,
+        presignedUrlPath: `${API_PREFIX}/files/${file.id}/presigned-url`,
+    };
+}
+
 async function productsRoutes(fastify, options) {
     const { prisma } = options;
+
+    const productIncludeFiles = {
+        File: {
+            where: { active: true, deleted: false },
+            orderBy: { createdAt: 'desc' }
+        }
+    };
 
     // GET all products
     fastify.get("/products", {
@@ -9,7 +26,13 @@ async function productsRoutes(fastify, options) {
             security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
-        return prisma.product.findMany({});
+        const products = await prisma.product.findMany({
+            include: productIncludeFiles
+        });
+        return products.map((p) => ({
+            ...p,
+            File: (p.File || []).map(mapFileToWithUrl)
+        }));
     });
 
     // GET product by ID
@@ -23,12 +46,16 @@ async function productsRoutes(fastify, options) {
         const { id } = request.params;
         const product = await prisma.product.findUnique({
             where: { id: parseInt(id) },
+            include: productIncludeFiles
         });
         if (!product) {
             reply.code(404).send({ error: "Product not found" });
             return;
         }
-        return product;
+        return {
+            ...product,
+            File: (product.File || []).map(mapFileToWithUrl)
+        };
     });
 
     // POST create product
@@ -40,6 +67,8 @@ async function productsRoutes(fastify, options) {
         }
     }, async (request, reply) => {
         const data = { ...request.body };
+        delete data.attached_files; // attachments are now via File relation
+        delete data.File; // relation, not a create field
         // Convert sellersId 0 or falsy to null (optional relation)
         if (!data.sellersId) {
             data.sellersId = null;
@@ -69,7 +98,7 @@ async function productsRoutes(fastify, options) {
             'quantity_per_pack', 'quantity_per_container', 'container_type',
             'country_from', 'supply_origin_country', 'port_origin',
             'port_destination', 'documents_required', 'record_owner',
-            'observation', 'attached_files', 'active', 'status', 'currency', 'deleted'
+            'observation', 'active', 'status', 'currency', 'deleted'
         ];
         const data = {};
         for (const field of allowedFields) {
@@ -78,12 +107,12 @@ async function productsRoutes(fastify, options) {
             }
         }
 
-        // Handle sellers relation for update
+        // Handle Seller relation for update (Prisma relation name is Seller, not sellers)
         if (body.sellersId !== undefined) {
             if (body.sellersId) {
-                data.sellers = { connect: { id: body.sellersId } };
+                data.Seller = { connect: { id: body.sellersId } };
             } else {
-                data.sellers = { disconnect: true };
+                data.Seller = { disconnect: true };
             }
         }
         try {

@@ -77,17 +77,22 @@ async function filesRoutes(fastify, options) {
             // Upload to MinIO
             await fastify.minio.uploadFile(objectKey, fileBuffer, size, mimetype);
 
-            // Save metadata to database
+            // Save metadata to database (set productId when entity is product for Product relation)
+            const parsedEntityId = entityId ? parseInt(entityId) : null;
+            const fileData = {
+                filename,
+                objectKey,
+                mimetype,
+                size,
+                entityType: entityType || null,
+                entityId: parsedEntityId,
+                uploadedBy: request.user?.id || null
+            };
+            if (entityType === 'product' && parsedEntityId) {
+                fileData.productId = parsedEntityId;
+            }
             const file = await prisma.file.create({
-                data: {
-                    filename,
-                    objectKey,
-                    mimetype,
-                    size,
-                    entityType: entityType || null,
-                    entityId: entityId ? parseInt(entityId) : null,
-                    uploadedBy: request.user?.id || null
-                }
+                data: fileData
             });
 
             reply.code(201).send(file);
@@ -162,17 +167,22 @@ async function filesRoutes(fastify, options) {
                     // Upload to MinIO
                     await fastify.minio.uploadFile(objectKey, fileBuffer, size, mimetype);
 
-                    // Save metadata to database
+                    // Save metadata to database (set productId when entity is product for Product relation)
+                    const parsedEntityId = entityId ? parseInt(entityId) : null;
+                    const fileData = {
+                        filename,
+                        objectKey,
+                        mimetype,
+                        size,
+                        entityType: entityType || null,
+                        entityId: parsedEntityId,
+                        uploadedBy: request.user?.id || null
+                    };
+                    if (entityType === 'product' && parsedEntityId) {
+                        fileData.productId = parsedEntityId;
+                    }
                     const file = await prisma.file.create({
-                        data: {
-                            filename,
-                            objectKey,
-                            mimetype,
-                            size,
-                            entityType: entityType || null,
-                            entityId: entityId ? parseInt(entityId) : null,
-                            uploadedBy: request.user?.id || null
-                        }
+                        data: fileData
                     });
 
                     uploadedFiles.push(file);

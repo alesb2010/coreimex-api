@@ -63,6 +63,7 @@ await fastify.register(cors, {
     return cb(null, false);
   },
   credentials: true, // Required for SuperTokens cookies
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"],
   allowedHeaders: [
     "Content-Type",
     "anti-csrf",
@@ -199,6 +200,7 @@ await fastify.register(import('./plugins/supertokens.js'), { prisma });
 
 // Register routers AFTER SuperTokens plugin
 await fastify.register(import('./routers/auth.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/userManagement.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/products.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/sellers.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/customers.js'), { prefix: '/api/v1/', prisma });

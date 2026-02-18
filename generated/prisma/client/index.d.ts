@@ -64,6 +64,11 @@ export type Seller = $Result.DefaultSelection<Prisma.$SellerPayload>
  */
 export type SpecialCondition = $Result.DefaultSelection<Prisma.$SpecialConditionPayload>
 /**
+ * Model Role
+ * 
+ */
+export type Role = $Result.DefaultSelection<Prisma.$RolePayload>
+/**
  * Model User
  * 
  */
@@ -286,6 +291,16 @@ export class PrismaClient<
     * ```
     */
   get specialCondition(): Prisma.SpecialConditionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.role`: Exposes CRUD operations for the **Role** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Roles
+    * const roles = await prisma.role.findMany()
+    * ```
+    */
+  get role(): Prisma.RoleDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -747,6 +762,7 @@ export namespace Prisma {
     Product: 'Product',
     Seller: 'Seller',
     SpecialCondition: 'SpecialCondition',
+    Role: 'Role',
     User: 'User'
   };
 
@@ -766,7 +782,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "arbitrationRule" | "brokerageInvoice" | "contact" | "contract" | "contractProduct" | "customer" | "file" | "product" | "seller" | "specialCondition" | "user"
+      modelProps: "arbitrationRule" | "brokerageInvoice" | "contact" | "contract" | "contractProduct" | "customer" | "file" | "product" | "seller" | "specialCondition" | "role" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1510,6 +1526,80 @@ export namespace Prisma {
           }
         }
       }
+      Role: {
+        payload: Prisma.$RolePayload<ExtArgs>
+        fields: Prisma.RoleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RoleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RoleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload>
+          }
+          findFirst: {
+            args: Prisma.RoleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RoleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload>
+          }
+          findMany: {
+            args: Prisma.RoleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload>[]
+          }
+          create: {
+            args: Prisma.RoleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload>
+          }
+          createMany: {
+            args: Prisma.RoleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RoleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload>[]
+          }
+          delete: {
+            args: Prisma.RoleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload>
+          }
+          update: {
+            args: Prisma.RoleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload>
+          }
+          deleteMany: {
+            args: Prisma.RoleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RoleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RoleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload>[]
+          }
+          upsert: {
+            args: Prisma.RoleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RolePayload>
+          }
+          aggregate: {
+            args: Prisma.RoleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRole>
+          }
+          groupBy: {
+            args: Prisma.RoleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RoleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RoleCountArgs<ExtArgs>
+            result: $Utils.Optional<RoleCountAggregateOutputType> | number
+          }
+        }
+      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -1690,6 +1780,7 @@ export namespace Prisma {
     product?: ProductOmit
     seller?: SellerOmit
     specialCondition?: SpecialConditionOmit
+    role?: RoleOmit
     user?: UserOmit
   }
 
@@ -1911,11 +2002,13 @@ export namespace Prisma {
   export type ProductCountOutputType = {
     ContractProduct: number
     Contract: number
+    File: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ContractProduct?: boolean | ProductCountOutputTypeCountContractProductArgs
     Contract?: boolean | ProductCountOutputTypeCountContractArgs
+    File?: boolean | ProductCountOutputTypeCountFileArgs
   }
 
   // Custom InputTypes
@@ -1941,6 +2034,13 @@ export namespace Prisma {
    */
   export type ProductCountOutputTypeCountContractArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ContractWhereInput
+  }
+
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountFileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FileWhereInput
   }
 
 
@@ -10067,12 +10167,14 @@ export namespace Prisma {
     id: number | null
     size: number | null
     entityId: number | null
+    productId: number | null
   }
 
   export type FileSumAggregateOutputType = {
     id: number | null
     size: number | null
     entityId: number | null
+    productId: number | null
   }
 
   export type FileMinAggregateOutputType = {
@@ -10087,6 +10189,7 @@ export namespace Prisma {
     createdAt: Date | null
     active: boolean | null
     deleted: boolean | null
+    productId: number | null
   }
 
   export type FileMaxAggregateOutputType = {
@@ -10101,6 +10204,7 @@ export namespace Prisma {
     createdAt: Date | null
     active: boolean | null
     deleted: boolean | null
+    productId: number | null
   }
 
   export type FileCountAggregateOutputType = {
@@ -10115,6 +10219,7 @@ export namespace Prisma {
     createdAt: number
     active: number
     deleted: number
+    productId: number
     _all: number
   }
 
@@ -10123,12 +10228,14 @@ export namespace Prisma {
     id?: true
     size?: true
     entityId?: true
+    productId?: true
   }
 
   export type FileSumAggregateInputType = {
     id?: true
     size?: true
     entityId?: true
+    productId?: true
   }
 
   export type FileMinAggregateInputType = {
@@ -10143,6 +10250,7 @@ export namespace Prisma {
     createdAt?: true
     active?: true
     deleted?: true
+    productId?: true
   }
 
   export type FileMaxAggregateInputType = {
@@ -10157,6 +10265,7 @@ export namespace Prisma {
     createdAt?: true
     active?: true
     deleted?: true
+    productId?: true
   }
 
   export type FileCountAggregateInputType = {
@@ -10171,6 +10280,7 @@ export namespace Prisma {
     createdAt?: true
     active?: true
     deleted?: true
+    productId?: true
     _all?: true
   }
 
@@ -10272,6 +10382,7 @@ export namespace Prisma {
     createdAt: Date
     active: boolean
     deleted: boolean
+    productId: number | null
     _count: FileCountAggregateOutputType | null
     _avg: FileAvgAggregateOutputType | null
     _sum: FileSumAggregateOutputType | null
@@ -10305,6 +10416,8 @@ export namespace Prisma {
     createdAt?: boolean
     active?: boolean
     deleted?: boolean
+    productId?: boolean
+    Product?: boolean | File$ProductArgs<ExtArgs>
   }, ExtArgs["result"]["file"]>
 
   export type FileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10319,6 +10432,8 @@ export namespace Prisma {
     createdAt?: boolean
     active?: boolean
     deleted?: boolean
+    productId?: boolean
+    Product?: boolean | File$ProductArgs<ExtArgs>
   }, ExtArgs["result"]["file"]>
 
   export type FileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10333,6 +10448,8 @@ export namespace Prisma {
     createdAt?: boolean
     active?: boolean
     deleted?: boolean
+    productId?: boolean
+    Product?: boolean | File$ProductArgs<ExtArgs>
   }, ExtArgs["result"]["file"]>
 
   export type FileSelectScalar = {
@@ -10347,13 +10464,25 @@ export namespace Prisma {
     createdAt?: boolean
     active?: boolean
     deleted?: boolean
+    productId?: boolean
   }
 
-  export type FileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "filename" | "objectKey" | "mimetype" | "size" | "entityType" | "entityId" | "uploadedBy" | "createdAt" | "active" | "deleted", ExtArgs["result"]["file"]>
+  export type FileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "filename" | "objectKey" | "mimetype" | "size" | "entityType" | "entityId" | "uploadedBy" | "createdAt" | "active" | "deleted" | "productId", ExtArgs["result"]["file"]>
+  export type FileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Product?: boolean | File$ProductArgs<ExtArgs>
+  }
+  export type FileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Product?: boolean | File$ProductArgs<ExtArgs>
+  }
+  export type FileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Product?: boolean | File$ProductArgs<ExtArgs>
+  }
 
   export type $FilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "File"
-    objects: {}
+    objects: {
+      Product: Prisma.$ProductPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       filename: string
@@ -10366,6 +10495,7 @@ export namespace Prisma {
       createdAt: Date
       active: boolean
       deleted: boolean
+      productId: number | null
     }, ExtArgs["result"]["file"]>
     composites: {}
   }
@@ -10760,6 +10890,7 @@ export namespace Prisma {
    */
   export interface Prisma__FileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    Product<T extends File$ProductArgs<ExtArgs> = {}>(args?: Subset<T, File$ProductArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10800,6 +10931,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"File", 'DateTime'>
     readonly active: FieldRef<"File", 'Boolean'>
     readonly deleted: FieldRef<"File", 'Boolean'>
+    readonly productId: FieldRef<"File", 'Int'>
   }
     
 
@@ -10816,6 +10948,10 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
     /**
      * Filter, which File to fetch.
      */
@@ -10835,6 +10971,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * Filter, which File to fetch.
      */
     where: FileWhereUniqueInput
@@ -10852,6 +10992,10 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
     /**
      * Filter, which File to fetch.
      */
@@ -10901,6 +11045,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * Filter, which File to fetch.
      */
     where?: FileWhereInput
@@ -10949,6 +11097,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * Filter, which Files to fetch.
      */
     where?: FileWhereInput
@@ -10992,6 +11144,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * The data needed to create a File.
      */
     data: XOR<FileCreateInput, FileUncheckedCreateInput>
@@ -11025,6 +11181,10 @@ export namespace Prisma {
      */
     data: FileCreateManyInput | FileCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -11039,6 +11199,10 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
     /**
      * The data needed to update a File.
      */
@@ -11091,6 +11255,10 @@ export namespace Prisma {
      * Limit how many Files to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -11105,6 +11273,10 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
     /**
      * The filter to search for the File to update in case it exists.
      */
@@ -11132,6 +11304,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * Filter which File to delete.
      */
     where: FileWhereUniqueInput
@@ -11152,6 +11328,25 @@ export namespace Prisma {
   }
 
   /**
+   * File.Product
+   */
+  export type File$ProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Product
+     */
+    select?: ProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Product
+     */
+    omit?: ProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductInclude<ExtArgs> | null
+    where?: ProductWhereInput
+  }
+
+  /**
    * File without action
    */
   export type FileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11163,6 +11358,10 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
   }
 
 
@@ -11280,7 +11479,6 @@ export namespace Prisma {
     documents_required: number
     record_owner: number
     observation: number
-    attached_files: number
     createdAt: number
     active: number
     status: number
@@ -11393,7 +11591,6 @@ export namespace Prisma {
     documents_required?: true
     record_owner?: true
     observation?: true
-    attached_files?: true
     createdAt?: true
     active?: true
     status?: true
@@ -11513,7 +11710,6 @@ export namespace Prisma {
     documents_required: string[]
     record_owner: string
     observation: string
-    attached_files: string[]
     createdAt: Date
     active: boolean
     status: string
@@ -11565,7 +11761,6 @@ export namespace Prisma {
     documents_required?: boolean
     record_owner?: boolean
     observation?: boolean
-    attached_files?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
@@ -11575,6 +11770,7 @@ export namespace Prisma {
     ContractProduct?: boolean | Product$ContractProductArgs<ExtArgs>
     Seller?: boolean | Product$SellerArgs<ExtArgs>
     Contract?: boolean | Product$ContractArgs<ExtArgs>
+    File?: boolean | Product$FileArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -11602,7 +11798,6 @@ export namespace Prisma {
     documents_required?: boolean
     record_owner?: boolean
     observation?: boolean
-    attached_files?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
@@ -11636,7 +11831,6 @@ export namespace Prisma {
     documents_required?: boolean
     record_owner?: boolean
     observation?: boolean
-    attached_files?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
@@ -11670,7 +11864,6 @@ export namespace Prisma {
     documents_required?: boolean
     record_owner?: boolean
     observation?: boolean
-    attached_files?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
@@ -11679,11 +11872,12 @@ export namespace Prisma {
     deleted?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sku" | "name" | "comercial_name" | "category" | "origin_country" | "price_comercial" | "price_local" | "comission" | "incoterm" | "regulator_organ_number" | "sanity_rules" | "pack_type" | "quantity_per_pack" | "quantity_per_container" | "container_type" | "country_from" | "supply_origin_country" | "port_origin" | "port_destination" | "documents_required" | "record_owner" | "observation" | "attached_files" | "createdAt" | "active" | "status" | "currency" | "sellersId" | "deleted", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sku" | "name" | "comercial_name" | "category" | "origin_country" | "price_comercial" | "price_local" | "comission" | "incoterm" | "regulator_organ_number" | "sanity_rules" | "pack_type" | "quantity_per_pack" | "quantity_per_container" | "container_type" | "country_from" | "supply_origin_country" | "port_origin" | "port_destination" | "documents_required" | "record_owner" | "observation" | "createdAt" | "active" | "status" | "currency" | "sellersId" | "deleted", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ContractProduct?: boolean | Product$ContractProductArgs<ExtArgs>
     Seller?: boolean | Product$SellerArgs<ExtArgs>
     Contract?: boolean | Product$ContractArgs<ExtArgs>
+    File?: boolean | Product$FileArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11699,6 +11893,7 @@ export namespace Prisma {
       ContractProduct: Prisma.$ContractProductPayload<ExtArgs>[]
       Seller: Prisma.$SellerPayload<ExtArgs> | null
       Contract: Prisma.$ContractPayload<ExtArgs>[]
+      File: Prisma.$FilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -11724,7 +11919,6 @@ export namespace Prisma {
       documents_required: string[]
       record_owner: string
       observation: string
-      attached_files: string[]
       createdAt: Date
       active: boolean
       status: string
@@ -12128,6 +12322,7 @@ export namespace Prisma {
     ContractProduct<T extends Product$ContractProductArgs<ExtArgs> = {}>(args?: Subset<T, Product$ContractProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Seller<T extends Product$SellerArgs<ExtArgs> = {}>(args?: Subset<T, Product$SellerArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Contract<T extends Product$ContractArgs<ExtArgs> = {}>(args?: Subset<T, Product$ContractArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    File<T extends Product$FileArgs<ExtArgs> = {}>(args?: Subset<T, Product$FileArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12180,7 +12375,6 @@ export namespace Prisma {
     readonly documents_required: FieldRef<"Product", 'String[]'>
     readonly record_owner: FieldRef<"Product", 'String'>
     readonly observation: FieldRef<"Product", 'String'>
-    readonly attached_files: FieldRef<"Product", 'String[]'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly active: FieldRef<"Product", 'Boolean'>
     readonly status: FieldRef<"Product", 'String'>
@@ -12647,6 +12841,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+  }
+
+  /**
+   * Product.File
+   */
+  export type Product$FileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the File
+     */
+    select?: FileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the File
+     */
+    omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    where?: FileWhereInput
+    orderBy?: FileOrderByWithRelationInput | FileOrderByWithRelationInput[]
+    cursor?: FileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FileScalarFieldEnum | FileScalarFieldEnum[]
   }
 
   /**
@@ -15155,6 +15373,1070 @@ export namespace Prisma {
 
 
   /**
+   * Model Role
+   */
+
+  export type AggregateRole = {
+    _count: RoleCountAggregateOutputType | null
+    _avg: RoleAvgAggregateOutputType | null
+    _sum: RoleSumAggregateOutputType | null
+    _min: RoleMinAggregateOutputType | null
+    _max: RoleMaxAggregateOutputType | null
+  }
+
+  export type RoleAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RoleSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RoleMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    active: boolean | null
+    deleted: boolean | null
+  }
+
+  export type RoleMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    active: boolean | null
+    deleted: boolean | null
+  }
+
+  export type RoleCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    permissions: number
+    createdAt: number
+    updatedAt: number
+    active: number
+    deleted: number
+    _all: number
+  }
+
+
+  export type RoleAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type RoleSumAggregateInputType = {
+    id?: true
+  }
+
+  export type RoleMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    active?: true
+    deleted?: true
+  }
+
+  export type RoleMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    active?: true
+    deleted?: true
+  }
+
+  export type RoleCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    permissions?: true
+    createdAt?: true
+    updatedAt?: true
+    active?: true
+    deleted?: true
+    _all?: true
+  }
+
+  export type RoleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Role to aggregate.
+     */
+    where?: RoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Roles to fetch.
+     */
+    orderBy?: RoleOrderByWithRelationInput | RoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Roles
+    **/
+    _count?: true | RoleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RoleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RoleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RoleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RoleMaxAggregateInputType
+  }
+
+  export type GetRoleAggregateType<T extends RoleAggregateArgs> = {
+        [P in keyof T & keyof AggregateRole]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRole[P]>
+      : GetScalarType<T[P], AggregateRole[P]>
+  }
+
+
+
+
+  export type RoleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoleWhereInput
+    orderBy?: RoleOrderByWithAggregationInput | RoleOrderByWithAggregationInput[]
+    by: RoleScalarFieldEnum[] | RoleScalarFieldEnum
+    having?: RoleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RoleCountAggregateInputType | true
+    _avg?: RoleAvgAggregateInputType
+    _sum?: RoleSumAggregateInputType
+    _min?: RoleMinAggregateInputType
+    _max?: RoleMaxAggregateInputType
+  }
+
+  export type RoleGroupByOutputType = {
+    id: number
+    name: string
+    description: string | null
+    permissions: string[]
+    createdAt: Date
+    updatedAt: Date
+    active: boolean
+    deleted: boolean
+    _count: RoleCountAggregateOutputType | null
+    _avg: RoleAvgAggregateOutputType | null
+    _sum: RoleSumAggregateOutputType | null
+    _min: RoleMinAggregateOutputType | null
+    _max: RoleMaxAggregateOutputType | null
+  }
+
+  type GetRoleGroupByPayload<T extends RoleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RoleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RoleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RoleGroupByOutputType[P]>
+            : GetScalarType<T[P], RoleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RoleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    permissions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    active?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["role"]>
+
+  export type RoleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    permissions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    active?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["role"]>
+
+  export type RoleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    permissions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    active?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["role"]>
+
+  export type RoleSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    permissions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    active?: boolean
+    deleted?: boolean
+  }
+
+  export type RoleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "permissions" | "createdAt" | "updatedAt" | "active" | "deleted", ExtArgs["result"]["role"]>
+
+  export type $RolePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Role"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      description: string | null
+      permissions: string[]
+      createdAt: Date
+      updatedAt: Date
+      active: boolean
+      deleted: boolean
+    }, ExtArgs["result"]["role"]>
+    composites: {}
+  }
+
+  type RoleGetPayload<S extends boolean | null | undefined | RoleDefaultArgs> = $Result.GetResult<Prisma.$RolePayload, S>
+
+  type RoleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RoleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RoleCountAggregateInputType | true
+    }
+
+  export interface RoleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Role'], meta: { name: 'Role' } }
+    /**
+     * Find zero or one Role that matches the filter.
+     * @param {RoleFindUniqueArgs} args - Arguments to find a Role
+     * @example
+     * // Get one Role
+     * const role = await prisma.role.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RoleFindUniqueArgs>(args: SelectSubset<T, RoleFindUniqueArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Role that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RoleFindUniqueOrThrowArgs} args - Arguments to find a Role
+     * @example
+     * // Get one Role
+     * const role = await prisma.role.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RoleFindUniqueOrThrowArgs>(args: SelectSubset<T, RoleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Role that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleFindFirstArgs} args - Arguments to find a Role
+     * @example
+     * // Get one Role
+     * const role = await prisma.role.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RoleFindFirstArgs>(args?: SelectSubset<T, RoleFindFirstArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Role that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleFindFirstOrThrowArgs} args - Arguments to find a Role
+     * @example
+     * // Get one Role
+     * const role = await prisma.role.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RoleFindFirstOrThrowArgs>(args?: SelectSubset<T, RoleFindFirstOrThrowArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Roles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Roles
+     * const roles = await prisma.role.findMany()
+     * 
+     * // Get first 10 Roles
+     * const roles = await prisma.role.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const roleWithIdOnly = await prisma.role.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RoleFindManyArgs>(args?: SelectSubset<T, RoleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Role.
+     * @param {RoleCreateArgs} args - Arguments to create a Role.
+     * @example
+     * // Create one Role
+     * const Role = await prisma.role.create({
+     *   data: {
+     *     // ... data to create a Role
+     *   }
+     * })
+     * 
+     */
+    create<T extends RoleCreateArgs>(args: SelectSubset<T, RoleCreateArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Roles.
+     * @param {RoleCreateManyArgs} args - Arguments to create many Roles.
+     * @example
+     * // Create many Roles
+     * const role = await prisma.role.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RoleCreateManyArgs>(args?: SelectSubset<T, RoleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Roles and returns the data saved in the database.
+     * @param {RoleCreateManyAndReturnArgs} args - Arguments to create many Roles.
+     * @example
+     * // Create many Roles
+     * const role = await prisma.role.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Roles and only return the `id`
+     * const roleWithIdOnly = await prisma.role.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RoleCreateManyAndReturnArgs>(args?: SelectSubset<T, RoleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Role.
+     * @param {RoleDeleteArgs} args - Arguments to delete one Role.
+     * @example
+     * // Delete one Role
+     * const Role = await prisma.role.delete({
+     *   where: {
+     *     // ... filter to delete one Role
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RoleDeleteArgs>(args: SelectSubset<T, RoleDeleteArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Role.
+     * @param {RoleUpdateArgs} args - Arguments to update one Role.
+     * @example
+     * // Update one Role
+     * const role = await prisma.role.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RoleUpdateArgs>(args: SelectSubset<T, RoleUpdateArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Roles.
+     * @param {RoleDeleteManyArgs} args - Arguments to filter Roles to delete.
+     * @example
+     * // Delete a few Roles
+     * const { count } = await prisma.role.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RoleDeleteManyArgs>(args?: SelectSubset<T, RoleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Roles
+     * const role = await prisma.role.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RoleUpdateManyArgs>(args: SelectSubset<T, RoleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Roles and returns the data updated in the database.
+     * @param {RoleUpdateManyAndReturnArgs} args - Arguments to update many Roles.
+     * @example
+     * // Update many Roles
+     * const role = await prisma.role.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Roles and only return the `id`
+     * const roleWithIdOnly = await prisma.role.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RoleUpdateManyAndReturnArgs>(args: SelectSubset<T, RoleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Role.
+     * @param {RoleUpsertArgs} args - Arguments to update or create a Role.
+     * @example
+     * // Update or create a Role
+     * const role = await prisma.role.upsert({
+     *   create: {
+     *     // ... data to create a Role
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Role we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RoleUpsertArgs>(args: SelectSubset<T, RoleUpsertArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleCountArgs} args - Arguments to filter Roles to count.
+     * @example
+     * // Count the number of Roles
+     * const count = await prisma.role.count({
+     *   where: {
+     *     // ... the filter for the Roles we want to count
+     *   }
+     * })
+    **/
+    count<T extends RoleCountArgs>(
+      args?: Subset<T, RoleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RoleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Role.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RoleAggregateArgs>(args: Subset<T, RoleAggregateArgs>): Prisma.PrismaPromise<GetRoleAggregateType<T>>
+
+    /**
+     * Group by Role.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RoleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RoleGroupByArgs['orderBy'] }
+        : { orderBy?: RoleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RoleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Role model
+   */
+  readonly fields: RoleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Role.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RoleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Role model
+   */
+  interface RoleFieldRefs {
+    readonly id: FieldRef<"Role", 'Int'>
+    readonly name: FieldRef<"Role", 'String'>
+    readonly description: FieldRef<"Role", 'String'>
+    readonly permissions: FieldRef<"Role", 'String[]'>
+    readonly createdAt: FieldRef<"Role", 'DateTime'>
+    readonly updatedAt: FieldRef<"Role", 'DateTime'>
+    readonly active: FieldRef<"Role", 'Boolean'>
+    readonly deleted: FieldRef<"Role", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Role findUnique
+   */
+  export type RoleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * Filter, which Role to fetch.
+     */
+    where: RoleWhereUniqueInput
+  }
+
+  /**
+   * Role findUniqueOrThrow
+   */
+  export type RoleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * Filter, which Role to fetch.
+     */
+    where: RoleWhereUniqueInput
+  }
+
+  /**
+   * Role findFirst
+   */
+  export type RoleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * Filter, which Role to fetch.
+     */
+    where?: RoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Roles to fetch.
+     */
+    orderBy?: RoleOrderByWithRelationInput | RoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Roles.
+     */
+    cursor?: RoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Roles.
+     */
+    distinct?: RoleScalarFieldEnum | RoleScalarFieldEnum[]
+  }
+
+  /**
+   * Role findFirstOrThrow
+   */
+  export type RoleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * Filter, which Role to fetch.
+     */
+    where?: RoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Roles to fetch.
+     */
+    orderBy?: RoleOrderByWithRelationInput | RoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Roles.
+     */
+    cursor?: RoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Roles.
+     */
+    distinct?: RoleScalarFieldEnum | RoleScalarFieldEnum[]
+  }
+
+  /**
+   * Role findMany
+   */
+  export type RoleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * Filter, which Roles to fetch.
+     */
+    where?: RoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Roles to fetch.
+     */
+    orderBy?: RoleOrderByWithRelationInput | RoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Roles.
+     */
+    cursor?: RoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Roles.
+     */
+    skip?: number
+    distinct?: RoleScalarFieldEnum | RoleScalarFieldEnum[]
+  }
+
+  /**
+   * Role create
+   */
+  export type RoleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Role.
+     */
+    data: XOR<RoleCreateInput, RoleUncheckedCreateInput>
+  }
+
+  /**
+   * Role createMany
+   */
+  export type RoleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Roles.
+     */
+    data: RoleCreateManyInput | RoleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Role createManyAndReturn
+   */
+  export type RoleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * The data used to create many Roles.
+     */
+    data: RoleCreateManyInput | RoleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Role update
+   */
+  export type RoleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Role.
+     */
+    data: XOR<RoleUpdateInput, RoleUncheckedUpdateInput>
+    /**
+     * Choose, which Role to update.
+     */
+    where: RoleWhereUniqueInput
+  }
+
+  /**
+   * Role updateMany
+   */
+  export type RoleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Roles.
+     */
+    data: XOR<RoleUpdateManyMutationInput, RoleUncheckedUpdateManyInput>
+    /**
+     * Filter which Roles to update
+     */
+    where?: RoleWhereInput
+    /**
+     * Limit how many Roles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Role updateManyAndReturn
+   */
+  export type RoleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * The data used to update Roles.
+     */
+    data: XOR<RoleUpdateManyMutationInput, RoleUncheckedUpdateManyInput>
+    /**
+     * Filter which Roles to update
+     */
+    where?: RoleWhereInput
+    /**
+     * Limit how many Roles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Role upsert
+   */
+  export type RoleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Role to update in case it exists.
+     */
+    where: RoleWhereUniqueInput
+    /**
+     * In case the Role found by the `where` argument doesn't exist, create a new Role with this data.
+     */
+    create: XOR<RoleCreateInput, RoleUncheckedCreateInput>
+    /**
+     * In case the Role was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RoleUpdateInput, RoleUncheckedUpdateInput>
+  }
+
+  /**
+   * Role delete
+   */
+  export type RoleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * Filter which Role to delete.
+     */
+    where: RoleWhereUniqueInput
+  }
+
+  /**
+   * Role deleteMany
+   */
+  export type RoleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Roles to delete
+     */
+    where?: RoleWhereInput
+    /**
+     * Limit how many Roles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Role without action
+   */
+  export type RoleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model User
    */
 
@@ -16421,7 +17703,8 @@ export namespace Prisma {
     uploadedBy: 'uploadedBy',
     createdAt: 'createdAt',
     active: 'active',
-    deleted: 'deleted'
+    deleted: 'deleted',
+    productId: 'productId'
   };
 
   export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof FileScalarFieldEnum]
@@ -16451,7 +17734,6 @@ export namespace Prisma {
     documents_required: 'documents_required',
     record_owner: 'record_owner',
     observation: 'observation',
-    attached_files: 'attached_files',
     createdAt: 'createdAt',
     active: 'active',
     status: 'status',
@@ -16501,6 +17783,20 @@ export namespace Prisma {
   };
 
   export type SpecialConditionScalarFieldEnum = (typeof SpecialConditionScalarFieldEnum)[keyof typeof SpecialConditionScalarFieldEnum]
+
+
+  export const RoleScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    permissions: 'permissions',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    active: 'active',
+    deleted: 'deleted'
+  };
+
+  export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
 
 
   export const UserScalarFieldEnum: {
@@ -17503,6 +18799,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"File"> | Date | string
     active?: BoolFilter<"File"> | boolean
     deleted?: BoolFilter<"File"> | boolean
+    productId?: IntNullableFilter<"File"> | number | null
+    Product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
   }
 
   export type FileOrderByWithRelationInput = {
@@ -17517,6 +18815,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     active?: SortOrder
     deleted?: SortOrder
+    productId?: SortOrderInput | SortOrder
+    Product?: ProductOrderByWithRelationInput
   }
 
   export type FileWhereUniqueInput = Prisma.AtLeast<{
@@ -17534,6 +18834,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"File"> | Date | string
     active?: BoolFilter<"File"> | boolean
     deleted?: BoolFilter<"File"> | boolean
+    productId?: IntNullableFilter<"File"> | number | null
+    Product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
   }, "id" | "objectKey">
 
   export type FileOrderByWithAggregationInput = {
@@ -17548,6 +18850,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     active?: SortOrder
     deleted?: SortOrder
+    productId?: SortOrderInput | SortOrder
     _count?: FileCountOrderByAggregateInput
     _avg?: FileAvgOrderByAggregateInput
     _max?: FileMaxOrderByAggregateInput
@@ -17570,6 +18873,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"File"> | Date | string
     active?: BoolWithAggregatesFilter<"File"> | boolean
     deleted?: BoolWithAggregatesFilter<"File"> | boolean
+    productId?: IntNullableWithAggregatesFilter<"File"> | number | null
   }
 
   export type ProductWhereInput = {
@@ -17599,7 +18903,6 @@ export namespace Prisma {
     documents_required?: StringNullableListFilter<"Product">
     record_owner?: StringFilter<"Product"> | string
     observation?: StringFilter<"Product"> | string
-    attached_files?: StringNullableListFilter<"Product">
     createdAt?: DateTimeFilter<"Product"> | Date | string
     active?: BoolFilter<"Product"> | boolean
     status?: StringFilter<"Product"> | string
@@ -17609,6 +18912,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductListRelationFilter
     Seller?: XOR<SellerNullableScalarRelationFilter, SellerWhereInput> | null
     Contract?: ContractListRelationFilter
+    File?: FileListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -17635,7 +18939,6 @@ export namespace Prisma {
     documents_required?: SortOrder
     record_owner?: SortOrder
     observation?: SortOrder
-    attached_files?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
@@ -17645,6 +18948,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductOrderByRelationAggregateInput
     Seller?: SellerOrderByWithRelationInput
     Contract?: ContractOrderByRelationAggregateInput
+    File?: FileOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -17674,7 +18978,6 @@ export namespace Prisma {
     documents_required?: StringNullableListFilter<"Product">
     record_owner?: StringFilter<"Product"> | string
     observation?: StringFilter<"Product"> | string
-    attached_files?: StringNullableListFilter<"Product">
     createdAt?: DateTimeFilter<"Product"> | Date | string
     active?: BoolFilter<"Product"> | boolean
     status?: StringFilter<"Product"> | string
@@ -17684,6 +18987,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductListRelationFilter
     Seller?: XOR<SellerNullableScalarRelationFilter, SellerWhereInput> | null
     Contract?: ContractListRelationFilter
+    File?: FileListRelationFilter
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
@@ -17710,7 +19014,6 @@ export namespace Prisma {
     documents_required?: SortOrder
     record_owner?: SortOrder
     observation?: SortOrder
-    attached_files?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
@@ -17751,7 +19054,6 @@ export namespace Prisma {
     documents_required?: StringNullableListFilter<"Product">
     record_owner?: StringWithAggregatesFilter<"Product"> | string
     observation?: StringWithAggregatesFilter<"Product"> | string
-    attached_files?: StringNullableListFilter<"Product">
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     active?: BoolWithAggregatesFilter<"Product"> | boolean
     status?: StringWithAggregatesFilter<"Product"> | string
@@ -17968,6 +19270,75 @@ export namespace Prisma {
     active?: BoolWithAggregatesFilter<"SpecialCondition"> | boolean
     status?: StringWithAggregatesFilter<"SpecialCondition"> | string
     deleted?: BoolWithAggregatesFilter<"SpecialCondition"> | boolean
+  }
+
+  export type RoleWhereInput = {
+    AND?: RoleWhereInput | RoleWhereInput[]
+    OR?: RoleWhereInput[]
+    NOT?: RoleWhereInput | RoleWhereInput[]
+    id?: IntFilter<"Role"> | number
+    name?: StringFilter<"Role"> | string
+    description?: StringNullableFilter<"Role"> | string | null
+    permissions?: StringNullableListFilter<"Role">
+    createdAt?: DateTimeFilter<"Role"> | Date | string
+    updatedAt?: DateTimeFilter<"Role"> | Date | string
+    active?: BoolFilter<"Role"> | boolean
+    deleted?: BoolFilter<"Role"> | boolean
+  }
+
+  export type RoleOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    permissions?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    active?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type RoleWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    AND?: RoleWhereInput | RoleWhereInput[]
+    OR?: RoleWhereInput[]
+    NOT?: RoleWhereInput | RoleWhereInput[]
+    description?: StringNullableFilter<"Role"> | string | null
+    permissions?: StringNullableListFilter<"Role">
+    createdAt?: DateTimeFilter<"Role"> | Date | string
+    updatedAt?: DateTimeFilter<"Role"> | Date | string
+    active?: BoolFilter<"Role"> | boolean
+    deleted?: BoolFilter<"Role"> | boolean
+  }, "id" | "name">
+
+  export type RoleOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    permissions?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    active?: SortOrder
+    deleted?: SortOrder
+    _count?: RoleCountOrderByAggregateInput
+    _avg?: RoleAvgOrderByAggregateInput
+    _max?: RoleMaxOrderByAggregateInput
+    _min?: RoleMinOrderByAggregateInput
+    _sum?: RoleSumOrderByAggregateInput
+  }
+
+  export type RoleScalarWhereWithAggregatesInput = {
+    AND?: RoleScalarWhereWithAggregatesInput | RoleScalarWhereWithAggregatesInput[]
+    OR?: RoleScalarWhereWithAggregatesInput[]
+    NOT?: RoleScalarWhereWithAggregatesInput | RoleScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Role"> | number
+    name?: StringWithAggregatesFilter<"Role"> | string
+    description?: StringNullableWithAggregatesFilter<"Role"> | string | null
+    permissions?: StringNullableListFilter<"Role">
+    createdAt?: DateTimeWithAggregatesFilter<"Role"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Role"> | Date | string
+    active?: BoolWithAggregatesFilter<"Role"> | boolean
+    deleted?: BoolWithAggregatesFilter<"Role"> | boolean
   }
 
   export type UserWhereInput = {
@@ -19063,6 +20434,7 @@ export namespace Prisma {
     createdAt?: Date | string
     active?: boolean
     deleted?: boolean
+    Product?: ProductCreateNestedOneWithoutFileInput
   }
 
   export type FileUncheckedCreateInput = {
@@ -19077,6 +20449,7 @@ export namespace Prisma {
     createdAt?: Date | string
     active?: boolean
     deleted?: boolean
+    productId?: number | null
   }
 
   export type FileUpdateInput = {
@@ -19090,6 +20463,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    Product?: ProductUpdateOneWithoutFileNestedInput
   }
 
   export type FileUncheckedUpdateInput = {
@@ -19104,6 +20478,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    productId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type FileCreateManyInput = {
@@ -19118,6 +20493,7 @@ export namespace Prisma {
     createdAt?: Date | string
     active?: boolean
     deleted?: boolean
+    productId?: number | null
   }
 
   export type FileUpdateManyMutationInput = {
@@ -19145,6 +20521,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    productId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ProductCreateInput = {
@@ -19170,7 +20547,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -19179,6 +20555,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductCreateNestedManyWithoutProductInput
     Seller?: SellerCreateNestedOneWithoutProductInput
     Contract?: ContractCreateNestedManyWithoutProductInput
+    File?: FileCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -19205,7 +20582,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -19214,6 +20590,7 @@ export namespace Prisma {
     deleted?: boolean
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutProductInput
     Contract?: ContractUncheckedCreateNestedManyWithoutProductInput
+    File?: FileUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
@@ -19239,7 +20616,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -19248,6 +20624,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUpdateManyWithoutProductNestedInput
     Seller?: SellerUpdateOneWithoutProductNestedInput
     Contract?: ContractUpdateManyWithoutProductNestedInput
+    File?: FileUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -19274,7 +20651,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -19283,6 +20659,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutProductNestedInput
     Contract?: ContractUncheckedUpdateManyWithoutProductNestedInput
+    File?: FileUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
@@ -19309,7 +20686,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -19341,7 +20717,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -19373,7 +20748,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -19630,13 +21004,87 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type RoleCreateInput = {
+    name: string
+    description?: string | null
+    permissions?: RoleCreatepermissionsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    active?: boolean
+    deleted?: boolean
+  }
+
+  export type RoleUncheckedCreateInput = {
+    id?: number
+    name: string
+    description?: string | null
+    permissions?: RoleCreatepermissionsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    active?: boolean
+    deleted?: boolean
+  }
+
+  export type RoleUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    permissions?: RoleUpdatepermissionsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type RoleUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    permissions?: RoleUpdatepermissionsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type RoleCreateManyInput = {
+    id?: number
+    name: string
+    description?: string | null
+    permissions?: RoleCreatepermissionsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    active?: boolean
+    deleted?: boolean
+  }
+
+  export type RoleUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    permissions?: RoleUpdatepermissionsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type RoleUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    permissions?: RoleUpdatepermissionsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type UserCreateInput = {
     email: string
     name?: string | null
     role?: string
     active?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     superTokensUserId: string
     deleted?: boolean
   }
@@ -19648,7 +21096,7 @@ export namespace Prisma {
     role?: string
     active?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     superTokensUserId: string
     deleted?: boolean
   }
@@ -19683,7 +21131,7 @@ export namespace Prisma {
     role?: string
     active?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     superTokensUserId: string
     deleted?: boolean
   }
@@ -20585,6 +22033,11 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type ProductNullableScalarRelationFilter = {
+    is?: ProductWhereInput | null
+    isNot?: ProductWhereInput | null
+  }
+
   export type FileCountOrderByAggregateInput = {
     id?: SortOrder
     filename?: SortOrder
@@ -20597,12 +22050,14 @@ export namespace Prisma {
     createdAt?: SortOrder
     active?: SortOrder
     deleted?: SortOrder
+    productId?: SortOrder
   }
 
   export type FileAvgOrderByAggregateInput = {
     id?: SortOrder
     size?: SortOrder
     entityId?: SortOrder
+    productId?: SortOrder
   }
 
   export type FileMaxOrderByAggregateInput = {
@@ -20617,6 +22072,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     active?: SortOrder
     deleted?: SortOrder
+    productId?: SortOrder
   }
 
   export type FileMinOrderByAggregateInput = {
@@ -20631,12 +22087,24 @@ export namespace Prisma {
     createdAt?: SortOrder
     active?: SortOrder
     deleted?: SortOrder
+    productId?: SortOrder
   }
 
   export type FileSumOrderByAggregateInput = {
     id?: SortOrder
     size?: SortOrder
     entityId?: SortOrder
+    productId?: SortOrder
+  }
+
+  export type FileListRelationFilter = {
+    every?: FileWhereInput
+    some?: FileWhereInput
+    none?: FileWhereInput
+  }
+
+  export type FileOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ProductCountOrderByAggregateInput = {
@@ -20663,7 +22131,6 @@ export namespace Prisma {
     documents_required?: SortOrder
     record_owner?: SortOrder
     observation?: SortOrder
-    attached_files?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
@@ -20860,6 +22327,45 @@ export namespace Prisma {
   export type SpecialConditionSumOrderByAggregateInput = {
     id?: SortOrder
     order?: SortOrder
+  }
+
+  export type RoleCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    permissions?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    active?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type RoleAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type RoleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    active?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type RoleMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    active?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type RoleSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -21578,6 +23084,22 @@ export namespace Prisma {
     deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
   }
 
+  export type ProductCreateNestedOneWithoutFileInput = {
+    create?: XOR<ProductCreateWithoutFileInput, ProductUncheckedCreateWithoutFileInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutFileInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type ProductUpdateOneWithoutFileNestedInput = {
+    create?: XOR<ProductCreateWithoutFileInput, ProductUncheckedCreateWithoutFileInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutFileInput
+    upsert?: ProductUpsertWithoutFileInput
+    disconnect?: ProductWhereInput | boolean
+    delete?: ProductWhereInput | boolean
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutFileInput, ProductUpdateWithoutFileInput>, ProductUncheckedUpdateWithoutFileInput>
+  }
+
   export type ProductCreateincotermInput = {
     set: string[]
   }
@@ -21587,10 +23109,6 @@ export namespace Prisma {
   }
 
   export type ProductCreatedocuments_requiredInput = {
-    set: string[]
-  }
-
-  export type ProductCreateattached_filesInput = {
     set: string[]
   }
 
@@ -21613,6 +23131,13 @@ export namespace Prisma {
     connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
   }
 
+  export type FileCreateNestedManyWithoutProductInput = {
+    create?: XOR<FileCreateWithoutProductInput, FileUncheckedCreateWithoutProductInput> | FileCreateWithoutProductInput[] | FileUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: FileCreateOrConnectWithoutProductInput | FileCreateOrConnectWithoutProductInput[]
+    createMany?: FileCreateManyProductInputEnvelope
+    connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+  }
+
   export type ContractProductUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<ContractProductCreateWithoutProductInput, ContractProductUncheckedCreateWithoutProductInput> | ContractProductCreateWithoutProductInput[] | ContractProductUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ContractProductCreateOrConnectWithoutProductInput | ContractProductCreateOrConnectWithoutProductInput[]
@@ -21626,6 +23151,13 @@ export namespace Prisma {
     connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
   }
 
+  export type FileUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<FileCreateWithoutProductInput, FileUncheckedCreateWithoutProductInput> | FileCreateWithoutProductInput[] | FileUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: FileCreateOrConnectWithoutProductInput | FileCreateOrConnectWithoutProductInput[]
+    createMany?: FileCreateManyProductInputEnvelope
+    connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+  }
+
   export type ProductUpdateincotermInput = {
     set?: string[]
     push?: string | string[]
@@ -21637,11 +23169,6 @@ export namespace Prisma {
   }
 
   export type ProductUpdatedocuments_requiredInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type ProductUpdateattached_filesInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -21683,6 +23210,20 @@ export namespace Prisma {
     deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
   }
 
+  export type FileUpdateManyWithoutProductNestedInput = {
+    create?: XOR<FileCreateWithoutProductInput, FileUncheckedCreateWithoutProductInput> | FileCreateWithoutProductInput[] | FileUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: FileCreateOrConnectWithoutProductInput | FileCreateOrConnectWithoutProductInput[]
+    upsert?: FileUpsertWithWhereUniqueWithoutProductInput | FileUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: FileCreateManyProductInputEnvelope
+    set?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    disconnect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    delete?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    update?: FileUpdateWithWhereUniqueWithoutProductInput | FileUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: FileUpdateManyWithWhereWithoutProductInput | FileUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: FileScalarWhereInput | FileScalarWhereInput[]
+  }
+
   export type ContractProductUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<ContractProductCreateWithoutProductInput, ContractProductUncheckedCreateWithoutProductInput> | ContractProductCreateWithoutProductInput[] | ContractProductUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ContractProductCreateOrConnectWithoutProductInput | ContractProductCreateOrConnectWithoutProductInput[]
@@ -21708,6 +23249,20 @@ export namespace Prisma {
     update?: ContractUpdateWithWhereUniqueWithoutProductInput | ContractUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: ContractUpdateManyWithWhereWithoutProductInput | ContractUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  }
+
+  export type FileUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<FileCreateWithoutProductInput, FileUncheckedCreateWithoutProductInput> | FileCreateWithoutProductInput[] | FileUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: FileCreateOrConnectWithoutProductInput | FileCreateOrConnectWithoutProductInput[]
+    upsert?: FileUpsertWithWhereUniqueWithoutProductInput | FileUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: FileCreateManyProductInputEnvelope
+    set?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    disconnect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    delete?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
+    update?: FileUpdateWithWhereUniqueWithoutProductInput | FileUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: FileUpdateManyWithWhereWithoutProductInput | FileUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: FileScalarWhereInput | FileScalarWhereInput[]
   }
 
   export type SellerCreatephoneInput = {
@@ -21908,6 +23463,15 @@ export namespace Prisma {
     update?: ContractUpdateWithWhereUniqueWithoutSpecialConditionInput | ContractUpdateWithWhereUniqueWithoutSpecialConditionInput[]
     updateMany?: ContractUpdateManyWithWhereWithoutSpecialConditionInput | ContractUpdateManyWithWhereWithoutSpecialConditionInput[]
     deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  }
+
+  export type RoleCreatepermissionsInput = {
+    set: string[]
+  }
+
+  export type RoleUpdatepermissionsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -23032,7 +24596,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -23040,6 +24603,7 @@ export namespace Prisma {
     deleted?: boolean
     ContractProduct?: ContractProductCreateNestedManyWithoutProductInput
     Seller?: SellerCreateNestedOneWithoutProductInput
+    File?: FileCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutContractInput = {
@@ -23066,7 +24630,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -23074,6 +24637,7 @@ export namespace Prisma {
     sellersId?: number | null
     deleted?: boolean
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutProductInput
+    File?: FileUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutContractInput = {
@@ -23361,7 +24925,6 @@ export namespace Prisma {
     documents_required?: StringNullableListFilter<"Product">
     record_owner?: StringFilter<"Product"> | string
     observation?: StringFilter<"Product"> | string
-    attached_files?: StringNullableListFilter<"Product">
     createdAt?: DateTimeFilter<"Product"> | Date | string
     active?: BoolFilter<"Product"> | boolean
     status?: StringFilter<"Product"> | string
@@ -23551,7 +25114,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -23559,6 +25121,7 @@ export namespace Prisma {
     deleted?: boolean
     Seller?: SellerCreateNestedOneWithoutProductInput
     Contract?: ContractCreateNestedManyWithoutProductInput
+    File?: FileCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutContractProductInput = {
@@ -23585,7 +25148,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -23593,6 +25155,7 @@ export namespace Prisma {
     sellersId?: number | null
     deleted?: boolean
     Contract?: ContractUncheckedCreateNestedManyWithoutProductInput
+    File?: FileUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutContractProductInput = {
@@ -23764,7 +25327,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -23772,6 +25334,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Seller?: SellerUpdateOneWithoutProductNestedInput
     Contract?: ContractUpdateManyWithoutProductNestedInput
+    File?: FileUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutContractProductInput = {
@@ -23798,7 +25361,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -23806,6 +25368,7 @@ export namespace Prisma {
     sellersId?: NullableIntFieldUpdateOperationsInput | number | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contract?: ContractUncheckedUpdateManyWithoutProductNestedInput
+    File?: FileUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ContactCreateWithoutCustomerInput = {
@@ -24054,6 +25617,156 @@ export namespace Prisma {
     data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutCustomerInput>
   }
 
+  export type ProductCreateWithoutFileInput = {
+    sku: string
+    name: string
+    comercial_name: string
+    category: string
+    origin_country: string
+    price_comercial: number
+    price_local: number
+    comission: number
+    incoterm?: ProductCreateincotermInput | string[]
+    regulator_organ_number: string
+    sanity_rules?: ProductCreatesanity_rulesInput | string[]
+    pack_type: string
+    quantity_per_pack: number
+    quantity_per_container: number
+    container_type: string
+    country_from: string
+    supply_origin_country: string
+    port_origin: string
+    port_destination: string
+    documents_required?: ProductCreatedocuments_requiredInput | string[]
+    record_owner: string
+    observation: string
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    currency: string
+    deleted?: boolean
+    ContractProduct?: ContractProductCreateNestedManyWithoutProductInput
+    Seller?: SellerCreateNestedOneWithoutProductInput
+    Contract?: ContractCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductUncheckedCreateWithoutFileInput = {
+    id?: number
+    sku: string
+    name: string
+    comercial_name: string
+    category: string
+    origin_country: string
+    price_comercial: number
+    price_local: number
+    comission: number
+    incoterm?: ProductCreateincotermInput | string[]
+    regulator_organ_number: string
+    sanity_rules?: ProductCreatesanity_rulesInput | string[]
+    pack_type: string
+    quantity_per_pack: number
+    quantity_per_container: number
+    container_type: string
+    country_from: string
+    supply_origin_country: string
+    port_origin: string
+    port_destination: string
+    documents_required?: ProductCreatedocuments_requiredInput | string[]
+    record_owner: string
+    observation: string
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    currency: string
+    sellersId?: number | null
+    deleted?: boolean
+    ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutProductInput
+    Contract?: ContractUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutFileInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutFileInput, ProductUncheckedCreateWithoutFileInput>
+  }
+
+  export type ProductUpsertWithoutFileInput = {
+    update: XOR<ProductUpdateWithoutFileInput, ProductUncheckedUpdateWithoutFileInput>
+    create: XOR<ProductCreateWithoutFileInput, ProductUncheckedCreateWithoutFileInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutFileInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutFileInput, ProductUncheckedUpdateWithoutFileInput>
+  }
+
+  export type ProductUpdateWithoutFileInput = {
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    comercial_name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    origin_country?: StringFieldUpdateOperationsInput | string
+    price_comercial?: FloatFieldUpdateOperationsInput | number
+    price_local?: FloatFieldUpdateOperationsInput | number
+    comission?: FloatFieldUpdateOperationsInput | number
+    incoterm?: ProductUpdateincotermInput | string[]
+    regulator_organ_number?: StringFieldUpdateOperationsInput | string
+    sanity_rules?: ProductUpdatesanity_rulesInput | string[]
+    pack_type?: StringFieldUpdateOperationsInput | string
+    quantity_per_pack?: FloatFieldUpdateOperationsInput | number
+    quantity_per_container?: FloatFieldUpdateOperationsInput | number
+    container_type?: StringFieldUpdateOperationsInput | string
+    country_from?: StringFieldUpdateOperationsInput | string
+    supply_origin_country?: StringFieldUpdateOperationsInput | string
+    port_origin?: StringFieldUpdateOperationsInput | string
+    port_destination?: StringFieldUpdateOperationsInput | string
+    documents_required?: ProductUpdatedocuments_requiredInput | string[]
+    record_owner?: StringFieldUpdateOperationsInput | string
+    observation?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    ContractProduct?: ContractProductUpdateManyWithoutProductNestedInput
+    Seller?: SellerUpdateOneWithoutProductNestedInput
+    Contract?: ContractUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutFileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    comercial_name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    origin_country?: StringFieldUpdateOperationsInput | string
+    price_comercial?: FloatFieldUpdateOperationsInput | number
+    price_local?: FloatFieldUpdateOperationsInput | number
+    comission?: FloatFieldUpdateOperationsInput | number
+    incoterm?: ProductUpdateincotermInput | string[]
+    regulator_organ_number?: StringFieldUpdateOperationsInput | string
+    sanity_rules?: ProductUpdatesanity_rulesInput | string[]
+    pack_type?: StringFieldUpdateOperationsInput | string
+    quantity_per_pack?: FloatFieldUpdateOperationsInput | number
+    quantity_per_container?: FloatFieldUpdateOperationsInput | number
+    container_type?: StringFieldUpdateOperationsInput | string
+    country_from?: StringFieldUpdateOperationsInput | string
+    supply_origin_country?: StringFieldUpdateOperationsInput | string
+    port_origin?: StringFieldUpdateOperationsInput | string
+    port_destination?: StringFieldUpdateOperationsInput | string
+    documents_required?: ProductUpdatedocuments_requiredInput | string[]
+    record_owner?: StringFieldUpdateOperationsInput | string
+    observation?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    sellersId?: NullableIntFieldUpdateOperationsInput | number | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    ContractProduct?: ContractProductUncheckedUpdateManyWithoutProductNestedInput
+    Contract?: ContractUncheckedUpdateManyWithoutProductNestedInput
+  }
+
   export type ContractProductCreateWithoutProductInput = {
     price?: number | null
     quantity?: number | null
@@ -24255,6 +25968,43 @@ export namespace Prisma {
     create: XOR<ContractCreateWithoutProductInput, ContractUncheckedCreateWithoutProductInput>
   }
 
+  export type FileCreateWithoutProductInput = {
+    filename: string
+    objectKey: string
+    mimetype: string
+    size: number
+    entityType?: string | null
+    entityId?: number | null
+    uploadedBy?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    deleted?: boolean
+  }
+
+  export type FileUncheckedCreateWithoutProductInput = {
+    id?: number
+    filename: string
+    objectKey: string
+    mimetype: string
+    size: number
+    entityType?: string | null
+    entityId?: number | null
+    uploadedBy?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    deleted?: boolean
+  }
+
+  export type FileCreateOrConnectWithoutProductInput = {
+    where: FileWhereUniqueInput
+    create: XOR<FileCreateWithoutProductInput, FileUncheckedCreateWithoutProductInput>
+  }
+
+  export type FileCreateManyProductInputEnvelope = {
+    data: FileCreateManyProductInput | FileCreateManyProductInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ContractProductUpsertWithWhereUniqueWithoutProductInput = {
     where: ContractProductWhereUniqueInput
     update: XOR<ContractProductUpdateWithoutProductInput, ContractProductUncheckedUpdateWithoutProductInput>
@@ -24337,6 +26087,40 @@ export namespace Prisma {
   export type ContractUpdateManyWithWhereWithoutProductInput = {
     where: ContractScalarWhereInput
     data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type FileUpsertWithWhereUniqueWithoutProductInput = {
+    where: FileWhereUniqueInput
+    update: XOR<FileUpdateWithoutProductInput, FileUncheckedUpdateWithoutProductInput>
+    create: XOR<FileCreateWithoutProductInput, FileUncheckedCreateWithoutProductInput>
+  }
+
+  export type FileUpdateWithWhereUniqueWithoutProductInput = {
+    where: FileWhereUniqueInput
+    data: XOR<FileUpdateWithoutProductInput, FileUncheckedUpdateWithoutProductInput>
+  }
+
+  export type FileUpdateManyWithWhereWithoutProductInput = {
+    where: FileScalarWhereInput
+    data: XOR<FileUpdateManyMutationInput, FileUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type FileScalarWhereInput = {
+    AND?: FileScalarWhereInput | FileScalarWhereInput[]
+    OR?: FileScalarWhereInput[]
+    NOT?: FileScalarWhereInput | FileScalarWhereInput[]
+    id?: IntFilter<"File"> | number
+    filename?: StringFilter<"File"> | string
+    objectKey?: StringFilter<"File"> | string
+    mimetype?: StringFilter<"File"> | string
+    size?: IntFilter<"File"> | number
+    entityType?: StringNullableFilter<"File"> | string | null
+    entityId?: IntNullableFilter<"File"> | number | null
+    uploadedBy?: StringNullableFilter<"File"> | string | null
+    createdAt?: DateTimeFilter<"File"> | Date | string
+    active?: BoolFilter<"File"> | boolean
+    deleted?: BoolFilter<"File"> | boolean
+    productId?: IntNullableFilter<"File"> | number | null
   }
 
   export type ContactCreateWithoutSellerInput = {
@@ -24548,7 +26332,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -24556,6 +26339,7 @@ export namespace Prisma {
     deleted?: boolean
     ContractProduct?: ContractProductCreateNestedManyWithoutProductInput
     Contract?: ContractCreateNestedManyWithoutProductInput
+    File?: FileCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutSellerInput = {
@@ -24582,7 +26366,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -24590,6 +26373,7 @@ export namespace Prisma {
     deleted?: boolean
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutProductInput
     Contract?: ContractUncheckedCreateNestedManyWithoutProductInput
+    File?: FileUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutSellerInput = {
@@ -25131,7 +26915,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -25139,6 +26922,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     ContractProduct?: ContractProductUpdateManyWithoutProductNestedInput
     Seller?: SellerUpdateOneWithoutProductNestedInput
+    File?: FileUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutContractInput = {
@@ -25165,7 +26949,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -25173,6 +26956,7 @@ export namespace Prisma {
     sellersId?: NullableIntFieldUpdateOperationsInput | number | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutProductNestedInput
+    File?: FileUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutContractInput = {
@@ -25199,7 +26983,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -25587,6 +27370,20 @@ export namespace Prisma {
     deleted?: boolean
   }
 
+  export type FileCreateManyProductInput = {
+    id?: number
+    filename: string
+    objectKey: string
+    mimetype: string
+    size: number
+    entityType?: string | null
+    entityId?: number | null
+    uploadedBy?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    deleted?: boolean
+  }
+
   export type ContractProductUpdateWithoutProductInput = {
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     quantity?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -25794,6 +27591,47 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type FileUpdateWithoutProductInput = {
+    filename?: StringFieldUpdateOperationsInput | string
+    objectKey?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    entityType?: NullableStringFieldUpdateOperationsInput | string | null
+    entityId?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type FileUncheckedUpdateWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    filename?: StringFieldUpdateOperationsInput | string
+    objectKey?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    entityType?: NullableStringFieldUpdateOperationsInput | string | null
+    entityId?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type FileUncheckedUpdateManyWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    filename?: StringFieldUpdateOperationsInput | string
+    objectKey?: StringFieldUpdateOperationsInput | string
+    mimetype?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    entityType?: NullableStringFieldUpdateOperationsInput | string | null
+    entityId?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type ContactCreateManySellerInput = {
     id?: number
     position?: string | null
@@ -25897,7 +27735,6 @@ export namespace Prisma {
     documents_required?: ProductCreatedocuments_requiredInput | string[]
     record_owner: string
     observation: string
-    attached_files?: ProductCreateattached_filesInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -26173,7 +28010,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -26181,6 +28017,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     ContractProduct?: ContractProductUpdateManyWithoutProductNestedInput
     Contract?: ContractUpdateManyWithoutProductNestedInput
+    File?: FileUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutSellerInput = {
@@ -26207,7 +28044,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -26215,6 +28051,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutProductNestedInput
     Contract?: ContractUncheckedUpdateManyWithoutProductNestedInput
+    File?: FileUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutSellerInput = {
@@ -26241,7 +28078,6 @@ export namespace Prisma {
     documents_required?: ProductUpdatedocuments_requiredInput | string[]
     record_owner?: StringFieldUpdateOperationsInput | string
     observation?: StringFieldUpdateOperationsInput | string
-    attached_files?: ProductUpdateattached_filesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string

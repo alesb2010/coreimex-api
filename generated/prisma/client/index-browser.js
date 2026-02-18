@@ -275,7 +275,8 @@ exports.Prisma.FileScalarFieldEnum = {
   uploadedBy: 'uploadedBy',
   createdAt: 'createdAt',
   active: 'active',
-  deleted: 'deleted'
+  deleted: 'deleted',
+  productId: 'productId'
 };
 
 exports.Prisma.ProductScalarFieldEnum = {
@@ -302,7 +303,6 @@ exports.Prisma.ProductScalarFieldEnum = {
   documents_required: 'documents_required',
   record_owner: 'record_owner',
   observation: 'observation',
-  attached_files: 'attached_files',
   createdAt: 'createdAt',
   active: 'active',
   status: 'status',
@@ -342,6 +342,17 @@ exports.Prisma.SpecialConditionScalarFieldEnum = {
   createdAt: 'createdAt',
   active: 'active',
   status: 'status',
+  deleted: 'deleted'
+};
+
+exports.Prisma.RoleScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  permissions: 'permissions',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  active: 'active',
   deleted: 'deleted'
 };
 
@@ -395,6 +406,7 @@ exports.Prisma.ModelName = {
   Product: 'Product',
   Seller: 'Seller',
   SpecialCondition: 'SpecialCondition',
+  Role: 'Role',
   User: 'User'
 };
 

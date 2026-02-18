@@ -11,8 +11,8 @@ async function contactsRoutes(fastify, options) {
     }, async (request, reply) => {
         return prisma.contact.findMany({
             include: {
-                customer: true,
-                seller: true
+                Customer: true,
+                Seller: true
             }
         });
     });
@@ -29,8 +29,8 @@ async function contactsRoutes(fastify, options) {
         const contact = await prisma.contact.findUnique({
             where: { id: parseInt(id) },
             include: {
-                customer: true,
-                seller: true
+                Customer: true,
+                Seller: true
             }
         });
         if (!contact) {
@@ -52,8 +52,8 @@ async function contactsRoutes(fastify, options) {
         return prisma.contact.findMany({
             where: { customer_id: parseInt(customerId) },
             include: {
-                customer: true,
-                seller: true
+                Customer: true,
+                Seller: true
             }
         });
     });
@@ -70,8 +70,8 @@ async function contactsRoutes(fastify, options) {
         return prisma.contact.findMany({
             where: { seller_id: parseInt(sellerId) },
             include: {
-                customer: true,
-                seller: true
+                Customer: true,
+                Seller: true
             }
         });
     });
@@ -88,8 +88,8 @@ async function contactsRoutes(fastify, options) {
         const contact = await prisma.contact.create({
             data,
             include: {
-                customer: true,
-                seller: true
+                Customer: true,
+                Seller: true
             }
         });
         reply.code(201).send(contact);
@@ -104,15 +104,17 @@ async function contactsRoutes(fastify, options) {
         }
     }, async (request, reply) => {
         const { id } = request.params;
-        // Exclude fields that shouldn't be updated directly
-        const { id: _id, customer, seller, createdAt, updatedAt, ...data } = request.body;
+        const body = request.body || {};
+        // Exclude relation fields and system fields - passing Customer/Seller to Prisma causes
+        // prisma-extension-nested-operations to fail when it encounters null/undefined
+        const { id: _id, customer, seller, Customer, Seller, createdAt, updatedAt, ...data } = body;
         try {
             const contact = await prisma.contact.update({
                 where: { id: parseInt(id) },
                 data,
                 include: {
-                    customer: true,
-                    seller: true
+                    Customer: true,
+                    Seller: true
                 }
             });
             return contact;

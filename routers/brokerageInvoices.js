@@ -39,7 +39,10 @@ async function brokerageInvoicesRoutes(fastify, options) {
       security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
-    const data = request.body;
+    const data = { ...request.body };
+    if (data.bl_date != null && typeof data.bl_date === 'string') {
+      data.bl_date = new Date(data.bl_date).toISOString();
+    }
     const invoice = await prisma.brokerageInvoice.create({
       data,
     });
@@ -55,7 +58,10 @@ async function brokerageInvoicesRoutes(fastify, options) {
     }
   }, async (request, reply) => {
     const { id } = request.params;
-    const data = request.body;
+    const data = { ...request.body };
+    if (data.bl_date != null && typeof data.bl_date === 'string') {
+      data.bl_date = new Date(data.bl_date).toISOString();
+    }
     try {
       const invoice = await prisma.brokerageInvoice.update({
         where: { id: parseInt(id) },

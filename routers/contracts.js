@@ -1,6 +1,176 @@
 async function contractsRoutes(fastify, options) {
     const { prisma } = options;
 
+    /**
+     * Builds a Prisma where clause from query params for complex contract filtering.
+     * Supports full-text search, date ranges, numeric ranges, exact matches, and array filters.
+     * Designed for scalability with millions of records via indexed fields (IDs, dates).
+     */
+    function buildContractWhere(query) {
+        const where = { AND: [] };
+
+        // Exclude deleted by default unless includeDeleted=true
+        if (query.includeDeleted !== 'true' && query.includeDeleted !== true) {
+            where.AND.push({ deleted: false });
+        }
+
+        // --- Full-text search (q or search) - matches principal contract fields ---
+        const searchTerm = (query.q ?? query.search ?? '').trim();
+        if (searchTerm) {
+            where.AND.push({
+                OR: [
+                    { name: { contains: searchTerm, mode: 'insensitive' } },
+                    { description: { contains: searchTerm, mode: 'insensitive' } },
+                    { destination_country: { contains: searchTerm, mode: 'insensitive' } },
+                    { destination_port: { contains: searchTerm, mode: 'insensitive' } },
+                    { shipping_company: { contains: searchTerm, mode: 'insensitive' } },
+                    { payment_terms: { contains: searchTerm, mode: 'insensitive' } },
+                    { payment_method: { contains: searchTerm, mode: 'insensitive' } },
+                    { payment_currency: { contains: searchTerm, mode: 'insensitive' } },
+                    { payment_status: { contains: searchTerm, mode: 'insensitive' } },
+                    { payment_notes: { contains: searchTerm, mode: 'insensitive' } },
+                    { payment_notes_seller: { contains: searchTerm, mode: 'insensitive' } },
+                    { payment_notes_customer: { contains: searchTerm, mode: 'insensitive' } },
+                    { status: { contains: searchTerm, mode: 'insensitive' } },
+                    { special_terms: { hasSome: [searchTerm] } },
+                    { business_terms: { hasSome: [searchTerm] } },
+                    { legal_terms: { hasSome: [searchTerm] } },
+                    { other_terms: { hasSome: [searchTerm] } },
+                    { incoterm: { hasSome: [searchTerm] } },
+                    { packing: { hasSome: [searchTerm] } }
+                ]
+            });
+        }
+
+        // --- Exact match: seller_id ---
+        if (query.seller_id != null && query.seller_id !== '') {
+            const v = parseInt(query.seller_id, 10);
+            if (!isNaN(v)) where.AND.push({ seller_id: v });
+        }
+
+        // --- Exact match: customer_id ---
+        if (query.customer_id != null && query.customer_id !== '') {
+            const v = parseInt(query.customer_id, 10);
+            if (!isNaN(v)) where.AND.push({ customer_id: v });
+        }
+
+        // --- Filter by product (contracts containing this product) ---
+        if (query.product_id != null && query.product_id !== '') {
+            const v = parseInt(query.product_id, 10);
+            if (!isNaN(v)) where.AND.push({ products_id: { has: v } });
+        }
+
+        // --- Exact: status, payment_status, active ---
+        if (query.status != null && query.status !== '') {
+            where.AND.push({ status: String(query.status) });
+        }
+        if (query.payment_status != null && query.payment_status !== '') {
+            where.AND.push({ payment_status: String(query.payment_status) });
+        }
+        if (query.active != null && query.active !== '') {
+            const activeVal = query.active === 'true' || query.active === true || query.active === '1';
+            where.AND.push({ active: activeVal });
+        }
+
+        // --- Date range filters ---
+        const dateRanges = [
+            ['date_creation', 'date_creation_from', 'date_creation_to'],
+            ['date_expiration', 'date_expiration_from', 'date_expiration_to'],
+            ['date_signature', 'date_signature_from', 'date_signature_to'],
+            ['date_expiration_signature', 'date_expiration_signature_from', 'date_expiration_signature_to'],
+            ['date_signature_seller', 'date_signature_seller_from', 'date_signature_seller_to'],
+            ['date_expiration_signature_seller', 'date_expiration_signature_seller_from', 'date_expiration_signature_seller_to'],
+            ['bording_date', 'bording_date_from', 'bording_date_to'],
+            ['shipment_date', 'shipment_date_from', 'shipment_date_to'],
+            ['payment_date', 'payment_date_from', 'payment_date_to'],
+            ['date_signature_customer', 'date_signature_customer_from', 'date_signature_customer_to'],
+            ['date_expiration_signature_customer', 'date_expiration_signature_customer_from', 'date_expiration_signature_customer_to']
+        ];
+        for (const [field, fromKey, toKey] of dateRanges) {
+            const fromVal = query[fromKey];
+            const toVal = query[toKey];
+            if (fromVal || toVal) {
+                const range = {};
+                if (fromVal) {
+                    const d = new Date(fromVal);
+                    if (!isNaN(d.getTime())) range.gte = d;
+                }
+                if (toVal) {
+                    const d = new Date(toVal);
+                    if (!isNaN(d.getTime())) range.lte = d;
+                }
+                if (Object.keys(range).length) where.AND.push({ [field]: range });
+            }
+        }
+
+        // --- Numeric range: mt_value, payment_amount ---
+        if (query.mt_value_min != null && query.mt_value_min !== '') {
+            const v = parseFloat(query.mt_value_min);
+            if (!isNaN(v)) where.AND.push({ mt_value: { gte: v } });
+        }
+        if (query.mt_value_max != null && query.mt_value_max !== '') {
+            const v = parseFloat(query.mt_value_max);
+            if (!isNaN(v)) where.AND.push({ mt_value: { lte: v } });
+        }
+        if (query.payment_amount_min != null && query.payment_amount_min !== '') {
+            const v = parseFloat(query.payment_amount_min);
+            if (!isNaN(v)) where.AND.push({ payment_amount: { gte: v } });
+        }
+        if (query.payment_amount_max != null && query.payment_amount_max !== '') {
+            const v = parseFloat(query.payment_amount_max);
+            if (!isNaN(v)) where.AND.push({ payment_amount: { lte: v } });
+        }
+
+        // --- Array contains: incoterm, packing ---
+        if (query.incoterm != null && query.incoterm !== '') {
+            where.AND.push({ incoterm: { has: String(query.incoterm) } });
+        }
+        if (query.packing != null && query.packing !== '') {
+            where.AND.push({ packing: { has: String(query.packing) } });
+        }
+
+        // --- Payment currency exact match ---
+        if (query.payment_currency != null && query.payment_currency !== '') {
+            where.AND.push({ payment_currency: String(query.payment_currency) });
+        }
+
+        // --- Destination country / port / shipping company (partial match) ---
+        if (query.destination_country != null && query.destination_country !== '') {
+            where.AND.push({ destination_country: { contains: String(query.destination_country), mode: 'insensitive' } });
+        }
+        if (query.destination_port != null && query.destination_port !== '') {
+            where.AND.push({ destination_port: { contains: String(query.destination_port), mode: 'insensitive' } });
+        }
+        if (query.shipping_company != null && query.shipping_company !== '') {
+            where.AND.push({ shipping_company: { contains: String(query.shipping_company), mode: 'insensitive' } });
+        }
+
+        // Flatten: if only deleted filter, simplify
+        const filters = where.AND.filter((f) => Object.keys(f).length > 0);
+        if (filters.length === 0) return {};
+        if (filters.length === 1) return filters[0];
+        return { AND: filters };
+    }
+
+    /**
+     * Returns orderBy clause for Prisma from sortBy/sortOrder query params.
+     */
+    function buildContractOrderBy(query) {
+        const sortBy = (query.sortBy ?? query.sort_by ?? 'createdAt').toString();
+        const sortOrder = (query.sortOrder ?? query.sort_order ?? 'desc').toString().toLowerCase();
+        const order = sortOrder === 'asc' ? 'asc' : 'desc';
+
+        const allowedSort = [
+            'id', 'name', 'createdAt', 'date_creation', 'date_expiration', 'date_signature',
+            'mt_value', 'payment_amount', 'payment_date', 'shipment_date', 'status',
+            'destination_country', 'shipping_company'
+        ];
+        if (!allowedSort.includes(sortBy)) {
+            return { createdAt: 'desc' };
+        }
+        return { [sortBy]: order };
+    }
+
     // Helper function to parse date strings to ISO-8601 DateTime format
     function parseDateTime(value) {
         if (!value || value === '' || value === null || value === undefined) {
@@ -37,22 +207,92 @@ async function contractsRoutes(fastify, options) {
         return null;
     }
 
-    // GET all contracts
+    // GET all contracts with full filter system (paginated)
     fastify.get("/contracts", {
         preHandler: [fastify.authenticate],
         schema: {
             tags: ['Contracts'],
-            security: [{ bearerAuth: [] }]
-        }
-    }, async (request, reply) => {
-        return prisma.contract.findMany({
-            include: {
-                ContractProduct: {
-                    where: { deleted: false },
-                    include: { Product: true }
+            security: [{ bearerAuth: [] }],
+            querystring: {
+                type: 'object',
+                properties: {
+                    // Full-text search across name, description, destinations, payment, terms, etc.
+                    q: { type: 'string', description: 'Full-text search across principal contract fields' },
+                    search: { type: 'string', description: 'Alias for q' },
+                    // Exact matches
+                    seller_id: { type: 'integer', description: 'Filter by seller ID' },
+                    customer_id: { type: 'integer', description: 'Filter by customer ID' },
+                    product_id: { type: 'integer', description: 'Filter contracts containing this product' },
+                    status: { type: 'string', description: 'Contract status' },
+                    payment_status: { type: 'string', description: 'Payment status' },
+                    payment_currency: { type: 'string', description: 'Payment currency code' },
+                    active: { type: 'boolean', description: 'Filter by active flag' },
+                    // Date ranges (ISO-8601 or YYYY-MM-DD)
+                    date_creation_from: { type: 'string', description: 'Date creation from' },
+                    date_creation_to: { type: 'string', description: 'Date creation to' },
+                    date_expiration_from: { type: 'string', description: 'Date expiration from' },
+                    date_expiration_to: { type: 'string', description: 'Date expiration to' },
+                    payment_date_from: { type: 'string', description: 'Payment date from' },
+                    payment_date_to: { type: 'string', description: 'Payment date to' },
+                    shipment_date_from: { type: 'string', description: 'Shipment date from' },
+                    shipment_date_to: { type: 'string', description: 'Shipment date to' },
+                    date_signature_from: { type: 'string', description: 'Date signature from' },
+                    date_signature_to: { type: 'string', description: 'Date signature to' },
+                    // Numeric ranges
+                    mt_value_min: { type: 'number', description: 'Minimum mt_value' },
+                    mt_value_max: { type: 'number', description: 'Maximum mt_value' },
+                    payment_amount_min: { type: 'number', description: 'Minimum payment amount' },
+                    payment_amount_max: { type: 'number', description: 'Maximum payment amount' },
+                    // Array contains
+                    incoterm: { type: 'string', description: 'Filter by incoterm (e.g. FOB, CIF)' },
+                    packing: { type: 'string', description: 'Filter by packing type' },
+                    // Partial match on logistics
+                    destination_country: { type: 'string', description: 'Partial match destination country' },
+                    destination_port: { type: 'string', description: 'Partial match destination port' },
+                    shipping_company: { type: 'string', description: 'Partial match shipping company' },
+                    // Pagination & sort
+                    page: { type: 'integer', minimum: 1, default: 1, description: 'Page number' },
+                    pageSize: { type: 'integer', minimum: 1, maximum: 100, default: 20, description: 'Items per page' },
+                    sortBy: { type: 'string', description: 'Sort field (id, name, date_creation, mt_value, etc.)' },
+                    sortOrder: { type: 'string', enum: ['asc', 'desc'], description: 'Sort direction' },
+                    includeDeleted: { type: 'boolean', description: 'Include soft-deleted contracts' }
                 }
             }
-        });
+        }
+    }, async (request, reply) => {
+        const query = request.query || {};
+        const page = Math.max(1, parseInt(query.page, 10) || 1);
+        const pageSize = Math.min(100, Math.max(1, parseInt(query.pageSize || query.page_size, 10) || 20));
+        const skip = (page - 1) * pageSize;
+
+        const where = buildContractWhere(query);
+        const orderBy = buildContractOrderBy(query);
+
+        const [total, contracts] = await Promise.all([
+            prisma.contract.count({ where }),
+            prisma.contract.findMany({
+                where,
+                skip,
+                take: pageSize,
+                orderBy,
+                include: {
+                    ContractProduct: {
+                        where: { deleted: false },
+                        include: { Product: true }
+                    },
+                    Customer: { select: { id: true, name: true, full_name: true, country: true } },
+                    Seller: { select: { id: true, company_name: true, country: true } }
+                }
+            })
+        ]);
+
+        return {
+            items: contracts,
+            total,
+            page,
+            pageSize,
+            totalPages: Math.ceil(total / pageSize)
+        };
     });
 
     // GET contract by ID

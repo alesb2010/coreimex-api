@@ -179,6 +179,10 @@ model File {
   createdAt  DateTime @default(now())
   active     Boolean  @default(true)
   deleted    Boolean  @default(false)
+  productId  Int?
+  Product    Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([entityType, entityId])
 }
 
 model Product {
@@ -205,7 +209,6 @@ model Product {
   documents_required     String[]
   record_owner           String
   observation            String
-  attached_files         String[]
   createdAt              DateTime          @default(now())
   active                 Boolean           @default(true)
   status                 String
@@ -215,6 +218,7 @@ model Product {
   ContractProduct        ContractProduct[]
   Seller                 Seller?           @relation(fields: [sellersId], references: [id])
   Contract               Contract[]        @relation("ContractProduct")
+  File                   File[]
 }
 
 model Seller {
@@ -255,6 +259,17 @@ model SpecialCondition {
   Contract    Contract[]
 }
 
+model Role {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  permissions String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  active      Boolean  @default(true)
+  deleted     Boolean  @default(false)
+}
+
 model User {
   id                Int      @id @default(autoincrement())
   email             String   @unique
@@ -262,7 +277,7 @@ model User {
   role              String   @default("user")
   active            Boolean  @default(true)
   createdAt         DateTime @default(now())
-  updatedAt         DateTime
+  updatedAt         DateTime @updatedAt
   superTokensUserId String   @unique
   deleted           Boolean  @default(false)
 }
