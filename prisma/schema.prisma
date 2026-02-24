@@ -78,7 +78,7 @@ model Contract {
   date_expiration_signature            DateTime?
   date_signature_seller                DateTime?
   date_expiration_signature_seller     DateTime?
-  seller_id                            Int
+  // seller_id                            Int
   products_id                          Int[]
   bording_date                         DateTime?
   mt_value                             Float
@@ -124,19 +124,21 @@ model Contract {
   deleted                              Boolean            @default(false)
   BrokerageInvoice                     BrokerageInvoice[]
   Customer                             Customer           @relation(fields: [customer_id], references: [id])
-  Seller                               Seller             @relation(fields: [seller_id], references: [id])
+  // Seller                               Seller             @relation(fields: [seller_id], references: [id])
   ContractProduct                      ContractProduct[]
   ArbitrationRule                      ArbitrationRule[]
   Product                              Product[]          @relation("ContractProduct")
   SpecialCondition                     SpecialCondition[]
+  seller                               Seller?            @relation(fields: [sellerId], references: [id])
+  sellerId                             Int?
 }
 
 model ContractProduct {
   id          Int      @id @default(autoincrement())
   contract_id Int
   product_id  Int
-  price       Float?   // price for this product in this contract
-  quantity    Float?   // quantity of this product in this contract
+  price       Float? // price for this product in this contract
+  quantity    Float? // quantity of this product in this contract
   createdAt   DateTime @default(now())
   active      Boolean  @default(true)
   status      String
@@ -181,6 +183,7 @@ model File {
   deleted    Boolean  @default(false)
   productId  Int?
   Product    Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
   @@index([entityType, entityId])
 }
 
@@ -259,14 +262,14 @@ model SpecialCondition {
 }
 
 model Role {
-  id          Int        @id @default(autoincrement())
-  name        String     @unique
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
   description String?
   permissions String[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  active      Boolean    @default(true)
-  deleted     Boolean    @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  active      Boolean  @default(true)
+  deleted     Boolean  @default(false)
 }
 
 model User {
@@ -276,7 +279,7 @@ model User {
   role              String   @default("user")
   active            Boolean  @default(true)
   createdAt         DateTime @default(now())
-  updatedAt         DateTime  @updatedAt
+  updatedAt         DateTime @updatedAt
   superTokensUserId String   @unique
   deleted           Boolean  @default(false)
 }
