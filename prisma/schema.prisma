@@ -129,6 +129,8 @@ model Contract {
   ArbitrationRule                      ArbitrationRule[]
   Product                              Product[]          @relation("ContractProduct")
   SpecialCondition                     SpecialCondition[]
+  // seller                               Seller?            @relation(fields: [sellerId], references: [id])
+  // sellerId                             Int?
   seller                               Seller?            @relation(fields: [sellerId], references: [id])
   sellerId                             Int?
 }
