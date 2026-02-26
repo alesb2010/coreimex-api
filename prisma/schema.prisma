@@ -25,20 +25,33 @@ model ArbitrationRule {
 }
 
 model BrokerageInvoice {
-  id                  Int      @id @default(autoincrement())
-  contract_id         Int
-  comission_total_usd Float
-  comission_total_brl Float
-  bl_date             DateTime
-  bl_number           String
-  bl_attachments      String[]
-  ptax                Float
-  attachments         String[]
-  createdAt           DateTime @default(now())
-  active              Boolean  @default(true)
-  status              String
-  deleted             Boolean  @default(false)
-  Contract            Contract @relation(fields: [contract_id], references: [id])
+  id           Int                    @id @default(autoincrement())
+  number       String?
+  invoice_date DateTime?
+  createdAt    DateTime               @default(now())
+  active       Boolean                @default(true)
+  status       String
+  deleted      Boolean                @default(false)
+  Lines        BrokerageInvoiceLine[]
+}
+
+model BrokerageInvoiceLine {
+  id                   Int              @id @default(autoincrement())
+  brokerage_invoice_id Int
+  contract_id          Int
+  bl_date              DateTime
+  bl_number            String
+  bl_attachments       String[]
+  comission_total_usd  Float
+  attachments          String[]
+  createdAt            DateTime         @default(now())
+  active               Boolean          @default(true)
+  status               String
+  deleted              Boolean          @default(false)
+  BrokerageInvoice     BrokerageInvoice @relation(fields: [brokerage_invoice_id], references: [id], onDelete: Cascade)
+  Contract             Contract         @relation(fields: [contract_id], references: [id])
+
+  @@unique([brokerage_invoice_id, contract_id])
 }
 
 model Contact {
@@ -69,70 +82,66 @@ model Contact {
 }
 
 model Contract {
-  id                                   Int                @id @default(autoincrement())
-  name                                 String
-  description                          String
-  date_creation                        DateTime?
-  date_expiration                      DateTime?
-  date_signature                       DateTime?
-  date_expiration_signature            DateTime?
-  date_signature_seller                DateTime?
-  date_expiration_signature_seller     DateTime?
-  // seller_id                            Int
-  products_id                          Int[]
-  bording_date                         DateTime?
-  mt_value                             Float
-  destination_country                  String
-  destination_port                     String
-  shipping_company                     String
-  shipment_date                        DateTime?
-  si_sent                              Boolean
-  packing                              String[]
-  incoterm                             String[]
-  payment_terms                        String
-  payment_method                       String
-  payment_currency                     String
-  payment_amount                       Float
-  payment_date                         DateTime?
-  payment_status                       String
-  payment_notes                        String
-  payment_attachments                  String[]
-  payment_notes_seller                 String
-  payment_attachments_seller           String[]
-  special_terms                        String[]
-  business_terms                       String[]
-  legal_terms                          String[]
-  other_terms                          String[]
-  other_terms_seller                   String[]
-  commission_seller                    Float
-  comission_total                      Float
-  attachments                          String[]
-  createdAt                            DateTime           @default(now())
-  active                               Boolean            @default(true)
-  status                               String
-  commission_customer                  Float
-  customer_id                          Int
-  date_expiration_signature_customer   DateTime?
-  date_signature_customer              DateTime?
-  other_terms_customer                 String[]
-  other_terms_customer_seller          String[]
-  other_terms_customer_seller_customer String[]
-  other_terms_seller_customer          String[]
-  other_terms_seller_customer_seller   String[]
-  payment_attachments_customer         String[]
-  payment_notes_customer               String
-  deleted                              Boolean            @default(false)
-  BrokerageInvoice                     BrokerageInvoice[]
-  Customer                             Customer           @relation(fields: [customer_id], references: [id])
-  // Seller                               Seller             @relation(fields: [seller_id], references: [id])
-  ContractProduct                      ContractProduct[]
-  ArbitrationRule                      ArbitrationRule[]
-  Product                              Product[]          @relation("ContractProduct")
-  SpecialCondition                     SpecialCondition[]
-  // seller                               Seller?            @relation(fields: [sellerId], references: [id])
-  // sellerId                             Int?
-  seller                               Seller?            @relation(fields: [sellerId], references: [id])
-  sellerId                             Int?
+  id                                  Int                    @id @default(autoincrement())
+  name                                String
+  description                         String
+  date_creation                       DateTime?
+  date_expiration                     DateTime?
+  date_signature                      DateTime?
+  date_expiration_signature           DateTime?
+  date_signature_party_a              DateTime?
+  date_expiration_signature_party_a   DateTime?
+  date_signature_party_b              DateTime?
+  date_expiration_signature_party_b   DateTime?
+  customer_party_a_id                 Int
+  customer_party_b_id                 Int
+  products_id                         Int[]
+  bording_date                        DateTime?
+  mt_value                            Float
+  destination_country                 String
+  destination_port                    String
+  shipping_company                    String
+  shipment_date                       DateTime?
+  si_sent                             Boolean
+  packing                             String[]
+  incoterm                            String[]
+  payment_terms                       String
+  payment_method                      String
+  payment_currency                    String
+  payment_amount                      Float
+  payment_date                        DateTime?
+  payment_status                      String
+  payment_notes                       String
+  payment_attachments                 String[]
+  payment_notes_party_a               String
+  payment_attachments_party_a         String[]
+  payment_notes_party_b               String
+  payment_attachments_party_b         String[]
+  special_terms                       String[]
+  business_terms                      String[]
+  legal_terms                         String[]
+  other_terms                         String[]
+  other_terms_party_a                 String[]
+  other_terms_party_b                 String[]
+  other_terms_party_a_party_b         String[]
+  other_terms_party_a_party_b_party_a String[]
+  other_terms_party_b_party_a         String[]
+  other_terms_party_b_party_a_party_b String[]
+  commission_party_a                  Float
+  commission_party_b                  Float
+  comission_total                     Float
+  attachments                         String[]
+  createdAt                           DateTime               @default(now())
+  active                              Boolean                @default(true)
+  status                              String
+  deleted                             Boolean                @default(false)
+  BrokerageInvoiceLines               BrokerageInvoiceLine[]
+  PartyA                              Customer               @relation("ContractPartyA", fields: [customer_party_a_id], references: [id])
+  PartyB                              Customer               @relation("ContractPartyB", fields: [customer_party_b_id], references: [id])
+  ContractProduct                     ContractProduct[]
+  ArbitrationRule                     ArbitrationRule[]
+  Product                             Product[]              @relation("ContractProduct")
+  SpecialCondition                    SpecialCondition[]
 }
 
 model ContractProduct {
@@ -149,26 +158,41 @@ model ContractProduct {
   Product     Product  @relation(fields: [product_id], references: [id])
 }
 
+model Pack {
+  id                     Int       @id @default(autoincrement())
+  name                   String
+  pack_type              String?
+  quantity_per_pack      Float?
+  quantity_per_container Float?
+  container_type         String?
+  description            String?
+  createdAt              DateTime  @default(now())
+  active                 Boolean   @default(true)
+  status                 String
+  deleted                Boolean   @default(false)
+}
+
 model Customer {
-  id           Int        @id @default(autoincrement())
-  name         String
-  full_name    String
-  full_address String
-  country      String
-  tax_id       String
-  contact_name String
-  whatsapp     String
-  phone        String[]
-  email        String[]
-  website      String
-  note         String
-  description  String
-  createdAt    DateTime   @default(now())
-  active       Boolean    @default(true)
-  status       String
-  deleted      Boolean    @default(false)
-  Contact      Contact[]
-  Contract     Contract[]
+  id                Int        @id @default(autoincrement())
+  name              String
+  full_name         String
+  full_address      String
+  country           String
+  tax_id            String
+  contact_name      String
+  whatsapp          String
+  phone             String[]
+  email             String[]
+  website           String
+  note              String
+  description       String
+  createdAt         DateTime   @default(now())
+  active            Boolean    @default(true)
+  status            String
+  deleted           Boolean    @default(false)
+  Contact           Contact[]
+  ContractsAsPartyA Contract[] @relation("ContractPartyA")
+  ContractsAsPartyB Contract[] @relation("ContractPartyB")
 }
 
 model File {
@@ -226,7 +250,7 @@ model Product {
 }
 
 model Seller {
-  id           Int        @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   company_name String
   full_address String
   country      String
@@ -238,12 +262,11 @@ model Seller {
   website      String
   note         String
   description  String
-  createdAt    DateTime   @default(now())
-  active       Boolean    @default(true)
+  createdAt    DateTime  @default(now())
+  active       Boolean   @default(true)
   status       String
-  deleted      Boolean    @default(false)
+  deleted      Boolean   @default(false)
   Contact      Contact[]
-  Contract     Contract[]
   Product      Product[]
 }
 

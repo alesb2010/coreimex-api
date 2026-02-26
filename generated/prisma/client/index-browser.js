@@ -137,13 +137,22 @@ exports.Prisma.ArbitrationRuleScalarFieldEnum = {
 
 exports.Prisma.BrokerageInvoiceScalarFieldEnum = {
   id: 'id',
+  number: 'number',
+  invoice_date: 'invoice_date',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  deleted: 'deleted'
+};
+
+exports.Prisma.BrokerageInvoiceLineScalarFieldEnum = {
+  id: 'id',
+  brokerage_invoice_id: 'brokerage_invoice_id',
   contract_id: 'contract_id',
-  comission_total_usd: 'comission_total_usd',
-  comission_total_brl: 'comission_total_brl',
   bl_date: 'bl_date',
   bl_number: 'bl_number',
   bl_attachments: 'bl_attachments',
-  ptax: 'ptax',
+  comission_total_usd: 'comission_total_usd',
   attachments: 'attachments',
   createdAt: 'createdAt',
   active: 'active',
@@ -184,9 +193,12 @@ exports.Prisma.ContractScalarFieldEnum = {
   date_expiration: 'date_expiration',
   date_signature: 'date_signature',
   date_expiration_signature: 'date_expiration_signature',
-  date_signature_seller: 'date_signature_seller',
-  date_expiration_signature_seller: 'date_expiration_signature_seller',
-  seller_id: 'seller_id',
+  date_signature_party_a: 'date_signature_party_a',
+  date_expiration_signature_party_a: 'date_expiration_signature_party_a',
+  date_signature_party_b: 'date_signature_party_b',
+  date_expiration_signature_party_b: 'date_expiration_signature_party_b',
+  customer_party_a_id: 'customer_party_a_id',
+  customer_party_b_id: 'customer_party_b_id',
   products_id: 'products_id',
   bording_date: 'bording_date',
   mt_value: 'mt_value',
@@ -205,30 +217,27 @@ exports.Prisma.ContractScalarFieldEnum = {
   payment_status: 'payment_status',
   payment_notes: 'payment_notes',
   payment_attachments: 'payment_attachments',
-  payment_notes_seller: 'payment_notes_seller',
-  payment_attachments_seller: 'payment_attachments_seller',
+  payment_notes_party_a: 'payment_notes_party_a',
+  payment_attachments_party_a: 'payment_attachments_party_a',
+  payment_notes_party_b: 'payment_notes_party_b',
+  payment_attachments_party_b: 'payment_attachments_party_b',
   special_terms: 'special_terms',
   business_terms: 'business_terms',
   legal_terms: 'legal_terms',
   other_terms: 'other_terms',
-  other_terms_seller: 'other_terms_seller',
-  commission_seller: 'commission_seller',
+  other_terms_party_a: 'other_terms_party_a',
+  other_terms_party_b: 'other_terms_party_b',
+  other_terms_party_a_party_b: 'other_terms_party_a_party_b',
+  other_terms_party_a_party_b_party_a: 'other_terms_party_a_party_b_party_a',
+  other_terms_party_b_party_a: 'other_terms_party_b_party_a',
+  other_terms_party_b_party_a_party_b: 'other_terms_party_b_party_a_party_b',
+  commission_party_a: 'commission_party_a',
+  commission_party_b: 'commission_party_b',
   comission_total: 'comission_total',
   attachments: 'attachments',
   createdAt: 'createdAt',
   active: 'active',
   status: 'status',
-  commission_customer: 'commission_customer',
-  customer_id: 'customer_id',
-  date_expiration_signature_customer: 'date_expiration_signature_customer',
-  date_signature_customer: 'date_signature_customer',
-  other_terms_customer: 'other_terms_customer',
-  other_terms_customer_seller: 'other_terms_customer_seller',
-  other_terms_customer_seller_customer: 'other_terms_customer_seller_customer',
-  other_terms_seller_customer: 'other_terms_seller_customer',
-  other_terms_seller_customer_seller: 'other_terms_seller_customer_seller',
-  payment_attachments_customer: 'payment_attachments_customer',
-  payment_notes_customer: 'payment_notes_customer',
   deleted: 'deleted'
 };
 
@@ -238,6 +247,20 @@ exports.Prisma.ContractProductScalarFieldEnum = {
   product_id: 'product_id',
   price: 'price',
   quantity: 'quantity',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  deleted: 'deleted'
+};
+
+exports.Prisma.PackScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  pack_type: 'pack_type',
+  quantity_per_pack: 'quantity_per_pack',
+  quantity_per_container: 'quantity_per_container',
+  container_type: 'container_type',
+  description: 'description',
   createdAt: 'createdAt',
   active: 'active',
   status: 'status',
@@ -383,24 +406,26 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 
 exports.Prisma.ModelName = {
   ArbitrationRule: 'ArbitrationRule',
   BrokerageInvoice: 'BrokerageInvoice',
+  BrokerageInvoiceLine: 'BrokerageInvoiceLine',
   Contact: 'Contact',
   Contract: 'Contract',
   ContractProduct: 'ContractProduct',
+  Pack: 'Pack',
   Customer: 'Customer',
   File: 'File',
   Product: 'Product',

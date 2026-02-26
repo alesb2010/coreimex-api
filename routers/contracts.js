@@ -42,16 +42,29 @@ async function contractsRoutes(fastify, options) {
             });
         }
 
-        // --- Exact match: seller_id ---
-        if (query.seller_id != null && query.seller_id !== '') {
-            const v = parseInt(query.seller_id, 10);
-            if (!isNaN(v)) where.AND.push({ seller_id: v });
+        // --- Exact match: customer_party_a_id ---
+        if (query.customer_party_a_id != null && query.customer_party_a_id !== '') {
+            const v = parseInt(query.customer_party_a_id, 10);
+            if (!isNaN(v)) where.AND.push({ customer_party_a_id: v });
         }
 
-        // --- Exact match: customer_id ---
+        // --- Exact match: customer_party_b_id ---
+        if (query.customer_party_b_id != null && query.customer_party_b_id !== '') {
+            const v = parseInt(query.customer_party_b_id, 10);
+            if (!isNaN(v)) where.AND.push({ customer_party_b_id: v });
+        }
+
+        // --- Filter by customer (either party) ---
         if (query.customer_id != null && query.customer_id !== '') {
             const v = parseInt(query.customer_id, 10);
-            if (!isNaN(v)) where.AND.push({ customer_id: v });
+            if (!isNaN(v)) {
+                where.AND.push({
+                    OR: [
+                        { customer_party_a_id: v },
+                        { customer_party_b_id: v }
+                    ]
+                });
+            }
         }
 
         // --- Filter by product (contracts containing this product) ---
@@ -78,13 +91,13 @@ async function contractsRoutes(fastify, options) {
             ['date_expiration', 'date_expiration_from', 'date_expiration_to'],
             ['date_signature', 'date_signature_from', 'date_signature_to'],
             ['date_expiration_signature', 'date_expiration_signature_from', 'date_expiration_signature_to'],
-            ['date_signature_seller', 'date_signature_seller_from', 'date_signature_seller_to'],
-            ['date_expiration_signature_seller', 'date_expiration_signature_seller_from', 'date_expiration_signature_seller_to'],
+            ['date_signature_party_a', 'date_signature_party_a_from', 'date_signature_party_a_to'],
+            ['date_expiration_signature_party_a', 'date_expiration_signature_party_a_from', 'date_expiration_signature_party_a_to'],
+            ['date_signature_party_b', 'date_signature_party_b_from', 'date_signature_party_b_to'],
+            ['date_expiration_signature_party_b', 'date_expiration_signature_party_b_from', 'date_expiration_signature_party_b_to'],
             ['bording_date', 'bording_date_from', 'bording_date_to'],
             ['shipment_date', 'shipment_date_from', 'shipment_date_to'],
-            ['payment_date', 'payment_date_from', 'payment_date_to'],
-            ['date_signature_customer', 'date_signature_customer_from', 'date_signature_customer_to'],
-            ['date_expiration_signature_customer', 'date_expiration_signature_customer_from', 'date_expiration_signature_customer_to']
+            ['payment_date', 'payment_date_from', 'payment_date_to']
         ];
         for (const [field, fromKey, toKey] of dateRanges) {
             const fromVal = query[fromKey];
@@ -220,8 +233,9 @@ async function contractsRoutes(fastify, options) {
                     q: { type: 'string', description: 'Full-text search across principal contract fields' },
                     search: { type: 'string', description: 'Alias for q' },
                     // Exact matches
-                    seller_id: { type: 'integer', description: 'Filter by seller ID' },
-                    customer_id: { type: 'integer', description: 'Filter by customer ID' },
+                    customer_party_a_id: { type: 'integer', description: 'Filter by party A (customer) ID' },
+                    customer_party_b_id: { type: 'integer', description: 'Filter by party B (customer) ID' },
+                    customer_id: { type: 'integer', description: 'Filter by customer ID (either party)' },
                     product_id: { type: 'integer', description: 'Filter contracts containing this product' },
                     status: { type: 'string', description: 'Contract status' },
                     payment_status: { type: 'string', description: 'Payment status' },
@@ -252,7 +266,7 @@ async function contractsRoutes(fastify, options) {
                     shipping_company: { type: 'string', description: 'Partial match shipping company' },
                     // Pagination & sort
                     page: { type: 'integer', minimum: 1, default: 1, description: 'Page number' },
-                    pageSize: { type: 'integer', minimum: 1, maximum: 100, default: 20, description: 'Items per page' },
+                    pageSize: { type: 'integer', minimum: 1, maximum: 1000, default: 20, description: 'Items per page' },
                     sortBy: { type: 'string', description: 'Sort field (id, name, date_creation, mt_value, etc.)' },
                     sortOrder: { type: 'string', enum: ['asc', 'desc'], description: 'Sort direction' },
                     includeDeleted: { type: 'boolean', description: 'Include soft-deleted contracts' }
@@ -280,8 +294,8 @@ async function contractsRoutes(fastify, options) {
                         where: { deleted: false },
                         include: { Product: true }
                     },
-                    Customer: { select: { id: true, name: true, full_name: true, country: true } },
-                    Seller: { select: { id: true, company_name: true, country: true } }
+                    PartyA: { select: { id: true, name: true, full_name: true, country: true } },
+                    PartyB: { select: { id: true, name: true, full_name: true, country: true } }
                 }
             })
         ]);
@@ -310,7 +324,9 @@ async function contractsRoutes(fastify, options) {
                 ContractProduct: {
                     where: { deleted: false },
                     include: { Product: true }
-                }
+                },
+                PartyA: true,
+                PartyB: true
             }
         });
         if (!contract) {
@@ -333,27 +349,29 @@ async function contractsRoutes(fastify, options) {
         // DateTime fields that can be null/empty
         const dateTimeFields = [
             'date_creation', 'date_expiration', 'date_signature',
-            'date_expiration_signature', 'date_signature_seller', 'date_expiration_signature_seller',
-            'bording_date', 'shipment_date', 'payment_date',
-            'date_expiration_signature_customer', 'date_signature_customer'
+            'date_expiration_signature',
+            'date_signature_party_a', 'date_expiration_signature_party_a',
+            'date_signature_party_b', 'date_expiration_signature_party_b',
+            'bording_date', 'shipment_date', 'payment_date'
         ];
 
         // Only pick valid Contract fields from schema (no product_price; products go via ContractProduct)
         const allowedFields = [
             'name', 'description', 'date_creation', 'date_expiration', 'date_signature',
-            'date_expiration_signature', 'date_signature_seller', 'date_expiration_signature_seller',
-            'seller_id', 'products_id', 'bording_date', 'mt_value', 'destination_country',
-            'destination_port', 'shipping_company', 'shipment_date', 'si_sent', 'packing',
+            'date_expiration_signature',
+            'date_signature_party_a', 'date_expiration_signature_party_a',
+            'date_signature_party_b', 'date_expiration_signature_party_b',
+            'customer_party_a_id', 'customer_party_b_id', 'products_id', 'bording_date', 'mt_value',
+            'destination_country', 'destination_port', 'shipping_company', 'shipment_date', 'si_sent', 'packing',
             'incoterm', 'payment_terms', 'payment_method', 'payment_currency', 'payment_amount',
             'payment_date', 'payment_status', 'payment_notes', 'payment_attachments',
-            'payment_notes_seller', 'payment_attachments_seller', 'special_terms',
-            'business_terms', 'legal_terms', 'other_terms', 'other_terms_seller',
-            'commission_seller', 'comission_total', 'attachments', 'active', 'status',
-            'commission_customer', 'customer_id', 'date_expiration_signature_customer',
-            'date_signature_customer', 'other_terms_customer', 'other_terms_customer_seller',
-            'other_terms_customer_seller_customer', 'other_terms_seller_customer',
-            'other_terms_seller_customer_seller', 'payment_attachments_customer',
-            'payment_notes_customer', 'deleted'
+            'payment_notes_party_a', 'payment_attachments_party_a',
+            'payment_notes_party_b', 'payment_attachments_party_b',
+            'special_terms', 'business_terms', 'legal_terms', 'other_terms',
+            'other_terms_party_a', 'other_terms_party_b',
+            'other_terms_party_a_party_b', 'other_terms_party_a_party_b_party_a',
+            'other_terms_party_b_party_a', 'other_terms_party_b_party_a_party_b',
+            'commission_party_a', 'commission_party_b', 'comission_total', 'attachments', 'active', 'status', 'deleted'
         ];
         const data = {};
         for (const field of allowedFields) {
@@ -473,27 +491,29 @@ async function contractsRoutes(fastify, options) {
         // DateTime fields that can be null/empty
         const dateTimeFields = [
             'date_creation', 'date_expiration', 'date_signature',
-            'date_expiration_signature', 'date_signature_seller', 'date_expiration_signature_seller',
-            'bording_date', 'shipment_date', 'payment_date',
-            'date_expiration_signature_customer', 'date_signature_customer'
+            'date_expiration_signature',
+            'date_signature_party_a', 'date_expiration_signature_party_a',
+            'date_signature_party_b', 'date_expiration_signature_party_b',
+            'bording_date', 'shipment_date', 'payment_date'
         ];
 
         // Only pick valid Contract fields from schema (no product_price; products via ContractProduct)
         const allowedFields = [
             'name', 'description', 'date_creation', 'date_expiration', 'date_signature',
-            'date_expiration_signature', 'date_signature_seller', 'date_expiration_signature_seller',
-            'seller_id', 'products_id', 'bording_date', 'mt_value', 'destination_country',
-            'destination_port', 'shipping_company', 'shipment_date', 'si_sent', 'packing',
+            'date_expiration_signature',
+            'date_signature_party_a', 'date_expiration_signature_party_a',
+            'date_signature_party_b', 'date_expiration_signature_party_b',
+            'customer_party_a_id', 'customer_party_b_id', 'products_id', 'bording_date', 'mt_value',
+            'destination_country', 'destination_port', 'shipping_company', 'shipment_date', 'si_sent', 'packing',
             'incoterm', 'payment_terms', 'payment_method', 'payment_currency', 'payment_amount',
             'payment_date', 'payment_status', 'payment_notes', 'payment_attachments',
-            'payment_notes_seller', 'payment_attachments_seller', 'special_terms',
-            'business_terms', 'legal_terms', 'other_terms', 'other_terms_seller',
-            'commission_seller', 'comission_total', 'attachments', 'active', 'status',
-            'commission_customer', 'customer_id', 'date_expiration_signature_customer',
-            'date_signature_customer', 'other_terms_customer', 'other_terms_customer_seller',
-            'other_terms_customer_seller_customer', 'other_terms_seller_customer',
-            'other_terms_seller_customer_seller', 'payment_attachments_customer',
-            'payment_notes_customer', 'deleted'
+            'payment_notes_party_a', 'payment_attachments_party_a',
+            'payment_notes_party_b', 'payment_attachments_party_b',
+            'special_terms', 'business_terms', 'legal_terms', 'other_terms',
+            'other_terms_party_a', 'other_terms_party_b',
+            'other_terms_party_a_party_b', 'other_terms_party_a_party_b_party_a',
+            'other_terms_party_b_party_a', 'other_terms_party_b_party_a_party_b',
+            'commission_party_a', 'commission_party_b', 'comission_total', 'attachments', 'active', 'status', 'deleted'
         ];
         const data = {};
         for (const field of allowedFields) {

@@ -24,6 +24,11 @@ export type ArbitrationRule = $Result.DefaultSelection<Prisma.$ArbitrationRulePa
  */
 export type BrokerageInvoice = $Result.DefaultSelection<Prisma.$BrokerageInvoicePayload>
 /**
+ * Model BrokerageInvoiceLine
+ * 
+ */
+export type BrokerageInvoiceLine = $Result.DefaultSelection<Prisma.$BrokerageInvoiceLinePayload>
+/**
  * Model Contact
  * 
  */
@@ -38,6 +43,11 @@ export type Contract = $Result.DefaultSelection<Prisma.$ContractPayload>
  * 
  */
 export type ContractProduct = $Result.DefaultSelection<Prisma.$ContractProductPayload>
+/**
+ * Model Pack
+ * 
+ */
+export type Pack = $Result.DefaultSelection<Prisma.$PackPayload>
 /**
  * Model Customer
  * 
@@ -213,6 +223,16 @@ export class PrismaClient<
   get brokerageInvoice(): Prisma.BrokerageInvoiceDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.brokerageInvoiceLine`: Exposes CRUD operations for the **BrokerageInvoiceLine** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BrokerageInvoiceLines
+    * const brokerageInvoiceLines = await prisma.brokerageInvoiceLine.findMany()
+    * ```
+    */
+  get brokerageInvoiceLine(): Prisma.BrokerageInvoiceLineDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.contact`: Exposes CRUD operations for the **Contact** model.
     * Example usage:
     * ```ts
@@ -241,6 +261,16 @@ export class PrismaClient<
     * ```
     */
   get contractProduct(): Prisma.ContractProductDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.pack`: Exposes CRUD operations for the **Pack** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Packs
+    * const packs = await prisma.pack.findMany()
+    * ```
+    */
+  get pack(): Prisma.PackDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.customer`: Exposes CRUD operations for the **Customer** model.
@@ -754,9 +784,11 @@ export namespace Prisma {
   export const ModelName: {
     ArbitrationRule: 'ArbitrationRule',
     BrokerageInvoice: 'BrokerageInvoice',
+    BrokerageInvoiceLine: 'BrokerageInvoiceLine',
     Contact: 'Contact',
     Contract: 'Contract',
     ContractProduct: 'ContractProduct',
+    Pack: 'Pack',
     Customer: 'Customer',
     File: 'File',
     Product: 'Product',
@@ -782,7 +814,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "arbitrationRule" | "brokerageInvoice" | "contact" | "contract" | "contractProduct" | "customer" | "file" | "product" | "seller" | "specialCondition" | "role" | "user"
+      modelProps: "arbitrationRule" | "brokerageInvoice" | "brokerageInvoiceLine" | "contact" | "contract" | "contractProduct" | "pack" | "customer" | "file" | "product" | "seller" | "specialCondition" | "role" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -931,6 +963,80 @@ export namespace Prisma {
           count: {
             args: Prisma.BrokerageInvoiceCountArgs<ExtArgs>
             result: $Utils.Optional<BrokerageInvoiceCountAggregateOutputType> | number
+          }
+        }
+      }
+      BrokerageInvoiceLine: {
+        payload: Prisma.$BrokerageInvoiceLinePayload<ExtArgs>
+        fields: Prisma.BrokerageInvoiceLineFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BrokerageInvoiceLineFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BrokerageInvoiceLineFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload>
+          }
+          findFirst: {
+            args: Prisma.BrokerageInvoiceLineFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BrokerageInvoiceLineFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload>
+          }
+          findMany: {
+            args: Prisma.BrokerageInvoiceLineFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload>[]
+          }
+          create: {
+            args: Prisma.BrokerageInvoiceLineCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload>
+          }
+          createMany: {
+            args: Prisma.BrokerageInvoiceLineCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BrokerageInvoiceLineCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload>[]
+          }
+          delete: {
+            args: Prisma.BrokerageInvoiceLineDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload>
+          }
+          update: {
+            args: Prisma.BrokerageInvoiceLineUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload>
+          }
+          deleteMany: {
+            args: Prisma.BrokerageInvoiceLineDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BrokerageInvoiceLineUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BrokerageInvoiceLineUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload>[]
+          }
+          upsert: {
+            args: Prisma.BrokerageInvoiceLineUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BrokerageInvoiceLinePayload>
+          }
+          aggregate: {
+            args: Prisma.BrokerageInvoiceLineAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBrokerageInvoiceLine>
+          }
+          groupBy: {
+            args: Prisma.BrokerageInvoiceLineGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BrokerageInvoiceLineGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BrokerageInvoiceLineCountArgs<ExtArgs>
+            result: $Utils.Optional<BrokerageInvoiceLineCountAggregateOutputType> | number
           }
         }
       }
@@ -1153,6 +1259,80 @@ export namespace Prisma {
           count: {
             args: Prisma.ContractProductCountArgs<ExtArgs>
             result: $Utils.Optional<ContractProductCountAggregateOutputType> | number
+          }
+        }
+      }
+      Pack: {
+        payload: Prisma.$PackPayload<ExtArgs>
+        fields: Prisma.PackFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PackFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PackFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload>
+          }
+          findFirst: {
+            args: Prisma.PackFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PackFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload>
+          }
+          findMany: {
+            args: Prisma.PackFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload>[]
+          }
+          create: {
+            args: Prisma.PackCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload>
+          }
+          createMany: {
+            args: Prisma.PackCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PackCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload>[]
+          }
+          delete: {
+            args: Prisma.PackDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload>
+          }
+          update: {
+            args: Prisma.PackUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload>
+          }
+          deleteMany: {
+            args: Prisma.PackDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PackUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PackUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload>[]
+          }
+          upsert: {
+            args: Prisma.PackUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackPayload>
+          }
+          aggregate: {
+            args: Prisma.PackAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePack>
+          }
+          groupBy: {
+            args: Prisma.PackGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PackGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PackCountArgs<ExtArgs>
+            result: $Utils.Optional<PackCountAggregateOutputType> | number
           }
         }
       }
@@ -1772,9 +1952,11 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     arbitrationRule?: ArbitrationRuleOmit
     brokerageInvoice?: BrokerageInvoiceOmit
+    brokerageInvoiceLine?: BrokerageInvoiceLineOmit
     contact?: ContactOmit
     contract?: ContractOmit
     contractProduct?: ContractProductOmit
+    pack?: PackOmit
     customer?: CustomerOmit
     file?: FileOmit
     product?: ProductOmit
@@ -1889,11 +2071,42 @@ export namespace Prisma {
 
 
   /**
+   * Count Type BrokerageInvoiceCountOutputType
+   */
+
+  export type BrokerageInvoiceCountOutputType = {
+    Lines: number
+  }
+
+  export type BrokerageInvoiceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Lines?: boolean | BrokerageInvoiceCountOutputTypeCountLinesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BrokerageInvoiceCountOutputType without action
+   */
+  export type BrokerageInvoiceCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceCountOutputType
+     */
+    select?: BrokerageInvoiceCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BrokerageInvoiceCountOutputType without action
+   */
+  export type BrokerageInvoiceCountOutputTypeCountLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BrokerageInvoiceLineWhereInput
+  }
+
+
+  /**
    * Count Type ContractCountOutputType
    */
 
   export type ContractCountOutputType = {
-    BrokerageInvoice: number
+    BrokerageInvoiceLines: number
     ContractProduct: number
     ArbitrationRule: number
     Product: number
@@ -1901,7 +2114,7 @@ export namespace Prisma {
   }
 
   export type ContractCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    BrokerageInvoice?: boolean | ContractCountOutputTypeCountBrokerageInvoiceArgs
+    BrokerageInvoiceLines?: boolean | ContractCountOutputTypeCountBrokerageInvoiceLinesArgs
     ContractProduct?: boolean | ContractCountOutputTypeCountContractProductArgs
     ArbitrationRule?: boolean | ContractCountOutputTypeCountArbitrationRuleArgs
     Product?: boolean | ContractCountOutputTypeCountProductArgs
@@ -1922,8 +2135,8 @@ export namespace Prisma {
   /**
    * ContractCountOutputType without action
    */
-  export type ContractCountOutputTypeCountBrokerageInvoiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BrokerageInvoiceWhereInput
+  export type ContractCountOutputTypeCountBrokerageInvoiceLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BrokerageInvoiceLineWhereInput
   }
 
   /**
@@ -1961,12 +2174,14 @@ export namespace Prisma {
 
   export type CustomerCountOutputType = {
     Contact: number
-    Contract: number
+    ContractsAsPartyA: number
+    ContractsAsPartyB: number
   }
 
   export type CustomerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Contact?: boolean | CustomerCountOutputTypeCountContactArgs
-    Contract?: boolean | CustomerCountOutputTypeCountContractArgs
+    ContractsAsPartyA?: boolean | CustomerCountOutputTypeCountContractsAsPartyAArgs
+    ContractsAsPartyB?: boolean | CustomerCountOutputTypeCountContractsAsPartyBArgs
   }
 
   // Custom InputTypes
@@ -1990,7 +2205,14 @@ export namespace Prisma {
   /**
    * CustomerCountOutputType without action
    */
-  export type CustomerCountOutputTypeCountContractArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CustomerCountOutputTypeCountContractsAsPartyAArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContractWhereInput
+  }
+
+  /**
+   * CustomerCountOutputType without action
+   */
+  export type CustomerCountOutputTypeCountContractsAsPartyBArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ContractWhereInput
   }
 
@@ -2050,13 +2272,11 @@ export namespace Prisma {
 
   export type SellerCountOutputType = {
     Contact: number
-    Contract: number
     Product: number
   }
 
   export type SellerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Contact?: boolean | SellerCountOutputTypeCountContactArgs
-    Contract?: boolean | SellerCountOutputTypeCountContractArgs
     Product?: boolean | SellerCountOutputTypeCountProductArgs
   }
 
@@ -2076,13 +2296,6 @@ export namespace Prisma {
    */
   export type SellerCountOutputTypeCountContactArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ContactWhereInput
-  }
-
-  /**
-   * SellerCountOutputType without action
-   */
-  export type SellerCountOutputTypeCountContractArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ContractWhereInput
   }
 
   /**
@@ -3324,28 +3537,16 @@ export namespace Prisma {
 
   export type BrokerageInvoiceAvgAggregateOutputType = {
     id: number | null
-    contract_id: number | null
-    comission_total_usd: number | null
-    comission_total_brl: number | null
-    ptax: number | null
   }
 
   export type BrokerageInvoiceSumAggregateOutputType = {
     id: number | null
-    contract_id: number | null
-    comission_total_usd: number | null
-    comission_total_brl: number | null
-    ptax: number | null
   }
 
   export type BrokerageInvoiceMinAggregateOutputType = {
     id: number | null
-    contract_id: number | null
-    comission_total_usd: number | null
-    comission_total_brl: number | null
-    bl_date: Date | null
-    bl_number: string | null
-    ptax: number | null
+    number: string | null
+    invoice_date: Date | null
     createdAt: Date | null
     active: boolean | null
     status: string | null
@@ -3354,12 +3555,8 @@ export namespace Prisma {
 
   export type BrokerageInvoiceMaxAggregateOutputType = {
     id: number | null
-    contract_id: number | null
-    comission_total_usd: number | null
-    comission_total_brl: number | null
-    bl_date: Date | null
-    bl_number: string | null
-    ptax: number | null
+    number: string | null
+    invoice_date: Date | null
     createdAt: Date | null
     active: boolean | null
     status: string | null
@@ -3368,14 +3565,8 @@ export namespace Prisma {
 
   export type BrokerageInvoiceCountAggregateOutputType = {
     id: number
-    contract_id: number
-    comission_total_usd: number
-    comission_total_brl: number
-    bl_date: number
-    bl_number: number
-    bl_attachments: number
-    ptax: number
-    attachments: number
+    number: number
+    invoice_date: number
     createdAt: number
     active: number
     status: number
@@ -3386,28 +3577,16 @@ export namespace Prisma {
 
   export type BrokerageInvoiceAvgAggregateInputType = {
     id?: true
-    contract_id?: true
-    comission_total_usd?: true
-    comission_total_brl?: true
-    ptax?: true
   }
 
   export type BrokerageInvoiceSumAggregateInputType = {
     id?: true
-    contract_id?: true
-    comission_total_usd?: true
-    comission_total_brl?: true
-    ptax?: true
   }
 
   export type BrokerageInvoiceMinAggregateInputType = {
     id?: true
-    contract_id?: true
-    comission_total_usd?: true
-    comission_total_brl?: true
-    bl_date?: true
-    bl_number?: true
-    ptax?: true
+    number?: true
+    invoice_date?: true
     createdAt?: true
     active?: true
     status?: true
@@ -3416,12 +3595,8 @@ export namespace Prisma {
 
   export type BrokerageInvoiceMaxAggregateInputType = {
     id?: true
-    contract_id?: true
-    comission_total_usd?: true
-    comission_total_brl?: true
-    bl_date?: true
-    bl_number?: true
-    ptax?: true
+    number?: true
+    invoice_date?: true
     createdAt?: true
     active?: true
     status?: true
@@ -3430,14 +3605,8 @@ export namespace Prisma {
 
   export type BrokerageInvoiceCountAggregateInputType = {
     id?: true
-    contract_id?: true
-    comission_total_usd?: true
-    comission_total_brl?: true
-    bl_date?: true
-    bl_number?: true
-    bl_attachments?: true
-    ptax?: true
-    attachments?: true
+    number?: true
+    invoice_date?: true
     createdAt?: true
     active?: true
     status?: true
@@ -3533,14 +3702,8 @@ export namespace Prisma {
 
   export type BrokerageInvoiceGroupByOutputType = {
     id: number
-    contract_id: number
-    comission_total_usd: number
-    comission_total_brl: number
-    bl_date: Date
-    bl_number: string
-    bl_attachments: string[]
-    ptax: number
-    attachments: string[]
+    number: string | null
+    invoice_date: Date | null
     createdAt: Date
     active: boolean
     status: string
@@ -3568,97 +3731,63 @@ export namespace Prisma {
 
   export type BrokerageInvoiceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    contract_id?: boolean
-    comission_total_usd?: boolean
-    comission_total_brl?: boolean
-    bl_date?: boolean
-    bl_number?: boolean
-    bl_attachments?: boolean
-    ptax?: boolean
-    attachments?: boolean
+    number?: boolean
+    invoice_date?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
     deleted?: boolean
-    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+    Lines?: boolean | BrokerageInvoice$LinesArgs<ExtArgs>
+    _count?: boolean | BrokerageInvoiceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brokerageInvoice"]>
 
   export type BrokerageInvoiceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    contract_id?: boolean
-    comission_total_usd?: boolean
-    comission_total_brl?: boolean
-    bl_date?: boolean
-    bl_number?: boolean
-    bl_attachments?: boolean
-    ptax?: boolean
-    attachments?: boolean
+    number?: boolean
+    invoice_date?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
     deleted?: boolean
-    Contract?: boolean | ContractDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brokerageInvoice"]>
 
   export type BrokerageInvoiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    contract_id?: boolean
-    comission_total_usd?: boolean
-    comission_total_brl?: boolean
-    bl_date?: boolean
-    bl_number?: boolean
-    bl_attachments?: boolean
-    ptax?: boolean
-    attachments?: boolean
+    number?: boolean
+    invoice_date?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
     deleted?: boolean
-    Contract?: boolean | ContractDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brokerageInvoice"]>
 
   export type BrokerageInvoiceSelectScalar = {
     id?: boolean
-    contract_id?: boolean
-    comission_total_usd?: boolean
-    comission_total_brl?: boolean
-    bl_date?: boolean
-    bl_number?: boolean
-    bl_attachments?: boolean
-    ptax?: boolean
-    attachments?: boolean
+    number?: boolean
+    invoice_date?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
     deleted?: boolean
   }
 
-  export type BrokerageInvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "contract_id" | "comission_total_usd" | "comission_total_brl" | "bl_date" | "bl_number" | "bl_attachments" | "ptax" | "attachments" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["brokerageInvoice"]>
+  export type BrokerageInvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "number" | "invoice_date" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["brokerageInvoice"]>
   export type BrokerageInvoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+    Lines?: boolean | BrokerageInvoice$LinesArgs<ExtArgs>
+    _count?: boolean | BrokerageInvoiceCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type BrokerageInvoiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Contract?: boolean | ContractDefaultArgs<ExtArgs>
-  }
-  export type BrokerageInvoiceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Contract?: boolean | ContractDefaultArgs<ExtArgs>
-  }
+  export type BrokerageInvoiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type BrokerageInvoiceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $BrokerageInvoicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "BrokerageInvoice"
     objects: {
-      Contract: Prisma.$ContractPayload<ExtArgs>
+      Lines: Prisma.$BrokerageInvoiceLinePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      contract_id: number
-      comission_total_usd: number
-      comission_total_brl: number
-      bl_date: Date
-      bl_number: string
-      bl_attachments: string[]
-      ptax: number
-      attachments: string[]
+      number: string | null
+      invoice_date: Date | null
       createdAt: Date
       active: boolean
       status: string
@@ -4057,7 +4186,7 @@ export namespace Prisma {
    */
   export interface Prisma__BrokerageInvoiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Contract<T extends ContractDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContractDefaultArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Lines<T extends BrokerageInvoice$LinesArgs<ExtArgs> = {}>(args?: Subset<T, BrokerageInvoice$LinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4088,14 +4217,8 @@ export namespace Prisma {
    */
   interface BrokerageInvoiceFieldRefs {
     readonly id: FieldRef<"BrokerageInvoice", 'Int'>
-    readonly contract_id: FieldRef<"BrokerageInvoice", 'Int'>
-    readonly comission_total_usd: FieldRef<"BrokerageInvoice", 'Float'>
-    readonly comission_total_brl: FieldRef<"BrokerageInvoice", 'Float'>
-    readonly bl_date: FieldRef<"BrokerageInvoice", 'DateTime'>
-    readonly bl_number: FieldRef<"BrokerageInvoice", 'String'>
-    readonly bl_attachments: FieldRef<"BrokerageInvoice", 'String[]'>
-    readonly ptax: FieldRef<"BrokerageInvoice", 'Float'>
-    readonly attachments: FieldRef<"BrokerageInvoice", 'String[]'>
+    readonly number: FieldRef<"BrokerageInvoice", 'String'>
+    readonly invoice_date: FieldRef<"BrokerageInvoice", 'DateTime'>
     readonly createdAt: FieldRef<"BrokerageInvoice", 'DateTime'>
     readonly active: FieldRef<"BrokerageInvoice", 'Boolean'>
     readonly status: FieldRef<"BrokerageInvoice", 'String'>
@@ -4349,10 +4472,6 @@ export namespace Prisma {
      */
     data: BrokerageInvoiceCreateManyInput | BrokerageInvoiceCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BrokerageInvoiceIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4423,10 +4542,6 @@ export namespace Prisma {
      * Limit how many BrokerageInvoices to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BrokerageInvoiceIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4496,6 +4611,30 @@ export namespace Prisma {
   }
 
   /**
+   * BrokerageInvoice.Lines
+   */
+  export type BrokerageInvoice$LinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    where?: BrokerageInvoiceLineWhereInput
+    orderBy?: BrokerageInvoiceLineOrderByWithRelationInput | BrokerageInvoiceLineOrderByWithRelationInput[]
+    cursor?: BrokerageInvoiceLineWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BrokerageInvoiceLineScalarFieldEnum | BrokerageInvoiceLineScalarFieldEnum[]
+  }
+
+  /**
    * BrokerageInvoice without action
    */
   export type BrokerageInvoiceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4511,6 +4650,1201 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: BrokerageInvoiceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BrokerageInvoiceLine
+   */
+
+  export type AggregateBrokerageInvoiceLine = {
+    _count: BrokerageInvoiceLineCountAggregateOutputType | null
+    _avg: BrokerageInvoiceLineAvgAggregateOutputType | null
+    _sum: BrokerageInvoiceLineSumAggregateOutputType | null
+    _min: BrokerageInvoiceLineMinAggregateOutputType | null
+    _max: BrokerageInvoiceLineMaxAggregateOutputType | null
+  }
+
+  export type BrokerageInvoiceLineAvgAggregateOutputType = {
+    id: number | null
+    brokerage_invoice_id: number | null
+    contract_id: number | null
+    comission_total_usd: number | null
+  }
+
+  export type BrokerageInvoiceLineSumAggregateOutputType = {
+    id: number | null
+    brokerage_invoice_id: number | null
+    contract_id: number | null
+    comission_total_usd: number | null
+  }
+
+  export type BrokerageInvoiceLineMinAggregateOutputType = {
+    id: number | null
+    brokerage_invoice_id: number | null
+    contract_id: number | null
+    bl_date: Date | null
+    bl_number: string | null
+    comission_total_usd: number | null
+    createdAt: Date | null
+    active: boolean | null
+    status: string | null
+    deleted: boolean | null
+  }
+
+  export type BrokerageInvoiceLineMaxAggregateOutputType = {
+    id: number | null
+    brokerage_invoice_id: number | null
+    contract_id: number | null
+    bl_date: Date | null
+    bl_number: string | null
+    comission_total_usd: number | null
+    createdAt: Date | null
+    active: boolean | null
+    status: string | null
+    deleted: boolean | null
+  }
+
+  export type BrokerageInvoiceLineCountAggregateOutputType = {
+    id: number
+    brokerage_invoice_id: number
+    contract_id: number
+    bl_date: number
+    bl_number: number
+    bl_attachments: number
+    comission_total_usd: number
+    attachments: number
+    createdAt: number
+    active: number
+    status: number
+    deleted: number
+    _all: number
+  }
+
+
+  export type BrokerageInvoiceLineAvgAggregateInputType = {
+    id?: true
+    brokerage_invoice_id?: true
+    contract_id?: true
+    comission_total_usd?: true
+  }
+
+  export type BrokerageInvoiceLineSumAggregateInputType = {
+    id?: true
+    brokerage_invoice_id?: true
+    contract_id?: true
+    comission_total_usd?: true
+  }
+
+  export type BrokerageInvoiceLineMinAggregateInputType = {
+    id?: true
+    brokerage_invoice_id?: true
+    contract_id?: true
+    bl_date?: true
+    bl_number?: true
+    comission_total_usd?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+  }
+
+  export type BrokerageInvoiceLineMaxAggregateInputType = {
+    id?: true
+    brokerage_invoice_id?: true
+    contract_id?: true
+    bl_date?: true
+    bl_number?: true
+    comission_total_usd?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+  }
+
+  export type BrokerageInvoiceLineCountAggregateInputType = {
+    id?: true
+    brokerage_invoice_id?: true
+    contract_id?: true
+    bl_date?: true
+    bl_number?: true
+    bl_attachments?: true
+    comission_total_usd?: true
+    attachments?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+    _all?: true
+  }
+
+  export type BrokerageInvoiceLineAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BrokerageInvoiceLine to aggregate.
+     */
+    where?: BrokerageInvoiceLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BrokerageInvoiceLines to fetch.
+     */
+    orderBy?: BrokerageInvoiceLineOrderByWithRelationInput | BrokerageInvoiceLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BrokerageInvoiceLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BrokerageInvoiceLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BrokerageInvoiceLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BrokerageInvoiceLines
+    **/
+    _count?: true | BrokerageInvoiceLineCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BrokerageInvoiceLineAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BrokerageInvoiceLineSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BrokerageInvoiceLineMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BrokerageInvoiceLineMaxAggregateInputType
+  }
+
+  export type GetBrokerageInvoiceLineAggregateType<T extends BrokerageInvoiceLineAggregateArgs> = {
+        [P in keyof T & keyof AggregateBrokerageInvoiceLine]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBrokerageInvoiceLine[P]>
+      : GetScalarType<T[P], AggregateBrokerageInvoiceLine[P]>
+  }
+
+
+
+
+  export type BrokerageInvoiceLineGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BrokerageInvoiceLineWhereInput
+    orderBy?: BrokerageInvoiceLineOrderByWithAggregationInput | BrokerageInvoiceLineOrderByWithAggregationInput[]
+    by: BrokerageInvoiceLineScalarFieldEnum[] | BrokerageInvoiceLineScalarFieldEnum
+    having?: BrokerageInvoiceLineScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BrokerageInvoiceLineCountAggregateInputType | true
+    _avg?: BrokerageInvoiceLineAvgAggregateInputType
+    _sum?: BrokerageInvoiceLineSumAggregateInputType
+    _min?: BrokerageInvoiceLineMinAggregateInputType
+    _max?: BrokerageInvoiceLineMaxAggregateInputType
+  }
+
+  export type BrokerageInvoiceLineGroupByOutputType = {
+    id: number
+    brokerage_invoice_id: number
+    contract_id: number
+    bl_date: Date
+    bl_number: string
+    bl_attachments: string[]
+    comission_total_usd: number
+    attachments: string[]
+    createdAt: Date
+    active: boolean
+    status: string
+    deleted: boolean
+    _count: BrokerageInvoiceLineCountAggregateOutputType | null
+    _avg: BrokerageInvoiceLineAvgAggregateOutputType | null
+    _sum: BrokerageInvoiceLineSumAggregateOutputType | null
+    _min: BrokerageInvoiceLineMinAggregateOutputType | null
+    _max: BrokerageInvoiceLineMaxAggregateOutputType | null
+  }
+
+  type GetBrokerageInvoiceLineGroupByPayload<T extends BrokerageInvoiceLineGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BrokerageInvoiceLineGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BrokerageInvoiceLineGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BrokerageInvoiceLineGroupByOutputType[P]>
+            : GetScalarType<T[P], BrokerageInvoiceLineGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BrokerageInvoiceLineSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    brokerage_invoice_id?: boolean
+    contract_id?: boolean
+    bl_date?: boolean
+    bl_number?: boolean
+    bl_attachments?: boolean
+    comission_total_usd?: boolean
+    attachments?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+    BrokerageInvoice?: boolean | BrokerageInvoiceDefaultArgs<ExtArgs>
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["brokerageInvoiceLine"]>
+
+  export type BrokerageInvoiceLineSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    brokerage_invoice_id?: boolean
+    contract_id?: boolean
+    bl_date?: boolean
+    bl_number?: boolean
+    bl_attachments?: boolean
+    comission_total_usd?: boolean
+    attachments?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+    BrokerageInvoice?: boolean | BrokerageInvoiceDefaultArgs<ExtArgs>
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["brokerageInvoiceLine"]>
+
+  export type BrokerageInvoiceLineSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    brokerage_invoice_id?: boolean
+    contract_id?: boolean
+    bl_date?: boolean
+    bl_number?: boolean
+    bl_attachments?: boolean
+    comission_total_usd?: boolean
+    attachments?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+    BrokerageInvoice?: boolean | BrokerageInvoiceDefaultArgs<ExtArgs>
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["brokerageInvoiceLine"]>
+
+  export type BrokerageInvoiceLineSelectScalar = {
+    id?: boolean
+    brokerage_invoice_id?: boolean
+    contract_id?: boolean
+    bl_date?: boolean
+    bl_number?: boolean
+    bl_attachments?: boolean
+    comission_total_usd?: boolean
+    attachments?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }
+
+  export type BrokerageInvoiceLineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brokerage_invoice_id" | "contract_id" | "bl_date" | "bl_number" | "bl_attachments" | "comission_total_usd" | "attachments" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["brokerageInvoiceLine"]>
+  export type BrokerageInvoiceLineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BrokerageInvoice?: boolean | BrokerageInvoiceDefaultArgs<ExtArgs>
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }
+  export type BrokerageInvoiceLineIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BrokerageInvoice?: boolean | BrokerageInvoiceDefaultArgs<ExtArgs>
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }
+  export type BrokerageInvoiceLineIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BrokerageInvoice?: boolean | BrokerageInvoiceDefaultArgs<ExtArgs>
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }
+
+  export type $BrokerageInvoiceLinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BrokerageInvoiceLine"
+    objects: {
+      BrokerageInvoice: Prisma.$BrokerageInvoicePayload<ExtArgs>
+      Contract: Prisma.$ContractPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      brokerage_invoice_id: number
+      contract_id: number
+      bl_date: Date
+      bl_number: string
+      bl_attachments: string[]
+      comission_total_usd: number
+      attachments: string[]
+      createdAt: Date
+      active: boolean
+      status: string
+      deleted: boolean
+    }, ExtArgs["result"]["brokerageInvoiceLine"]>
+    composites: {}
+  }
+
+  type BrokerageInvoiceLineGetPayload<S extends boolean | null | undefined | BrokerageInvoiceLineDefaultArgs> = $Result.GetResult<Prisma.$BrokerageInvoiceLinePayload, S>
+
+  type BrokerageInvoiceLineCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BrokerageInvoiceLineFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BrokerageInvoiceLineCountAggregateInputType | true
+    }
+
+  export interface BrokerageInvoiceLineDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BrokerageInvoiceLine'], meta: { name: 'BrokerageInvoiceLine' } }
+    /**
+     * Find zero or one BrokerageInvoiceLine that matches the filter.
+     * @param {BrokerageInvoiceLineFindUniqueArgs} args - Arguments to find a BrokerageInvoiceLine
+     * @example
+     * // Get one BrokerageInvoiceLine
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BrokerageInvoiceLineFindUniqueArgs>(args: SelectSubset<T, BrokerageInvoiceLineFindUniqueArgs<ExtArgs>>): Prisma__BrokerageInvoiceLineClient<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BrokerageInvoiceLine that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BrokerageInvoiceLineFindUniqueOrThrowArgs} args - Arguments to find a BrokerageInvoiceLine
+     * @example
+     * // Get one BrokerageInvoiceLine
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BrokerageInvoiceLineFindUniqueOrThrowArgs>(args: SelectSubset<T, BrokerageInvoiceLineFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BrokerageInvoiceLineClient<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BrokerageInvoiceLine that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrokerageInvoiceLineFindFirstArgs} args - Arguments to find a BrokerageInvoiceLine
+     * @example
+     * // Get one BrokerageInvoiceLine
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BrokerageInvoiceLineFindFirstArgs>(args?: SelectSubset<T, BrokerageInvoiceLineFindFirstArgs<ExtArgs>>): Prisma__BrokerageInvoiceLineClient<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BrokerageInvoiceLine that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrokerageInvoiceLineFindFirstOrThrowArgs} args - Arguments to find a BrokerageInvoiceLine
+     * @example
+     * // Get one BrokerageInvoiceLine
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BrokerageInvoiceLineFindFirstOrThrowArgs>(args?: SelectSubset<T, BrokerageInvoiceLineFindFirstOrThrowArgs<ExtArgs>>): Prisma__BrokerageInvoiceLineClient<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BrokerageInvoiceLines that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrokerageInvoiceLineFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BrokerageInvoiceLines
+     * const brokerageInvoiceLines = await prisma.brokerageInvoiceLine.findMany()
+     * 
+     * // Get first 10 BrokerageInvoiceLines
+     * const brokerageInvoiceLines = await prisma.brokerageInvoiceLine.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const brokerageInvoiceLineWithIdOnly = await prisma.brokerageInvoiceLine.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BrokerageInvoiceLineFindManyArgs>(args?: SelectSubset<T, BrokerageInvoiceLineFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BrokerageInvoiceLine.
+     * @param {BrokerageInvoiceLineCreateArgs} args - Arguments to create a BrokerageInvoiceLine.
+     * @example
+     * // Create one BrokerageInvoiceLine
+     * const BrokerageInvoiceLine = await prisma.brokerageInvoiceLine.create({
+     *   data: {
+     *     // ... data to create a BrokerageInvoiceLine
+     *   }
+     * })
+     * 
+     */
+    create<T extends BrokerageInvoiceLineCreateArgs>(args: SelectSubset<T, BrokerageInvoiceLineCreateArgs<ExtArgs>>): Prisma__BrokerageInvoiceLineClient<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BrokerageInvoiceLines.
+     * @param {BrokerageInvoiceLineCreateManyArgs} args - Arguments to create many BrokerageInvoiceLines.
+     * @example
+     * // Create many BrokerageInvoiceLines
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BrokerageInvoiceLineCreateManyArgs>(args?: SelectSubset<T, BrokerageInvoiceLineCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BrokerageInvoiceLines and returns the data saved in the database.
+     * @param {BrokerageInvoiceLineCreateManyAndReturnArgs} args - Arguments to create many BrokerageInvoiceLines.
+     * @example
+     * // Create many BrokerageInvoiceLines
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BrokerageInvoiceLines and only return the `id`
+     * const brokerageInvoiceLineWithIdOnly = await prisma.brokerageInvoiceLine.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BrokerageInvoiceLineCreateManyAndReturnArgs>(args?: SelectSubset<T, BrokerageInvoiceLineCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BrokerageInvoiceLine.
+     * @param {BrokerageInvoiceLineDeleteArgs} args - Arguments to delete one BrokerageInvoiceLine.
+     * @example
+     * // Delete one BrokerageInvoiceLine
+     * const BrokerageInvoiceLine = await prisma.brokerageInvoiceLine.delete({
+     *   where: {
+     *     // ... filter to delete one BrokerageInvoiceLine
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BrokerageInvoiceLineDeleteArgs>(args: SelectSubset<T, BrokerageInvoiceLineDeleteArgs<ExtArgs>>): Prisma__BrokerageInvoiceLineClient<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BrokerageInvoiceLine.
+     * @param {BrokerageInvoiceLineUpdateArgs} args - Arguments to update one BrokerageInvoiceLine.
+     * @example
+     * // Update one BrokerageInvoiceLine
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BrokerageInvoiceLineUpdateArgs>(args: SelectSubset<T, BrokerageInvoiceLineUpdateArgs<ExtArgs>>): Prisma__BrokerageInvoiceLineClient<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BrokerageInvoiceLines.
+     * @param {BrokerageInvoiceLineDeleteManyArgs} args - Arguments to filter BrokerageInvoiceLines to delete.
+     * @example
+     * // Delete a few BrokerageInvoiceLines
+     * const { count } = await prisma.brokerageInvoiceLine.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BrokerageInvoiceLineDeleteManyArgs>(args?: SelectSubset<T, BrokerageInvoiceLineDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BrokerageInvoiceLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrokerageInvoiceLineUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BrokerageInvoiceLines
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BrokerageInvoiceLineUpdateManyArgs>(args: SelectSubset<T, BrokerageInvoiceLineUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BrokerageInvoiceLines and returns the data updated in the database.
+     * @param {BrokerageInvoiceLineUpdateManyAndReturnArgs} args - Arguments to update many BrokerageInvoiceLines.
+     * @example
+     * // Update many BrokerageInvoiceLines
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BrokerageInvoiceLines and only return the `id`
+     * const brokerageInvoiceLineWithIdOnly = await prisma.brokerageInvoiceLine.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BrokerageInvoiceLineUpdateManyAndReturnArgs>(args: SelectSubset<T, BrokerageInvoiceLineUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BrokerageInvoiceLine.
+     * @param {BrokerageInvoiceLineUpsertArgs} args - Arguments to update or create a BrokerageInvoiceLine.
+     * @example
+     * // Update or create a BrokerageInvoiceLine
+     * const brokerageInvoiceLine = await prisma.brokerageInvoiceLine.upsert({
+     *   create: {
+     *     // ... data to create a BrokerageInvoiceLine
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BrokerageInvoiceLine we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BrokerageInvoiceLineUpsertArgs>(args: SelectSubset<T, BrokerageInvoiceLineUpsertArgs<ExtArgs>>): Prisma__BrokerageInvoiceLineClient<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BrokerageInvoiceLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrokerageInvoiceLineCountArgs} args - Arguments to filter BrokerageInvoiceLines to count.
+     * @example
+     * // Count the number of BrokerageInvoiceLines
+     * const count = await prisma.brokerageInvoiceLine.count({
+     *   where: {
+     *     // ... the filter for the BrokerageInvoiceLines we want to count
+     *   }
+     * })
+    **/
+    count<T extends BrokerageInvoiceLineCountArgs>(
+      args?: Subset<T, BrokerageInvoiceLineCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BrokerageInvoiceLineCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BrokerageInvoiceLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrokerageInvoiceLineAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BrokerageInvoiceLineAggregateArgs>(args: Subset<T, BrokerageInvoiceLineAggregateArgs>): Prisma.PrismaPromise<GetBrokerageInvoiceLineAggregateType<T>>
+
+    /**
+     * Group by BrokerageInvoiceLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BrokerageInvoiceLineGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BrokerageInvoiceLineGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BrokerageInvoiceLineGroupByArgs['orderBy'] }
+        : { orderBy?: BrokerageInvoiceLineGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BrokerageInvoiceLineGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBrokerageInvoiceLineGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BrokerageInvoiceLine model
+   */
+  readonly fields: BrokerageInvoiceLineFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BrokerageInvoiceLine.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BrokerageInvoiceLineClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    BrokerageInvoice<T extends BrokerageInvoiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrokerageInvoiceDefaultArgs<ExtArgs>>): Prisma__BrokerageInvoiceClient<$Result.GetResult<Prisma.$BrokerageInvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Contract<T extends ContractDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContractDefaultArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BrokerageInvoiceLine model
+   */
+  interface BrokerageInvoiceLineFieldRefs {
+    readonly id: FieldRef<"BrokerageInvoiceLine", 'Int'>
+    readonly brokerage_invoice_id: FieldRef<"BrokerageInvoiceLine", 'Int'>
+    readonly contract_id: FieldRef<"BrokerageInvoiceLine", 'Int'>
+    readonly bl_date: FieldRef<"BrokerageInvoiceLine", 'DateTime'>
+    readonly bl_number: FieldRef<"BrokerageInvoiceLine", 'String'>
+    readonly bl_attachments: FieldRef<"BrokerageInvoiceLine", 'String[]'>
+    readonly comission_total_usd: FieldRef<"BrokerageInvoiceLine", 'Float'>
+    readonly attachments: FieldRef<"BrokerageInvoiceLine", 'String[]'>
+    readonly createdAt: FieldRef<"BrokerageInvoiceLine", 'DateTime'>
+    readonly active: FieldRef<"BrokerageInvoiceLine", 'Boolean'>
+    readonly status: FieldRef<"BrokerageInvoiceLine", 'String'>
+    readonly deleted: FieldRef<"BrokerageInvoiceLine", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BrokerageInvoiceLine findUnique
+   */
+  export type BrokerageInvoiceLineFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    /**
+     * Filter, which BrokerageInvoiceLine to fetch.
+     */
+    where: BrokerageInvoiceLineWhereUniqueInput
+  }
+
+  /**
+   * BrokerageInvoiceLine findUniqueOrThrow
+   */
+  export type BrokerageInvoiceLineFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    /**
+     * Filter, which BrokerageInvoiceLine to fetch.
+     */
+    where: BrokerageInvoiceLineWhereUniqueInput
+  }
+
+  /**
+   * BrokerageInvoiceLine findFirst
+   */
+  export type BrokerageInvoiceLineFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    /**
+     * Filter, which BrokerageInvoiceLine to fetch.
+     */
+    where?: BrokerageInvoiceLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BrokerageInvoiceLines to fetch.
+     */
+    orderBy?: BrokerageInvoiceLineOrderByWithRelationInput | BrokerageInvoiceLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BrokerageInvoiceLines.
+     */
+    cursor?: BrokerageInvoiceLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BrokerageInvoiceLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BrokerageInvoiceLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BrokerageInvoiceLines.
+     */
+    distinct?: BrokerageInvoiceLineScalarFieldEnum | BrokerageInvoiceLineScalarFieldEnum[]
+  }
+
+  /**
+   * BrokerageInvoiceLine findFirstOrThrow
+   */
+  export type BrokerageInvoiceLineFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    /**
+     * Filter, which BrokerageInvoiceLine to fetch.
+     */
+    where?: BrokerageInvoiceLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BrokerageInvoiceLines to fetch.
+     */
+    orderBy?: BrokerageInvoiceLineOrderByWithRelationInput | BrokerageInvoiceLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BrokerageInvoiceLines.
+     */
+    cursor?: BrokerageInvoiceLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BrokerageInvoiceLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BrokerageInvoiceLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BrokerageInvoiceLines.
+     */
+    distinct?: BrokerageInvoiceLineScalarFieldEnum | BrokerageInvoiceLineScalarFieldEnum[]
+  }
+
+  /**
+   * BrokerageInvoiceLine findMany
+   */
+  export type BrokerageInvoiceLineFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    /**
+     * Filter, which BrokerageInvoiceLines to fetch.
+     */
+    where?: BrokerageInvoiceLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BrokerageInvoiceLines to fetch.
+     */
+    orderBy?: BrokerageInvoiceLineOrderByWithRelationInput | BrokerageInvoiceLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BrokerageInvoiceLines.
+     */
+    cursor?: BrokerageInvoiceLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BrokerageInvoiceLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BrokerageInvoiceLines.
+     */
+    skip?: number
+    distinct?: BrokerageInvoiceLineScalarFieldEnum | BrokerageInvoiceLineScalarFieldEnum[]
+  }
+
+  /**
+   * BrokerageInvoiceLine create
+   */
+  export type BrokerageInvoiceLineCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BrokerageInvoiceLine.
+     */
+    data: XOR<BrokerageInvoiceLineCreateInput, BrokerageInvoiceLineUncheckedCreateInput>
+  }
+
+  /**
+   * BrokerageInvoiceLine createMany
+   */
+  export type BrokerageInvoiceLineCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BrokerageInvoiceLines.
+     */
+    data: BrokerageInvoiceLineCreateManyInput | BrokerageInvoiceLineCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BrokerageInvoiceLine createManyAndReturn
+   */
+  export type BrokerageInvoiceLineCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * The data used to create many BrokerageInvoiceLines.
+     */
+    data: BrokerageInvoiceLineCreateManyInput | BrokerageInvoiceLineCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BrokerageInvoiceLine update
+   */
+  export type BrokerageInvoiceLineUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BrokerageInvoiceLine.
+     */
+    data: XOR<BrokerageInvoiceLineUpdateInput, BrokerageInvoiceLineUncheckedUpdateInput>
+    /**
+     * Choose, which BrokerageInvoiceLine to update.
+     */
+    where: BrokerageInvoiceLineWhereUniqueInput
+  }
+
+  /**
+   * BrokerageInvoiceLine updateMany
+   */
+  export type BrokerageInvoiceLineUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BrokerageInvoiceLines.
+     */
+    data: XOR<BrokerageInvoiceLineUpdateManyMutationInput, BrokerageInvoiceLineUncheckedUpdateManyInput>
+    /**
+     * Filter which BrokerageInvoiceLines to update
+     */
+    where?: BrokerageInvoiceLineWhereInput
+    /**
+     * Limit how many BrokerageInvoiceLines to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BrokerageInvoiceLine updateManyAndReturn
+   */
+  export type BrokerageInvoiceLineUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * The data used to update BrokerageInvoiceLines.
+     */
+    data: XOR<BrokerageInvoiceLineUpdateManyMutationInput, BrokerageInvoiceLineUncheckedUpdateManyInput>
+    /**
+     * Filter which BrokerageInvoiceLines to update
+     */
+    where?: BrokerageInvoiceLineWhereInput
+    /**
+     * Limit how many BrokerageInvoiceLines to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BrokerageInvoiceLine upsert
+   */
+  export type BrokerageInvoiceLineUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BrokerageInvoiceLine to update in case it exists.
+     */
+    where: BrokerageInvoiceLineWhereUniqueInput
+    /**
+     * In case the BrokerageInvoiceLine found by the `where` argument doesn't exist, create a new BrokerageInvoiceLine with this data.
+     */
+    create: XOR<BrokerageInvoiceLineCreateInput, BrokerageInvoiceLineUncheckedCreateInput>
+    /**
+     * In case the BrokerageInvoiceLine was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BrokerageInvoiceLineUpdateInput, BrokerageInvoiceLineUncheckedUpdateInput>
+  }
+
+  /**
+   * BrokerageInvoiceLine delete
+   */
+  export type BrokerageInvoiceLineDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    /**
+     * Filter which BrokerageInvoiceLine to delete.
+     */
+    where: BrokerageInvoiceLineWhereUniqueInput
+  }
+
+  /**
+   * BrokerageInvoiceLine deleteMany
+   */
+  export type BrokerageInvoiceLineDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BrokerageInvoiceLines to delete
+     */
+    where?: BrokerageInvoiceLineWhereInput
+    /**
+     * Limit how many BrokerageInvoiceLines to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BrokerageInvoiceLine without action
+   */
+  export type BrokerageInvoiceLineDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoiceLine
+     */
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoiceLine
+     */
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
   }
 
 
@@ -5887,26 +7221,26 @@ export namespace Prisma {
 
   export type ContractAvgAggregateOutputType = {
     id: number | null
-    seller_id: number | null
+    customer_party_a_id: number | null
+    customer_party_b_id: number | null
     products_id: number | null
     mt_value: number | null
     payment_amount: number | null
-    commission_seller: number | null
+    commission_party_a: number | null
+    commission_party_b: number | null
     comission_total: number | null
-    commission_customer: number | null
-    customer_id: number | null
   }
 
   export type ContractSumAggregateOutputType = {
     id: number | null
-    seller_id: number | null
+    customer_party_a_id: number | null
+    customer_party_b_id: number | null
     products_id: number[]
     mt_value: number | null
     payment_amount: number | null
-    commission_seller: number | null
+    commission_party_a: number | null
+    commission_party_b: number | null
     comission_total: number | null
-    commission_customer: number | null
-    customer_id: number | null
   }
 
   export type ContractMinAggregateOutputType = {
@@ -5917,9 +7251,12 @@ export namespace Prisma {
     date_expiration: Date | null
     date_signature: Date | null
     date_expiration_signature: Date | null
-    date_signature_seller: Date | null
-    date_expiration_signature_seller: Date | null
-    seller_id: number | null
+    date_signature_party_a: Date | null
+    date_expiration_signature_party_a: Date | null
+    date_signature_party_b: Date | null
+    date_expiration_signature_party_b: Date | null
+    customer_party_a_id: number | null
+    customer_party_b_id: number | null
     bording_date: Date | null
     mt_value: number | null
     destination_country: string | null
@@ -5934,17 +7271,14 @@ export namespace Prisma {
     payment_date: Date | null
     payment_status: string | null
     payment_notes: string | null
-    payment_notes_seller: string | null
-    commission_seller: number | null
+    payment_notes_party_a: string | null
+    payment_notes_party_b: string | null
+    commission_party_a: number | null
+    commission_party_b: number | null
     comission_total: number | null
     createdAt: Date | null
     active: boolean | null
     status: string | null
-    commission_customer: number | null
-    customer_id: number | null
-    date_expiration_signature_customer: Date | null
-    date_signature_customer: Date | null
-    payment_notes_customer: string | null
     deleted: boolean | null
   }
 
@@ -5956,9 +7290,12 @@ export namespace Prisma {
     date_expiration: Date | null
     date_signature: Date | null
     date_expiration_signature: Date | null
-    date_signature_seller: Date | null
-    date_expiration_signature_seller: Date | null
-    seller_id: number | null
+    date_signature_party_a: Date | null
+    date_expiration_signature_party_a: Date | null
+    date_signature_party_b: Date | null
+    date_expiration_signature_party_b: Date | null
+    customer_party_a_id: number | null
+    customer_party_b_id: number | null
     bording_date: Date | null
     mt_value: number | null
     destination_country: string | null
@@ -5973,17 +7310,14 @@ export namespace Prisma {
     payment_date: Date | null
     payment_status: string | null
     payment_notes: string | null
-    payment_notes_seller: string | null
-    commission_seller: number | null
+    payment_notes_party_a: string | null
+    payment_notes_party_b: string | null
+    commission_party_a: number | null
+    commission_party_b: number | null
     comission_total: number | null
     createdAt: Date | null
     active: boolean | null
     status: string | null
-    commission_customer: number | null
-    customer_id: number | null
-    date_expiration_signature_customer: Date | null
-    date_signature_customer: Date | null
-    payment_notes_customer: string | null
     deleted: boolean | null
   }
 
@@ -5995,9 +7329,12 @@ export namespace Prisma {
     date_expiration: number
     date_signature: number
     date_expiration_signature: number
-    date_signature_seller: number
-    date_expiration_signature_seller: number
-    seller_id: number
+    date_signature_party_a: number
+    date_expiration_signature_party_a: number
+    date_signature_party_b: number
+    date_expiration_signature_party_b: number
+    customer_party_a_id: number
+    customer_party_b_id: number
     products_id: number
     bording_date: number
     mt_value: number
@@ -6016,30 +7353,27 @@ export namespace Prisma {
     payment_status: number
     payment_notes: number
     payment_attachments: number
-    payment_notes_seller: number
-    payment_attachments_seller: number
+    payment_notes_party_a: number
+    payment_attachments_party_a: number
+    payment_notes_party_b: number
+    payment_attachments_party_b: number
     special_terms: number
     business_terms: number
     legal_terms: number
     other_terms: number
-    other_terms_seller: number
-    commission_seller: number
+    other_terms_party_a: number
+    other_terms_party_b: number
+    other_terms_party_a_party_b: number
+    other_terms_party_a_party_b_party_a: number
+    other_terms_party_b_party_a: number
+    other_terms_party_b_party_a_party_b: number
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments: number
     createdAt: number
     active: number
     status: number
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer: number
-    date_signature_customer: number
-    other_terms_customer: number
-    other_terms_customer_seller: number
-    other_terms_customer_seller_customer: number
-    other_terms_seller_customer: number
-    other_terms_seller_customer_seller: number
-    payment_attachments_customer: number
-    payment_notes_customer: number
     deleted: number
     _all: number
   }
@@ -6047,26 +7381,26 @@ export namespace Prisma {
 
   export type ContractAvgAggregateInputType = {
     id?: true
-    seller_id?: true
+    customer_party_a_id?: true
+    customer_party_b_id?: true
     products_id?: true
     mt_value?: true
     payment_amount?: true
-    commission_seller?: true
+    commission_party_a?: true
+    commission_party_b?: true
     comission_total?: true
-    commission_customer?: true
-    customer_id?: true
   }
 
   export type ContractSumAggregateInputType = {
     id?: true
-    seller_id?: true
+    customer_party_a_id?: true
+    customer_party_b_id?: true
     products_id?: true
     mt_value?: true
     payment_amount?: true
-    commission_seller?: true
+    commission_party_a?: true
+    commission_party_b?: true
     comission_total?: true
-    commission_customer?: true
-    customer_id?: true
   }
 
   export type ContractMinAggregateInputType = {
@@ -6077,9 +7411,12 @@ export namespace Prisma {
     date_expiration?: true
     date_signature?: true
     date_expiration_signature?: true
-    date_signature_seller?: true
-    date_expiration_signature_seller?: true
-    seller_id?: true
+    date_signature_party_a?: true
+    date_expiration_signature_party_a?: true
+    date_signature_party_b?: true
+    date_expiration_signature_party_b?: true
+    customer_party_a_id?: true
+    customer_party_b_id?: true
     bording_date?: true
     mt_value?: true
     destination_country?: true
@@ -6094,17 +7431,14 @@ export namespace Prisma {
     payment_date?: true
     payment_status?: true
     payment_notes?: true
-    payment_notes_seller?: true
-    commission_seller?: true
+    payment_notes_party_a?: true
+    payment_notes_party_b?: true
+    commission_party_a?: true
+    commission_party_b?: true
     comission_total?: true
     createdAt?: true
     active?: true
     status?: true
-    commission_customer?: true
-    customer_id?: true
-    date_expiration_signature_customer?: true
-    date_signature_customer?: true
-    payment_notes_customer?: true
     deleted?: true
   }
 
@@ -6116,9 +7450,12 @@ export namespace Prisma {
     date_expiration?: true
     date_signature?: true
     date_expiration_signature?: true
-    date_signature_seller?: true
-    date_expiration_signature_seller?: true
-    seller_id?: true
+    date_signature_party_a?: true
+    date_expiration_signature_party_a?: true
+    date_signature_party_b?: true
+    date_expiration_signature_party_b?: true
+    customer_party_a_id?: true
+    customer_party_b_id?: true
     bording_date?: true
     mt_value?: true
     destination_country?: true
@@ -6133,17 +7470,14 @@ export namespace Prisma {
     payment_date?: true
     payment_status?: true
     payment_notes?: true
-    payment_notes_seller?: true
-    commission_seller?: true
+    payment_notes_party_a?: true
+    payment_notes_party_b?: true
+    commission_party_a?: true
+    commission_party_b?: true
     comission_total?: true
     createdAt?: true
     active?: true
     status?: true
-    commission_customer?: true
-    customer_id?: true
-    date_expiration_signature_customer?: true
-    date_signature_customer?: true
-    payment_notes_customer?: true
     deleted?: true
   }
 
@@ -6155,9 +7489,12 @@ export namespace Prisma {
     date_expiration?: true
     date_signature?: true
     date_expiration_signature?: true
-    date_signature_seller?: true
-    date_expiration_signature_seller?: true
-    seller_id?: true
+    date_signature_party_a?: true
+    date_expiration_signature_party_a?: true
+    date_signature_party_b?: true
+    date_expiration_signature_party_b?: true
+    customer_party_a_id?: true
+    customer_party_b_id?: true
     products_id?: true
     bording_date?: true
     mt_value?: true
@@ -6176,30 +7513,27 @@ export namespace Prisma {
     payment_status?: true
     payment_notes?: true
     payment_attachments?: true
-    payment_notes_seller?: true
-    payment_attachments_seller?: true
+    payment_notes_party_a?: true
+    payment_attachments_party_a?: true
+    payment_notes_party_b?: true
+    payment_attachments_party_b?: true
     special_terms?: true
     business_terms?: true
     legal_terms?: true
     other_terms?: true
-    other_terms_seller?: true
-    commission_seller?: true
+    other_terms_party_a?: true
+    other_terms_party_b?: true
+    other_terms_party_a_party_b?: true
+    other_terms_party_a_party_b_party_a?: true
+    other_terms_party_b_party_a?: true
+    other_terms_party_b_party_a_party_b?: true
+    commission_party_a?: true
+    commission_party_b?: true
     comission_total?: true
     attachments?: true
     createdAt?: true
     active?: true
     status?: true
-    commission_customer?: true
-    customer_id?: true
-    date_expiration_signature_customer?: true
-    date_signature_customer?: true
-    other_terms_customer?: true
-    other_terms_customer_seller?: true
-    other_terms_customer_seller_customer?: true
-    other_terms_seller_customer?: true
-    other_terms_seller_customer_seller?: true
-    payment_attachments_customer?: true
-    payment_notes_customer?: true
     deleted?: true
     _all?: true
   }
@@ -6298,9 +7632,12 @@ export namespace Prisma {
     date_expiration: Date | null
     date_signature: Date | null
     date_expiration_signature: Date | null
-    date_signature_seller: Date | null
-    date_expiration_signature_seller: Date | null
-    seller_id: number
+    date_signature_party_a: Date | null
+    date_expiration_signature_party_a: Date | null
+    date_signature_party_b: Date | null
+    date_expiration_signature_party_b: Date | null
+    customer_party_a_id: number
+    customer_party_b_id: number
     products_id: number[]
     bording_date: Date | null
     mt_value: number
@@ -6319,30 +7656,27 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments: string[]
-    payment_notes_seller: string
-    payment_attachments_seller: string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a: string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b: string[]
     special_terms: string[]
     business_terms: string[]
     legal_terms: string[]
     other_terms: string[]
-    other_terms_seller: string[]
-    commission_seller: number
+    other_terms_party_a: string[]
+    other_terms_party_b: string[]
+    other_terms_party_a_party_b: string[]
+    other_terms_party_a_party_b_party_a: string[]
+    other_terms_party_b_party_a: string[]
+    other_terms_party_b_party_a_party_b: string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments: string[]
     createdAt: Date
     active: boolean
     status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer: Date | null
-    date_signature_customer: Date | null
-    other_terms_customer: string[]
-    other_terms_customer_seller: string[]
-    other_terms_customer_seller_customer: string[]
-    other_terms_seller_customer: string[]
-    other_terms_seller_customer_seller: string[]
-    payment_attachments_customer: string[]
-    payment_notes_customer: string
     deleted: boolean
     _count: ContractCountAggregateOutputType | null
     _avg: ContractAvgAggregateOutputType | null
@@ -6373,9 +7707,12 @@ export namespace Prisma {
     date_expiration?: boolean
     date_signature?: boolean
     date_expiration_signature?: boolean
-    date_signature_seller?: boolean
-    date_expiration_signature_seller?: boolean
-    seller_id?: boolean
+    date_signature_party_a?: boolean
+    date_expiration_signature_party_a?: boolean
+    date_signature_party_b?: boolean
+    date_expiration_signature_party_b?: boolean
+    customer_party_a_id?: boolean
+    customer_party_b_id?: boolean
     products_id?: boolean
     bording_date?: boolean
     mt_value?: boolean
@@ -6394,34 +7731,31 @@ export namespace Prisma {
     payment_status?: boolean
     payment_notes?: boolean
     payment_attachments?: boolean
-    payment_notes_seller?: boolean
-    payment_attachments_seller?: boolean
+    payment_notes_party_a?: boolean
+    payment_attachments_party_a?: boolean
+    payment_notes_party_b?: boolean
+    payment_attachments_party_b?: boolean
     special_terms?: boolean
     business_terms?: boolean
     legal_terms?: boolean
     other_terms?: boolean
-    other_terms_seller?: boolean
-    commission_seller?: boolean
+    other_terms_party_a?: boolean
+    other_terms_party_b?: boolean
+    other_terms_party_a_party_b?: boolean
+    other_terms_party_a_party_b_party_a?: boolean
+    other_terms_party_b_party_a?: boolean
+    other_terms_party_b_party_a_party_b?: boolean
+    commission_party_a?: boolean
+    commission_party_b?: boolean
     comission_total?: boolean
     attachments?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
-    commission_customer?: boolean
-    customer_id?: boolean
-    date_expiration_signature_customer?: boolean
-    date_signature_customer?: boolean
-    other_terms_customer?: boolean
-    other_terms_customer_seller?: boolean
-    other_terms_customer_seller_customer?: boolean
-    other_terms_seller_customer?: boolean
-    other_terms_seller_customer_seller?: boolean
-    payment_attachments_customer?: boolean
-    payment_notes_customer?: boolean
     deleted?: boolean
-    BrokerageInvoice?: boolean | Contract$BrokerageInvoiceArgs<ExtArgs>
-    Customer?: boolean | CustomerDefaultArgs<ExtArgs>
-    Seller?: boolean | SellerDefaultArgs<ExtArgs>
+    BrokerageInvoiceLines?: boolean | Contract$BrokerageInvoiceLinesArgs<ExtArgs>
+    PartyA?: boolean | CustomerDefaultArgs<ExtArgs>
+    PartyB?: boolean | CustomerDefaultArgs<ExtArgs>
     ContractProduct?: boolean | Contract$ContractProductArgs<ExtArgs>
     ArbitrationRule?: boolean | Contract$ArbitrationRuleArgs<ExtArgs>
     Product?: boolean | Contract$ProductArgs<ExtArgs>
@@ -6437,9 +7771,12 @@ export namespace Prisma {
     date_expiration?: boolean
     date_signature?: boolean
     date_expiration_signature?: boolean
-    date_signature_seller?: boolean
-    date_expiration_signature_seller?: boolean
-    seller_id?: boolean
+    date_signature_party_a?: boolean
+    date_expiration_signature_party_a?: boolean
+    date_signature_party_b?: boolean
+    date_expiration_signature_party_b?: boolean
+    customer_party_a_id?: boolean
+    customer_party_b_id?: boolean
     products_id?: boolean
     bording_date?: boolean
     mt_value?: boolean
@@ -6458,33 +7795,30 @@ export namespace Prisma {
     payment_status?: boolean
     payment_notes?: boolean
     payment_attachments?: boolean
-    payment_notes_seller?: boolean
-    payment_attachments_seller?: boolean
+    payment_notes_party_a?: boolean
+    payment_attachments_party_a?: boolean
+    payment_notes_party_b?: boolean
+    payment_attachments_party_b?: boolean
     special_terms?: boolean
     business_terms?: boolean
     legal_terms?: boolean
     other_terms?: boolean
-    other_terms_seller?: boolean
-    commission_seller?: boolean
+    other_terms_party_a?: boolean
+    other_terms_party_b?: boolean
+    other_terms_party_a_party_b?: boolean
+    other_terms_party_a_party_b_party_a?: boolean
+    other_terms_party_b_party_a?: boolean
+    other_terms_party_b_party_a_party_b?: boolean
+    commission_party_a?: boolean
+    commission_party_b?: boolean
     comission_total?: boolean
     attachments?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
-    commission_customer?: boolean
-    customer_id?: boolean
-    date_expiration_signature_customer?: boolean
-    date_signature_customer?: boolean
-    other_terms_customer?: boolean
-    other_terms_customer_seller?: boolean
-    other_terms_customer_seller_customer?: boolean
-    other_terms_seller_customer?: boolean
-    other_terms_seller_customer_seller?: boolean
-    payment_attachments_customer?: boolean
-    payment_notes_customer?: boolean
     deleted?: boolean
-    Customer?: boolean | CustomerDefaultArgs<ExtArgs>
-    Seller?: boolean | SellerDefaultArgs<ExtArgs>
+    PartyA?: boolean | CustomerDefaultArgs<ExtArgs>
+    PartyB?: boolean | CustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contract"]>
 
   export type ContractSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6495,9 +7829,12 @@ export namespace Prisma {
     date_expiration?: boolean
     date_signature?: boolean
     date_expiration_signature?: boolean
-    date_signature_seller?: boolean
-    date_expiration_signature_seller?: boolean
-    seller_id?: boolean
+    date_signature_party_a?: boolean
+    date_expiration_signature_party_a?: boolean
+    date_signature_party_b?: boolean
+    date_expiration_signature_party_b?: boolean
+    customer_party_a_id?: boolean
+    customer_party_b_id?: boolean
     products_id?: boolean
     bording_date?: boolean
     mt_value?: boolean
@@ -6516,33 +7853,30 @@ export namespace Prisma {
     payment_status?: boolean
     payment_notes?: boolean
     payment_attachments?: boolean
-    payment_notes_seller?: boolean
-    payment_attachments_seller?: boolean
+    payment_notes_party_a?: boolean
+    payment_attachments_party_a?: boolean
+    payment_notes_party_b?: boolean
+    payment_attachments_party_b?: boolean
     special_terms?: boolean
     business_terms?: boolean
     legal_terms?: boolean
     other_terms?: boolean
-    other_terms_seller?: boolean
-    commission_seller?: boolean
+    other_terms_party_a?: boolean
+    other_terms_party_b?: boolean
+    other_terms_party_a_party_b?: boolean
+    other_terms_party_a_party_b_party_a?: boolean
+    other_terms_party_b_party_a?: boolean
+    other_terms_party_b_party_a_party_b?: boolean
+    commission_party_a?: boolean
+    commission_party_b?: boolean
     comission_total?: boolean
     attachments?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
-    commission_customer?: boolean
-    customer_id?: boolean
-    date_expiration_signature_customer?: boolean
-    date_signature_customer?: boolean
-    other_terms_customer?: boolean
-    other_terms_customer_seller?: boolean
-    other_terms_customer_seller_customer?: boolean
-    other_terms_seller_customer?: boolean
-    other_terms_seller_customer_seller?: boolean
-    payment_attachments_customer?: boolean
-    payment_notes_customer?: boolean
     deleted?: boolean
-    Customer?: boolean | CustomerDefaultArgs<ExtArgs>
-    Seller?: boolean | SellerDefaultArgs<ExtArgs>
+    PartyA?: boolean | CustomerDefaultArgs<ExtArgs>
+    PartyB?: boolean | CustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contract"]>
 
   export type ContractSelectScalar = {
@@ -6553,9 +7887,12 @@ export namespace Prisma {
     date_expiration?: boolean
     date_signature?: boolean
     date_expiration_signature?: boolean
-    date_signature_seller?: boolean
-    date_expiration_signature_seller?: boolean
-    seller_id?: boolean
+    date_signature_party_a?: boolean
+    date_expiration_signature_party_a?: boolean
+    date_signature_party_b?: boolean
+    date_expiration_signature_party_b?: boolean
+    customer_party_a_id?: boolean
+    customer_party_b_id?: boolean
     products_id?: boolean
     bording_date?: boolean
     mt_value?: boolean
@@ -6574,38 +7911,35 @@ export namespace Prisma {
     payment_status?: boolean
     payment_notes?: boolean
     payment_attachments?: boolean
-    payment_notes_seller?: boolean
-    payment_attachments_seller?: boolean
+    payment_notes_party_a?: boolean
+    payment_attachments_party_a?: boolean
+    payment_notes_party_b?: boolean
+    payment_attachments_party_b?: boolean
     special_terms?: boolean
     business_terms?: boolean
     legal_terms?: boolean
     other_terms?: boolean
-    other_terms_seller?: boolean
-    commission_seller?: boolean
+    other_terms_party_a?: boolean
+    other_terms_party_b?: boolean
+    other_terms_party_a_party_b?: boolean
+    other_terms_party_a_party_b_party_a?: boolean
+    other_terms_party_b_party_a?: boolean
+    other_terms_party_b_party_a_party_b?: boolean
+    commission_party_a?: boolean
+    commission_party_b?: boolean
     comission_total?: boolean
     attachments?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
-    commission_customer?: boolean
-    customer_id?: boolean
-    date_expiration_signature_customer?: boolean
-    date_signature_customer?: boolean
-    other_terms_customer?: boolean
-    other_terms_customer_seller?: boolean
-    other_terms_customer_seller_customer?: boolean
-    other_terms_seller_customer?: boolean
-    other_terms_seller_customer_seller?: boolean
-    payment_attachments_customer?: boolean
-    payment_notes_customer?: boolean
     deleted?: boolean
   }
 
-  export type ContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "date_creation" | "date_expiration" | "date_signature" | "date_expiration_signature" | "date_signature_seller" | "date_expiration_signature_seller" | "seller_id" | "products_id" | "bording_date" | "mt_value" | "destination_country" | "destination_port" | "shipping_company" | "shipment_date" | "si_sent" | "packing" | "incoterm" | "payment_terms" | "payment_method" | "payment_currency" | "payment_amount" | "payment_date" | "payment_status" | "payment_notes" | "payment_attachments" | "payment_notes_seller" | "payment_attachments_seller" | "special_terms" | "business_terms" | "legal_terms" | "other_terms" | "other_terms_seller" | "commission_seller" | "comission_total" | "attachments" | "createdAt" | "active" | "status" | "commission_customer" | "customer_id" | "date_expiration_signature_customer" | "date_signature_customer" | "other_terms_customer" | "other_terms_customer_seller" | "other_terms_customer_seller_customer" | "other_terms_seller_customer" | "other_terms_seller_customer_seller" | "payment_attachments_customer" | "payment_notes_customer" | "deleted", ExtArgs["result"]["contract"]>
+  export type ContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "date_creation" | "date_expiration" | "date_signature" | "date_expiration_signature" | "date_signature_party_a" | "date_expiration_signature_party_a" | "date_signature_party_b" | "date_expiration_signature_party_b" | "customer_party_a_id" | "customer_party_b_id" | "products_id" | "bording_date" | "mt_value" | "destination_country" | "destination_port" | "shipping_company" | "shipment_date" | "si_sent" | "packing" | "incoterm" | "payment_terms" | "payment_method" | "payment_currency" | "payment_amount" | "payment_date" | "payment_status" | "payment_notes" | "payment_attachments" | "payment_notes_party_a" | "payment_attachments_party_a" | "payment_notes_party_b" | "payment_attachments_party_b" | "special_terms" | "business_terms" | "legal_terms" | "other_terms" | "other_terms_party_a" | "other_terms_party_b" | "other_terms_party_a_party_b" | "other_terms_party_a_party_b_party_a" | "other_terms_party_b_party_a" | "other_terms_party_b_party_a_party_b" | "commission_party_a" | "commission_party_b" | "comission_total" | "attachments" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["contract"]>
   export type ContractInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    BrokerageInvoice?: boolean | Contract$BrokerageInvoiceArgs<ExtArgs>
-    Customer?: boolean | CustomerDefaultArgs<ExtArgs>
-    Seller?: boolean | SellerDefaultArgs<ExtArgs>
+    BrokerageInvoiceLines?: boolean | Contract$BrokerageInvoiceLinesArgs<ExtArgs>
+    PartyA?: boolean | CustomerDefaultArgs<ExtArgs>
+    PartyB?: boolean | CustomerDefaultArgs<ExtArgs>
     ContractProduct?: boolean | Contract$ContractProductArgs<ExtArgs>
     ArbitrationRule?: boolean | Contract$ArbitrationRuleArgs<ExtArgs>
     Product?: boolean | Contract$ProductArgs<ExtArgs>
@@ -6613,20 +7947,20 @@ export namespace Prisma {
     _count?: boolean | ContractCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ContractIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Customer?: boolean | CustomerDefaultArgs<ExtArgs>
-    Seller?: boolean | SellerDefaultArgs<ExtArgs>
+    PartyA?: boolean | CustomerDefaultArgs<ExtArgs>
+    PartyB?: boolean | CustomerDefaultArgs<ExtArgs>
   }
   export type ContractIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Customer?: boolean | CustomerDefaultArgs<ExtArgs>
-    Seller?: boolean | SellerDefaultArgs<ExtArgs>
+    PartyA?: boolean | CustomerDefaultArgs<ExtArgs>
+    PartyB?: boolean | CustomerDefaultArgs<ExtArgs>
   }
 
   export type $ContractPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Contract"
     objects: {
-      BrokerageInvoice: Prisma.$BrokerageInvoicePayload<ExtArgs>[]
-      Customer: Prisma.$CustomerPayload<ExtArgs>
-      Seller: Prisma.$SellerPayload<ExtArgs>
+      BrokerageInvoiceLines: Prisma.$BrokerageInvoiceLinePayload<ExtArgs>[]
+      PartyA: Prisma.$CustomerPayload<ExtArgs>
+      PartyB: Prisma.$CustomerPayload<ExtArgs>
       ContractProduct: Prisma.$ContractProductPayload<ExtArgs>[]
       ArbitrationRule: Prisma.$ArbitrationRulePayload<ExtArgs>[]
       Product: Prisma.$ProductPayload<ExtArgs>[]
@@ -6640,9 +7974,12 @@ export namespace Prisma {
       date_expiration: Date | null
       date_signature: Date | null
       date_expiration_signature: Date | null
-      date_signature_seller: Date | null
-      date_expiration_signature_seller: Date | null
-      seller_id: number
+      date_signature_party_a: Date | null
+      date_expiration_signature_party_a: Date | null
+      date_signature_party_b: Date | null
+      date_expiration_signature_party_b: Date | null
+      customer_party_a_id: number
+      customer_party_b_id: number
       products_id: number[]
       bording_date: Date | null
       mt_value: number
@@ -6661,30 +7998,27 @@ export namespace Prisma {
       payment_status: string
       payment_notes: string
       payment_attachments: string[]
-      payment_notes_seller: string
-      payment_attachments_seller: string[]
+      payment_notes_party_a: string
+      payment_attachments_party_a: string[]
+      payment_notes_party_b: string
+      payment_attachments_party_b: string[]
       special_terms: string[]
       business_terms: string[]
       legal_terms: string[]
       other_terms: string[]
-      other_terms_seller: string[]
-      commission_seller: number
+      other_terms_party_a: string[]
+      other_terms_party_b: string[]
+      other_terms_party_a_party_b: string[]
+      other_terms_party_a_party_b_party_a: string[]
+      other_terms_party_b_party_a: string[]
+      other_terms_party_b_party_a_party_b: string[]
+      commission_party_a: number
+      commission_party_b: number
       comission_total: number
       attachments: string[]
       createdAt: Date
       active: boolean
       status: string
-      commission_customer: number
-      customer_id: number
-      date_expiration_signature_customer: Date | null
-      date_signature_customer: Date | null
-      other_terms_customer: string[]
-      other_terms_customer_seller: string[]
-      other_terms_customer_seller_customer: string[]
-      other_terms_seller_customer: string[]
-      other_terms_seller_customer_seller: string[]
-      payment_attachments_customer: string[]
-      payment_notes_customer: string
       deleted: boolean
     }, ExtArgs["result"]["contract"]>
     composites: {}
@@ -7080,9 +8414,9 @@ export namespace Prisma {
    */
   export interface Prisma__ContractClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    BrokerageInvoice<T extends Contract$BrokerageInvoiceArgs<ExtArgs> = {}>(args?: Subset<T, Contract$BrokerageInvoiceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrokerageInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Seller<T extends SellerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SellerDefaultArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    BrokerageInvoiceLines<T extends Contract$BrokerageInvoiceLinesArgs<ExtArgs> = {}>(args?: Subset<T, Contract$BrokerageInvoiceLinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    PartyA<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    PartyB<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     ContractProduct<T extends Contract$ContractProductArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ContractProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ArbitrationRule<T extends Contract$ArbitrationRuleArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ArbitrationRuleArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArbitrationRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Product<T extends Contract$ProductArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7123,9 +8457,12 @@ export namespace Prisma {
     readonly date_expiration: FieldRef<"Contract", 'DateTime'>
     readonly date_signature: FieldRef<"Contract", 'DateTime'>
     readonly date_expiration_signature: FieldRef<"Contract", 'DateTime'>
-    readonly date_signature_seller: FieldRef<"Contract", 'DateTime'>
-    readonly date_expiration_signature_seller: FieldRef<"Contract", 'DateTime'>
-    readonly seller_id: FieldRef<"Contract", 'Int'>
+    readonly date_signature_party_a: FieldRef<"Contract", 'DateTime'>
+    readonly date_expiration_signature_party_a: FieldRef<"Contract", 'DateTime'>
+    readonly date_signature_party_b: FieldRef<"Contract", 'DateTime'>
+    readonly date_expiration_signature_party_b: FieldRef<"Contract", 'DateTime'>
+    readonly customer_party_a_id: FieldRef<"Contract", 'Int'>
+    readonly customer_party_b_id: FieldRef<"Contract", 'Int'>
     readonly products_id: FieldRef<"Contract", 'Int[]'>
     readonly bording_date: FieldRef<"Contract", 'DateTime'>
     readonly mt_value: FieldRef<"Contract", 'Float'>
@@ -7144,30 +8481,27 @@ export namespace Prisma {
     readonly payment_status: FieldRef<"Contract", 'String'>
     readonly payment_notes: FieldRef<"Contract", 'String'>
     readonly payment_attachments: FieldRef<"Contract", 'String[]'>
-    readonly payment_notes_seller: FieldRef<"Contract", 'String'>
-    readonly payment_attachments_seller: FieldRef<"Contract", 'String[]'>
+    readonly payment_notes_party_a: FieldRef<"Contract", 'String'>
+    readonly payment_attachments_party_a: FieldRef<"Contract", 'String[]'>
+    readonly payment_notes_party_b: FieldRef<"Contract", 'String'>
+    readonly payment_attachments_party_b: FieldRef<"Contract", 'String[]'>
     readonly special_terms: FieldRef<"Contract", 'String[]'>
     readonly business_terms: FieldRef<"Contract", 'String[]'>
     readonly legal_terms: FieldRef<"Contract", 'String[]'>
     readonly other_terms: FieldRef<"Contract", 'String[]'>
-    readonly other_terms_seller: FieldRef<"Contract", 'String[]'>
-    readonly commission_seller: FieldRef<"Contract", 'Float'>
+    readonly other_terms_party_a: FieldRef<"Contract", 'String[]'>
+    readonly other_terms_party_b: FieldRef<"Contract", 'String[]'>
+    readonly other_terms_party_a_party_b: FieldRef<"Contract", 'String[]'>
+    readonly other_terms_party_a_party_b_party_a: FieldRef<"Contract", 'String[]'>
+    readonly other_terms_party_b_party_a: FieldRef<"Contract", 'String[]'>
+    readonly other_terms_party_b_party_a_party_b: FieldRef<"Contract", 'String[]'>
+    readonly commission_party_a: FieldRef<"Contract", 'Float'>
+    readonly commission_party_b: FieldRef<"Contract", 'Float'>
     readonly comission_total: FieldRef<"Contract", 'Float'>
     readonly attachments: FieldRef<"Contract", 'String[]'>
     readonly createdAt: FieldRef<"Contract", 'DateTime'>
     readonly active: FieldRef<"Contract", 'Boolean'>
     readonly status: FieldRef<"Contract", 'String'>
-    readonly commission_customer: FieldRef<"Contract", 'Float'>
-    readonly customer_id: FieldRef<"Contract", 'Int'>
-    readonly date_expiration_signature_customer: FieldRef<"Contract", 'DateTime'>
-    readonly date_signature_customer: FieldRef<"Contract", 'DateTime'>
-    readonly other_terms_customer: FieldRef<"Contract", 'String[]'>
-    readonly other_terms_customer_seller: FieldRef<"Contract", 'String[]'>
-    readonly other_terms_customer_seller_customer: FieldRef<"Contract", 'String[]'>
-    readonly other_terms_seller_customer: FieldRef<"Contract", 'String[]'>
-    readonly other_terms_seller_customer_seller: FieldRef<"Contract", 'String[]'>
-    readonly payment_attachments_customer: FieldRef<"Contract", 'String[]'>
-    readonly payment_notes_customer: FieldRef<"Contract", 'String'>
     readonly deleted: FieldRef<"Contract", 'Boolean'>
   }
     
@@ -7565,27 +8899,27 @@ export namespace Prisma {
   }
 
   /**
-   * Contract.BrokerageInvoice
+   * Contract.BrokerageInvoiceLines
    */
-  export type Contract$BrokerageInvoiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Contract$BrokerageInvoiceLinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the BrokerageInvoice
+     * Select specific fields to fetch from the BrokerageInvoiceLine
      */
-    select?: BrokerageInvoiceSelect<ExtArgs> | null
+    select?: BrokerageInvoiceLineSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the BrokerageInvoice
+     * Omit specific fields from the BrokerageInvoiceLine
      */
-    omit?: BrokerageInvoiceOmit<ExtArgs> | null
+    omit?: BrokerageInvoiceLineOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrokerageInvoiceInclude<ExtArgs> | null
-    where?: BrokerageInvoiceWhereInput
-    orderBy?: BrokerageInvoiceOrderByWithRelationInput | BrokerageInvoiceOrderByWithRelationInput[]
-    cursor?: BrokerageInvoiceWhereUniqueInput
+    include?: BrokerageInvoiceLineInclude<ExtArgs> | null
+    where?: BrokerageInvoiceLineWhereInput
+    orderBy?: BrokerageInvoiceLineOrderByWithRelationInput | BrokerageInvoiceLineOrderByWithRelationInput[]
+    cursor?: BrokerageInvoiceLineWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: BrokerageInvoiceScalarFieldEnum | BrokerageInvoiceScalarFieldEnum[]
+    distinct?: BrokerageInvoiceLineScalarFieldEnum | BrokerageInvoiceLineScalarFieldEnum[]
   }
 
   /**
@@ -8872,6 +10206,1121 @@ export namespace Prisma {
 
 
   /**
+   * Model Pack
+   */
+
+  export type AggregatePack = {
+    _count: PackCountAggregateOutputType | null
+    _avg: PackAvgAggregateOutputType | null
+    _sum: PackSumAggregateOutputType | null
+    _min: PackMinAggregateOutputType | null
+    _max: PackMaxAggregateOutputType | null
+  }
+
+  export type PackAvgAggregateOutputType = {
+    id: number | null
+    quantity_per_pack: number | null
+    quantity_per_container: number | null
+  }
+
+  export type PackSumAggregateOutputType = {
+    id: number | null
+    quantity_per_pack: number | null
+    quantity_per_container: number | null
+  }
+
+  export type PackMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    pack_type: string | null
+    quantity_per_pack: number | null
+    quantity_per_container: number | null
+    container_type: string | null
+    description: string | null
+    createdAt: Date | null
+    active: boolean | null
+    status: string | null
+    deleted: boolean | null
+  }
+
+  export type PackMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    pack_type: string | null
+    quantity_per_pack: number | null
+    quantity_per_container: number | null
+    container_type: string | null
+    description: string | null
+    createdAt: Date | null
+    active: boolean | null
+    status: string | null
+    deleted: boolean | null
+  }
+
+  export type PackCountAggregateOutputType = {
+    id: number
+    name: number
+    pack_type: number
+    quantity_per_pack: number
+    quantity_per_container: number
+    container_type: number
+    description: number
+    createdAt: number
+    active: number
+    status: number
+    deleted: number
+    _all: number
+  }
+
+
+  export type PackAvgAggregateInputType = {
+    id?: true
+    quantity_per_pack?: true
+    quantity_per_container?: true
+  }
+
+  export type PackSumAggregateInputType = {
+    id?: true
+    quantity_per_pack?: true
+    quantity_per_container?: true
+  }
+
+  export type PackMinAggregateInputType = {
+    id?: true
+    name?: true
+    pack_type?: true
+    quantity_per_pack?: true
+    quantity_per_container?: true
+    container_type?: true
+    description?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+  }
+
+  export type PackMaxAggregateInputType = {
+    id?: true
+    name?: true
+    pack_type?: true
+    quantity_per_pack?: true
+    quantity_per_container?: true
+    container_type?: true
+    description?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+  }
+
+  export type PackCountAggregateInputType = {
+    id?: true
+    name?: true
+    pack_type?: true
+    quantity_per_pack?: true
+    quantity_per_container?: true
+    container_type?: true
+    description?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+    _all?: true
+  }
+
+  export type PackAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Pack to aggregate.
+     */
+    where?: PackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Packs to fetch.
+     */
+    orderBy?: PackOrderByWithRelationInput | PackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Packs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Packs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Packs
+    **/
+    _count?: true | PackCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PackAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PackSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PackMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PackMaxAggregateInputType
+  }
+
+  export type GetPackAggregateType<T extends PackAggregateArgs> = {
+        [P in keyof T & keyof AggregatePack]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePack[P]>
+      : GetScalarType<T[P], AggregatePack[P]>
+  }
+
+
+
+
+  export type PackGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PackWhereInput
+    orderBy?: PackOrderByWithAggregationInput | PackOrderByWithAggregationInput[]
+    by: PackScalarFieldEnum[] | PackScalarFieldEnum
+    having?: PackScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PackCountAggregateInputType | true
+    _avg?: PackAvgAggregateInputType
+    _sum?: PackSumAggregateInputType
+    _min?: PackMinAggregateInputType
+    _max?: PackMaxAggregateInputType
+  }
+
+  export type PackGroupByOutputType = {
+    id: number
+    name: string
+    pack_type: string | null
+    quantity_per_pack: number | null
+    quantity_per_container: number | null
+    container_type: string | null
+    description: string | null
+    createdAt: Date
+    active: boolean
+    status: string
+    deleted: boolean
+    _count: PackCountAggregateOutputType | null
+    _avg: PackAvgAggregateOutputType | null
+    _sum: PackSumAggregateOutputType | null
+    _min: PackMinAggregateOutputType | null
+    _max: PackMaxAggregateOutputType | null
+  }
+
+  type GetPackGroupByPayload<T extends PackGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PackGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PackGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PackGroupByOutputType[P]>
+            : GetScalarType<T[P], PackGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    pack_type?: boolean
+    quantity_per_pack?: boolean
+    quantity_per_container?: boolean
+    container_type?: boolean
+    description?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["pack"]>
+
+  export type PackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    pack_type?: boolean
+    quantity_per_pack?: boolean
+    quantity_per_container?: boolean
+    container_type?: boolean
+    description?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["pack"]>
+
+  export type PackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    pack_type?: boolean
+    quantity_per_pack?: boolean
+    quantity_per_container?: boolean
+    container_type?: boolean
+    description?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["pack"]>
+
+  export type PackSelectScalar = {
+    id?: boolean
+    name?: boolean
+    pack_type?: boolean
+    quantity_per_pack?: boolean
+    quantity_per_container?: boolean
+    container_type?: boolean
+    description?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }
+
+  export type PackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "pack_type" | "quantity_per_pack" | "quantity_per_container" | "container_type" | "description" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["pack"]>
+
+  export type $PackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Pack"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      pack_type: string | null
+      quantity_per_pack: number | null
+      quantity_per_container: number | null
+      container_type: string | null
+      description: string | null
+      createdAt: Date
+      active: boolean
+      status: string
+      deleted: boolean
+    }, ExtArgs["result"]["pack"]>
+    composites: {}
+  }
+
+  type PackGetPayload<S extends boolean | null | undefined | PackDefaultArgs> = $Result.GetResult<Prisma.$PackPayload, S>
+
+  type PackCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PackFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PackCountAggregateInputType | true
+    }
+
+  export interface PackDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Pack'], meta: { name: 'Pack' } }
+    /**
+     * Find zero or one Pack that matches the filter.
+     * @param {PackFindUniqueArgs} args - Arguments to find a Pack
+     * @example
+     * // Get one Pack
+     * const pack = await prisma.pack.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PackFindUniqueArgs>(args: SelectSubset<T, PackFindUniqueArgs<ExtArgs>>): Prisma__PackClient<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Pack that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PackFindUniqueOrThrowArgs} args - Arguments to find a Pack
+     * @example
+     * // Get one Pack
+     * const pack = await prisma.pack.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PackFindUniqueOrThrowArgs>(args: SelectSubset<T, PackFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PackClient<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Pack that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackFindFirstArgs} args - Arguments to find a Pack
+     * @example
+     * // Get one Pack
+     * const pack = await prisma.pack.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PackFindFirstArgs>(args?: SelectSubset<T, PackFindFirstArgs<ExtArgs>>): Prisma__PackClient<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Pack that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackFindFirstOrThrowArgs} args - Arguments to find a Pack
+     * @example
+     * // Get one Pack
+     * const pack = await prisma.pack.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PackFindFirstOrThrowArgs>(args?: SelectSubset<T, PackFindFirstOrThrowArgs<ExtArgs>>): Prisma__PackClient<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Packs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Packs
+     * const packs = await prisma.pack.findMany()
+     * 
+     * // Get first 10 Packs
+     * const packs = await prisma.pack.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const packWithIdOnly = await prisma.pack.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PackFindManyArgs>(args?: SelectSubset<T, PackFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Pack.
+     * @param {PackCreateArgs} args - Arguments to create a Pack.
+     * @example
+     * // Create one Pack
+     * const Pack = await prisma.pack.create({
+     *   data: {
+     *     // ... data to create a Pack
+     *   }
+     * })
+     * 
+     */
+    create<T extends PackCreateArgs>(args: SelectSubset<T, PackCreateArgs<ExtArgs>>): Prisma__PackClient<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Packs.
+     * @param {PackCreateManyArgs} args - Arguments to create many Packs.
+     * @example
+     * // Create many Packs
+     * const pack = await prisma.pack.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PackCreateManyArgs>(args?: SelectSubset<T, PackCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Packs and returns the data saved in the database.
+     * @param {PackCreateManyAndReturnArgs} args - Arguments to create many Packs.
+     * @example
+     * // Create many Packs
+     * const pack = await prisma.pack.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Packs and only return the `id`
+     * const packWithIdOnly = await prisma.pack.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PackCreateManyAndReturnArgs>(args?: SelectSubset<T, PackCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Pack.
+     * @param {PackDeleteArgs} args - Arguments to delete one Pack.
+     * @example
+     * // Delete one Pack
+     * const Pack = await prisma.pack.delete({
+     *   where: {
+     *     // ... filter to delete one Pack
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PackDeleteArgs>(args: SelectSubset<T, PackDeleteArgs<ExtArgs>>): Prisma__PackClient<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Pack.
+     * @param {PackUpdateArgs} args - Arguments to update one Pack.
+     * @example
+     * // Update one Pack
+     * const pack = await prisma.pack.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PackUpdateArgs>(args: SelectSubset<T, PackUpdateArgs<ExtArgs>>): Prisma__PackClient<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Packs.
+     * @param {PackDeleteManyArgs} args - Arguments to filter Packs to delete.
+     * @example
+     * // Delete a few Packs
+     * const { count } = await prisma.pack.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PackDeleteManyArgs>(args?: SelectSubset<T, PackDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Packs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Packs
+     * const pack = await prisma.pack.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PackUpdateManyArgs>(args: SelectSubset<T, PackUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Packs and returns the data updated in the database.
+     * @param {PackUpdateManyAndReturnArgs} args - Arguments to update many Packs.
+     * @example
+     * // Update many Packs
+     * const pack = await prisma.pack.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Packs and only return the `id`
+     * const packWithIdOnly = await prisma.pack.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PackUpdateManyAndReturnArgs>(args: SelectSubset<T, PackUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Pack.
+     * @param {PackUpsertArgs} args - Arguments to update or create a Pack.
+     * @example
+     * // Update or create a Pack
+     * const pack = await prisma.pack.upsert({
+     *   create: {
+     *     // ... data to create a Pack
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Pack we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PackUpsertArgs>(args: SelectSubset<T, PackUpsertArgs<ExtArgs>>): Prisma__PackClient<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Packs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackCountArgs} args - Arguments to filter Packs to count.
+     * @example
+     * // Count the number of Packs
+     * const count = await prisma.pack.count({
+     *   where: {
+     *     // ... the filter for the Packs we want to count
+     *   }
+     * })
+    **/
+    count<T extends PackCountArgs>(
+      args?: Subset<T, PackCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PackCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Pack.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PackAggregateArgs>(args: Subset<T, PackAggregateArgs>): Prisma.PrismaPromise<GetPackAggregateType<T>>
+
+    /**
+     * Group by Pack.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PackGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PackGroupByArgs['orderBy'] }
+        : { orderBy?: PackGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PackGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPackGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Pack model
+   */
+  readonly fields: PackFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Pack.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PackClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Pack model
+   */
+  interface PackFieldRefs {
+    readonly id: FieldRef<"Pack", 'Int'>
+    readonly name: FieldRef<"Pack", 'String'>
+    readonly pack_type: FieldRef<"Pack", 'String'>
+    readonly quantity_per_pack: FieldRef<"Pack", 'Float'>
+    readonly quantity_per_container: FieldRef<"Pack", 'Float'>
+    readonly container_type: FieldRef<"Pack", 'String'>
+    readonly description: FieldRef<"Pack", 'String'>
+    readonly createdAt: FieldRef<"Pack", 'DateTime'>
+    readonly active: FieldRef<"Pack", 'Boolean'>
+    readonly status: FieldRef<"Pack", 'String'>
+    readonly deleted: FieldRef<"Pack", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Pack findUnique
+   */
+  export type PackFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * Filter, which Pack to fetch.
+     */
+    where: PackWhereUniqueInput
+  }
+
+  /**
+   * Pack findUniqueOrThrow
+   */
+  export type PackFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * Filter, which Pack to fetch.
+     */
+    where: PackWhereUniqueInput
+  }
+
+  /**
+   * Pack findFirst
+   */
+  export type PackFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * Filter, which Pack to fetch.
+     */
+    where?: PackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Packs to fetch.
+     */
+    orderBy?: PackOrderByWithRelationInput | PackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Packs.
+     */
+    cursor?: PackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Packs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Packs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Packs.
+     */
+    distinct?: PackScalarFieldEnum | PackScalarFieldEnum[]
+  }
+
+  /**
+   * Pack findFirstOrThrow
+   */
+  export type PackFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * Filter, which Pack to fetch.
+     */
+    where?: PackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Packs to fetch.
+     */
+    orderBy?: PackOrderByWithRelationInput | PackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Packs.
+     */
+    cursor?: PackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Packs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Packs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Packs.
+     */
+    distinct?: PackScalarFieldEnum | PackScalarFieldEnum[]
+  }
+
+  /**
+   * Pack findMany
+   */
+  export type PackFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * Filter, which Packs to fetch.
+     */
+    where?: PackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Packs to fetch.
+     */
+    orderBy?: PackOrderByWithRelationInput | PackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Packs.
+     */
+    cursor?: PackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Packs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Packs.
+     */
+    skip?: number
+    distinct?: PackScalarFieldEnum | PackScalarFieldEnum[]
+  }
+
+  /**
+   * Pack create
+   */
+  export type PackCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Pack.
+     */
+    data: XOR<PackCreateInput, PackUncheckedCreateInput>
+  }
+
+  /**
+   * Pack createMany
+   */
+  export type PackCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Packs.
+     */
+    data: PackCreateManyInput | PackCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Pack createManyAndReturn
+   */
+  export type PackCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * The data used to create many Packs.
+     */
+    data: PackCreateManyInput | PackCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Pack update
+   */
+  export type PackUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Pack.
+     */
+    data: XOR<PackUpdateInput, PackUncheckedUpdateInput>
+    /**
+     * Choose, which Pack to update.
+     */
+    where: PackWhereUniqueInput
+  }
+
+  /**
+   * Pack updateMany
+   */
+  export type PackUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Packs.
+     */
+    data: XOR<PackUpdateManyMutationInput, PackUncheckedUpdateManyInput>
+    /**
+     * Filter which Packs to update
+     */
+    where?: PackWhereInput
+    /**
+     * Limit how many Packs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Pack updateManyAndReturn
+   */
+  export type PackUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * The data used to update Packs.
+     */
+    data: XOR<PackUpdateManyMutationInput, PackUncheckedUpdateManyInput>
+    /**
+     * Filter which Packs to update
+     */
+    where?: PackWhereInput
+    /**
+     * Limit how many Packs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Pack upsert
+   */
+  export type PackUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Pack to update in case it exists.
+     */
+    where: PackWhereUniqueInput
+    /**
+     * In case the Pack found by the `where` argument doesn't exist, create a new Pack with this data.
+     */
+    create: XOR<PackCreateInput, PackUncheckedCreateInput>
+    /**
+     * In case the Pack was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PackUpdateInput, PackUncheckedUpdateInput>
+  }
+
+  /**
+   * Pack delete
+   */
+  export type PackDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * Filter which Pack to delete.
+     */
+    where: PackWhereUniqueInput
+  }
+
+  /**
+   * Pack deleteMany
+   */
+  export type PackDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Packs to delete
+     */
+    where?: PackWhereInput
+    /**
+     * Limit how many Packs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Pack without action
+   */
+  export type PackDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model Customer
    */
 
@@ -9158,7 +11607,8 @@ export namespace Prisma {
     status?: boolean
     deleted?: boolean
     Contact?: boolean | Customer$ContactArgs<ExtArgs>
-    Contract?: boolean | Customer$ContractArgs<ExtArgs>
+    ContractsAsPartyA?: boolean | Customer$ContractsAsPartyAArgs<ExtArgs>
+    ContractsAsPartyB?: boolean | Customer$ContractsAsPartyBArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["customer"]>
 
@@ -9225,7 +11675,8 @@ export namespace Prisma {
   export type CustomerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "full_name" | "full_address" | "country" | "tax_id" | "contact_name" | "whatsapp" | "phone" | "email" | "website" | "note" | "description" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["customer"]>
   export type CustomerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Contact?: boolean | Customer$ContactArgs<ExtArgs>
-    Contract?: boolean | Customer$ContractArgs<ExtArgs>
+    ContractsAsPartyA?: boolean | Customer$ContractsAsPartyAArgs<ExtArgs>
+    ContractsAsPartyB?: boolean | Customer$ContractsAsPartyBArgs<ExtArgs>
     _count?: boolean | CustomerCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CustomerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -9235,7 +11686,8 @@ export namespace Prisma {
     name: "Customer"
     objects: {
       Contact: Prisma.$ContactPayload<ExtArgs>[]
-      Contract: Prisma.$ContractPayload<ExtArgs>[]
+      ContractsAsPartyA: Prisma.$ContractPayload<ExtArgs>[]
+      ContractsAsPartyB: Prisma.$ContractPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9650,7 +12102,8 @@ export namespace Prisma {
   export interface Prisma__CustomerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Contact<T extends Customer$ContactArgs<ExtArgs> = {}>(args?: Subset<T, Customer$ContactArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Contract<T extends Customer$ContractArgs<ExtArgs> = {}>(args?: Subset<T, Customer$ContractArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ContractsAsPartyA<T extends Customer$ContractsAsPartyAArgs<ExtArgs> = {}>(args?: Subset<T, Customer$ContractsAsPartyAArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ContractsAsPartyB<T extends Customer$ContractsAsPartyBArgs<ExtArgs> = {}>(args?: Subset<T, Customer$ContractsAsPartyBArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10109,9 +12562,33 @@ export namespace Prisma {
   }
 
   /**
-   * Customer.Contract
+   * Customer.ContractsAsPartyA
    */
-  export type Customer$ContractArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Customer$ContractsAsPartyAArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contract
+     */
+    omit?: ContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    where?: ContractWhereInput
+    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    cursor?: ContractWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+  }
+
+  /**
+   * Customer.ContractsAsPartyB
+   */
+  export type Customer$ContractsAsPartyBArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Contract
      */
@@ -13165,7 +15642,6 @@ export namespace Prisma {
     status?: boolean
     deleted?: boolean
     Contact?: boolean | Seller$ContactArgs<ExtArgs>
-    Contract?: boolean | Seller$ContractArgs<ExtArgs>
     Product?: boolean | Seller$ProductArgs<ExtArgs>
     _count?: boolean | SellerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seller"]>
@@ -13230,7 +15706,6 @@ export namespace Prisma {
   export type SellerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "company_name" | "full_address" | "country" | "tax_id" | "contact_name" | "whatsapp" | "phone" | "email" | "website" | "note" | "description" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["seller"]>
   export type SellerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Contact?: boolean | Seller$ContactArgs<ExtArgs>
-    Contract?: boolean | Seller$ContractArgs<ExtArgs>
     Product?: boolean | Seller$ProductArgs<ExtArgs>
     _count?: boolean | SellerCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -13241,7 +15716,6 @@ export namespace Prisma {
     name: "Seller"
     objects: {
       Contact: Prisma.$ContactPayload<ExtArgs>[]
-      Contract: Prisma.$ContractPayload<ExtArgs>[]
       Product: Prisma.$ProductPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -13656,7 +16130,6 @@ export namespace Prisma {
   export interface Prisma__SellerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Contact<T extends Seller$ContactArgs<ExtArgs> = {}>(args?: Subset<T, Seller$ContactArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Contract<T extends Seller$ContractArgs<ExtArgs> = {}>(args?: Subset<T, Seller$ContractArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Product<T extends Seller$ProductArgs<ExtArgs> = {}>(args?: Subset<T, Seller$ProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -14112,30 +16585,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[]
-  }
-
-  /**
-   * Seller.Contract
-   */
-  export type Seller$ContractArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Contract
-     */
-    select?: ContractSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Contract
-     */
-    omit?: ContractOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ContractInclude<ExtArgs> | null
-    where?: ContractWhereInput
-    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
-    cursor?: ContractWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
   }
 
   /**
@@ -17550,14 +19999,8 @@ export namespace Prisma {
 
   export const BrokerageInvoiceScalarFieldEnum: {
     id: 'id',
-    contract_id: 'contract_id',
-    comission_total_usd: 'comission_total_usd',
-    comission_total_brl: 'comission_total_brl',
-    bl_date: 'bl_date',
-    bl_number: 'bl_number',
-    bl_attachments: 'bl_attachments',
-    ptax: 'ptax',
-    attachments: 'attachments',
+    number: 'number',
+    invoice_date: 'invoice_date',
     createdAt: 'createdAt',
     active: 'active',
     status: 'status',
@@ -17565,6 +20008,24 @@ export namespace Prisma {
   };
 
   export type BrokerageInvoiceScalarFieldEnum = (typeof BrokerageInvoiceScalarFieldEnum)[keyof typeof BrokerageInvoiceScalarFieldEnum]
+
+
+  export const BrokerageInvoiceLineScalarFieldEnum: {
+    id: 'id',
+    brokerage_invoice_id: 'brokerage_invoice_id',
+    contract_id: 'contract_id',
+    bl_date: 'bl_date',
+    bl_number: 'bl_number',
+    bl_attachments: 'bl_attachments',
+    comission_total_usd: 'comission_total_usd',
+    attachments: 'attachments',
+    createdAt: 'createdAt',
+    active: 'active',
+    status: 'status',
+    deleted: 'deleted'
+  };
+
+  export type BrokerageInvoiceLineScalarFieldEnum = (typeof BrokerageInvoiceLineScalarFieldEnum)[keyof typeof BrokerageInvoiceLineScalarFieldEnum]
 
 
   export const ContactScalarFieldEnum: {
@@ -17603,9 +20064,12 @@ export namespace Prisma {
     date_expiration: 'date_expiration',
     date_signature: 'date_signature',
     date_expiration_signature: 'date_expiration_signature',
-    date_signature_seller: 'date_signature_seller',
-    date_expiration_signature_seller: 'date_expiration_signature_seller',
-    seller_id: 'seller_id',
+    date_signature_party_a: 'date_signature_party_a',
+    date_expiration_signature_party_a: 'date_expiration_signature_party_a',
+    date_signature_party_b: 'date_signature_party_b',
+    date_expiration_signature_party_b: 'date_expiration_signature_party_b',
+    customer_party_a_id: 'customer_party_a_id',
+    customer_party_b_id: 'customer_party_b_id',
     products_id: 'products_id',
     bording_date: 'bording_date',
     mt_value: 'mt_value',
@@ -17624,30 +20088,27 @@ export namespace Prisma {
     payment_status: 'payment_status',
     payment_notes: 'payment_notes',
     payment_attachments: 'payment_attachments',
-    payment_notes_seller: 'payment_notes_seller',
-    payment_attachments_seller: 'payment_attachments_seller',
+    payment_notes_party_a: 'payment_notes_party_a',
+    payment_attachments_party_a: 'payment_attachments_party_a',
+    payment_notes_party_b: 'payment_notes_party_b',
+    payment_attachments_party_b: 'payment_attachments_party_b',
     special_terms: 'special_terms',
     business_terms: 'business_terms',
     legal_terms: 'legal_terms',
     other_terms: 'other_terms',
-    other_terms_seller: 'other_terms_seller',
-    commission_seller: 'commission_seller',
+    other_terms_party_a: 'other_terms_party_a',
+    other_terms_party_b: 'other_terms_party_b',
+    other_terms_party_a_party_b: 'other_terms_party_a_party_b',
+    other_terms_party_a_party_b_party_a: 'other_terms_party_a_party_b_party_a',
+    other_terms_party_b_party_a: 'other_terms_party_b_party_a',
+    other_terms_party_b_party_a_party_b: 'other_terms_party_b_party_a_party_b',
+    commission_party_a: 'commission_party_a',
+    commission_party_b: 'commission_party_b',
     comission_total: 'comission_total',
     attachments: 'attachments',
     createdAt: 'createdAt',
     active: 'active',
     status: 'status',
-    commission_customer: 'commission_customer',
-    customer_id: 'customer_id',
-    date_expiration_signature_customer: 'date_expiration_signature_customer',
-    date_signature_customer: 'date_signature_customer',
-    other_terms_customer: 'other_terms_customer',
-    other_terms_customer_seller: 'other_terms_customer_seller',
-    other_terms_customer_seller_customer: 'other_terms_customer_seller_customer',
-    other_terms_seller_customer: 'other_terms_seller_customer',
-    other_terms_seller_customer_seller: 'other_terms_seller_customer_seller',
-    payment_attachments_customer: 'payment_attachments_customer',
-    payment_notes_customer: 'payment_notes_customer',
     deleted: 'deleted'
   };
 
@@ -17667,6 +20128,23 @@ export namespace Prisma {
   };
 
   export type ContractProductScalarFieldEnum = (typeof ContractProductScalarFieldEnum)[keyof typeof ContractProductScalarFieldEnum]
+
+
+  export const PackScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    pack_type: 'pack_type',
+    quantity_per_pack: 'quantity_per_pack',
+    quantity_per_container: 'quantity_per_container',
+    container_type: 'container_type',
+    description: 'description',
+    createdAt: 'createdAt',
+    active: 'active',
+    status: 'status',
+    deleted: 'deleted'
+  };
+
+  export type PackScalarFieldEnum = (typeof PackScalarFieldEnum)[keyof typeof PackScalarFieldEnum]
 
 
   export const CustomerScalarFieldEnum: {
@@ -17838,6 +20316,14 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
   export const JsonNullValueFilter: {
     DbNull: typeof DbNull,
     JsonNull: typeof JsonNull,
@@ -17845,14 +20331,6 @@ export namespace Prisma {
   };
 
   export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -18032,36 +20510,24 @@ export namespace Prisma {
     OR?: BrokerageInvoiceWhereInput[]
     NOT?: BrokerageInvoiceWhereInput | BrokerageInvoiceWhereInput[]
     id?: IntFilter<"BrokerageInvoice"> | number
-    contract_id?: IntFilter<"BrokerageInvoice"> | number
-    comission_total_usd?: FloatFilter<"BrokerageInvoice"> | number
-    comission_total_brl?: FloatFilter<"BrokerageInvoice"> | number
-    bl_date?: DateTimeFilter<"BrokerageInvoice"> | Date | string
-    bl_number?: StringFilter<"BrokerageInvoice"> | string
-    bl_attachments?: StringNullableListFilter<"BrokerageInvoice">
-    ptax?: FloatFilter<"BrokerageInvoice"> | number
-    attachments?: StringNullableListFilter<"BrokerageInvoice">
+    number?: StringNullableFilter<"BrokerageInvoice"> | string | null
+    invoice_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
     createdAt?: DateTimeFilter<"BrokerageInvoice"> | Date | string
     active?: BoolFilter<"BrokerageInvoice"> | boolean
     status?: StringFilter<"BrokerageInvoice"> | string
     deleted?: BoolFilter<"BrokerageInvoice"> | boolean
-    Contract?: XOR<ContractScalarRelationFilter, ContractWhereInput>
+    Lines?: BrokerageInvoiceLineListRelationFilter
   }
 
   export type BrokerageInvoiceOrderByWithRelationInput = {
     id?: SortOrder
-    contract_id?: SortOrder
-    comission_total_usd?: SortOrder
-    comission_total_brl?: SortOrder
-    bl_date?: SortOrder
-    bl_number?: SortOrder
-    bl_attachments?: SortOrder
-    ptax?: SortOrder
-    attachments?: SortOrder
+    number?: SortOrderInput | SortOrder
+    invoice_date?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
     deleted?: SortOrder
-    Contract?: ContractOrderByWithRelationInput
+    Lines?: BrokerageInvoiceLineOrderByRelationAggregateInput
   }
 
   export type BrokerageInvoiceWhereUniqueInput = Prisma.AtLeast<{
@@ -18069,31 +20535,19 @@ export namespace Prisma {
     AND?: BrokerageInvoiceWhereInput | BrokerageInvoiceWhereInput[]
     OR?: BrokerageInvoiceWhereInput[]
     NOT?: BrokerageInvoiceWhereInput | BrokerageInvoiceWhereInput[]
-    contract_id?: IntFilter<"BrokerageInvoice"> | number
-    comission_total_usd?: FloatFilter<"BrokerageInvoice"> | number
-    comission_total_brl?: FloatFilter<"BrokerageInvoice"> | number
-    bl_date?: DateTimeFilter<"BrokerageInvoice"> | Date | string
-    bl_number?: StringFilter<"BrokerageInvoice"> | string
-    bl_attachments?: StringNullableListFilter<"BrokerageInvoice">
-    ptax?: FloatFilter<"BrokerageInvoice"> | number
-    attachments?: StringNullableListFilter<"BrokerageInvoice">
+    number?: StringNullableFilter<"BrokerageInvoice"> | string | null
+    invoice_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
     createdAt?: DateTimeFilter<"BrokerageInvoice"> | Date | string
     active?: BoolFilter<"BrokerageInvoice"> | boolean
     status?: StringFilter<"BrokerageInvoice"> | string
     deleted?: BoolFilter<"BrokerageInvoice"> | boolean
-    Contract?: XOR<ContractScalarRelationFilter, ContractWhereInput>
+    Lines?: BrokerageInvoiceLineListRelationFilter
   }, "id">
 
   export type BrokerageInvoiceOrderByWithAggregationInput = {
     id?: SortOrder
-    contract_id?: SortOrder
-    comission_total_usd?: SortOrder
-    comission_total_brl?: SortOrder
-    bl_date?: SortOrder
-    bl_number?: SortOrder
-    bl_attachments?: SortOrder
-    ptax?: SortOrder
-    attachments?: SortOrder
+    number?: SortOrderInput | SortOrder
+    invoice_date?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
@@ -18110,18 +20564,108 @@ export namespace Prisma {
     OR?: BrokerageInvoiceScalarWhereWithAggregatesInput[]
     NOT?: BrokerageInvoiceScalarWhereWithAggregatesInput | BrokerageInvoiceScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"BrokerageInvoice"> | number
-    contract_id?: IntWithAggregatesFilter<"BrokerageInvoice"> | number
-    comission_total_usd?: FloatWithAggregatesFilter<"BrokerageInvoice"> | number
-    comission_total_brl?: FloatWithAggregatesFilter<"BrokerageInvoice"> | number
-    bl_date?: DateTimeWithAggregatesFilter<"BrokerageInvoice"> | Date | string
-    bl_number?: StringWithAggregatesFilter<"BrokerageInvoice"> | string
-    bl_attachments?: StringNullableListFilter<"BrokerageInvoice">
-    ptax?: FloatWithAggregatesFilter<"BrokerageInvoice"> | number
-    attachments?: StringNullableListFilter<"BrokerageInvoice">
+    number?: StringNullableWithAggregatesFilter<"BrokerageInvoice"> | string | null
+    invoice_date?: DateTimeNullableWithAggregatesFilter<"BrokerageInvoice"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"BrokerageInvoice"> | Date | string
     active?: BoolWithAggregatesFilter<"BrokerageInvoice"> | boolean
     status?: StringWithAggregatesFilter<"BrokerageInvoice"> | string
     deleted?: BoolWithAggregatesFilter<"BrokerageInvoice"> | boolean
+  }
+
+  export type BrokerageInvoiceLineWhereInput = {
+    AND?: BrokerageInvoiceLineWhereInput | BrokerageInvoiceLineWhereInput[]
+    OR?: BrokerageInvoiceLineWhereInput[]
+    NOT?: BrokerageInvoiceLineWhereInput | BrokerageInvoiceLineWhereInput[]
+    id?: IntFilter<"BrokerageInvoiceLine"> | number
+    brokerage_invoice_id?: IntFilter<"BrokerageInvoiceLine"> | number
+    contract_id?: IntFilter<"BrokerageInvoiceLine"> | number
+    bl_date?: DateTimeFilter<"BrokerageInvoiceLine"> | Date | string
+    bl_number?: StringFilter<"BrokerageInvoiceLine"> | string
+    bl_attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
+    comission_total_usd?: FloatFilter<"BrokerageInvoiceLine"> | number
+    attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
+    createdAt?: DateTimeFilter<"BrokerageInvoiceLine"> | Date | string
+    active?: BoolFilter<"BrokerageInvoiceLine"> | boolean
+    status?: StringFilter<"BrokerageInvoiceLine"> | string
+    deleted?: BoolFilter<"BrokerageInvoiceLine"> | boolean
+    BrokerageInvoice?: XOR<BrokerageInvoiceScalarRelationFilter, BrokerageInvoiceWhereInput>
+    Contract?: XOR<ContractScalarRelationFilter, ContractWhereInput>
+  }
+
+  export type BrokerageInvoiceLineOrderByWithRelationInput = {
+    id?: SortOrder
+    brokerage_invoice_id?: SortOrder
+    contract_id?: SortOrder
+    bl_date?: SortOrder
+    bl_number?: SortOrder
+    bl_attachments?: SortOrder
+    comission_total_usd?: SortOrder
+    attachments?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+    BrokerageInvoice?: BrokerageInvoiceOrderByWithRelationInput
+    Contract?: ContractOrderByWithRelationInput
+  }
+
+  export type BrokerageInvoiceLineWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    brokerage_invoice_id_contract_id?: BrokerageInvoiceLineBrokerage_invoice_idContract_idCompoundUniqueInput
+    AND?: BrokerageInvoiceLineWhereInput | BrokerageInvoiceLineWhereInput[]
+    OR?: BrokerageInvoiceLineWhereInput[]
+    NOT?: BrokerageInvoiceLineWhereInput | BrokerageInvoiceLineWhereInput[]
+    brokerage_invoice_id?: IntFilter<"BrokerageInvoiceLine"> | number
+    contract_id?: IntFilter<"BrokerageInvoiceLine"> | number
+    bl_date?: DateTimeFilter<"BrokerageInvoiceLine"> | Date | string
+    bl_number?: StringFilter<"BrokerageInvoiceLine"> | string
+    bl_attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
+    comission_total_usd?: FloatFilter<"BrokerageInvoiceLine"> | number
+    attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
+    createdAt?: DateTimeFilter<"BrokerageInvoiceLine"> | Date | string
+    active?: BoolFilter<"BrokerageInvoiceLine"> | boolean
+    status?: StringFilter<"BrokerageInvoiceLine"> | string
+    deleted?: BoolFilter<"BrokerageInvoiceLine"> | boolean
+    BrokerageInvoice?: XOR<BrokerageInvoiceScalarRelationFilter, BrokerageInvoiceWhereInput>
+    Contract?: XOR<ContractScalarRelationFilter, ContractWhereInput>
+  }, "id" | "brokerage_invoice_id_contract_id">
+
+  export type BrokerageInvoiceLineOrderByWithAggregationInput = {
+    id?: SortOrder
+    brokerage_invoice_id?: SortOrder
+    contract_id?: SortOrder
+    bl_date?: SortOrder
+    bl_number?: SortOrder
+    bl_attachments?: SortOrder
+    comission_total_usd?: SortOrder
+    attachments?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+    _count?: BrokerageInvoiceLineCountOrderByAggregateInput
+    _avg?: BrokerageInvoiceLineAvgOrderByAggregateInput
+    _max?: BrokerageInvoiceLineMaxOrderByAggregateInput
+    _min?: BrokerageInvoiceLineMinOrderByAggregateInput
+    _sum?: BrokerageInvoiceLineSumOrderByAggregateInput
+  }
+
+  export type BrokerageInvoiceLineScalarWhereWithAggregatesInput = {
+    AND?: BrokerageInvoiceLineScalarWhereWithAggregatesInput | BrokerageInvoiceLineScalarWhereWithAggregatesInput[]
+    OR?: BrokerageInvoiceLineScalarWhereWithAggregatesInput[]
+    NOT?: BrokerageInvoiceLineScalarWhereWithAggregatesInput | BrokerageInvoiceLineScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BrokerageInvoiceLine"> | number
+    brokerage_invoice_id?: IntWithAggregatesFilter<"BrokerageInvoiceLine"> | number
+    contract_id?: IntWithAggregatesFilter<"BrokerageInvoiceLine"> | number
+    bl_date?: DateTimeWithAggregatesFilter<"BrokerageInvoiceLine"> | Date | string
+    bl_number?: StringWithAggregatesFilter<"BrokerageInvoiceLine"> | string
+    bl_attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
+    comission_total_usd?: FloatWithAggregatesFilter<"BrokerageInvoiceLine"> | number
+    attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
+    createdAt?: DateTimeWithAggregatesFilter<"BrokerageInvoiceLine"> | Date | string
+    active?: BoolWithAggregatesFilter<"BrokerageInvoiceLine"> | boolean
+    status?: StringWithAggregatesFilter<"BrokerageInvoiceLine"> | string
+    deleted?: BoolWithAggregatesFilter<"BrokerageInvoiceLine"> | boolean
   }
 
   export type ContactWhereInput = {
@@ -18280,9 +20824,12 @@ export namespace Prisma {
     date_expiration?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_expiration_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    date_signature_seller?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    date_expiration_signature_seller?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    seller_id?: IntFilter<"Contract"> | number
+    date_signature_party_a?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    date_expiration_signature_party_a?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    date_signature_party_b?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    date_expiration_signature_party_b?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    customer_party_a_id?: IntFilter<"Contract"> | number
+    customer_party_b_id?: IntFilter<"Contract"> | number
     products_id?: IntNullableListFilter<"Contract">
     bording_date?: DateTimeNullableFilter<"Contract"> | Date | string | null
     mt_value?: FloatFilter<"Contract"> | number
@@ -18301,34 +20848,31 @@ export namespace Prisma {
     payment_status?: StringFilter<"Contract"> | string
     payment_notes?: StringFilter<"Contract"> | string
     payment_attachments?: StringNullableListFilter<"Contract">
-    payment_notes_seller?: StringFilter<"Contract"> | string
-    payment_attachments_seller?: StringNullableListFilter<"Contract">
+    payment_notes_party_a?: StringFilter<"Contract"> | string
+    payment_attachments_party_a?: StringNullableListFilter<"Contract">
+    payment_notes_party_b?: StringFilter<"Contract"> | string
+    payment_attachments_party_b?: StringNullableListFilter<"Contract">
     special_terms?: StringNullableListFilter<"Contract">
     business_terms?: StringNullableListFilter<"Contract">
     legal_terms?: StringNullableListFilter<"Contract">
     other_terms?: StringNullableListFilter<"Contract">
-    other_terms_seller?: StringNullableListFilter<"Contract">
-    commission_seller?: FloatFilter<"Contract"> | number
+    other_terms_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b?: StringNullableListFilter<"Contract">
+    other_terms_party_a_party_b?: StringNullableListFilter<"Contract">
+    other_terms_party_a_party_b_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b_party_a_party_b?: StringNullableListFilter<"Contract">
+    commission_party_a?: FloatFilter<"Contract"> | number
+    commission_party_b?: FloatFilter<"Contract"> | number
     comission_total?: FloatFilter<"Contract"> | number
     attachments?: StringNullableListFilter<"Contract">
     createdAt?: DateTimeFilter<"Contract"> | Date | string
     active?: BoolFilter<"Contract"> | boolean
     status?: StringFilter<"Contract"> | string
-    commission_customer?: FloatFilter<"Contract"> | number
-    customer_id?: IntFilter<"Contract"> | number
-    date_expiration_signature_customer?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    date_signature_customer?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    other_terms_customer?: StringNullableListFilter<"Contract">
-    other_terms_customer_seller?: StringNullableListFilter<"Contract">
-    other_terms_customer_seller_customer?: StringNullableListFilter<"Contract">
-    other_terms_seller_customer?: StringNullableListFilter<"Contract">
-    other_terms_seller_customer_seller?: StringNullableListFilter<"Contract">
-    payment_attachments_customer?: StringNullableListFilter<"Contract">
-    payment_notes_customer?: StringFilter<"Contract"> | string
     deleted?: BoolFilter<"Contract"> | boolean
-    BrokerageInvoice?: BrokerageInvoiceListRelationFilter
-    Customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
-    Seller?: XOR<SellerScalarRelationFilter, SellerWhereInput>
+    BrokerageInvoiceLines?: BrokerageInvoiceLineListRelationFilter
+    PartyA?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+    PartyB?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     ContractProduct?: ContractProductListRelationFilter
     ArbitrationRule?: ArbitrationRuleListRelationFilter
     Product?: ProductListRelationFilter
@@ -18343,9 +20887,12 @@ export namespace Prisma {
     date_expiration?: SortOrderInput | SortOrder
     date_signature?: SortOrderInput | SortOrder
     date_expiration_signature?: SortOrderInput | SortOrder
-    date_signature_seller?: SortOrderInput | SortOrder
-    date_expiration_signature_seller?: SortOrderInput | SortOrder
-    seller_id?: SortOrder
+    date_signature_party_a?: SortOrderInput | SortOrder
+    date_expiration_signature_party_a?: SortOrderInput | SortOrder
+    date_signature_party_b?: SortOrderInput | SortOrder
+    date_expiration_signature_party_b?: SortOrderInput | SortOrder
+    customer_party_a_id?: SortOrder
+    customer_party_b_id?: SortOrder
     products_id?: SortOrder
     bording_date?: SortOrderInput | SortOrder
     mt_value?: SortOrder
@@ -18364,34 +20911,31 @@ export namespace Prisma {
     payment_status?: SortOrder
     payment_notes?: SortOrder
     payment_attachments?: SortOrder
-    payment_notes_seller?: SortOrder
-    payment_attachments_seller?: SortOrder
+    payment_notes_party_a?: SortOrder
+    payment_attachments_party_a?: SortOrder
+    payment_notes_party_b?: SortOrder
+    payment_attachments_party_b?: SortOrder
     special_terms?: SortOrder
     business_terms?: SortOrder
     legal_terms?: SortOrder
     other_terms?: SortOrder
-    other_terms_seller?: SortOrder
-    commission_seller?: SortOrder
+    other_terms_party_a?: SortOrder
+    other_terms_party_b?: SortOrder
+    other_terms_party_a_party_b?: SortOrder
+    other_terms_party_a_party_b_party_a?: SortOrder
+    other_terms_party_b_party_a?: SortOrder
+    other_terms_party_b_party_a_party_b?: SortOrder
+    commission_party_a?: SortOrder
+    commission_party_b?: SortOrder
     comission_total?: SortOrder
     attachments?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
-    commission_customer?: SortOrder
-    customer_id?: SortOrder
-    date_expiration_signature_customer?: SortOrderInput | SortOrder
-    date_signature_customer?: SortOrderInput | SortOrder
-    other_terms_customer?: SortOrder
-    other_terms_customer_seller?: SortOrder
-    other_terms_customer_seller_customer?: SortOrder
-    other_terms_seller_customer?: SortOrder
-    other_terms_seller_customer_seller?: SortOrder
-    payment_attachments_customer?: SortOrder
-    payment_notes_customer?: SortOrder
     deleted?: SortOrder
-    BrokerageInvoice?: BrokerageInvoiceOrderByRelationAggregateInput
-    Customer?: CustomerOrderByWithRelationInput
-    Seller?: SellerOrderByWithRelationInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineOrderByRelationAggregateInput
+    PartyA?: CustomerOrderByWithRelationInput
+    PartyB?: CustomerOrderByWithRelationInput
     ContractProduct?: ContractProductOrderByRelationAggregateInput
     ArbitrationRule?: ArbitrationRuleOrderByRelationAggregateInput
     Product?: ProductOrderByRelationAggregateInput
@@ -18409,9 +20953,12 @@ export namespace Prisma {
     date_expiration?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_expiration_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    date_signature_seller?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    date_expiration_signature_seller?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    seller_id?: IntFilter<"Contract"> | number
+    date_signature_party_a?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    date_expiration_signature_party_a?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    date_signature_party_b?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    date_expiration_signature_party_b?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    customer_party_a_id?: IntFilter<"Contract"> | number
+    customer_party_b_id?: IntFilter<"Contract"> | number
     products_id?: IntNullableListFilter<"Contract">
     bording_date?: DateTimeNullableFilter<"Contract"> | Date | string | null
     mt_value?: FloatFilter<"Contract"> | number
@@ -18430,34 +20977,31 @@ export namespace Prisma {
     payment_status?: StringFilter<"Contract"> | string
     payment_notes?: StringFilter<"Contract"> | string
     payment_attachments?: StringNullableListFilter<"Contract">
-    payment_notes_seller?: StringFilter<"Contract"> | string
-    payment_attachments_seller?: StringNullableListFilter<"Contract">
+    payment_notes_party_a?: StringFilter<"Contract"> | string
+    payment_attachments_party_a?: StringNullableListFilter<"Contract">
+    payment_notes_party_b?: StringFilter<"Contract"> | string
+    payment_attachments_party_b?: StringNullableListFilter<"Contract">
     special_terms?: StringNullableListFilter<"Contract">
     business_terms?: StringNullableListFilter<"Contract">
     legal_terms?: StringNullableListFilter<"Contract">
     other_terms?: StringNullableListFilter<"Contract">
-    other_terms_seller?: StringNullableListFilter<"Contract">
-    commission_seller?: FloatFilter<"Contract"> | number
+    other_terms_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b?: StringNullableListFilter<"Contract">
+    other_terms_party_a_party_b?: StringNullableListFilter<"Contract">
+    other_terms_party_a_party_b_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b_party_a_party_b?: StringNullableListFilter<"Contract">
+    commission_party_a?: FloatFilter<"Contract"> | number
+    commission_party_b?: FloatFilter<"Contract"> | number
     comission_total?: FloatFilter<"Contract"> | number
     attachments?: StringNullableListFilter<"Contract">
     createdAt?: DateTimeFilter<"Contract"> | Date | string
     active?: BoolFilter<"Contract"> | boolean
     status?: StringFilter<"Contract"> | string
-    commission_customer?: FloatFilter<"Contract"> | number
-    customer_id?: IntFilter<"Contract"> | number
-    date_expiration_signature_customer?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    date_signature_customer?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    other_terms_customer?: StringNullableListFilter<"Contract">
-    other_terms_customer_seller?: StringNullableListFilter<"Contract">
-    other_terms_customer_seller_customer?: StringNullableListFilter<"Contract">
-    other_terms_seller_customer?: StringNullableListFilter<"Contract">
-    other_terms_seller_customer_seller?: StringNullableListFilter<"Contract">
-    payment_attachments_customer?: StringNullableListFilter<"Contract">
-    payment_notes_customer?: StringFilter<"Contract"> | string
     deleted?: BoolFilter<"Contract"> | boolean
-    BrokerageInvoice?: BrokerageInvoiceListRelationFilter
-    Customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
-    Seller?: XOR<SellerScalarRelationFilter, SellerWhereInput>
+    BrokerageInvoiceLines?: BrokerageInvoiceLineListRelationFilter
+    PartyA?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
+    PartyB?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     ContractProduct?: ContractProductListRelationFilter
     ArbitrationRule?: ArbitrationRuleListRelationFilter
     Product?: ProductListRelationFilter
@@ -18472,9 +21016,12 @@ export namespace Prisma {
     date_expiration?: SortOrderInput | SortOrder
     date_signature?: SortOrderInput | SortOrder
     date_expiration_signature?: SortOrderInput | SortOrder
-    date_signature_seller?: SortOrderInput | SortOrder
-    date_expiration_signature_seller?: SortOrderInput | SortOrder
-    seller_id?: SortOrder
+    date_signature_party_a?: SortOrderInput | SortOrder
+    date_expiration_signature_party_a?: SortOrderInput | SortOrder
+    date_signature_party_b?: SortOrderInput | SortOrder
+    date_expiration_signature_party_b?: SortOrderInput | SortOrder
+    customer_party_a_id?: SortOrder
+    customer_party_b_id?: SortOrder
     products_id?: SortOrder
     bording_date?: SortOrderInput | SortOrder
     mt_value?: SortOrder
@@ -18493,30 +21040,27 @@ export namespace Prisma {
     payment_status?: SortOrder
     payment_notes?: SortOrder
     payment_attachments?: SortOrder
-    payment_notes_seller?: SortOrder
-    payment_attachments_seller?: SortOrder
+    payment_notes_party_a?: SortOrder
+    payment_attachments_party_a?: SortOrder
+    payment_notes_party_b?: SortOrder
+    payment_attachments_party_b?: SortOrder
     special_terms?: SortOrder
     business_terms?: SortOrder
     legal_terms?: SortOrder
     other_terms?: SortOrder
-    other_terms_seller?: SortOrder
-    commission_seller?: SortOrder
+    other_terms_party_a?: SortOrder
+    other_terms_party_b?: SortOrder
+    other_terms_party_a_party_b?: SortOrder
+    other_terms_party_a_party_b_party_a?: SortOrder
+    other_terms_party_b_party_a?: SortOrder
+    other_terms_party_b_party_a_party_b?: SortOrder
+    commission_party_a?: SortOrder
+    commission_party_b?: SortOrder
     comission_total?: SortOrder
     attachments?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
-    commission_customer?: SortOrder
-    customer_id?: SortOrder
-    date_expiration_signature_customer?: SortOrderInput | SortOrder
-    date_signature_customer?: SortOrderInput | SortOrder
-    other_terms_customer?: SortOrder
-    other_terms_customer_seller?: SortOrder
-    other_terms_customer_seller_customer?: SortOrder
-    other_terms_seller_customer?: SortOrder
-    other_terms_seller_customer_seller?: SortOrder
-    payment_attachments_customer?: SortOrder
-    payment_notes_customer?: SortOrder
     deleted?: SortOrder
     _count?: ContractCountOrderByAggregateInput
     _avg?: ContractAvgOrderByAggregateInput
@@ -18536,9 +21080,12 @@ export namespace Prisma {
     date_expiration?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
     date_signature?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
     date_expiration_signature?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
-    date_signature_seller?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
-    date_expiration_signature_seller?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
-    seller_id?: IntWithAggregatesFilter<"Contract"> | number
+    date_signature_party_a?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
+    date_expiration_signature_party_a?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
+    date_signature_party_b?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
+    date_expiration_signature_party_b?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
+    customer_party_a_id?: IntWithAggregatesFilter<"Contract"> | number
+    customer_party_b_id?: IntWithAggregatesFilter<"Contract"> | number
     products_id?: IntNullableListFilter<"Contract">
     bording_date?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
     mt_value?: FloatWithAggregatesFilter<"Contract"> | number
@@ -18557,30 +21104,27 @@ export namespace Prisma {
     payment_status?: StringWithAggregatesFilter<"Contract"> | string
     payment_notes?: StringWithAggregatesFilter<"Contract"> | string
     payment_attachments?: StringNullableListFilter<"Contract">
-    payment_notes_seller?: StringWithAggregatesFilter<"Contract"> | string
-    payment_attachments_seller?: StringNullableListFilter<"Contract">
+    payment_notes_party_a?: StringWithAggregatesFilter<"Contract"> | string
+    payment_attachments_party_a?: StringNullableListFilter<"Contract">
+    payment_notes_party_b?: StringWithAggregatesFilter<"Contract"> | string
+    payment_attachments_party_b?: StringNullableListFilter<"Contract">
     special_terms?: StringNullableListFilter<"Contract">
     business_terms?: StringNullableListFilter<"Contract">
     legal_terms?: StringNullableListFilter<"Contract">
     other_terms?: StringNullableListFilter<"Contract">
-    other_terms_seller?: StringNullableListFilter<"Contract">
-    commission_seller?: FloatWithAggregatesFilter<"Contract"> | number
+    other_terms_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b?: StringNullableListFilter<"Contract">
+    other_terms_party_a_party_b?: StringNullableListFilter<"Contract">
+    other_terms_party_a_party_b_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b_party_a_party_b?: StringNullableListFilter<"Contract">
+    commission_party_a?: FloatWithAggregatesFilter<"Contract"> | number
+    commission_party_b?: FloatWithAggregatesFilter<"Contract"> | number
     comission_total?: FloatWithAggregatesFilter<"Contract"> | number
     attachments?: StringNullableListFilter<"Contract">
     createdAt?: DateTimeWithAggregatesFilter<"Contract"> | Date | string
     active?: BoolWithAggregatesFilter<"Contract"> | boolean
     status?: StringWithAggregatesFilter<"Contract"> | string
-    commission_customer?: FloatWithAggregatesFilter<"Contract"> | number
-    customer_id?: IntWithAggregatesFilter<"Contract"> | number
-    date_expiration_signature_customer?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
-    date_signature_customer?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
-    other_terms_customer?: StringNullableListFilter<"Contract">
-    other_terms_customer_seller?: StringNullableListFilter<"Contract">
-    other_terms_customer_seller_customer?: StringNullableListFilter<"Contract">
-    other_terms_seller_customer?: StringNullableListFilter<"Contract">
-    other_terms_seller_customer_seller?: StringNullableListFilter<"Contract">
-    payment_attachments_customer?: StringNullableListFilter<"Contract">
-    payment_notes_customer?: StringWithAggregatesFilter<"Contract"> | string
     deleted?: BoolWithAggregatesFilter<"Contract"> | boolean
   }
 
@@ -18664,6 +21208,90 @@ export namespace Prisma {
     deleted?: BoolWithAggregatesFilter<"ContractProduct"> | boolean
   }
 
+  export type PackWhereInput = {
+    AND?: PackWhereInput | PackWhereInput[]
+    OR?: PackWhereInput[]
+    NOT?: PackWhereInput | PackWhereInput[]
+    id?: IntFilter<"Pack"> | number
+    name?: StringFilter<"Pack"> | string
+    pack_type?: StringNullableFilter<"Pack"> | string | null
+    quantity_per_pack?: FloatNullableFilter<"Pack"> | number | null
+    quantity_per_container?: FloatNullableFilter<"Pack"> | number | null
+    container_type?: StringNullableFilter<"Pack"> | string | null
+    description?: StringNullableFilter<"Pack"> | string | null
+    createdAt?: DateTimeFilter<"Pack"> | Date | string
+    active?: BoolFilter<"Pack"> | boolean
+    status?: StringFilter<"Pack"> | string
+    deleted?: BoolFilter<"Pack"> | boolean
+  }
+
+  export type PackOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    pack_type?: SortOrderInput | SortOrder
+    quantity_per_pack?: SortOrderInput | SortOrder
+    quantity_per_container?: SortOrderInput | SortOrder
+    container_type?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type PackWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PackWhereInput | PackWhereInput[]
+    OR?: PackWhereInput[]
+    NOT?: PackWhereInput | PackWhereInput[]
+    name?: StringFilter<"Pack"> | string
+    pack_type?: StringNullableFilter<"Pack"> | string | null
+    quantity_per_pack?: FloatNullableFilter<"Pack"> | number | null
+    quantity_per_container?: FloatNullableFilter<"Pack"> | number | null
+    container_type?: StringNullableFilter<"Pack"> | string | null
+    description?: StringNullableFilter<"Pack"> | string | null
+    createdAt?: DateTimeFilter<"Pack"> | Date | string
+    active?: BoolFilter<"Pack"> | boolean
+    status?: StringFilter<"Pack"> | string
+    deleted?: BoolFilter<"Pack"> | boolean
+  }, "id">
+
+  export type PackOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    pack_type?: SortOrderInput | SortOrder
+    quantity_per_pack?: SortOrderInput | SortOrder
+    quantity_per_container?: SortOrderInput | SortOrder
+    container_type?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+    _count?: PackCountOrderByAggregateInput
+    _avg?: PackAvgOrderByAggregateInput
+    _max?: PackMaxOrderByAggregateInput
+    _min?: PackMinOrderByAggregateInput
+    _sum?: PackSumOrderByAggregateInput
+  }
+
+  export type PackScalarWhereWithAggregatesInput = {
+    AND?: PackScalarWhereWithAggregatesInput | PackScalarWhereWithAggregatesInput[]
+    OR?: PackScalarWhereWithAggregatesInput[]
+    NOT?: PackScalarWhereWithAggregatesInput | PackScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Pack"> | number
+    name?: StringWithAggregatesFilter<"Pack"> | string
+    pack_type?: StringNullableWithAggregatesFilter<"Pack"> | string | null
+    quantity_per_pack?: FloatNullableWithAggregatesFilter<"Pack"> | number | null
+    quantity_per_container?: FloatNullableWithAggregatesFilter<"Pack"> | number | null
+    container_type?: StringNullableWithAggregatesFilter<"Pack"> | string | null
+    description?: StringNullableWithAggregatesFilter<"Pack"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Pack"> | Date | string
+    active?: BoolWithAggregatesFilter<"Pack"> | boolean
+    status?: StringWithAggregatesFilter<"Pack"> | string
+    deleted?: BoolWithAggregatesFilter<"Pack"> | boolean
+  }
+
   export type CustomerWhereInput = {
     AND?: CustomerWhereInput | CustomerWhereInput[]
     OR?: CustomerWhereInput[]
@@ -18686,7 +21314,8 @@ export namespace Prisma {
     status?: StringFilter<"Customer"> | string
     deleted?: BoolFilter<"Customer"> | boolean
     Contact?: ContactListRelationFilter
-    Contract?: ContractListRelationFilter
+    ContractsAsPartyA?: ContractListRelationFilter
+    ContractsAsPartyB?: ContractListRelationFilter
   }
 
   export type CustomerOrderByWithRelationInput = {
@@ -18708,7 +21337,8 @@ export namespace Prisma {
     status?: SortOrder
     deleted?: SortOrder
     Contact?: ContactOrderByRelationAggregateInput
-    Contract?: ContractOrderByRelationAggregateInput
+    ContractsAsPartyA?: ContractOrderByRelationAggregateInput
+    ContractsAsPartyB?: ContractOrderByRelationAggregateInput
   }
 
   export type CustomerWhereUniqueInput = Prisma.AtLeast<{
@@ -18733,7 +21363,8 @@ export namespace Prisma {
     status?: StringFilter<"Customer"> | string
     deleted?: BoolFilter<"Customer"> | boolean
     Contact?: ContactListRelationFilter
-    Contract?: ContractListRelationFilter
+    ContractsAsPartyA?: ContractListRelationFilter
+    ContractsAsPartyB?: ContractListRelationFilter
   }, "id">
 
   export type CustomerOrderByWithAggregationInput = {
@@ -19083,7 +21714,6 @@ export namespace Prisma {
     status?: StringFilter<"Seller"> | string
     deleted?: BoolFilter<"Seller"> | boolean
     Contact?: ContactListRelationFilter
-    Contract?: ContractListRelationFilter
     Product?: ProductListRelationFilter
   }
 
@@ -19105,7 +21735,6 @@ export namespace Prisma {
     status?: SortOrder
     deleted?: SortOrder
     Contact?: ContactOrderByRelationAggregateInput
-    Contract?: ContractOrderByRelationAggregateInput
     Product?: ProductOrderByRelationAggregateInput
   }
 
@@ -19130,7 +21759,6 @@ export namespace Prisma {
     status?: StringFilter<"Seller"> | string
     deleted?: BoolFilter<"Seller"> | boolean
     Contact?: ContactListRelationFilter
-    Contract?: ContractListRelationFilter
     Product?: ProductListRelationFilter
   }, "id">
 
@@ -19515,77 +22143,51 @@ export namespace Prisma {
   }
 
   export type BrokerageInvoiceCreateInput = {
-    comission_total_usd: number
-    comission_total_brl: number
-    bl_date: Date | string
-    bl_number: string
-    bl_attachments?: BrokerageInvoiceCreatebl_attachmentsInput | string[]
-    ptax: number
-    attachments?: BrokerageInvoiceCreateattachmentsInput | string[]
+    number?: string | null
+    invoice_date?: Date | string | null
     createdAt?: Date | string
     active?: boolean
     status: string
     deleted?: boolean
-    Contract: ContractCreateNestedOneWithoutBrokerageInvoiceInput
+    Lines?: BrokerageInvoiceLineCreateNestedManyWithoutBrokerageInvoiceInput
   }
 
   export type BrokerageInvoiceUncheckedCreateInput = {
     id?: number
-    contract_id: number
-    comission_total_usd: number
-    comission_total_brl: number
-    bl_date: Date | string
-    bl_number: string
-    bl_attachments?: BrokerageInvoiceCreatebl_attachmentsInput | string[]
-    ptax: number
-    attachments?: BrokerageInvoiceCreateattachmentsInput | string[]
+    number?: string | null
+    invoice_date?: Date | string | null
     createdAt?: Date | string
     active?: boolean
     status: string
     deleted?: boolean
+    Lines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutBrokerageInvoiceInput
   }
 
   export type BrokerageInvoiceUpdateInput = {
-    comission_total_usd?: FloatFieldUpdateOperationsInput | number
-    comission_total_brl?: FloatFieldUpdateOperationsInput | number
-    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    bl_number?: StringFieldUpdateOperationsInput | string
-    bl_attachments?: BrokerageInvoiceUpdatebl_attachmentsInput | string[]
-    ptax?: FloatFieldUpdateOperationsInput | number
-    attachments?: BrokerageInvoiceUpdateattachmentsInput | string[]
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    Contract?: ContractUpdateOneRequiredWithoutBrokerageInvoiceNestedInput
+    Lines?: BrokerageInvoiceLineUpdateManyWithoutBrokerageInvoiceNestedInput
   }
 
   export type BrokerageInvoiceUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    contract_id?: IntFieldUpdateOperationsInput | number
-    comission_total_usd?: FloatFieldUpdateOperationsInput | number
-    comission_total_brl?: FloatFieldUpdateOperationsInput | number
-    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    bl_number?: StringFieldUpdateOperationsInput | string
-    bl_attachments?: BrokerageInvoiceUpdatebl_attachmentsInput | string[]
-    ptax?: FloatFieldUpdateOperationsInput | number
-    attachments?: BrokerageInvoiceUpdateattachmentsInput | string[]
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    Lines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutBrokerageInvoiceNestedInput
   }
 
   export type BrokerageInvoiceCreateManyInput = {
     id?: number
-    contract_id: number
-    comission_total_usd: number
-    comission_total_brl: number
-    bl_date: Date | string
-    bl_number: string
-    bl_attachments?: BrokerageInvoiceCreatebl_attachmentsInput | string[]
-    ptax: number
-    attachments?: BrokerageInvoiceCreateattachmentsInput | string[]
+    number?: string | null
+    invoice_date?: Date | string | null
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -19593,13 +22195,8 @@ export namespace Prisma {
   }
 
   export type BrokerageInvoiceUpdateManyMutationInput = {
-    comission_total_usd?: FloatFieldUpdateOperationsInput | number
-    comission_total_brl?: FloatFieldUpdateOperationsInput | number
-    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    bl_number?: StringFieldUpdateOperationsInput | string
-    bl_attachments?: BrokerageInvoiceUpdatebl_attachmentsInput | string[]
-    ptax?: FloatFieldUpdateOperationsInput | number
-    attachments?: BrokerageInvoiceUpdateattachmentsInput | string[]
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -19608,14 +22205,108 @@ export namespace Prisma {
 
   export type BrokerageInvoiceUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    contract_id?: IntFieldUpdateOperationsInput | number
-    comission_total_usd?: FloatFieldUpdateOperationsInput | number
-    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BrokerageInvoiceLineCreateInput = {
+    bl_date: Date | string
+    bl_number: string
+    bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
+    comission_total_usd: number
+    attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    BrokerageInvoice: BrokerageInvoiceCreateNestedOneWithoutLinesInput
+    Contract: ContractCreateNestedOneWithoutBrokerageInvoiceLinesInput
+  }
+
+  export type BrokerageInvoiceLineUncheckedCreateInput = {
+    id?: number
+    brokerage_invoice_id: number
+    contract_id: number
+    bl_date: Date | string
+    bl_number: string
+    bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
+    comission_total_usd: number
+    attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type BrokerageInvoiceLineUpdateInput = {
     bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
     bl_number?: StringFieldUpdateOperationsInput | string
-    bl_attachments?: BrokerageInvoiceUpdatebl_attachmentsInput | string[]
-    ptax?: FloatFieldUpdateOperationsInput | number
-    attachments?: BrokerageInvoiceUpdateattachmentsInput | string[]
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
+    comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoice?: BrokerageInvoiceUpdateOneRequiredWithoutLinesNestedInput
+    Contract?: ContractUpdateOneRequiredWithoutBrokerageInvoiceLinesNestedInput
+  }
+
+  export type BrokerageInvoiceLineUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    brokerage_invoice_id?: IntFieldUpdateOperationsInput | number
+    contract_id?: IntFieldUpdateOperationsInput | number
+    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bl_number?: StringFieldUpdateOperationsInput | string
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
+    comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BrokerageInvoiceLineCreateManyInput = {
+    id?: number
+    brokerage_invoice_id: number
+    contract_id: number
+    bl_date: Date | string
+    bl_number: string
+    bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
+    comission_total_usd: number
+    attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type BrokerageInvoiceLineUpdateManyMutationInput = {
+    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bl_number?: StringFieldUpdateOperationsInput | string
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
+    comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BrokerageInvoiceLineUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    brokerage_invoice_id?: IntFieldUpdateOperationsInput | number
+    contract_id?: IntFieldUpdateOperationsInput | number
+    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bl_number?: StringFieldUpdateOperationsInput | string
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
+    comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -19799,8 +22490,10 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -19819,33 +22512,31 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceCreateNestedManyWithoutContractInput
-    Customer: CustomerCreateNestedOneWithoutContractInput
-    Seller: SellerCreateNestedOneWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineCreateNestedManyWithoutContractInput
+    PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
+    PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
@@ -19860,9 +22551,12 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    seller_id: number
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    customer_party_b_id: number
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -19881,32 +22575,29 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedCreateNestedManyWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
@@ -19920,8 +22611,10 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -19940,33 +22633,31 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUpdateManyWithoutContractNestedInput
-    Customer?: CustomerUpdateOneRequiredWithoutContractNestedInput
-    Seller?: SellerUpdateOneRequiredWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUpdateManyWithoutContractNestedInput
+    PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
+    PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
@@ -19981,9 +22672,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -20002,32 +22696,29 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedUpdateManyWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
@@ -20042,9 +22733,12 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    seller_id: number
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    customer_party_b_id: number
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -20063,30 +22757,27 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
   }
 
@@ -20097,8 +22788,10 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -20117,29 +22810,27 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -20151,9 +22842,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -20172,30 +22866,27 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -20278,6 +22969,101 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type PackCreateInput = {
+    name: string
+    pack_type?: string | null
+    quantity_per_pack?: number | null
+    quantity_per_container?: number | null
+    container_type?: string | null
+    description?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type PackUncheckedCreateInput = {
+    id?: number
+    name: string
+    pack_type?: string | null
+    quantity_per_pack?: number | null
+    quantity_per_container?: number | null
+    container_type?: string | null
+    description?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type PackUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    pack_type?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity_per_pack?: NullableFloatFieldUpdateOperationsInput | number | null
+    quantity_per_container?: NullableFloatFieldUpdateOperationsInput | number | null
+    container_type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PackUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    pack_type?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity_per_pack?: NullableFloatFieldUpdateOperationsInput | number | null
+    quantity_per_container?: NullableFloatFieldUpdateOperationsInput | number | null
+    container_type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PackCreateManyInput = {
+    id?: number
+    name: string
+    pack_type?: string | null
+    quantity_per_pack?: number | null
+    quantity_per_container?: number | null
+    container_type?: string | null
+    description?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type PackUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    pack_type?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity_per_pack?: NullableFloatFieldUpdateOperationsInput | number | null
+    quantity_per_container?: NullableFloatFieldUpdateOperationsInput | number | null
+    container_type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PackUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    pack_type?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity_per_pack?: NullableFloatFieldUpdateOperationsInput | number | null
+    quantity_per_container?: NullableFloatFieldUpdateOperationsInput | number | null
+    container_type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type CustomerCreateInput = {
     name: string
     full_name: string
@@ -20296,7 +23082,8 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Contact?: ContactCreateNestedManyWithoutCustomerInput
-    Contract?: ContractCreateNestedManyWithoutCustomerInput
+    ContractsAsPartyA?: ContractCreateNestedManyWithoutPartyAInput
+    ContractsAsPartyB?: ContractCreateNestedManyWithoutPartyBInput
   }
 
   export type CustomerUncheckedCreateInput = {
@@ -20318,7 +23105,8 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Contact?: ContactUncheckedCreateNestedManyWithoutCustomerInput
-    Contract?: ContractUncheckedCreateNestedManyWithoutCustomerInput
+    ContractsAsPartyA?: ContractUncheckedCreateNestedManyWithoutPartyAInput
+    ContractsAsPartyB?: ContractUncheckedCreateNestedManyWithoutPartyBInput
   }
 
   export type CustomerUpdateInput = {
@@ -20339,7 +23127,8 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contact?: ContactUpdateManyWithoutCustomerNestedInput
-    Contract?: ContractUpdateManyWithoutCustomerNestedInput
+    ContractsAsPartyA?: ContractUpdateManyWithoutPartyANestedInput
+    ContractsAsPartyB?: ContractUpdateManyWithoutPartyBNestedInput
   }
 
   export type CustomerUncheckedUpdateInput = {
@@ -20361,7 +23150,8 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contact?: ContactUncheckedUpdateManyWithoutCustomerNestedInput
-    Contract?: ContractUncheckedUpdateManyWithoutCustomerNestedInput
+    ContractsAsPartyA?: ContractUncheckedUpdateManyWithoutPartyANestedInput
+    ContractsAsPartyB?: ContractUncheckedUpdateManyWithoutPartyBNestedInput
   }
 
   export type CustomerCreateManyInput = {
@@ -20773,7 +23563,6 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Contact?: ContactCreateNestedManyWithoutSellerInput
-    Contract?: ContractCreateNestedManyWithoutSellerInput
     Product?: ProductCreateNestedManyWithoutSellerInput
   }
 
@@ -20795,7 +23584,6 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Contact?: ContactUncheckedCreateNestedManyWithoutSellerInput
-    Contract?: ContractUncheckedCreateNestedManyWithoutSellerInput
     Product?: ProductUncheckedCreateNestedManyWithoutSellerInput
   }
 
@@ -20816,7 +23604,6 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contact?: ContactUpdateManyWithoutSellerNestedInput
-    Contract?: ContractUpdateManyWithoutSellerNestedInput
     Product?: ProductUpdateManyWithoutSellerNestedInput
   }
 
@@ -20838,7 +23625,6 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contact?: ContactUncheckedUpdateManyWithoutSellerNestedInput
-    Contract?: ContractUncheckedUpdateManyWithoutSellerNestedInput
     Product?: ProductUncheckedUpdateManyWithoutSellerNestedInput
   }
 
@@ -21325,6 +24111,117 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type BrokerageInvoiceLineListRelationFilter = {
+    every?: BrokerageInvoiceLineWhereInput
+    some?: BrokerageInvoiceLineWhereInput
+    none?: BrokerageInvoiceLineWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type BrokerageInvoiceLineOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BrokerageInvoiceCountOrderByAggregateInput = {
+    id?: SortOrder
+    number?: SortOrder
+    invoice_date?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type BrokerageInvoiceAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type BrokerageInvoiceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    number?: SortOrder
+    invoice_date?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type BrokerageInvoiceMinOrderByAggregateInput = {
+    id?: SortOrder
+    number?: SortOrder
+    invoice_date?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type BrokerageInvoiceSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -21336,20 +24233,29 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type BrokerageInvoiceScalarRelationFilter = {
+    is?: BrokerageInvoiceWhereInput
+    isNot?: BrokerageInvoiceWhereInput
+  }
+
   export type ContractScalarRelationFilter = {
     is?: ContractWhereInput
     isNot?: ContractWhereInput
   }
 
-  export type BrokerageInvoiceCountOrderByAggregateInput = {
+  export type BrokerageInvoiceLineBrokerage_invoice_idContract_idCompoundUniqueInput = {
+    brokerage_invoice_id: number
+    contract_id: number
+  }
+
+  export type BrokerageInvoiceLineCountOrderByAggregateInput = {
     id?: SortOrder
+    brokerage_invoice_id?: SortOrder
     contract_id?: SortOrder
-    comission_total_usd?: SortOrder
-    comission_total_brl?: SortOrder
     bl_date?: SortOrder
     bl_number?: SortOrder
     bl_attachments?: SortOrder
-    ptax?: SortOrder
+    comission_total_usd?: SortOrder
     attachments?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
@@ -21357,48 +24263,44 @@ export namespace Prisma {
     deleted?: SortOrder
   }
 
-  export type BrokerageInvoiceAvgOrderByAggregateInput = {
+  export type BrokerageInvoiceLineAvgOrderByAggregateInput = {
     id?: SortOrder
+    brokerage_invoice_id?: SortOrder
     contract_id?: SortOrder
     comission_total_usd?: SortOrder
-    comission_total_brl?: SortOrder
-    ptax?: SortOrder
   }
 
-  export type BrokerageInvoiceMaxOrderByAggregateInput = {
+  export type BrokerageInvoiceLineMaxOrderByAggregateInput = {
     id?: SortOrder
+    brokerage_invoice_id?: SortOrder
     contract_id?: SortOrder
-    comission_total_usd?: SortOrder
-    comission_total_brl?: SortOrder
     bl_date?: SortOrder
     bl_number?: SortOrder
-    ptax?: SortOrder
+    comission_total_usd?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
     deleted?: SortOrder
   }
 
-  export type BrokerageInvoiceMinOrderByAggregateInput = {
+  export type BrokerageInvoiceLineMinOrderByAggregateInput = {
     id?: SortOrder
+    brokerage_invoice_id?: SortOrder
     contract_id?: SortOrder
-    comission_total_usd?: SortOrder
-    comission_total_brl?: SortOrder
     bl_date?: SortOrder
     bl_number?: SortOrder
-    ptax?: SortOrder
+    comission_total_usd?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
     deleted?: SortOrder
   }
 
-  export type BrokerageInvoiceSumOrderByAggregateInput = {
+  export type BrokerageInvoiceLineSumOrderByAggregateInput = {
     id?: SortOrder
+    brokerage_invoice_id?: SortOrder
     contract_id?: SortOrder
     comission_total_usd?: SortOrder
-    comission_total_brl?: SortOrder
-    ptax?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -21415,21 +24317,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -21474,11 +24361,6 @@ export namespace Prisma {
   export type SellerNullableScalarRelationFilter = {
     is?: SellerWhereInput | null
     isNot?: SellerWhereInput | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type ContactCountOrderByAggregateInput = {
@@ -21564,24 +24446,6 @@ export namespace Prisma {
     seller_id?: SortOrder
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -21624,17 +24488,6 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type IntNullableListFilter<$PrismaModel = never> = {
     equals?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     has?: number | IntFieldRefInput<$PrismaModel> | null
@@ -21643,20 +24496,9 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type BrokerageInvoiceListRelationFilter = {
-    every?: BrokerageInvoiceWhereInput
-    some?: BrokerageInvoiceWhereInput
-    none?: BrokerageInvoiceWhereInput
-  }
-
   export type CustomerScalarRelationFilter = {
     is?: CustomerWhereInput
     isNot?: CustomerWhereInput
-  }
-
-  export type SellerScalarRelationFilter = {
-    is?: SellerWhereInput
-    isNot?: SellerWhereInput
   }
 
   export type ContractProductListRelationFilter = {
@@ -21683,10 +24525,6 @@ export namespace Prisma {
     none?: SpecialConditionWhereInput
   }
 
-  export type BrokerageInvoiceOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type ContractProductOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -21711,9 +24549,12 @@ export namespace Prisma {
     date_expiration?: SortOrder
     date_signature?: SortOrder
     date_expiration_signature?: SortOrder
-    date_signature_seller?: SortOrder
-    date_expiration_signature_seller?: SortOrder
-    seller_id?: SortOrder
+    date_signature_party_a?: SortOrder
+    date_expiration_signature_party_a?: SortOrder
+    date_signature_party_b?: SortOrder
+    date_expiration_signature_party_b?: SortOrder
+    customer_party_a_id?: SortOrder
+    customer_party_b_id?: SortOrder
     products_id?: SortOrder
     bording_date?: SortOrder
     mt_value?: SortOrder
@@ -21732,43 +24573,40 @@ export namespace Prisma {
     payment_status?: SortOrder
     payment_notes?: SortOrder
     payment_attachments?: SortOrder
-    payment_notes_seller?: SortOrder
-    payment_attachments_seller?: SortOrder
+    payment_notes_party_a?: SortOrder
+    payment_attachments_party_a?: SortOrder
+    payment_notes_party_b?: SortOrder
+    payment_attachments_party_b?: SortOrder
     special_terms?: SortOrder
     business_terms?: SortOrder
     legal_terms?: SortOrder
     other_terms?: SortOrder
-    other_terms_seller?: SortOrder
-    commission_seller?: SortOrder
+    other_terms_party_a?: SortOrder
+    other_terms_party_b?: SortOrder
+    other_terms_party_a_party_b?: SortOrder
+    other_terms_party_a_party_b_party_a?: SortOrder
+    other_terms_party_b_party_a?: SortOrder
+    other_terms_party_b_party_a_party_b?: SortOrder
+    commission_party_a?: SortOrder
+    commission_party_b?: SortOrder
     comission_total?: SortOrder
     attachments?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
-    commission_customer?: SortOrder
-    customer_id?: SortOrder
-    date_expiration_signature_customer?: SortOrder
-    date_signature_customer?: SortOrder
-    other_terms_customer?: SortOrder
-    other_terms_customer_seller?: SortOrder
-    other_terms_customer_seller_customer?: SortOrder
-    other_terms_seller_customer?: SortOrder
-    other_terms_seller_customer_seller?: SortOrder
-    payment_attachments_customer?: SortOrder
-    payment_notes_customer?: SortOrder
     deleted?: SortOrder
   }
 
   export type ContractAvgOrderByAggregateInput = {
     id?: SortOrder
-    seller_id?: SortOrder
+    customer_party_a_id?: SortOrder
+    customer_party_b_id?: SortOrder
     products_id?: SortOrder
     mt_value?: SortOrder
     payment_amount?: SortOrder
-    commission_seller?: SortOrder
+    commission_party_a?: SortOrder
+    commission_party_b?: SortOrder
     comission_total?: SortOrder
-    commission_customer?: SortOrder
-    customer_id?: SortOrder
   }
 
   export type ContractMaxOrderByAggregateInput = {
@@ -21779,9 +24617,12 @@ export namespace Prisma {
     date_expiration?: SortOrder
     date_signature?: SortOrder
     date_expiration_signature?: SortOrder
-    date_signature_seller?: SortOrder
-    date_expiration_signature_seller?: SortOrder
-    seller_id?: SortOrder
+    date_signature_party_a?: SortOrder
+    date_expiration_signature_party_a?: SortOrder
+    date_signature_party_b?: SortOrder
+    date_expiration_signature_party_b?: SortOrder
+    customer_party_a_id?: SortOrder
+    customer_party_b_id?: SortOrder
     bording_date?: SortOrder
     mt_value?: SortOrder
     destination_country?: SortOrder
@@ -21796,17 +24637,14 @@ export namespace Prisma {
     payment_date?: SortOrder
     payment_status?: SortOrder
     payment_notes?: SortOrder
-    payment_notes_seller?: SortOrder
-    commission_seller?: SortOrder
+    payment_notes_party_a?: SortOrder
+    payment_notes_party_b?: SortOrder
+    commission_party_a?: SortOrder
+    commission_party_b?: SortOrder
     comission_total?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
-    commission_customer?: SortOrder
-    customer_id?: SortOrder
-    date_expiration_signature_customer?: SortOrder
-    date_signature_customer?: SortOrder
-    payment_notes_customer?: SortOrder
     deleted?: SortOrder
   }
 
@@ -21818,9 +24656,12 @@ export namespace Prisma {
     date_expiration?: SortOrder
     date_signature?: SortOrder
     date_expiration_signature?: SortOrder
-    date_signature_seller?: SortOrder
-    date_expiration_signature_seller?: SortOrder
-    seller_id?: SortOrder
+    date_signature_party_a?: SortOrder
+    date_expiration_signature_party_a?: SortOrder
+    date_signature_party_b?: SortOrder
+    date_expiration_signature_party_b?: SortOrder
+    customer_party_a_id?: SortOrder
+    customer_party_b_id?: SortOrder
     bording_date?: SortOrder
     mt_value?: SortOrder
     destination_country?: SortOrder
@@ -21835,44 +24676,27 @@ export namespace Prisma {
     payment_date?: SortOrder
     payment_status?: SortOrder
     payment_notes?: SortOrder
-    payment_notes_seller?: SortOrder
-    commission_seller?: SortOrder
+    payment_notes_party_a?: SortOrder
+    payment_notes_party_b?: SortOrder
+    commission_party_a?: SortOrder
+    commission_party_b?: SortOrder
     comission_total?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
-    commission_customer?: SortOrder
-    customer_id?: SortOrder
-    date_expiration_signature_customer?: SortOrder
-    date_signature_customer?: SortOrder
-    payment_notes_customer?: SortOrder
     deleted?: SortOrder
   }
 
   export type ContractSumOrderByAggregateInput = {
     id?: SortOrder
-    seller_id?: SortOrder
+    customer_party_a_id?: SortOrder
+    customer_party_b_id?: SortOrder
     products_id?: SortOrder
     mt_value?: SortOrder
     payment_amount?: SortOrder
-    commission_seller?: SortOrder
+    commission_party_a?: SortOrder
+    commission_party_b?: SortOrder
     comission_total?: SortOrder
-    commission_customer?: SortOrder
-    customer_id?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type FloatNullableFilter<$PrismaModel = never> = {
@@ -21957,6 +24781,60 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type PackCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    pack_type?: SortOrder
+    quantity_per_pack?: SortOrder
+    quantity_per_container?: SortOrder
+    container_type?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type PackAvgOrderByAggregateInput = {
+    id?: SortOrder
+    quantity_per_pack?: SortOrder
+    quantity_per_container?: SortOrder
+  }
+
+  export type PackMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    pack_type?: SortOrder
+    quantity_per_pack?: SortOrder
+    quantity_per_container?: SortOrder
+    container_type?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type PackMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    pack_type?: SortOrder
+    quantity_per_pack?: SortOrder
+    quantity_per_container?: SortOrder
+    container_type?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type PackSumOrderByAggregateInput = {
+    id?: SortOrder
+    quantity_per_pack?: SortOrder
+    quantity_per_container?: SortOrder
   }
 
   export type ContactListRelationFilter = {
@@ -22479,18 +25357,79 @@ export namespace Prisma {
     deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
   }
 
-  export type BrokerageInvoiceCreatebl_attachmentsInput = {
+  export type BrokerageInvoiceLineCreateNestedManyWithoutBrokerageInvoiceInput = {
+    create?: XOR<BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput, BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput> | BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput[] | BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput[]
+    connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput | BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput[]
+    createMany?: BrokerageInvoiceLineCreateManyBrokerageInvoiceInputEnvelope
+    connect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+  }
+
+  export type BrokerageInvoiceLineUncheckedCreateNestedManyWithoutBrokerageInvoiceInput = {
+    create?: XOR<BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput, BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput> | BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput[] | BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput[]
+    connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput | BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput[]
+    createMany?: BrokerageInvoiceLineCreateManyBrokerageInvoiceInputEnvelope
+    connect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type BrokerageInvoiceLineUpdateManyWithoutBrokerageInvoiceNestedInput = {
+    create?: XOR<BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput, BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput> | BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput[] | BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput[]
+    connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput | BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput[]
+    upsert?: BrokerageInvoiceLineUpsertWithWhereUniqueWithoutBrokerageInvoiceInput | BrokerageInvoiceLineUpsertWithWhereUniqueWithoutBrokerageInvoiceInput[]
+    createMany?: BrokerageInvoiceLineCreateManyBrokerageInvoiceInputEnvelope
+    set?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    disconnect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    delete?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    connect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    update?: BrokerageInvoiceLineUpdateWithWhereUniqueWithoutBrokerageInvoiceInput | BrokerageInvoiceLineUpdateWithWhereUniqueWithoutBrokerageInvoiceInput[]
+    updateMany?: BrokerageInvoiceLineUpdateManyWithWhereWithoutBrokerageInvoiceInput | BrokerageInvoiceLineUpdateManyWithWhereWithoutBrokerageInvoiceInput[]
+    deleteMany?: BrokerageInvoiceLineScalarWhereInput | BrokerageInvoiceLineScalarWhereInput[]
+  }
+
+  export type BrokerageInvoiceLineUncheckedUpdateManyWithoutBrokerageInvoiceNestedInput = {
+    create?: XOR<BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput, BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput> | BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput[] | BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput[]
+    connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput | BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput[]
+    upsert?: BrokerageInvoiceLineUpsertWithWhereUniqueWithoutBrokerageInvoiceInput | BrokerageInvoiceLineUpsertWithWhereUniqueWithoutBrokerageInvoiceInput[]
+    createMany?: BrokerageInvoiceLineCreateManyBrokerageInvoiceInputEnvelope
+    set?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    disconnect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    delete?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    connect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    update?: BrokerageInvoiceLineUpdateWithWhereUniqueWithoutBrokerageInvoiceInput | BrokerageInvoiceLineUpdateWithWhereUniqueWithoutBrokerageInvoiceInput[]
+    updateMany?: BrokerageInvoiceLineUpdateManyWithWhereWithoutBrokerageInvoiceInput | BrokerageInvoiceLineUpdateManyWithWhereWithoutBrokerageInvoiceInput[]
+    deleteMany?: BrokerageInvoiceLineScalarWhereInput | BrokerageInvoiceLineScalarWhereInput[]
+  }
+
+  export type BrokerageInvoiceLineCreatebl_attachmentsInput = {
     set: string[]
   }
 
-  export type BrokerageInvoiceCreateattachmentsInput = {
+  export type BrokerageInvoiceLineCreateattachmentsInput = {
     set: string[]
   }
 
-  export type ContractCreateNestedOneWithoutBrokerageInvoiceInput = {
-    create?: XOR<ContractCreateWithoutBrokerageInvoiceInput, ContractUncheckedCreateWithoutBrokerageInvoiceInput>
-    connectOrCreate?: ContractCreateOrConnectWithoutBrokerageInvoiceInput
+  export type BrokerageInvoiceCreateNestedOneWithoutLinesInput = {
+    create?: XOR<BrokerageInvoiceCreateWithoutLinesInput, BrokerageInvoiceUncheckedCreateWithoutLinesInput>
+    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutLinesInput
+    connect?: BrokerageInvoiceWhereUniqueInput
+  }
+
+  export type ContractCreateNestedOneWithoutBrokerageInvoiceLinesInput = {
+    create?: XOR<ContractCreateWithoutBrokerageInvoiceLinesInput, ContractUncheckedCreateWithoutBrokerageInvoiceLinesInput>
+    connectOrCreate?: ContractCreateOrConnectWithoutBrokerageInvoiceLinesInput
     connect?: ContractWhereUniqueInput
+  }
+
+  export type BrokerageInvoiceLineUpdatebl_attachmentsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -22501,22 +25440,25 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type BrokerageInvoiceUpdatebl_attachmentsInput = {
+  export type BrokerageInvoiceLineUpdateattachmentsInput = {
     set?: string[]
     push?: string | string[]
   }
 
-  export type BrokerageInvoiceUpdateattachmentsInput = {
-    set?: string[]
-    push?: string | string[]
+  export type BrokerageInvoiceUpdateOneRequiredWithoutLinesNestedInput = {
+    create?: XOR<BrokerageInvoiceCreateWithoutLinesInput, BrokerageInvoiceUncheckedCreateWithoutLinesInput>
+    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutLinesInput
+    upsert?: BrokerageInvoiceUpsertWithoutLinesInput
+    connect?: BrokerageInvoiceWhereUniqueInput
+    update?: XOR<XOR<BrokerageInvoiceUpdateToOneWithWhereWithoutLinesInput, BrokerageInvoiceUpdateWithoutLinesInput>, BrokerageInvoiceUncheckedUpdateWithoutLinesInput>
   }
 
-  export type ContractUpdateOneRequiredWithoutBrokerageInvoiceNestedInput = {
-    create?: XOR<ContractCreateWithoutBrokerageInvoiceInput, ContractUncheckedCreateWithoutBrokerageInvoiceInput>
-    connectOrCreate?: ContractCreateOrConnectWithoutBrokerageInvoiceInput
-    upsert?: ContractUpsertWithoutBrokerageInvoiceInput
+  export type ContractUpdateOneRequiredWithoutBrokerageInvoiceLinesNestedInput = {
+    create?: XOR<ContractCreateWithoutBrokerageInvoiceLinesInput, ContractUncheckedCreateWithoutBrokerageInvoiceLinesInput>
+    connectOrCreate?: ContractCreateOrConnectWithoutBrokerageInvoiceLinesInput
+    upsert?: ContractUpsertWithoutBrokerageInvoiceLinesInput
     connect?: ContractWhereUniqueInput
-    update?: XOR<XOR<ContractUpdateToOneWithWhereWithoutBrokerageInvoiceInput, ContractUpdateWithoutBrokerageInvoiceInput>, ContractUncheckedUpdateWithoutBrokerageInvoiceInput>
+    update?: XOR<XOR<ContractUpdateToOneWithWhereWithoutBrokerageInvoiceLinesInput, ContractUpdateWithoutBrokerageInvoiceLinesInput>, ContractUncheckedUpdateWithoutBrokerageInvoiceLinesInput>
   }
 
   export type CustomerCreateNestedOneWithoutContactInput = {
@@ -22529,10 +25471,6 @@ export namespace Prisma {
     create?: XOR<SellerCreateWithoutContactInput, SellerUncheckedCreateWithoutContactInput>
     connectOrCreate?: SellerCreateOrConnectWithoutContactInput
     connect?: SellerWhereUniqueInput
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type CustomerUpdateOneWithoutContactNestedInput = {
@@ -22579,7 +25517,11 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type ContractCreatepayment_attachments_sellerInput = {
+  export type ContractCreatepayment_attachments_party_aInput = {
+    set: string[]
+  }
+
+  export type ContractCreatepayment_attachments_party_bInput = {
     set: string[]
   }
 
@@ -22599,7 +25541,27 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type ContractCreateother_terms_sellerInput = {
+  export type ContractCreateother_terms_party_aInput = {
+    set: string[]
+  }
+
+  export type ContractCreateother_terms_party_bInput = {
+    set: string[]
+  }
+
+  export type ContractCreateother_terms_party_a_party_bInput = {
+    set: string[]
+  }
+
+  export type ContractCreateother_terms_party_a_party_b_party_aInput = {
+    set: string[]
+  }
+
+  export type ContractCreateother_terms_party_b_party_aInput = {
+    set: string[]
+  }
+
+  export type ContractCreateother_terms_party_b_party_a_party_bInput = {
     set: string[]
   }
 
@@ -22607,47 +25569,23 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type ContractCreateother_terms_customerInput = {
-    set: string[]
+  export type BrokerageInvoiceLineCreateNestedManyWithoutContractInput = {
+    create?: XOR<BrokerageInvoiceLineCreateWithoutContractInput, BrokerageInvoiceLineUncheckedCreateWithoutContractInput> | BrokerageInvoiceLineCreateWithoutContractInput[] | BrokerageInvoiceLineUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutContractInput | BrokerageInvoiceLineCreateOrConnectWithoutContractInput[]
+    createMany?: BrokerageInvoiceLineCreateManyContractInputEnvelope
+    connect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
   }
 
-  export type ContractCreateother_terms_customer_sellerInput = {
-    set: string[]
-  }
-
-  export type ContractCreateother_terms_customer_seller_customerInput = {
-    set: string[]
-  }
-
-  export type ContractCreateother_terms_seller_customerInput = {
-    set: string[]
-  }
-
-  export type ContractCreateother_terms_seller_customer_sellerInput = {
-    set: string[]
-  }
-
-  export type ContractCreatepayment_attachments_customerInput = {
-    set: string[]
-  }
-
-  export type BrokerageInvoiceCreateNestedManyWithoutContractInput = {
-    create?: XOR<BrokerageInvoiceCreateWithoutContractInput, BrokerageInvoiceUncheckedCreateWithoutContractInput> | BrokerageInvoiceCreateWithoutContractInput[] | BrokerageInvoiceUncheckedCreateWithoutContractInput[]
-    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutContractInput | BrokerageInvoiceCreateOrConnectWithoutContractInput[]
-    createMany?: BrokerageInvoiceCreateManyContractInputEnvelope
-    connect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
-  }
-
-  export type CustomerCreateNestedOneWithoutContractInput = {
-    create?: XOR<CustomerCreateWithoutContractInput, CustomerUncheckedCreateWithoutContractInput>
-    connectOrCreate?: CustomerCreateOrConnectWithoutContractInput
+  export type CustomerCreateNestedOneWithoutContractsAsPartyAInput = {
+    create?: XOR<CustomerCreateWithoutContractsAsPartyAInput, CustomerUncheckedCreateWithoutContractsAsPartyAInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutContractsAsPartyAInput
     connect?: CustomerWhereUniqueInput
   }
 
-  export type SellerCreateNestedOneWithoutContractInput = {
-    create?: XOR<SellerCreateWithoutContractInput, SellerUncheckedCreateWithoutContractInput>
-    connectOrCreate?: SellerCreateOrConnectWithoutContractInput
-    connect?: SellerWhereUniqueInput
+  export type CustomerCreateNestedOneWithoutContractsAsPartyBInput = {
+    create?: XOR<CustomerCreateWithoutContractsAsPartyBInput, CustomerUncheckedCreateWithoutContractsAsPartyBInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutContractsAsPartyBInput
+    connect?: CustomerWhereUniqueInput
   }
 
   export type ContractProductCreateNestedManyWithoutContractInput = {
@@ -22675,11 +25613,11 @@ export namespace Prisma {
     connect?: SpecialConditionWhereUniqueInput | SpecialConditionWhereUniqueInput[]
   }
 
-  export type BrokerageInvoiceUncheckedCreateNestedManyWithoutContractInput = {
-    create?: XOR<BrokerageInvoiceCreateWithoutContractInput, BrokerageInvoiceUncheckedCreateWithoutContractInput> | BrokerageInvoiceCreateWithoutContractInput[] | BrokerageInvoiceUncheckedCreateWithoutContractInput[]
-    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutContractInput | BrokerageInvoiceCreateOrConnectWithoutContractInput[]
-    createMany?: BrokerageInvoiceCreateManyContractInputEnvelope
-    connect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+  export type BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput = {
+    create?: XOR<BrokerageInvoiceLineCreateWithoutContractInput, BrokerageInvoiceLineUncheckedCreateWithoutContractInput> | BrokerageInvoiceLineCreateWithoutContractInput[] | BrokerageInvoiceLineUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutContractInput | BrokerageInvoiceLineCreateOrConnectWithoutContractInput[]
+    createMany?: BrokerageInvoiceLineCreateManyContractInputEnvelope
+    connect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
   }
 
   export type ContractProductUncheckedCreateNestedManyWithoutContractInput = {
@@ -22707,10 +25645,6 @@ export namespace Prisma {
     connect?: SpecialConditionWhereUniqueInput | SpecialConditionWhereUniqueInput[]
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
   export type ContractUpdateproducts_idInput = {
     set?: number[]
     push?: number | number[]
@@ -22731,7 +25665,12 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type ContractUpdatepayment_attachments_sellerInput = {
+  export type ContractUpdatepayment_attachments_party_aInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ContractUpdatepayment_attachments_party_bInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -22756,7 +25695,32 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type ContractUpdateother_terms_sellerInput = {
+  export type ContractUpdateother_terms_party_aInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ContractUpdateother_terms_party_bInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ContractUpdateother_terms_party_a_party_bInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ContractUpdateother_terms_party_a_party_b_party_aInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ContractUpdateother_terms_party_b_party_aInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ContractUpdateother_terms_party_b_party_a_party_bInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -22766,64 +25730,34 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type ContractUpdateother_terms_customerInput = {
-    set?: string[]
-    push?: string | string[]
+  export type BrokerageInvoiceLineUpdateManyWithoutContractNestedInput = {
+    create?: XOR<BrokerageInvoiceLineCreateWithoutContractInput, BrokerageInvoiceLineUncheckedCreateWithoutContractInput> | BrokerageInvoiceLineCreateWithoutContractInput[] | BrokerageInvoiceLineUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutContractInput | BrokerageInvoiceLineCreateOrConnectWithoutContractInput[]
+    upsert?: BrokerageInvoiceLineUpsertWithWhereUniqueWithoutContractInput | BrokerageInvoiceLineUpsertWithWhereUniqueWithoutContractInput[]
+    createMany?: BrokerageInvoiceLineCreateManyContractInputEnvelope
+    set?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    disconnect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    delete?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    connect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    update?: BrokerageInvoiceLineUpdateWithWhereUniqueWithoutContractInput | BrokerageInvoiceLineUpdateWithWhereUniqueWithoutContractInput[]
+    updateMany?: BrokerageInvoiceLineUpdateManyWithWhereWithoutContractInput | BrokerageInvoiceLineUpdateManyWithWhereWithoutContractInput[]
+    deleteMany?: BrokerageInvoiceLineScalarWhereInput | BrokerageInvoiceLineScalarWhereInput[]
   }
 
-  export type ContractUpdateother_terms_customer_sellerInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type ContractUpdateother_terms_customer_seller_customerInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type ContractUpdateother_terms_seller_customerInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type ContractUpdateother_terms_seller_customer_sellerInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type ContractUpdatepayment_attachments_customerInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type BrokerageInvoiceUpdateManyWithoutContractNestedInput = {
-    create?: XOR<BrokerageInvoiceCreateWithoutContractInput, BrokerageInvoiceUncheckedCreateWithoutContractInput> | BrokerageInvoiceCreateWithoutContractInput[] | BrokerageInvoiceUncheckedCreateWithoutContractInput[]
-    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutContractInput | BrokerageInvoiceCreateOrConnectWithoutContractInput[]
-    upsert?: BrokerageInvoiceUpsertWithWhereUniqueWithoutContractInput | BrokerageInvoiceUpsertWithWhereUniqueWithoutContractInput[]
-    createMany?: BrokerageInvoiceCreateManyContractInputEnvelope
-    set?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
-    disconnect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
-    delete?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
-    connect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
-    update?: BrokerageInvoiceUpdateWithWhereUniqueWithoutContractInput | BrokerageInvoiceUpdateWithWhereUniqueWithoutContractInput[]
-    updateMany?: BrokerageInvoiceUpdateManyWithWhereWithoutContractInput | BrokerageInvoiceUpdateManyWithWhereWithoutContractInput[]
-    deleteMany?: BrokerageInvoiceScalarWhereInput | BrokerageInvoiceScalarWhereInput[]
-  }
-
-  export type CustomerUpdateOneRequiredWithoutContractNestedInput = {
-    create?: XOR<CustomerCreateWithoutContractInput, CustomerUncheckedCreateWithoutContractInput>
-    connectOrCreate?: CustomerCreateOrConnectWithoutContractInput
-    upsert?: CustomerUpsertWithoutContractInput
+  export type CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput = {
+    create?: XOR<CustomerCreateWithoutContractsAsPartyAInput, CustomerUncheckedCreateWithoutContractsAsPartyAInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutContractsAsPartyAInput
+    upsert?: CustomerUpsertWithoutContractsAsPartyAInput
     connect?: CustomerWhereUniqueInput
-    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutContractInput, CustomerUpdateWithoutContractInput>, CustomerUncheckedUpdateWithoutContractInput>
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutContractsAsPartyAInput, CustomerUpdateWithoutContractsAsPartyAInput>, CustomerUncheckedUpdateWithoutContractsAsPartyAInput>
   }
 
-  export type SellerUpdateOneRequiredWithoutContractNestedInput = {
-    create?: XOR<SellerCreateWithoutContractInput, SellerUncheckedCreateWithoutContractInput>
-    connectOrCreate?: SellerCreateOrConnectWithoutContractInput
-    upsert?: SellerUpsertWithoutContractInput
-    connect?: SellerWhereUniqueInput
-    update?: XOR<XOR<SellerUpdateToOneWithWhereWithoutContractInput, SellerUpdateWithoutContractInput>, SellerUncheckedUpdateWithoutContractInput>
+  export type CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput = {
+    create?: XOR<CustomerCreateWithoutContractsAsPartyBInput, CustomerUncheckedCreateWithoutContractsAsPartyBInput>
+    connectOrCreate?: CustomerCreateOrConnectWithoutContractsAsPartyBInput
+    upsert?: CustomerUpsertWithoutContractsAsPartyBInput
+    connect?: CustomerWhereUniqueInput
+    update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutContractsAsPartyBInput, CustomerUpdateWithoutContractsAsPartyBInput>, CustomerUncheckedUpdateWithoutContractsAsPartyBInput>
   }
 
   export type ContractProductUpdateManyWithoutContractNestedInput = {
@@ -22879,18 +25813,18 @@ export namespace Prisma {
     deleteMany?: SpecialConditionScalarWhereInput | SpecialConditionScalarWhereInput[]
   }
 
-  export type BrokerageInvoiceUncheckedUpdateManyWithoutContractNestedInput = {
-    create?: XOR<BrokerageInvoiceCreateWithoutContractInput, BrokerageInvoiceUncheckedCreateWithoutContractInput> | BrokerageInvoiceCreateWithoutContractInput[] | BrokerageInvoiceUncheckedCreateWithoutContractInput[]
-    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutContractInput | BrokerageInvoiceCreateOrConnectWithoutContractInput[]
-    upsert?: BrokerageInvoiceUpsertWithWhereUniqueWithoutContractInput | BrokerageInvoiceUpsertWithWhereUniqueWithoutContractInput[]
-    createMany?: BrokerageInvoiceCreateManyContractInputEnvelope
-    set?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
-    disconnect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
-    delete?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
-    connect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
-    update?: BrokerageInvoiceUpdateWithWhereUniqueWithoutContractInput | BrokerageInvoiceUpdateWithWhereUniqueWithoutContractInput[]
-    updateMany?: BrokerageInvoiceUpdateManyWithWhereWithoutContractInput | BrokerageInvoiceUpdateManyWithWhereWithoutContractInput[]
-    deleteMany?: BrokerageInvoiceScalarWhereInput | BrokerageInvoiceScalarWhereInput[]
+  export type BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput = {
+    create?: XOR<BrokerageInvoiceLineCreateWithoutContractInput, BrokerageInvoiceLineUncheckedCreateWithoutContractInput> | BrokerageInvoiceLineCreateWithoutContractInput[] | BrokerageInvoiceLineUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutContractInput | BrokerageInvoiceLineCreateOrConnectWithoutContractInput[]
+    upsert?: BrokerageInvoiceLineUpsertWithWhereUniqueWithoutContractInput | BrokerageInvoiceLineUpsertWithWhereUniqueWithoutContractInput[]
+    createMany?: BrokerageInvoiceLineCreateManyContractInputEnvelope
+    set?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    disconnect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    delete?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    connect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
+    update?: BrokerageInvoiceLineUpdateWithWhereUniqueWithoutContractInput | BrokerageInvoiceLineUpdateWithWhereUniqueWithoutContractInput[]
+    updateMany?: BrokerageInvoiceLineUpdateManyWithWhereWithoutContractInput | BrokerageInvoiceLineUpdateManyWithWhereWithoutContractInput[]
+    deleteMany?: BrokerageInvoiceLineScalarWhereInput | BrokerageInvoiceLineScalarWhereInput[]
   }
 
   export type ContractProductUncheckedUpdateManyWithoutContractNestedInput = {
@@ -22997,10 +25931,17 @@ export namespace Prisma {
     connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
   }
 
-  export type ContractCreateNestedManyWithoutCustomerInput = {
-    create?: XOR<ContractCreateWithoutCustomerInput, ContractUncheckedCreateWithoutCustomerInput> | ContractCreateWithoutCustomerInput[] | ContractUncheckedCreateWithoutCustomerInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutCustomerInput | ContractCreateOrConnectWithoutCustomerInput[]
-    createMany?: ContractCreateManyCustomerInputEnvelope
+  export type ContractCreateNestedManyWithoutPartyAInput = {
+    create?: XOR<ContractCreateWithoutPartyAInput, ContractUncheckedCreateWithoutPartyAInput> | ContractCreateWithoutPartyAInput[] | ContractUncheckedCreateWithoutPartyAInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPartyAInput | ContractCreateOrConnectWithoutPartyAInput[]
+    createMany?: ContractCreateManyPartyAInputEnvelope
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+  }
+
+  export type ContractCreateNestedManyWithoutPartyBInput = {
+    create?: XOR<ContractCreateWithoutPartyBInput, ContractUncheckedCreateWithoutPartyBInput> | ContractCreateWithoutPartyBInput[] | ContractUncheckedCreateWithoutPartyBInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPartyBInput | ContractCreateOrConnectWithoutPartyBInput[]
+    createMany?: ContractCreateManyPartyBInputEnvelope
     connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
   }
 
@@ -23011,10 +25952,17 @@ export namespace Prisma {
     connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
   }
 
-  export type ContractUncheckedCreateNestedManyWithoutCustomerInput = {
-    create?: XOR<ContractCreateWithoutCustomerInput, ContractUncheckedCreateWithoutCustomerInput> | ContractCreateWithoutCustomerInput[] | ContractUncheckedCreateWithoutCustomerInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutCustomerInput | ContractCreateOrConnectWithoutCustomerInput[]
-    createMany?: ContractCreateManyCustomerInputEnvelope
+  export type ContractUncheckedCreateNestedManyWithoutPartyAInput = {
+    create?: XOR<ContractCreateWithoutPartyAInput, ContractUncheckedCreateWithoutPartyAInput> | ContractCreateWithoutPartyAInput[] | ContractUncheckedCreateWithoutPartyAInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPartyAInput | ContractCreateOrConnectWithoutPartyAInput[]
+    createMany?: ContractCreateManyPartyAInputEnvelope
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+  }
+
+  export type ContractUncheckedCreateNestedManyWithoutPartyBInput = {
+    create?: XOR<ContractCreateWithoutPartyBInput, ContractUncheckedCreateWithoutPartyBInput> | ContractCreateWithoutPartyBInput[] | ContractUncheckedCreateWithoutPartyBInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPartyBInput | ContractCreateOrConnectWithoutPartyBInput[]
+    createMany?: ContractCreateManyPartyBInputEnvelope
     connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
   }
 
@@ -23042,17 +25990,31 @@ export namespace Prisma {
     deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[]
   }
 
-  export type ContractUpdateManyWithoutCustomerNestedInput = {
-    create?: XOR<ContractCreateWithoutCustomerInput, ContractUncheckedCreateWithoutCustomerInput> | ContractCreateWithoutCustomerInput[] | ContractUncheckedCreateWithoutCustomerInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutCustomerInput | ContractCreateOrConnectWithoutCustomerInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutCustomerInput | ContractUpsertWithWhereUniqueWithoutCustomerInput[]
-    createMany?: ContractCreateManyCustomerInputEnvelope
+  export type ContractUpdateManyWithoutPartyANestedInput = {
+    create?: XOR<ContractCreateWithoutPartyAInput, ContractUncheckedCreateWithoutPartyAInput> | ContractCreateWithoutPartyAInput[] | ContractUncheckedCreateWithoutPartyAInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPartyAInput | ContractCreateOrConnectWithoutPartyAInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutPartyAInput | ContractUpsertWithWhereUniqueWithoutPartyAInput[]
+    createMany?: ContractCreateManyPartyAInputEnvelope
     set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
     disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
     delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
     connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutCustomerInput | ContractUpdateWithWhereUniqueWithoutCustomerInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutCustomerInput | ContractUpdateManyWithWhereWithoutCustomerInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutPartyAInput | ContractUpdateWithWhereUniqueWithoutPartyAInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutPartyAInput | ContractUpdateManyWithWhereWithoutPartyAInput[]
+    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  }
+
+  export type ContractUpdateManyWithoutPartyBNestedInput = {
+    create?: XOR<ContractCreateWithoutPartyBInput, ContractUncheckedCreateWithoutPartyBInput> | ContractCreateWithoutPartyBInput[] | ContractUncheckedCreateWithoutPartyBInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPartyBInput | ContractCreateOrConnectWithoutPartyBInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutPartyBInput | ContractUpsertWithWhereUniqueWithoutPartyBInput[]
+    createMany?: ContractCreateManyPartyBInputEnvelope
+    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutPartyBInput | ContractUpdateWithWhereUniqueWithoutPartyBInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutPartyBInput | ContractUpdateManyWithWhereWithoutPartyBInput[]
     deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
   }
 
@@ -23070,17 +26032,31 @@ export namespace Prisma {
     deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[]
   }
 
-  export type ContractUncheckedUpdateManyWithoutCustomerNestedInput = {
-    create?: XOR<ContractCreateWithoutCustomerInput, ContractUncheckedCreateWithoutCustomerInput> | ContractCreateWithoutCustomerInput[] | ContractUncheckedCreateWithoutCustomerInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutCustomerInput | ContractCreateOrConnectWithoutCustomerInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutCustomerInput | ContractUpsertWithWhereUniqueWithoutCustomerInput[]
-    createMany?: ContractCreateManyCustomerInputEnvelope
+  export type ContractUncheckedUpdateManyWithoutPartyANestedInput = {
+    create?: XOR<ContractCreateWithoutPartyAInput, ContractUncheckedCreateWithoutPartyAInput> | ContractCreateWithoutPartyAInput[] | ContractUncheckedCreateWithoutPartyAInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPartyAInput | ContractCreateOrConnectWithoutPartyAInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutPartyAInput | ContractUpsertWithWhereUniqueWithoutPartyAInput[]
+    createMany?: ContractCreateManyPartyAInputEnvelope
     set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
     disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
     delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
     connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutCustomerInput | ContractUpdateWithWhereUniqueWithoutCustomerInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutCustomerInput | ContractUpdateManyWithWhereWithoutCustomerInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutPartyAInput | ContractUpdateWithWhereUniqueWithoutPartyAInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutPartyAInput | ContractUpdateManyWithWhereWithoutPartyAInput[]
+    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  }
+
+  export type ContractUncheckedUpdateManyWithoutPartyBNestedInput = {
+    create?: XOR<ContractCreateWithoutPartyBInput, ContractUncheckedCreateWithoutPartyBInput> | ContractCreateWithoutPartyBInput[] | ContractUncheckedCreateWithoutPartyBInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPartyBInput | ContractCreateOrConnectWithoutPartyBInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutPartyBInput | ContractUpsertWithWhereUniqueWithoutPartyBInput[]
+    createMany?: ContractCreateManyPartyBInputEnvelope
+    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutPartyBInput | ContractUpdateWithWhereUniqueWithoutPartyBInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutPartyBInput | ContractUpdateManyWithWhereWithoutPartyBInput[]
     deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
   }
 
@@ -23280,13 +26256,6 @@ export namespace Prisma {
     connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
   }
 
-  export type ContractCreateNestedManyWithoutSellerInput = {
-    create?: XOR<ContractCreateWithoutSellerInput, ContractUncheckedCreateWithoutSellerInput> | ContractCreateWithoutSellerInput[] | ContractUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutSellerInput | ContractCreateOrConnectWithoutSellerInput[]
-    createMany?: ContractCreateManySellerInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-  }
-
   export type ProductCreateNestedManyWithoutSellerInput = {
     create?: XOR<ProductCreateWithoutSellerInput, ProductUncheckedCreateWithoutSellerInput> | ProductCreateWithoutSellerInput[] | ProductUncheckedCreateWithoutSellerInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutSellerInput | ProductCreateOrConnectWithoutSellerInput[]
@@ -23299,13 +26268,6 @@ export namespace Prisma {
     connectOrCreate?: ContactCreateOrConnectWithoutSellerInput | ContactCreateOrConnectWithoutSellerInput[]
     createMany?: ContactCreateManySellerInputEnvelope
     connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
-  }
-
-  export type ContractUncheckedCreateNestedManyWithoutSellerInput = {
-    create?: XOR<ContractCreateWithoutSellerInput, ContractUncheckedCreateWithoutSellerInput> | ContractCreateWithoutSellerInput[] | ContractUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutSellerInput | ContractCreateOrConnectWithoutSellerInput[]
-    createMany?: ContractCreateManySellerInputEnvelope
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
   }
 
   export type ProductUncheckedCreateNestedManyWithoutSellerInput = {
@@ -23339,20 +26301,6 @@ export namespace Prisma {
     deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[]
   }
 
-  export type ContractUpdateManyWithoutSellerNestedInput = {
-    create?: XOR<ContractCreateWithoutSellerInput, ContractUncheckedCreateWithoutSellerInput> | ContractCreateWithoutSellerInput[] | ContractUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutSellerInput | ContractCreateOrConnectWithoutSellerInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutSellerInput | ContractUpsertWithWhereUniqueWithoutSellerInput[]
-    createMany?: ContractCreateManySellerInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutSellerInput | ContractUpdateWithWhereUniqueWithoutSellerInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutSellerInput | ContractUpdateManyWithWhereWithoutSellerInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
-  }
-
   export type ProductUpdateManyWithoutSellerNestedInput = {
     create?: XOR<ProductCreateWithoutSellerInput, ProductUncheckedCreateWithoutSellerInput> | ProductCreateWithoutSellerInput[] | ProductUncheckedCreateWithoutSellerInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutSellerInput | ProductCreateOrConnectWithoutSellerInput[]
@@ -23379,20 +26327,6 @@ export namespace Prisma {
     update?: ContactUpdateWithWhereUniqueWithoutSellerInput | ContactUpdateWithWhereUniqueWithoutSellerInput[]
     updateMany?: ContactUpdateManyWithWhereWithoutSellerInput | ContactUpdateManyWithWhereWithoutSellerInput[]
     deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[]
-  }
-
-  export type ContractUncheckedUpdateManyWithoutSellerNestedInput = {
-    create?: XOR<ContractCreateWithoutSellerInput, ContractUncheckedCreateWithoutSellerInput> | ContractCreateWithoutSellerInput[] | ContractUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: ContractCreateOrConnectWithoutSellerInput | ContractCreateOrConnectWithoutSellerInput[]
-    upsert?: ContractUpsertWithWhereUniqueWithoutSellerInput | ContractUpsertWithWhereUniqueWithoutSellerInput[]
-    createMany?: ContractCreateManySellerInputEnvelope
-    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
-    update?: ContractUpdateWithWhereUniqueWithoutSellerInput | ContractUpdateWithWhereUniqueWithoutSellerInput[]
-    updateMany?: ContractUpdateManyWithWhereWithoutSellerInput | ContractUpdateManyWithWhereWithoutSellerInput[]
-    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
   }
 
   export type ProductUncheckedUpdateManyWithoutSellerNestedInput = {
@@ -23581,22 +26515,6 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -23611,15 +26529,15 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -23637,6 +26555,47 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -23689,31 +26648,6 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -23737,8 +26671,10 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -23757,33 +26693,31 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceCreateNestedManyWithoutContractInput
-    Customer: CustomerCreateNestedOneWithoutContractInput
-    Seller: SellerCreateNestedOneWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineCreateNestedManyWithoutContractInput
+    PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
+    PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
@@ -23797,9 +26731,12 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    seller_id: number
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    customer_party_b_id: number
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -23818,32 +26755,29 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedCreateNestedManyWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
@@ -23881,9 +26815,12 @@ export namespace Prisma {
     date_expiration?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_expiration_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    date_signature_seller?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    date_expiration_signature_seller?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    seller_id?: IntFilter<"Contract"> | number
+    date_signature_party_a?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    date_expiration_signature_party_a?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    date_signature_party_b?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    date_expiration_signature_party_b?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    customer_party_a_id?: IntFilter<"Contract"> | number
+    customer_party_b_id?: IntFilter<"Contract"> | number
     products_id?: IntNullableListFilter<"Contract">
     bording_date?: DateTimeNullableFilter<"Contract"> | Date | string | null
     mt_value?: FloatFilter<"Contract"> | number
@@ -23902,42 +26839,136 @@ export namespace Prisma {
     payment_status?: StringFilter<"Contract"> | string
     payment_notes?: StringFilter<"Contract"> | string
     payment_attachments?: StringNullableListFilter<"Contract">
-    payment_notes_seller?: StringFilter<"Contract"> | string
-    payment_attachments_seller?: StringNullableListFilter<"Contract">
+    payment_notes_party_a?: StringFilter<"Contract"> | string
+    payment_attachments_party_a?: StringNullableListFilter<"Contract">
+    payment_notes_party_b?: StringFilter<"Contract"> | string
+    payment_attachments_party_b?: StringNullableListFilter<"Contract">
     special_terms?: StringNullableListFilter<"Contract">
     business_terms?: StringNullableListFilter<"Contract">
     legal_terms?: StringNullableListFilter<"Contract">
     other_terms?: StringNullableListFilter<"Contract">
-    other_terms_seller?: StringNullableListFilter<"Contract">
-    commission_seller?: FloatFilter<"Contract"> | number
+    other_terms_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b?: StringNullableListFilter<"Contract">
+    other_terms_party_a_party_b?: StringNullableListFilter<"Contract">
+    other_terms_party_a_party_b_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b_party_a?: StringNullableListFilter<"Contract">
+    other_terms_party_b_party_a_party_b?: StringNullableListFilter<"Contract">
+    commission_party_a?: FloatFilter<"Contract"> | number
+    commission_party_b?: FloatFilter<"Contract"> | number
     comission_total?: FloatFilter<"Contract"> | number
     attachments?: StringNullableListFilter<"Contract">
     createdAt?: DateTimeFilter<"Contract"> | Date | string
     active?: BoolFilter<"Contract"> | boolean
     status?: StringFilter<"Contract"> | string
-    commission_customer?: FloatFilter<"Contract"> | number
-    customer_id?: IntFilter<"Contract"> | number
-    date_expiration_signature_customer?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    date_signature_customer?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    other_terms_customer?: StringNullableListFilter<"Contract">
-    other_terms_customer_seller?: StringNullableListFilter<"Contract">
-    other_terms_customer_seller_customer?: StringNullableListFilter<"Contract">
-    other_terms_seller_customer?: StringNullableListFilter<"Contract">
-    other_terms_seller_customer_seller?: StringNullableListFilter<"Contract">
-    payment_attachments_customer?: StringNullableListFilter<"Contract">
-    payment_notes_customer?: StringFilter<"Contract"> | string
     deleted?: BoolFilter<"Contract"> | boolean
   }
 
-  export type ContractCreateWithoutBrokerageInvoiceInput = {
+  export type BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput = {
+    bl_date: Date | string
+    bl_number: string
+    bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
+    comission_total_usd: number
+    attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    Contract: ContractCreateNestedOneWithoutBrokerageInvoiceLinesInput
+  }
+
+  export type BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput = {
+    id?: number
+    contract_id: number
+    bl_date: Date | string
+    bl_number: string
+    bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
+    comission_total_usd: number
+    attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput = {
+    where: BrokerageInvoiceLineWhereUniqueInput
+    create: XOR<BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput, BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput>
+  }
+
+  export type BrokerageInvoiceLineCreateManyBrokerageInvoiceInputEnvelope = {
+    data: BrokerageInvoiceLineCreateManyBrokerageInvoiceInput | BrokerageInvoiceLineCreateManyBrokerageInvoiceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BrokerageInvoiceLineUpsertWithWhereUniqueWithoutBrokerageInvoiceInput = {
+    where: BrokerageInvoiceLineWhereUniqueInput
+    update: XOR<BrokerageInvoiceLineUpdateWithoutBrokerageInvoiceInput, BrokerageInvoiceLineUncheckedUpdateWithoutBrokerageInvoiceInput>
+    create: XOR<BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput, BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput>
+  }
+
+  export type BrokerageInvoiceLineUpdateWithWhereUniqueWithoutBrokerageInvoiceInput = {
+    where: BrokerageInvoiceLineWhereUniqueInput
+    data: XOR<BrokerageInvoiceLineUpdateWithoutBrokerageInvoiceInput, BrokerageInvoiceLineUncheckedUpdateWithoutBrokerageInvoiceInput>
+  }
+
+  export type BrokerageInvoiceLineUpdateManyWithWhereWithoutBrokerageInvoiceInput = {
+    where: BrokerageInvoiceLineScalarWhereInput
+    data: XOR<BrokerageInvoiceLineUpdateManyMutationInput, BrokerageInvoiceLineUncheckedUpdateManyWithoutBrokerageInvoiceInput>
+  }
+
+  export type BrokerageInvoiceLineScalarWhereInput = {
+    AND?: BrokerageInvoiceLineScalarWhereInput | BrokerageInvoiceLineScalarWhereInput[]
+    OR?: BrokerageInvoiceLineScalarWhereInput[]
+    NOT?: BrokerageInvoiceLineScalarWhereInput | BrokerageInvoiceLineScalarWhereInput[]
+    id?: IntFilter<"BrokerageInvoiceLine"> | number
+    brokerage_invoice_id?: IntFilter<"BrokerageInvoiceLine"> | number
+    contract_id?: IntFilter<"BrokerageInvoiceLine"> | number
+    bl_date?: DateTimeFilter<"BrokerageInvoiceLine"> | Date | string
+    bl_number?: StringFilter<"BrokerageInvoiceLine"> | string
+    bl_attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
+    comission_total_usd?: FloatFilter<"BrokerageInvoiceLine"> | number
+    attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
+    createdAt?: DateTimeFilter<"BrokerageInvoiceLine"> | Date | string
+    active?: BoolFilter<"BrokerageInvoiceLine"> | boolean
+    status?: StringFilter<"BrokerageInvoiceLine"> | string
+    deleted?: BoolFilter<"BrokerageInvoiceLine"> | boolean
+  }
+
+  export type BrokerageInvoiceCreateWithoutLinesInput = {
+    number?: string | null
+    invoice_date?: Date | string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type BrokerageInvoiceUncheckedCreateWithoutLinesInput = {
+    id?: number
+    number?: string | null
+    invoice_date?: Date | string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type BrokerageInvoiceCreateOrConnectWithoutLinesInput = {
+    where: BrokerageInvoiceWhereUniqueInput
+    create: XOR<BrokerageInvoiceCreateWithoutLinesInput, BrokerageInvoiceUncheckedCreateWithoutLinesInput>
+  }
+
+  export type ContractCreateWithoutBrokerageInvoiceLinesInput = {
     name: string
     description: string
     date_creation?: Date | string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -23956,39 +26987,37 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    Customer: CustomerCreateNestedOneWithoutContractInput
-    Seller: SellerCreateNestedOneWithoutContractInput
+    PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
+    PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
   }
 
-  export type ContractUncheckedCreateWithoutBrokerageInvoiceInput = {
+  export type ContractUncheckedCreateWithoutBrokerageInvoiceLinesInput = {
     id?: number
     name: string
     description: string
@@ -23996,9 +27025,12 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    seller_id: number
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    customer_party_b_id: number
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -24017,30 +27049,27 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
@@ -24048,31 +27077,63 @@ export namespace Prisma {
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
   }
 
-  export type ContractCreateOrConnectWithoutBrokerageInvoiceInput = {
+  export type ContractCreateOrConnectWithoutBrokerageInvoiceLinesInput = {
     where: ContractWhereUniqueInput
-    create: XOR<ContractCreateWithoutBrokerageInvoiceInput, ContractUncheckedCreateWithoutBrokerageInvoiceInput>
+    create: XOR<ContractCreateWithoutBrokerageInvoiceLinesInput, ContractUncheckedCreateWithoutBrokerageInvoiceLinesInput>
   }
 
-  export type ContractUpsertWithoutBrokerageInvoiceInput = {
-    update: XOR<ContractUpdateWithoutBrokerageInvoiceInput, ContractUncheckedUpdateWithoutBrokerageInvoiceInput>
-    create: XOR<ContractCreateWithoutBrokerageInvoiceInput, ContractUncheckedCreateWithoutBrokerageInvoiceInput>
+  export type BrokerageInvoiceUpsertWithoutLinesInput = {
+    update: XOR<BrokerageInvoiceUpdateWithoutLinesInput, BrokerageInvoiceUncheckedUpdateWithoutLinesInput>
+    create: XOR<BrokerageInvoiceCreateWithoutLinesInput, BrokerageInvoiceUncheckedCreateWithoutLinesInput>
+    where?: BrokerageInvoiceWhereInput
+  }
+
+  export type BrokerageInvoiceUpdateToOneWithWhereWithoutLinesInput = {
+    where?: BrokerageInvoiceWhereInput
+    data: XOR<BrokerageInvoiceUpdateWithoutLinesInput, BrokerageInvoiceUncheckedUpdateWithoutLinesInput>
+  }
+
+  export type BrokerageInvoiceUpdateWithoutLinesInput = {
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BrokerageInvoiceUncheckedUpdateWithoutLinesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ContractUpsertWithoutBrokerageInvoiceLinesInput = {
+    update: XOR<ContractUpdateWithoutBrokerageInvoiceLinesInput, ContractUncheckedUpdateWithoutBrokerageInvoiceLinesInput>
+    create: XOR<ContractCreateWithoutBrokerageInvoiceLinesInput, ContractUncheckedCreateWithoutBrokerageInvoiceLinesInput>
     where?: ContractWhereInput
   }
 
-  export type ContractUpdateToOneWithWhereWithoutBrokerageInvoiceInput = {
+  export type ContractUpdateToOneWithWhereWithoutBrokerageInvoiceLinesInput = {
     where?: ContractWhereInput
-    data: XOR<ContractUpdateWithoutBrokerageInvoiceInput, ContractUncheckedUpdateWithoutBrokerageInvoiceInput>
+    data: XOR<ContractUpdateWithoutBrokerageInvoiceLinesInput, ContractUncheckedUpdateWithoutBrokerageInvoiceLinesInput>
   }
 
-  export type ContractUpdateWithoutBrokerageInvoiceInput = {
+  export type ContractUpdateWithoutBrokerageInvoiceLinesInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -24091,39 +27152,37 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    Customer?: CustomerUpdateOneRequiredWithoutContractNestedInput
-    Seller?: SellerUpdateOneRequiredWithoutContractNestedInput
+    PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
+    PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
   }
 
-  export type ContractUncheckedUpdateWithoutBrokerageInvoiceInput = {
+  export type ContractUncheckedUpdateWithoutBrokerageInvoiceLinesInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -24131,9 +27190,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -24152,30 +27214,27 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
@@ -24200,7 +27259,8 @@ export namespace Prisma {
     active?: boolean
     status: string
     deleted?: boolean
-    Contract?: ContractCreateNestedManyWithoutCustomerInput
+    ContractsAsPartyA?: ContractCreateNestedManyWithoutPartyAInput
+    ContractsAsPartyB?: ContractCreateNestedManyWithoutPartyBInput
   }
 
   export type CustomerUncheckedCreateWithoutContactInput = {
@@ -24221,7 +27281,8 @@ export namespace Prisma {
     active?: boolean
     status: string
     deleted?: boolean
-    Contract?: ContractUncheckedCreateNestedManyWithoutCustomerInput
+    ContractsAsPartyA?: ContractUncheckedCreateNestedManyWithoutPartyAInput
+    ContractsAsPartyB?: ContractUncheckedCreateNestedManyWithoutPartyBInput
   }
 
   export type CustomerCreateOrConnectWithoutContactInput = {
@@ -24245,7 +27306,6 @@ export namespace Prisma {
     active?: boolean
     status: string
     deleted?: boolean
-    Contract?: ContractCreateNestedManyWithoutSellerInput
     Product?: ProductCreateNestedManyWithoutSellerInput
   }
 
@@ -24266,7 +27326,6 @@ export namespace Prisma {
     active?: boolean
     status: string
     deleted?: boolean
-    Contract?: ContractUncheckedCreateNestedManyWithoutSellerInput
     Product?: ProductUncheckedCreateNestedManyWithoutSellerInput
   }
 
@@ -24303,7 +27362,8 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    Contract?: ContractUpdateManyWithoutCustomerNestedInput
+    ContractsAsPartyA?: ContractUpdateManyWithoutPartyANestedInput
+    ContractsAsPartyB?: ContractUpdateManyWithoutPartyBNestedInput
   }
 
   export type CustomerUncheckedUpdateWithoutContactInput = {
@@ -24324,7 +27384,8 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    Contract?: ContractUncheckedUpdateManyWithoutCustomerNestedInput
+    ContractsAsPartyA?: ContractUncheckedUpdateManyWithoutPartyANestedInput
+    ContractsAsPartyB?: ContractUncheckedUpdateManyWithoutPartyBNestedInput
   }
 
   export type SellerUpsertWithoutContactInput = {
@@ -24354,7 +27415,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    Contract?: ContractUpdateManyWithoutSellerNestedInput
     Product?: ProductUpdateManyWithoutSellerNestedInput
   }
 
@@ -24375,50 +27435,47 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    Contract?: ContractUncheckedUpdateManyWithoutSellerNestedInput
     Product?: ProductUncheckedUpdateManyWithoutSellerNestedInput
   }
 
-  export type BrokerageInvoiceCreateWithoutContractInput = {
-    comission_total_usd: number
-    comission_total_brl: number
+  export type BrokerageInvoiceLineCreateWithoutContractInput = {
     bl_date: Date | string
     bl_number: string
-    bl_attachments?: BrokerageInvoiceCreatebl_attachmentsInput | string[]
-    ptax: number
-    attachments?: BrokerageInvoiceCreateattachmentsInput | string[]
+    bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
+    comission_total_usd: number
+    attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
     deleted?: boolean
+    BrokerageInvoice: BrokerageInvoiceCreateNestedOneWithoutLinesInput
   }
 
-  export type BrokerageInvoiceUncheckedCreateWithoutContractInput = {
+  export type BrokerageInvoiceLineUncheckedCreateWithoutContractInput = {
     id?: number
-    comission_total_usd: number
-    comission_total_brl: number
+    brokerage_invoice_id: number
     bl_date: Date | string
     bl_number: string
-    bl_attachments?: BrokerageInvoiceCreatebl_attachmentsInput | string[]
-    ptax: number
-    attachments?: BrokerageInvoiceCreateattachmentsInput | string[]
+    bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
+    comission_total_usd: number
+    attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
     deleted?: boolean
   }
 
-  export type BrokerageInvoiceCreateOrConnectWithoutContractInput = {
-    where: BrokerageInvoiceWhereUniqueInput
-    create: XOR<BrokerageInvoiceCreateWithoutContractInput, BrokerageInvoiceUncheckedCreateWithoutContractInput>
+  export type BrokerageInvoiceLineCreateOrConnectWithoutContractInput = {
+    where: BrokerageInvoiceLineWhereUniqueInput
+    create: XOR<BrokerageInvoiceLineCreateWithoutContractInput, BrokerageInvoiceLineUncheckedCreateWithoutContractInput>
   }
 
-  export type BrokerageInvoiceCreateManyContractInputEnvelope = {
-    data: BrokerageInvoiceCreateManyContractInput | BrokerageInvoiceCreateManyContractInput[]
+  export type BrokerageInvoiceLineCreateManyContractInputEnvelope = {
+    data: BrokerageInvoiceLineCreateManyContractInput | BrokerageInvoiceLineCreateManyContractInput[]
     skipDuplicates?: boolean
   }
 
-  export type CustomerCreateWithoutContractInput = {
+  export type CustomerCreateWithoutContractsAsPartyAInput = {
     name: string
     full_name: string
     full_address: string
@@ -24436,9 +27493,10 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Contact?: ContactCreateNestedManyWithoutCustomerInput
+    ContractsAsPartyB?: ContractCreateNestedManyWithoutPartyBInput
   }
 
-  export type CustomerUncheckedCreateWithoutContractInput = {
+  export type CustomerUncheckedCreateWithoutContractsAsPartyAInput = {
     id?: number
     name: string
     full_name: string
@@ -24457,22 +27515,24 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Contact?: ContactUncheckedCreateNestedManyWithoutCustomerInput
+    ContractsAsPartyB?: ContractUncheckedCreateNestedManyWithoutPartyBInput
   }
 
-  export type CustomerCreateOrConnectWithoutContractInput = {
+  export type CustomerCreateOrConnectWithoutContractsAsPartyAInput = {
     where: CustomerWhereUniqueInput
-    create: XOR<CustomerCreateWithoutContractInput, CustomerUncheckedCreateWithoutContractInput>
+    create: XOR<CustomerCreateWithoutContractsAsPartyAInput, CustomerUncheckedCreateWithoutContractsAsPartyAInput>
   }
 
-  export type SellerCreateWithoutContractInput = {
-    company_name: string
+  export type CustomerCreateWithoutContractsAsPartyBInput = {
+    name: string
+    full_name: string
     full_address: string
     country: string
     tax_id: string
     contact_name: string
     whatsapp: string
-    phone?: SellerCreatephoneInput | string[]
-    email?: SellerCreateemailInput | string[]
+    phone?: CustomerCreatephoneInput | string[]
+    email?: CustomerCreateemailInput | string[]
     website: string
     note: string
     description: string
@@ -24480,20 +27540,21 @@ export namespace Prisma {
     active?: boolean
     status: string
     deleted?: boolean
-    Contact?: ContactCreateNestedManyWithoutSellerInput
-    Product?: ProductCreateNestedManyWithoutSellerInput
+    Contact?: ContactCreateNestedManyWithoutCustomerInput
+    ContractsAsPartyA?: ContractCreateNestedManyWithoutPartyAInput
   }
 
-  export type SellerUncheckedCreateWithoutContractInput = {
+  export type CustomerUncheckedCreateWithoutContractsAsPartyBInput = {
     id?: number
-    company_name: string
+    name: string
+    full_name: string
     full_address: string
     country: string
     tax_id: string
     contact_name: string
     whatsapp: string
-    phone?: SellerCreatephoneInput | string[]
-    email?: SellerCreateemailInput | string[]
+    phone?: CustomerCreatephoneInput | string[]
+    email?: CustomerCreateemailInput | string[]
     website: string
     note: string
     description: string
@@ -24501,13 +27562,13 @@ export namespace Prisma {
     active?: boolean
     status: string
     deleted?: boolean
-    Contact?: ContactUncheckedCreateNestedManyWithoutSellerInput
-    Product?: ProductUncheckedCreateNestedManyWithoutSellerInput
+    Contact?: ContactUncheckedCreateNestedManyWithoutCustomerInput
+    ContractsAsPartyA?: ContractUncheckedCreateNestedManyWithoutPartyAInput
   }
 
-  export type SellerCreateOrConnectWithoutContractInput = {
-    where: SellerWhereUniqueInput
-    create: XOR<SellerCreateWithoutContractInput, SellerUncheckedCreateWithoutContractInput>
+  export type CustomerCreateOrConnectWithoutContractsAsPartyBInput = {
+    where: CustomerWhereUniqueInput
+    create: XOR<CustomerCreateWithoutContractsAsPartyBInput, CustomerUncheckedCreateWithoutContractsAsPartyBInput>
   }
 
   export type ContractProductCreateWithoutContractInput = {
@@ -24679,53 +27740,34 @@ export namespace Prisma {
     create: XOR<SpecialConditionCreateWithoutContractInput, SpecialConditionUncheckedCreateWithoutContractInput>
   }
 
-  export type BrokerageInvoiceUpsertWithWhereUniqueWithoutContractInput = {
-    where: BrokerageInvoiceWhereUniqueInput
-    update: XOR<BrokerageInvoiceUpdateWithoutContractInput, BrokerageInvoiceUncheckedUpdateWithoutContractInput>
-    create: XOR<BrokerageInvoiceCreateWithoutContractInput, BrokerageInvoiceUncheckedCreateWithoutContractInput>
+  export type BrokerageInvoiceLineUpsertWithWhereUniqueWithoutContractInput = {
+    where: BrokerageInvoiceLineWhereUniqueInput
+    update: XOR<BrokerageInvoiceLineUpdateWithoutContractInput, BrokerageInvoiceLineUncheckedUpdateWithoutContractInput>
+    create: XOR<BrokerageInvoiceLineCreateWithoutContractInput, BrokerageInvoiceLineUncheckedCreateWithoutContractInput>
   }
 
-  export type BrokerageInvoiceUpdateWithWhereUniqueWithoutContractInput = {
-    where: BrokerageInvoiceWhereUniqueInput
-    data: XOR<BrokerageInvoiceUpdateWithoutContractInput, BrokerageInvoiceUncheckedUpdateWithoutContractInput>
+  export type BrokerageInvoiceLineUpdateWithWhereUniqueWithoutContractInput = {
+    where: BrokerageInvoiceLineWhereUniqueInput
+    data: XOR<BrokerageInvoiceLineUpdateWithoutContractInput, BrokerageInvoiceLineUncheckedUpdateWithoutContractInput>
   }
 
-  export type BrokerageInvoiceUpdateManyWithWhereWithoutContractInput = {
-    where: BrokerageInvoiceScalarWhereInput
-    data: XOR<BrokerageInvoiceUpdateManyMutationInput, BrokerageInvoiceUncheckedUpdateManyWithoutContractInput>
+  export type BrokerageInvoiceLineUpdateManyWithWhereWithoutContractInput = {
+    where: BrokerageInvoiceLineScalarWhereInput
+    data: XOR<BrokerageInvoiceLineUpdateManyMutationInput, BrokerageInvoiceLineUncheckedUpdateManyWithoutContractInput>
   }
 
-  export type BrokerageInvoiceScalarWhereInput = {
-    AND?: BrokerageInvoiceScalarWhereInput | BrokerageInvoiceScalarWhereInput[]
-    OR?: BrokerageInvoiceScalarWhereInput[]
-    NOT?: BrokerageInvoiceScalarWhereInput | BrokerageInvoiceScalarWhereInput[]
-    id?: IntFilter<"BrokerageInvoice"> | number
-    contract_id?: IntFilter<"BrokerageInvoice"> | number
-    comission_total_usd?: FloatFilter<"BrokerageInvoice"> | number
-    comission_total_brl?: FloatFilter<"BrokerageInvoice"> | number
-    bl_date?: DateTimeFilter<"BrokerageInvoice"> | Date | string
-    bl_number?: StringFilter<"BrokerageInvoice"> | string
-    bl_attachments?: StringNullableListFilter<"BrokerageInvoice">
-    ptax?: FloatFilter<"BrokerageInvoice"> | number
-    attachments?: StringNullableListFilter<"BrokerageInvoice">
-    createdAt?: DateTimeFilter<"BrokerageInvoice"> | Date | string
-    active?: BoolFilter<"BrokerageInvoice"> | boolean
-    status?: StringFilter<"BrokerageInvoice"> | string
-    deleted?: BoolFilter<"BrokerageInvoice"> | boolean
-  }
-
-  export type CustomerUpsertWithoutContractInput = {
-    update: XOR<CustomerUpdateWithoutContractInput, CustomerUncheckedUpdateWithoutContractInput>
-    create: XOR<CustomerCreateWithoutContractInput, CustomerUncheckedCreateWithoutContractInput>
+  export type CustomerUpsertWithoutContractsAsPartyAInput = {
+    update: XOR<CustomerUpdateWithoutContractsAsPartyAInput, CustomerUncheckedUpdateWithoutContractsAsPartyAInput>
+    create: XOR<CustomerCreateWithoutContractsAsPartyAInput, CustomerUncheckedCreateWithoutContractsAsPartyAInput>
     where?: CustomerWhereInput
   }
 
-  export type CustomerUpdateToOneWithWhereWithoutContractInput = {
+  export type CustomerUpdateToOneWithWhereWithoutContractsAsPartyAInput = {
     where?: CustomerWhereInput
-    data: XOR<CustomerUpdateWithoutContractInput, CustomerUncheckedUpdateWithoutContractInput>
+    data: XOR<CustomerUpdateWithoutContractsAsPartyAInput, CustomerUncheckedUpdateWithoutContractsAsPartyAInput>
   }
 
-  export type CustomerUpdateWithoutContractInput = {
+  export type CustomerUpdateWithoutContractsAsPartyAInput = {
     name?: StringFieldUpdateOperationsInput | string
     full_name?: StringFieldUpdateOperationsInput | string
     full_address?: StringFieldUpdateOperationsInput | string
@@ -24743,9 +27785,10 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contact?: ContactUpdateManyWithoutCustomerNestedInput
+    ContractsAsPartyB?: ContractUpdateManyWithoutPartyBNestedInput
   }
 
-  export type CustomerUncheckedUpdateWithoutContractInput = {
+  export type CustomerUncheckedUpdateWithoutContractsAsPartyAInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     full_name?: StringFieldUpdateOperationsInput | string
@@ -24764,28 +27807,30 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contact?: ContactUncheckedUpdateManyWithoutCustomerNestedInput
+    ContractsAsPartyB?: ContractUncheckedUpdateManyWithoutPartyBNestedInput
   }
 
-  export type SellerUpsertWithoutContractInput = {
-    update: XOR<SellerUpdateWithoutContractInput, SellerUncheckedUpdateWithoutContractInput>
-    create: XOR<SellerCreateWithoutContractInput, SellerUncheckedCreateWithoutContractInput>
-    where?: SellerWhereInput
+  export type CustomerUpsertWithoutContractsAsPartyBInput = {
+    update: XOR<CustomerUpdateWithoutContractsAsPartyBInput, CustomerUncheckedUpdateWithoutContractsAsPartyBInput>
+    create: XOR<CustomerCreateWithoutContractsAsPartyBInput, CustomerUncheckedCreateWithoutContractsAsPartyBInput>
+    where?: CustomerWhereInput
   }
 
-  export type SellerUpdateToOneWithWhereWithoutContractInput = {
-    where?: SellerWhereInput
-    data: XOR<SellerUpdateWithoutContractInput, SellerUncheckedUpdateWithoutContractInput>
+  export type CustomerUpdateToOneWithWhereWithoutContractsAsPartyBInput = {
+    where?: CustomerWhereInput
+    data: XOR<CustomerUpdateWithoutContractsAsPartyBInput, CustomerUncheckedUpdateWithoutContractsAsPartyBInput>
   }
 
-  export type SellerUpdateWithoutContractInput = {
-    company_name?: StringFieldUpdateOperationsInput | string
+  export type CustomerUpdateWithoutContractsAsPartyBInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    full_name?: StringFieldUpdateOperationsInput | string
     full_address?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     tax_id?: StringFieldUpdateOperationsInput | string
     contact_name?: StringFieldUpdateOperationsInput | string
     whatsapp?: StringFieldUpdateOperationsInput | string
-    phone?: SellerUpdatephoneInput | string[]
-    email?: SellerUpdateemailInput | string[]
+    phone?: CustomerUpdatephoneInput | string[]
+    email?: CustomerUpdateemailInput | string[]
     website?: StringFieldUpdateOperationsInput | string
     note?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -24793,20 +27838,21 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    Contact?: ContactUpdateManyWithoutSellerNestedInput
-    Product?: ProductUpdateManyWithoutSellerNestedInput
+    Contact?: ContactUpdateManyWithoutCustomerNestedInput
+    ContractsAsPartyA?: ContractUpdateManyWithoutPartyANestedInput
   }
 
-  export type SellerUncheckedUpdateWithoutContractInput = {
+  export type CustomerUncheckedUpdateWithoutContractsAsPartyBInput = {
     id?: IntFieldUpdateOperationsInput | number
-    company_name?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    full_name?: StringFieldUpdateOperationsInput | string
     full_address?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     tax_id?: StringFieldUpdateOperationsInput | string
     contact_name?: StringFieldUpdateOperationsInput | string
     whatsapp?: StringFieldUpdateOperationsInput | string
-    phone?: SellerUpdatephoneInput | string[]
-    email?: SellerUpdateemailInput | string[]
+    phone?: CustomerUpdatephoneInput | string[]
+    email?: CustomerUpdateemailInput | string[]
     website?: StringFieldUpdateOperationsInput | string
     note?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -24814,8 +27860,8 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    Contact?: ContactUncheckedUpdateManyWithoutSellerNestedInput
-    Product?: ProductUncheckedUpdateManyWithoutSellerNestedInput
+    Contact?: ContactUncheckedUpdateManyWithoutCustomerNestedInput
+    ContractsAsPartyA?: ContractUncheckedUpdateManyWithoutPartyANestedInput
   }
 
   export type ContractProductUpsertWithWhereUniqueWithoutContractInput = {
@@ -24974,8 +28020,10 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -24994,33 +28042,31 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceCreateNestedManyWithoutContractInput
-    Customer: CustomerCreateNestedOneWithoutContractInput
-    Seller: SellerCreateNestedOneWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineCreateNestedManyWithoutContractInput
+    PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
+    PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
@@ -25034,9 +28080,12 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    seller_id: number
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    customer_party_b_id: number
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -25055,32 +28104,29 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedCreateNestedManyWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
@@ -25181,8 +28227,10 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -25201,33 +28249,31 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUpdateManyWithoutContractNestedInput
-    Customer?: CustomerUpdateOneRequiredWithoutContractNestedInput
-    Seller?: SellerUpdateOneRequiredWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUpdateManyWithoutContractNestedInput
+    PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
+    PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
@@ -25241,9 +28287,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -25262,32 +28311,29 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedUpdateManyWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
@@ -25428,15 +28474,17 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ContractCreateWithoutCustomerInput = {
+  export type ContractCreateWithoutPartyAInput = {
     name: string
     description: string
     date_creation?: Date | string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -25455,39 +28503,37 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceCreateNestedManyWithoutContractInput
-    Seller: SellerCreateNestedOneWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineCreateNestedManyWithoutContractInput
+    PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
   }
 
-  export type ContractUncheckedCreateWithoutCustomerInput = {
+  export type ContractUncheckedCreateWithoutPartyAInput = {
     id?: number
     name: string
     description: string
@@ -25495,9 +28541,11 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    seller_id: number
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_b_id: number
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -25516,44 +28564,171 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedCreateNestedManyWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
   }
 
-  export type ContractCreateOrConnectWithoutCustomerInput = {
+  export type ContractCreateOrConnectWithoutPartyAInput = {
     where: ContractWhereUniqueInput
-    create: XOR<ContractCreateWithoutCustomerInput, ContractUncheckedCreateWithoutCustomerInput>
+    create: XOR<ContractCreateWithoutPartyAInput, ContractUncheckedCreateWithoutPartyAInput>
   }
 
-  export type ContractCreateManyCustomerInputEnvelope = {
-    data: ContractCreateManyCustomerInput | ContractCreateManyCustomerInput[]
+  export type ContractCreateManyPartyAInputEnvelope = {
+    data: ContractCreateManyPartyAInput | ContractCreateManyPartyAInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ContractCreateWithoutPartyBInput = {
+    name: string
+    description: string
+    date_creation?: Date | string | null
+    date_expiration?: Date | string | null
+    date_signature?: Date | string | null
+    date_expiration_signature?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    products_id?: ContractCreateproducts_idInput | number[]
+    bording_date?: Date | string | null
+    mt_value: number
+    destination_country: string
+    destination_port: string
+    shipping_company: string
+    shipment_date?: Date | string | null
+    si_sent: boolean
+    packing?: ContractCreatepackingInput | string[]
+    incoterm?: ContractCreateincotermInput | string[]
+    payment_terms: string
+    payment_method: string
+    payment_currency: string
+    payment_amount: number
+    payment_date?: Date | string | null
+    payment_status: string
+    payment_notes: string
+    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractCreatespecial_termsInput | string[]
+    business_terms?: ContractCreatebusiness_termsInput | string[]
+    legal_terms?: ContractCreatelegal_termsInput | string[]
+    other_terms?: ContractCreateother_termsInput | string[]
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
+    comission_total: number
+    attachments?: ContractCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineCreateNestedManyWithoutContractInput
+    PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
+    ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
+    ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    Product?: ProductCreateNestedManyWithoutContractInput
+    SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+  }
+
+  export type ContractUncheckedCreateWithoutPartyBInput = {
+    id?: number
+    name: string
+    description: string
+    date_creation?: Date | string | null
+    date_expiration?: Date | string | null
+    date_signature?: Date | string | null
+    date_expiration_signature?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    products_id?: ContractCreateproducts_idInput | number[]
+    bording_date?: Date | string | null
+    mt_value: number
+    destination_country: string
+    destination_port: string
+    shipping_company: string
+    shipment_date?: Date | string | null
+    si_sent: boolean
+    packing?: ContractCreatepackingInput | string[]
+    incoterm?: ContractCreateincotermInput | string[]
+    payment_terms: string
+    payment_method: string
+    payment_currency: string
+    payment_amount: number
+    payment_date?: Date | string | null
+    payment_status: string
+    payment_notes: string
+    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractCreatespecial_termsInput | string[]
+    business_terms?: ContractCreatebusiness_termsInput | string[]
+    legal_terms?: ContractCreatelegal_termsInput | string[]
+    other_terms?: ContractCreateother_termsInput | string[]
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
+    comission_total: number
+    attachments?: ContractCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
+    ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
+    ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    Product?: ProductUncheckedCreateNestedManyWithoutContractInput
+    SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+  }
+
+  export type ContractCreateOrConnectWithoutPartyBInput = {
+    where: ContractWhereUniqueInput
+    create: XOR<ContractCreateWithoutPartyBInput, ContractUncheckedCreateWithoutPartyBInput>
+  }
+
+  export type ContractCreateManyPartyBInputEnvelope = {
+    data: ContractCreateManyPartyBInput | ContractCreateManyPartyBInput[]
     skipDuplicates?: boolean
   }
 
@@ -25601,20 +28776,36 @@ export namespace Prisma {
     deleted?: BoolFilter<"Contact"> | boolean
   }
 
-  export type ContractUpsertWithWhereUniqueWithoutCustomerInput = {
+  export type ContractUpsertWithWhereUniqueWithoutPartyAInput = {
     where: ContractWhereUniqueInput
-    update: XOR<ContractUpdateWithoutCustomerInput, ContractUncheckedUpdateWithoutCustomerInput>
-    create: XOR<ContractCreateWithoutCustomerInput, ContractUncheckedCreateWithoutCustomerInput>
+    update: XOR<ContractUpdateWithoutPartyAInput, ContractUncheckedUpdateWithoutPartyAInput>
+    create: XOR<ContractCreateWithoutPartyAInput, ContractUncheckedCreateWithoutPartyAInput>
   }
 
-  export type ContractUpdateWithWhereUniqueWithoutCustomerInput = {
+  export type ContractUpdateWithWhereUniqueWithoutPartyAInput = {
     where: ContractWhereUniqueInput
-    data: XOR<ContractUpdateWithoutCustomerInput, ContractUncheckedUpdateWithoutCustomerInput>
+    data: XOR<ContractUpdateWithoutPartyAInput, ContractUncheckedUpdateWithoutPartyAInput>
   }
 
-  export type ContractUpdateManyWithWhereWithoutCustomerInput = {
+  export type ContractUpdateManyWithWhereWithoutPartyAInput = {
     where: ContractScalarWhereInput
-    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutCustomerInput>
+    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutPartyAInput>
+  }
+
+  export type ContractUpsertWithWhereUniqueWithoutPartyBInput = {
+    where: ContractWhereUniqueInput
+    update: XOR<ContractUpdateWithoutPartyBInput, ContractUncheckedUpdateWithoutPartyBInput>
+    create: XOR<ContractCreateWithoutPartyBInput, ContractUncheckedCreateWithoutPartyBInput>
+  }
+
+  export type ContractUpdateWithWhereUniqueWithoutPartyBInput = {
+    where: ContractWhereUniqueInput
+    data: XOR<ContractUpdateWithoutPartyBInput, ContractUncheckedUpdateWithoutPartyBInput>
+  }
+
+  export type ContractUpdateManyWithWhereWithoutPartyBInput = {
+    where: ContractScalarWhereInput
+    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutPartyBInput>
   }
 
   export type ProductCreateWithoutFileInput = {
@@ -25815,7 +29006,6 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Contact?: ContactCreateNestedManyWithoutSellerInput
-    Contract?: ContractCreateNestedManyWithoutSellerInput
   }
 
   export type SellerUncheckedCreateWithoutProductInput = {
@@ -25836,7 +29026,6 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Contact?: ContactUncheckedCreateNestedManyWithoutSellerInput
-    Contract?: ContractUncheckedCreateNestedManyWithoutSellerInput
   }
 
   export type SellerCreateOrConnectWithoutProductInput = {
@@ -25851,8 +29040,10 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -25871,33 +29062,31 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceCreateNestedManyWithoutContractInput
-    Customer: CustomerCreateNestedOneWithoutContractInput
-    Seller: SellerCreateNestedOneWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineCreateNestedManyWithoutContractInput
+    PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
+    PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
@@ -25911,9 +29100,12 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    seller_id: number
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    customer_party_b_id: number
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -25932,32 +29124,29 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedCreateNestedManyWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
@@ -26049,7 +29238,6 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contact?: ContactUpdateManyWithoutSellerNestedInput
-    Contract?: ContractUpdateManyWithoutSellerNestedInput
   }
 
   export type SellerUncheckedUpdateWithoutProductInput = {
@@ -26070,7 +29258,6 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contact?: ContactUncheckedUpdateManyWithoutSellerNestedInput
-    Contract?: ContractUncheckedUpdateManyWithoutSellerNestedInput
   }
 
   export type ContractUpsertWithWhereUniqueWithoutProductInput = {
@@ -26180,135 +29367,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ContractCreateWithoutSellerInput = {
-    name: string
-    description: string
-    date_creation?: Date | string | null
-    date_expiration?: Date | string | null
-    date_signature?: Date | string | null
-    date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    products_id?: ContractCreateproducts_idInput | number[]
-    bording_date?: Date | string | null
-    mt_value: number
-    destination_country: string
-    destination_port: string
-    shipping_company: string
-    shipment_date?: Date | string | null
-    si_sent: boolean
-    packing?: ContractCreatepackingInput | string[]
-    incoterm?: ContractCreateincotermInput | string[]
-    payment_terms: string
-    payment_method: string
-    payment_currency: string
-    payment_amount: number
-    payment_date?: Date | string | null
-    payment_status: string
-    payment_notes: string
-    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
-    special_terms?: ContractCreatespecial_termsInput | string[]
-    business_terms?: ContractCreatebusiness_termsInput | string[]
-    legal_terms?: ContractCreatelegal_termsInput | string[]
-    other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
-    comission_total: number
-    attachments?: ContractCreateattachmentsInput | string[]
-    createdAt?: Date | string
-    active?: boolean
-    status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
-    deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceCreateNestedManyWithoutContractInput
-    Customer: CustomerCreateNestedOneWithoutContractInput
-    ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
-    ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
-    Product?: ProductCreateNestedManyWithoutContractInput
-    SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
-  }
-
-  export type ContractUncheckedCreateWithoutSellerInput = {
-    id?: number
-    name: string
-    description: string
-    date_creation?: Date | string | null
-    date_expiration?: Date | string | null
-    date_signature?: Date | string | null
-    date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    products_id?: ContractCreateproducts_idInput | number[]
-    bording_date?: Date | string | null
-    mt_value: number
-    destination_country: string
-    destination_port: string
-    shipping_company: string
-    shipment_date?: Date | string | null
-    si_sent: boolean
-    packing?: ContractCreatepackingInput | string[]
-    incoterm?: ContractCreateincotermInput | string[]
-    payment_terms: string
-    payment_method: string
-    payment_currency: string
-    payment_amount: number
-    payment_date?: Date | string | null
-    payment_status: string
-    payment_notes: string
-    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
-    special_terms?: ContractCreatespecial_termsInput | string[]
-    business_terms?: ContractCreatebusiness_termsInput | string[]
-    legal_terms?: ContractCreatelegal_termsInput | string[]
-    other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
-    comission_total: number
-    attachments?: ContractCreateattachmentsInput | string[]
-    createdAt?: Date | string
-    active?: boolean
-    status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
-    deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedCreateNestedManyWithoutContractInput
-    ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
-    ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
-    Product?: ProductUncheckedCreateNestedManyWithoutContractInput
-    SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
-  }
-
-  export type ContractCreateOrConnectWithoutSellerInput = {
-    where: ContractWhereUniqueInput
-    create: XOR<ContractCreateWithoutSellerInput, ContractUncheckedCreateWithoutSellerInput>
-  }
-
-  export type ContractCreateManySellerInputEnvelope = {
-    data: ContractCreateManySellerInput | ContractCreateManySellerInput[]
-    skipDuplicates?: boolean
-  }
-
   export type ProductCreateWithoutSellerInput = {
     sku: string
     name: string
@@ -26402,22 +29460,6 @@ export namespace Prisma {
     data: XOR<ContactUpdateManyMutationInput, ContactUncheckedUpdateManyWithoutSellerInput>
   }
 
-  export type ContractUpsertWithWhereUniqueWithoutSellerInput = {
-    where: ContractWhereUniqueInput
-    update: XOR<ContractUpdateWithoutSellerInput, ContractUncheckedUpdateWithoutSellerInput>
-    create: XOR<ContractCreateWithoutSellerInput, ContractUncheckedCreateWithoutSellerInput>
-  }
-
-  export type ContractUpdateWithWhereUniqueWithoutSellerInput = {
-    where: ContractWhereUniqueInput
-    data: XOR<ContractUpdateWithoutSellerInput, ContractUncheckedUpdateWithoutSellerInput>
-  }
-
-  export type ContractUpdateManyWithWhereWithoutSellerInput = {
-    where: ContractScalarWhereInput
-    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutSellerInput>
-  }
-
   export type ProductUpsertWithWhereUniqueWithoutSellerInput = {
     where: ProductWhereUniqueInput
     update: XOR<ProductUpdateWithoutSellerInput, ProductUncheckedUpdateWithoutSellerInput>
@@ -26441,8 +29483,10 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -26461,33 +29505,31 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceCreateNestedManyWithoutContractInput
-    Customer: CustomerCreateNestedOneWithoutContractInput
-    Seller: SellerCreateNestedOneWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineCreateNestedManyWithoutContractInput
+    PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
+    PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
@@ -26501,9 +29543,12 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    seller_id: number
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    customer_party_b_id: number
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -26522,32 +29567,29 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedCreateNestedManyWithoutContractInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
@@ -26581,8 +29623,10 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -26601,33 +29645,31 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUpdateManyWithoutContractNestedInput
-    Customer?: CustomerUpdateOneRequiredWithoutContractNestedInput
-    Seller?: SellerUpdateOneRequiredWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUpdateManyWithoutContractNestedInput
+    PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
+    PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
@@ -26641,9 +29683,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -26662,32 +29707,29 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedUpdateManyWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
@@ -26701,9 +29743,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -26722,42 +29767,93 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type BrokerageInvoiceCreateManyContractInput = {
+  export type BrokerageInvoiceLineCreateManyBrokerageInvoiceInput = {
     id?: number
-    comission_total_usd: number
-    comission_total_brl: number
+    contract_id: number
     bl_date: Date | string
     bl_number: string
-    bl_attachments?: BrokerageInvoiceCreatebl_attachmentsInput | string[]
-    ptax: number
-    attachments?: BrokerageInvoiceCreateattachmentsInput | string[]
+    bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
+    comission_total_usd: number
+    attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type BrokerageInvoiceLineUpdateWithoutBrokerageInvoiceInput = {
+    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bl_number?: StringFieldUpdateOperationsInput | string
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
+    comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    Contract?: ContractUpdateOneRequiredWithoutBrokerageInvoiceLinesNestedInput
+  }
+
+  export type BrokerageInvoiceLineUncheckedUpdateWithoutBrokerageInvoiceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contract_id?: IntFieldUpdateOperationsInput | number
+    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bl_number?: StringFieldUpdateOperationsInput | string
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
+    comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BrokerageInvoiceLineUncheckedUpdateManyWithoutBrokerageInvoiceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contract_id?: IntFieldUpdateOperationsInput | number
+    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bl_number?: StringFieldUpdateOperationsInput | string
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
+    comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BrokerageInvoiceLineCreateManyContractInput = {
+    id?: number
+    brokerage_invoice_id: number
+    bl_date: Date | string
+    bl_number: string
+    bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
+    comission_total_usd: number
+    attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
@@ -26775,44 +29871,41 @@ export namespace Prisma {
     deleted?: boolean
   }
 
-  export type BrokerageInvoiceUpdateWithoutContractInput = {
-    comission_total_usd?: FloatFieldUpdateOperationsInput | number
-    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+  export type BrokerageInvoiceLineUpdateWithoutContractInput = {
     bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
     bl_number?: StringFieldUpdateOperationsInput | string
-    bl_attachments?: BrokerageInvoiceUpdatebl_attachmentsInput | string[]
-    ptax?: FloatFieldUpdateOperationsInput | number
-    attachments?: BrokerageInvoiceUpdateattachmentsInput | string[]
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
+    comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoice?: BrokerageInvoiceUpdateOneRequiredWithoutLinesNestedInput
+  }
+
+  export type BrokerageInvoiceLineUncheckedUpdateWithoutContractInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    brokerage_invoice_id?: IntFieldUpdateOperationsInput | number
+    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    bl_number?: StringFieldUpdateOperationsInput | string
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
+    comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type BrokerageInvoiceUncheckedUpdateWithoutContractInput = {
+  export type BrokerageInvoiceLineUncheckedUpdateManyWithoutContractInput = {
     id?: IntFieldUpdateOperationsInput | number
-    comission_total_usd?: FloatFieldUpdateOperationsInput | number
-    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    brokerage_invoice_id?: IntFieldUpdateOperationsInput | number
     bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
     bl_number?: StringFieldUpdateOperationsInput | string
-    bl_attachments?: BrokerageInvoiceUpdatebl_attachmentsInput | string[]
-    ptax?: FloatFieldUpdateOperationsInput | number
-    attachments?: BrokerageInvoiceUpdateattachmentsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    deleted?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type BrokerageInvoiceUncheckedUpdateManyWithoutContractInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
-    comission_total_brl?: FloatFieldUpdateOperationsInput | number
-    bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    bl_number?: StringFieldUpdateOperationsInput | string
-    bl_attachments?: BrokerageInvoiceUpdatebl_attachmentsInput | string[]
-    ptax?: FloatFieldUpdateOperationsInput | number
-    attachments?: BrokerageInvoiceUpdateattachmentsInput | string[]
+    attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -27059,7 +30152,7 @@ export namespace Prisma {
     deleted?: boolean
   }
 
-  export type ContractCreateManyCustomerInput = {
+  export type ContractCreateManyPartyAInput = {
     id?: number
     name: string
     description: string
@@ -27067,9 +30160,11 @@ export namespace Prisma {
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    seller_id: number
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_b_id: number
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
@@ -27088,29 +30183,82 @@ export namespace Prisma {
     payment_status: string
     payment_notes: string
     payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
     special_terms?: ContractCreatespecial_termsInput | string[]
     business_terms?: ContractCreatebusiness_termsInput | string[]
     legal_terms?: ContractCreatelegal_termsInput | string[]
     other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
     comission_total: number
     attachments?: ContractCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
     status: string
-    commission_customer: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
+    deleted?: boolean
+  }
+
+  export type ContractCreateManyPartyBInput = {
+    id?: number
+    name: string
+    description: string
+    date_creation?: Date | string | null
+    date_expiration?: Date | string | null
+    date_signature?: Date | string | null
+    date_expiration_signature?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    products_id?: ContractCreateproducts_idInput | number[]
+    bording_date?: Date | string | null
+    mt_value: number
+    destination_country: string
+    destination_port: string
+    shipping_company: string
+    shipment_date?: Date | string | null
+    si_sent: boolean
+    packing?: ContractCreatepackingInput | string[]
+    incoterm?: ContractCreateincotermInput | string[]
+    payment_terms: string
+    payment_method: string
+    payment_currency: string
+    payment_amount: number
+    payment_date?: Date | string | null
+    payment_status: string
+    payment_notes: string
+    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractCreatespecial_termsInput | string[]
+    business_terms?: ContractCreatebusiness_termsInput | string[]
+    legal_terms?: ContractCreatelegal_termsInput | string[]
+    other_terms?: ContractCreateother_termsInput | string[]
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
+    comission_total: number
+    attachments?: ContractCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
     deleted?: boolean
   }
 
@@ -27185,15 +30333,17 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ContractUpdateWithoutCustomerInput = {
+  export type ContractUpdateWithoutPartyAInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -27212,39 +30362,37 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUpdateManyWithoutContractNestedInput
-    Seller?: SellerUpdateOneRequiredWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUpdateManyWithoutContractNestedInput
+    PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
   }
 
-  export type ContractUncheckedUpdateWithoutCustomerInput = {
+  export type ContractUncheckedUpdateWithoutPartyAInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -27252,9 +30400,11 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -27273,38 +30423,36 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedUpdateManyWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
   }
 
-  export type ContractUncheckedUpdateManyWithoutCustomerInput = {
+  export type ContractUncheckedUpdateManyWithoutPartyAInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -27312,9 +30460,11 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -27333,29 +30483,201 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ContractUpdateWithoutPartyBInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    products_id?: ContractUpdateproducts_idInput | number[]
+    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mt_value?: FloatFieldUpdateOperationsInput | number
+    destination_country?: StringFieldUpdateOperationsInput | string
+    destination_port?: StringFieldUpdateOperationsInput | string
+    shipping_company?: StringFieldUpdateOperationsInput | string
+    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    si_sent?: BoolFieldUpdateOperationsInput | boolean
+    packing?: ContractUpdatepackingInput | string[]
+    incoterm?: ContractUpdateincotermInput | string[]
+    payment_terms?: StringFieldUpdateOperationsInput | string
+    payment_method?: StringFieldUpdateOperationsInput | string
+    payment_currency?: StringFieldUpdateOperationsInput | string
+    payment_amount?: FloatFieldUpdateOperationsInput | number
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment_status?: StringFieldUpdateOperationsInput | string
+    payment_notes?: StringFieldUpdateOperationsInput | string
+    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractUpdatespecial_termsInput | string[]
+    business_terms?: ContractUpdatebusiness_termsInput | string[]
+    legal_terms?: ContractUpdatelegal_termsInput | string[]
+    other_terms?: ContractUpdateother_termsInput | string[]
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
+    comission_total?: FloatFieldUpdateOperationsInput | number
+    attachments?: ContractUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUpdateManyWithoutContractNestedInput
+    PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
+    ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
+    ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    Product?: ProductUpdateManyWithoutContractNestedInput
+    SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+  }
+
+  export type ContractUncheckedUpdateWithoutPartyBInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    products_id?: ContractUpdateproducts_idInput | number[]
+    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mt_value?: FloatFieldUpdateOperationsInput | number
+    destination_country?: StringFieldUpdateOperationsInput | string
+    destination_port?: StringFieldUpdateOperationsInput | string
+    shipping_company?: StringFieldUpdateOperationsInput | string
+    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    si_sent?: BoolFieldUpdateOperationsInput | boolean
+    packing?: ContractUpdatepackingInput | string[]
+    incoterm?: ContractUpdateincotermInput | string[]
+    payment_terms?: StringFieldUpdateOperationsInput | string
+    payment_method?: StringFieldUpdateOperationsInput | string
+    payment_currency?: StringFieldUpdateOperationsInput | string
+    payment_amount?: FloatFieldUpdateOperationsInput | number
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment_status?: StringFieldUpdateOperationsInput | string
+    payment_notes?: StringFieldUpdateOperationsInput | string
+    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractUpdatespecial_termsInput | string[]
+    business_terms?: ContractUpdatebusiness_termsInput | string[]
+    legal_terms?: ContractUpdatelegal_termsInput | string[]
+    other_terms?: ContractUpdateother_termsInput | string[]
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
+    comission_total?: FloatFieldUpdateOperationsInput | number
+    attachments?: ContractUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
+    ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
+    ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
+    SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+  }
+
+  export type ContractUncheckedUpdateManyWithoutPartyBInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    products_id?: ContractUpdateproducts_idInput | number[]
+    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mt_value?: FloatFieldUpdateOperationsInput | number
+    destination_country?: StringFieldUpdateOperationsInput | string
+    destination_port?: StringFieldUpdateOperationsInput | string
+    shipping_company?: StringFieldUpdateOperationsInput | string
+    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    si_sent?: BoolFieldUpdateOperationsInput | boolean
+    packing?: ContractUpdatepackingInput | string[]
+    incoterm?: ContractUpdateincotermInput | string[]
+    payment_terms?: StringFieldUpdateOperationsInput | string
+    payment_method?: StringFieldUpdateOperationsInput | string
+    payment_currency?: StringFieldUpdateOperationsInput | string
+    payment_amount?: FloatFieldUpdateOperationsInput | number
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment_status?: StringFieldUpdateOperationsInput | string
+    payment_notes?: StringFieldUpdateOperationsInput | string
+    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractUpdatespecial_termsInput | string[]
+    business_terms?: ContractUpdatebusiness_termsInput | string[]
+    legal_terms?: ContractUpdatelegal_termsInput | string[]
+    other_terms?: ContractUpdateother_termsInput | string[]
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
+    comission_total?: FloatFieldUpdateOperationsInput | number
+    attachments?: ContractUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -27423,8 +30745,10 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -27443,33 +30767,31 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUpdateManyWithoutContractNestedInput
-    Customer?: CustomerUpdateOneRequiredWithoutContractNestedInput
-    Seller?: SellerUpdateOneRequiredWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUpdateManyWithoutContractNestedInput
+    PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
+    PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
@@ -27483,9 +30805,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -27504,32 +30829,29 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedUpdateManyWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
@@ -27543,9 +30865,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -27564,30 +30889,27 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -27653,61 +30975,6 @@ export namespace Prisma {
     zip_code?: string | null
     email?: NullableJsonNullValueInput | InputJsonValue
     phone?: NullableJsonNullValueInput | InputJsonValue
-    deleted?: boolean
-  }
-
-  export type ContractCreateManySellerInput = {
-    id?: number
-    name: string
-    description: string
-    date_creation?: Date | string | null
-    date_expiration?: Date | string | null
-    date_signature?: Date | string | null
-    date_expiration_signature?: Date | string | null
-    date_signature_seller?: Date | string | null
-    date_expiration_signature_seller?: Date | string | null
-    products_id?: ContractCreateproducts_idInput | number[]
-    bording_date?: Date | string | null
-    mt_value: number
-    destination_country: string
-    destination_port: string
-    shipping_company: string
-    shipment_date?: Date | string | null
-    si_sent: boolean
-    packing?: ContractCreatepackingInput | string[]
-    incoterm?: ContractCreateincotermInput | string[]
-    payment_terms: string
-    payment_method: string
-    payment_currency: string
-    payment_amount: number
-    payment_date?: Date | string | null
-    payment_status: string
-    payment_notes: string
-    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
-    payment_notes_seller: string
-    payment_attachments_seller?: ContractCreatepayment_attachments_sellerInput | string[]
-    special_terms?: ContractCreatespecial_termsInput | string[]
-    business_terms?: ContractCreatebusiness_termsInput | string[]
-    legal_terms?: ContractCreatelegal_termsInput | string[]
-    other_terms?: ContractCreateother_termsInput | string[]
-    other_terms_seller?: ContractCreateother_terms_sellerInput | string[]
-    commission_seller: number
-    comission_total: number
-    attachments?: ContractCreateattachmentsInput | string[]
-    createdAt?: Date | string
-    active?: boolean
-    status: string
-    commission_customer: number
-    customer_id: number
-    date_expiration_signature_customer?: Date | string | null
-    date_signature_customer?: Date | string | null
-    other_terms_customer?: ContractCreateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractCreateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractCreateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractCreateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractCreateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractCreatepayment_attachments_customerInput | string[]
-    payment_notes_customer: string
     deleted?: boolean
   }
 
@@ -27810,180 +31077,6 @@ export namespace Prisma {
     zip_code?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableJsonNullValueInput | InputJsonValue
     phone?: NullableJsonNullValueInput | InputJsonValue
-    deleted?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type ContractUpdateWithoutSellerInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    products_id?: ContractUpdateproducts_idInput | number[]
-    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    mt_value?: FloatFieldUpdateOperationsInput | number
-    destination_country?: StringFieldUpdateOperationsInput | string
-    destination_port?: StringFieldUpdateOperationsInput | string
-    shipping_company?: StringFieldUpdateOperationsInput | string
-    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    si_sent?: BoolFieldUpdateOperationsInput | boolean
-    packing?: ContractUpdatepackingInput | string[]
-    incoterm?: ContractUpdateincotermInput | string[]
-    payment_terms?: StringFieldUpdateOperationsInput | string
-    payment_method?: StringFieldUpdateOperationsInput | string
-    payment_currency?: StringFieldUpdateOperationsInput | string
-    payment_amount?: FloatFieldUpdateOperationsInput | number
-    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    payment_status?: StringFieldUpdateOperationsInput | string
-    payment_notes?: StringFieldUpdateOperationsInput | string
-    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
-    special_terms?: ContractUpdatespecial_termsInput | string[]
-    business_terms?: ContractUpdatebusiness_termsInput | string[]
-    legal_terms?: ContractUpdatelegal_termsInput | string[]
-    other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
-    comission_total?: FloatFieldUpdateOperationsInput | number
-    attachments?: ContractUpdateattachmentsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
-    deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUpdateManyWithoutContractNestedInput
-    Customer?: CustomerUpdateOneRequiredWithoutContractNestedInput
-    ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
-    ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
-    Product?: ProductUpdateManyWithoutContractNestedInput
-    SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
-  }
-
-  export type ContractUncheckedUpdateWithoutSellerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    products_id?: ContractUpdateproducts_idInput | number[]
-    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    mt_value?: FloatFieldUpdateOperationsInput | number
-    destination_country?: StringFieldUpdateOperationsInput | string
-    destination_port?: StringFieldUpdateOperationsInput | string
-    shipping_company?: StringFieldUpdateOperationsInput | string
-    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    si_sent?: BoolFieldUpdateOperationsInput | boolean
-    packing?: ContractUpdatepackingInput | string[]
-    incoterm?: ContractUpdateincotermInput | string[]
-    payment_terms?: StringFieldUpdateOperationsInput | string
-    payment_method?: StringFieldUpdateOperationsInput | string
-    payment_currency?: StringFieldUpdateOperationsInput | string
-    payment_amount?: FloatFieldUpdateOperationsInput | number
-    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    payment_status?: StringFieldUpdateOperationsInput | string
-    payment_notes?: StringFieldUpdateOperationsInput | string
-    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
-    special_terms?: ContractUpdatespecial_termsInput | string[]
-    business_terms?: ContractUpdatebusiness_termsInput | string[]
-    legal_terms?: ContractUpdatelegal_termsInput | string[]
-    other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
-    comission_total?: FloatFieldUpdateOperationsInput | number
-    attachments?: ContractUpdateattachmentsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
-    deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedUpdateManyWithoutContractNestedInput
-    ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
-    ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
-    Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
-    SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
-  }
-
-  export type ContractUncheckedUpdateManyWithoutSellerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    products_id?: ContractUpdateproducts_idInput | number[]
-    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    mt_value?: FloatFieldUpdateOperationsInput | number
-    destination_country?: StringFieldUpdateOperationsInput | string
-    destination_port?: StringFieldUpdateOperationsInput | string
-    shipping_company?: StringFieldUpdateOperationsInput | string
-    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    si_sent?: BoolFieldUpdateOperationsInput | boolean
-    packing?: ContractUpdatepackingInput | string[]
-    incoterm?: ContractUpdateincotermInput | string[]
-    payment_terms?: StringFieldUpdateOperationsInput | string
-    payment_method?: StringFieldUpdateOperationsInput | string
-    payment_currency?: StringFieldUpdateOperationsInput | string
-    payment_amount?: FloatFieldUpdateOperationsInput | number
-    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    payment_status?: StringFieldUpdateOperationsInput | string
-    payment_notes?: StringFieldUpdateOperationsInput | string
-    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
-    special_terms?: ContractUpdatespecial_termsInput | string[]
-    business_terms?: ContractUpdatebusiness_termsInput | string[]
-    legal_terms?: ContractUpdatelegal_termsInput | string[]
-    other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
-    comission_total?: FloatFieldUpdateOperationsInput | number
-    attachments?: ContractUpdateattachmentsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -28092,8 +31185,10 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -28112,33 +31207,31 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUpdateManyWithoutContractNestedInput
-    Customer?: CustomerUpdateOneRequiredWithoutContractNestedInput
-    Seller?: SellerUpdateOneRequiredWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUpdateManyWithoutContractNestedInput
+    PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
+    PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
@@ -28152,9 +31245,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -28173,32 +31269,29 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
-    BrokerageInvoice?: BrokerageInvoiceUncheckedUpdateManyWithoutContractNestedInput
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
@@ -28212,9 +31305,12 @@ export namespace Prisma {
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_expiration_signature_seller?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    seller_id?: IntFieldUpdateOperationsInput | number
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
@@ -28233,30 +31329,27 @@ export namespace Prisma {
     payment_status?: StringFieldUpdateOperationsInput | string
     payment_notes?: StringFieldUpdateOperationsInput | string
     payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
-    payment_notes_seller?: StringFieldUpdateOperationsInput | string
-    payment_attachments_seller?: ContractUpdatepayment_attachments_sellerInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
     special_terms?: ContractUpdatespecial_termsInput | string[]
     business_terms?: ContractUpdatebusiness_termsInput | string[]
     legal_terms?: ContractUpdatelegal_termsInput | string[]
     other_terms?: ContractUpdateother_termsInput | string[]
-    other_terms_seller?: ContractUpdateother_terms_sellerInput | string[]
-    commission_seller?: FloatFieldUpdateOperationsInput | number
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
     comission_total?: FloatFieldUpdateOperationsInput | number
     attachments?: ContractUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
-    commission_customer?: FloatFieldUpdateOperationsInput | number
-    customer_id?: IntFieldUpdateOperationsInput | number
-    date_expiration_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    date_signature_customer?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    other_terms_customer?: ContractUpdateother_terms_customerInput | string[]
-    other_terms_customer_seller?: ContractUpdateother_terms_customer_sellerInput | string[]
-    other_terms_customer_seller_customer?: ContractUpdateother_terms_customer_seller_customerInput | string[]
-    other_terms_seller_customer?: ContractUpdateother_terms_seller_customerInput | string[]
-    other_terms_seller_customer_seller?: ContractUpdateother_terms_seller_customer_sellerInput | string[]
-    payment_attachments_customer?: ContractUpdatepayment_attachments_customerInput | string[]
-    payment_notes_customer?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
