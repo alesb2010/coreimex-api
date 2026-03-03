@@ -49,21 +49,9 @@ fastify.setErrorHandler(async (error, request, reply) => {
   });
 });
 
-// When credentials are included, Access-Control-Allow-Origin must be a specific origin, not '*'
-const allowedOrigins = [
-  "https://app.coreimex.com",
-  process.env.FRONTEND_URL,
-  "http://localhost:3000"
-].filter(Boolean);
-
 await fastify.register(cors, {
-  origin: (origin, cb) => {
-    if (!origin) return cb(null, false);
-    if (allowedOrigins.includes(origin)) return cb(null, true); // reflect request origin (never '*')
-    return cb(null, false);
-  },
+  origin: process.env.FRONTEND_URL || "http://localhost:3000",
   credentials: true, // Required for SuperTokens cookies
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"],
   allowedHeaders: [
     "Content-Type",
     "anti-csrf",
@@ -200,7 +188,6 @@ await fastify.register(import('./plugins/supertokens.js'), { prisma });
 
 // Register routers AFTER SuperTokens plugin
 await fastify.register(import('./routers/auth.js'), { prefix: '/api/v1/', prisma });
-await fastify.register(import('./routers/userManagement.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/products.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/sellers.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/customers.js'), { prefix: '/api/v1/', prisma });

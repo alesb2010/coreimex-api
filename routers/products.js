@@ -11,13 +11,6 @@ function mapFileToWithUrl(file) {
 async function productsRoutes(fastify, options) {
     const { prisma } = options;
 
-    const productIncludeFiles = {
-        File: {
-            where: { active: true, deleted: false },
-            orderBy: { createdAt: 'desc' }
-        }
-    };
-
     // GET all products
     fastify.get("/products", {
         preHandler: [fastify.authenticate],
@@ -27,12 +20,9 @@ async function productsRoutes(fastify, options) {
         }
     }, async (request, reply) => {
         const products = await prisma.product.findMany({
-            include: productIncludeFiles
+            where: { deleted: false }
         });
-        return products.map((p) => ({
-            ...p,
-            File: (p.File || []).map(mapFileToWithUrl)
-        }));
+        return products;
     });
 
     // GET product by ID
@@ -45,17 +35,13 @@ async function productsRoutes(fastify, options) {
     }, async (request, reply) => {
         const { id } = request.params;
         const product = await prisma.product.findUnique({
-            where: { id: parseInt(id) },
-            include: productIncludeFiles
+            where: { id: parseInt(id), deleted: false }
         });
         if (!product) {
             reply.code(404).send({ error: "Product not found" });
             return;
         }
-        return {
-            ...product,
-            File: (product.File || []).map(mapFileToWithUrl)
-        };
+        return product;
     });
 
     // POST create product

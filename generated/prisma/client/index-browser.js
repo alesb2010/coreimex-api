@@ -245,6 +245,7 @@ exports.Prisma.ContractProductScalarFieldEnum = {
   id: 'id',
   contract_id: 'contract_id',
   product_id: 'product_id',
+  pack_id: 'pack_id',
   price: 'price',
   quantity: 'quantity',
   createdAt: 'createdAt',

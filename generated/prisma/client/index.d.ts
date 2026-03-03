@@ -2169,6 +2169,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type PackCountOutputType
+   */
+
+  export type PackCountOutputType = {
+    ContractProducts: number
+  }
+
+  export type PackCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ContractProducts?: boolean | PackCountOutputTypeCountContractProductsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PackCountOutputType without action
+   */
+  export type PackCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackCountOutputType
+     */
+    select?: PackCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PackCountOutputType without action
+   */
+  export type PackCountOutputTypeCountContractProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContractProductWhereInput
+  }
+
+
+  /**
    * Count Type CustomerCountOutputType
    */
 
@@ -9053,6 +9084,7 @@ export namespace Prisma {
     id: number | null
     contract_id: number | null
     product_id: number | null
+    pack_id: number | null
     price: number | null
     quantity: number | null
   }
@@ -9061,6 +9093,7 @@ export namespace Prisma {
     id: number | null
     contract_id: number | null
     product_id: number | null
+    pack_id: number | null
     price: number | null
     quantity: number | null
   }
@@ -9069,6 +9102,7 @@ export namespace Prisma {
     id: number | null
     contract_id: number | null
     product_id: number | null
+    pack_id: number | null
     price: number | null
     quantity: number | null
     createdAt: Date | null
@@ -9081,6 +9115,7 @@ export namespace Prisma {
     id: number | null
     contract_id: number | null
     product_id: number | null
+    pack_id: number | null
     price: number | null
     quantity: number | null
     createdAt: Date | null
@@ -9093,6 +9128,7 @@ export namespace Prisma {
     id: number
     contract_id: number
     product_id: number
+    pack_id: number
     price: number
     quantity: number
     createdAt: number
@@ -9107,6 +9143,7 @@ export namespace Prisma {
     id?: true
     contract_id?: true
     product_id?: true
+    pack_id?: true
     price?: true
     quantity?: true
   }
@@ -9115,6 +9152,7 @@ export namespace Prisma {
     id?: true
     contract_id?: true
     product_id?: true
+    pack_id?: true
     price?: true
     quantity?: true
   }
@@ -9123,6 +9161,7 @@ export namespace Prisma {
     id?: true
     contract_id?: true
     product_id?: true
+    pack_id?: true
     price?: true
     quantity?: true
     createdAt?: true
@@ -9135,6 +9174,7 @@ export namespace Prisma {
     id?: true
     contract_id?: true
     product_id?: true
+    pack_id?: true
     price?: true
     quantity?: true
     createdAt?: true
@@ -9147,6 +9187,7 @@ export namespace Prisma {
     id?: true
     contract_id?: true
     product_id?: true
+    pack_id?: true
     price?: true
     quantity?: true
     createdAt?: true
@@ -9246,6 +9287,7 @@ export namespace Prisma {
     id: number
     contract_id: number
     product_id: number
+    pack_id: number | null
     price: number | null
     quantity: number | null
     createdAt: Date
@@ -9277,6 +9319,7 @@ export namespace Prisma {
     id?: boolean
     contract_id?: boolean
     product_id?: boolean
+    pack_id?: boolean
     price?: boolean
     quantity?: boolean
     createdAt?: boolean
@@ -9285,12 +9328,14 @@ export namespace Prisma {
     deleted?: boolean
     Contract?: boolean | ContractDefaultArgs<ExtArgs>
     Product?: boolean | ProductDefaultArgs<ExtArgs>
+    Pack?: boolean | ContractProduct$PackArgs<ExtArgs>
   }, ExtArgs["result"]["contractProduct"]>
 
   export type ContractProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     contract_id?: boolean
     product_id?: boolean
+    pack_id?: boolean
     price?: boolean
     quantity?: boolean
     createdAt?: boolean
@@ -9299,12 +9344,14 @@ export namespace Prisma {
     deleted?: boolean
     Contract?: boolean | ContractDefaultArgs<ExtArgs>
     Product?: boolean | ProductDefaultArgs<ExtArgs>
+    Pack?: boolean | ContractProduct$PackArgs<ExtArgs>
   }, ExtArgs["result"]["contractProduct"]>
 
   export type ContractProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     contract_id?: boolean
     product_id?: boolean
+    pack_id?: boolean
     price?: boolean
     quantity?: boolean
     createdAt?: boolean
@@ -9313,12 +9360,14 @@ export namespace Prisma {
     deleted?: boolean
     Contract?: boolean | ContractDefaultArgs<ExtArgs>
     Product?: boolean | ProductDefaultArgs<ExtArgs>
+    Pack?: boolean | ContractProduct$PackArgs<ExtArgs>
   }, ExtArgs["result"]["contractProduct"]>
 
   export type ContractProductSelectScalar = {
     id?: boolean
     contract_id?: boolean
     product_id?: boolean
+    pack_id?: boolean
     price?: boolean
     quantity?: boolean
     createdAt?: boolean
@@ -9327,18 +9376,21 @@ export namespace Prisma {
     deleted?: boolean
   }
 
-  export type ContractProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "contract_id" | "product_id" | "price" | "quantity" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["contractProduct"]>
+  export type ContractProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "contract_id" | "product_id" | "pack_id" | "price" | "quantity" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["contractProduct"]>
   export type ContractProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Contract?: boolean | ContractDefaultArgs<ExtArgs>
     Product?: boolean | ProductDefaultArgs<ExtArgs>
+    Pack?: boolean | ContractProduct$PackArgs<ExtArgs>
   }
   export type ContractProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Contract?: boolean | ContractDefaultArgs<ExtArgs>
     Product?: boolean | ProductDefaultArgs<ExtArgs>
+    Pack?: boolean | ContractProduct$PackArgs<ExtArgs>
   }
   export type ContractProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Contract?: boolean | ContractDefaultArgs<ExtArgs>
     Product?: boolean | ProductDefaultArgs<ExtArgs>
+    Pack?: boolean | ContractProduct$PackArgs<ExtArgs>
   }
 
   export type $ContractProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9346,11 +9398,13 @@ export namespace Prisma {
     objects: {
       Contract: Prisma.$ContractPayload<ExtArgs>
       Product: Prisma.$ProductPayload<ExtArgs>
+      Pack: Prisma.$PackPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       contract_id: number
       product_id: number
+      pack_id: number | null
       price: number | null
       quantity: number | null
       createdAt: Date
@@ -9753,6 +9807,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Contract<T extends ContractDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContractDefaultArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Pack<T extends ContractProduct$PackArgs<ExtArgs> = {}>(args?: Subset<T, ContractProduct$PackArgs<ExtArgs>>): Prisma__PackClient<$Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9785,6 +9840,7 @@ export namespace Prisma {
     readonly id: FieldRef<"ContractProduct", 'Int'>
     readonly contract_id: FieldRef<"ContractProduct", 'Int'>
     readonly product_id: FieldRef<"ContractProduct", 'Int'>
+    readonly pack_id: FieldRef<"ContractProduct", 'Int'>
     readonly price: FieldRef<"ContractProduct", 'Float'>
     readonly quantity: FieldRef<"ContractProduct", 'Float'>
     readonly createdAt: FieldRef<"ContractProduct", 'DateTime'>
@@ -10187,6 +10243,25 @@ export namespace Prisma {
   }
 
   /**
+   * ContractProduct.Pack
+   */
+  export type ContractProduct$PackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pack
+     */
+    select?: PackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Pack
+     */
+    omit?: PackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
+    where?: PackWhereInput
+  }
+
+  /**
    * ContractProduct without action
    */
   export type ContractProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10459,6 +10534,8 @@ export namespace Prisma {
     active?: boolean
     status?: boolean
     deleted?: boolean
+    ContractProducts?: boolean | Pack$ContractProductsArgs<ExtArgs>
+    _count?: boolean | PackCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pack"]>
 
   export type PackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10504,10 +10581,18 @@ export namespace Prisma {
   }
 
   export type PackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "pack_type" | "quantity_per_pack" | "quantity_per_container" | "container_type" | "description" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["pack"]>
+  export type PackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ContractProducts?: boolean | Pack$ContractProductsArgs<ExtArgs>
+    _count?: boolean | PackCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PackIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type PackIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $PackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Pack"
-    objects: {}
+    objects: {
+      ContractProducts: Prisma.$ContractProductPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -10914,6 +10999,7 @@ export namespace Prisma {
    */
   export interface Prisma__PackClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    ContractProducts<T extends Pack$ContractProductsArgs<ExtArgs> = {}>(args?: Subset<T, Pack$ContractProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10971,6 +11057,10 @@ export namespace Prisma {
      */
     omit?: PackOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
+    /**
      * Filter, which Pack to fetch.
      */
     where: PackWhereUniqueInput
@@ -10989,6 +11079,10 @@ export namespace Prisma {
      */
     omit?: PackOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
+    /**
      * Filter, which Pack to fetch.
      */
     where: PackWhereUniqueInput
@@ -11006,6 +11100,10 @@ export namespace Prisma {
      * Omit specific fields from the Pack
      */
     omit?: PackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
     /**
      * Filter, which Pack to fetch.
      */
@@ -11055,6 +11153,10 @@ export namespace Prisma {
      */
     omit?: PackOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
+    /**
      * Filter, which Pack to fetch.
      */
     where?: PackWhereInput
@@ -11103,6 +11205,10 @@ export namespace Prisma {
      */
     omit?: PackOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
+    /**
      * Filter, which Packs to fetch.
      */
     where?: PackWhereInput
@@ -11145,6 +11251,10 @@ export namespace Prisma {
      * Omit specific fields from the Pack
      */
     omit?: PackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
     /**
      * The data needed to create a Pack.
      */
@@ -11193,6 +11303,10 @@ export namespace Prisma {
      * Omit specific fields from the Pack
      */
     omit?: PackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
     /**
      * The data needed to update a Pack.
      */
@@ -11260,6 +11374,10 @@ export namespace Prisma {
      */
     omit?: PackOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
+    /**
      * The filter to search for the Pack to update in case it exists.
      */
     where: PackWhereUniqueInput
@@ -11286,6 +11404,10 @@ export namespace Prisma {
      */
     omit?: PackOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
+    /**
      * Filter which Pack to delete.
      */
     where: PackWhereUniqueInput
@@ -11306,6 +11428,30 @@ export namespace Prisma {
   }
 
   /**
+   * Pack.ContractProducts
+   */
+  export type Pack$ContractProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractProduct
+     */
+    select?: ContractProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractProduct
+     */
+    omit?: ContractProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractProductInclude<ExtArgs> | null
+    where?: ContractProductWhereInput
+    orderBy?: ContractProductOrderByWithRelationInput | ContractProductOrderByWithRelationInput[]
+    cursor?: ContractProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContractProductScalarFieldEnum | ContractProductScalarFieldEnum[]
+  }
+
+  /**
    * Pack without action
    */
   export type PackDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11317,6 +11463,10 @@ export namespace Prisma {
      * Omit specific fields from the Pack
      */
     omit?: PackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackInclude<ExtArgs> | null
   }
 
 
@@ -20119,6 +20269,7 @@ export namespace Prisma {
     id: 'id',
     contract_id: 'contract_id',
     product_id: 'product_id',
+    pack_id: 'pack_id',
     price: 'price',
     quantity: 'quantity',
     createdAt: 'createdAt',
@@ -21135,6 +21286,7 @@ export namespace Prisma {
     id?: IntFilter<"ContractProduct"> | number
     contract_id?: IntFilter<"ContractProduct"> | number
     product_id?: IntFilter<"ContractProduct"> | number
+    pack_id?: IntNullableFilter<"ContractProduct"> | number | null
     price?: FloatNullableFilter<"ContractProduct"> | number | null
     quantity?: FloatNullableFilter<"ContractProduct"> | number | null
     createdAt?: DateTimeFilter<"ContractProduct"> | Date | string
@@ -21143,12 +21295,14 @@ export namespace Prisma {
     deleted?: BoolFilter<"ContractProduct"> | boolean
     Contract?: XOR<ContractScalarRelationFilter, ContractWhereInput>
     Product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    Pack?: XOR<PackNullableScalarRelationFilter, PackWhereInput> | null
   }
 
   export type ContractProductOrderByWithRelationInput = {
     id?: SortOrder
     contract_id?: SortOrder
     product_id?: SortOrder
+    pack_id?: SortOrderInput | SortOrder
     price?: SortOrderInput | SortOrder
     quantity?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -21157,6 +21311,7 @@ export namespace Prisma {
     deleted?: SortOrder
     Contract?: ContractOrderByWithRelationInput
     Product?: ProductOrderByWithRelationInput
+    Pack?: PackOrderByWithRelationInput
   }
 
   export type ContractProductWhereUniqueInput = Prisma.AtLeast<{
@@ -21166,6 +21321,7 @@ export namespace Prisma {
     NOT?: ContractProductWhereInput | ContractProductWhereInput[]
     contract_id?: IntFilter<"ContractProduct"> | number
     product_id?: IntFilter<"ContractProduct"> | number
+    pack_id?: IntNullableFilter<"ContractProduct"> | number | null
     price?: FloatNullableFilter<"ContractProduct"> | number | null
     quantity?: FloatNullableFilter<"ContractProduct"> | number | null
     createdAt?: DateTimeFilter<"ContractProduct"> | Date | string
@@ -21174,12 +21330,14 @@ export namespace Prisma {
     deleted?: BoolFilter<"ContractProduct"> | boolean
     Contract?: XOR<ContractScalarRelationFilter, ContractWhereInput>
     Product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    Pack?: XOR<PackNullableScalarRelationFilter, PackWhereInput> | null
   }, "id">
 
   export type ContractProductOrderByWithAggregationInput = {
     id?: SortOrder
     contract_id?: SortOrder
     product_id?: SortOrder
+    pack_id?: SortOrderInput | SortOrder
     price?: SortOrderInput | SortOrder
     quantity?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -21200,6 +21358,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"ContractProduct"> | number
     contract_id?: IntWithAggregatesFilter<"ContractProduct"> | number
     product_id?: IntWithAggregatesFilter<"ContractProduct"> | number
+    pack_id?: IntNullableWithAggregatesFilter<"ContractProduct"> | number | null
     price?: FloatNullableWithAggregatesFilter<"ContractProduct"> | number | null
     quantity?: FloatNullableWithAggregatesFilter<"ContractProduct"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"ContractProduct"> | Date | string
@@ -21223,6 +21382,7 @@ export namespace Prisma {
     active?: BoolFilter<"Pack"> | boolean
     status?: StringFilter<"Pack"> | string
     deleted?: BoolFilter<"Pack"> | boolean
+    ContractProducts?: ContractProductListRelationFilter
   }
 
   export type PackOrderByWithRelationInput = {
@@ -21237,6 +21397,7 @@ export namespace Prisma {
     active?: SortOrder
     status?: SortOrder
     deleted?: SortOrder
+    ContractProducts?: ContractProductOrderByRelationAggregateInput
   }
 
   export type PackWhereUniqueInput = Prisma.AtLeast<{
@@ -21254,6 +21415,7 @@ export namespace Prisma {
     active?: BoolFilter<"Pack"> | boolean
     status?: StringFilter<"Pack"> | string
     deleted?: BoolFilter<"Pack"> | boolean
+    ContractProducts?: ContractProductListRelationFilter
   }, "id">
 
   export type PackOrderByWithAggregationInput = {
@@ -22899,12 +23061,14 @@ export namespace Prisma {
     deleted?: boolean
     Contract: ContractCreateNestedOneWithoutContractProductInput
     Product: ProductCreateNestedOneWithoutContractProductInput
+    Pack?: PackCreateNestedOneWithoutContractProductsInput
   }
 
   export type ContractProductUncheckedCreateInput = {
     id?: number
     contract_id: number
     product_id: number
+    pack_id?: number | null
     price?: number | null
     quantity?: number | null
     createdAt?: Date | string
@@ -22922,12 +23086,14 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contract?: ContractUpdateOneRequiredWithoutContractProductNestedInput
     Product?: ProductUpdateOneRequiredWithoutContractProductNestedInput
+    Pack?: PackUpdateOneWithoutContractProductsNestedInput
   }
 
   export type ContractProductUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     contract_id?: IntFieldUpdateOperationsInput | number
     product_id?: IntFieldUpdateOperationsInput | number
+    pack_id?: NullableIntFieldUpdateOperationsInput | number | null
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     quantity?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22940,6 +23106,7 @@ export namespace Prisma {
     id?: number
     contract_id: number
     product_id: number
+    pack_id?: number | null
     price?: number | null
     quantity?: number | null
     createdAt?: Date | string
@@ -22961,6 +23128,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     contract_id?: IntFieldUpdateOperationsInput | number
     product_id?: IntFieldUpdateOperationsInput | number
+    pack_id?: NullableIntFieldUpdateOperationsInput | number | null
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     quantity?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22980,6 +23148,7 @@ export namespace Prisma {
     active?: boolean
     status: string
     deleted?: boolean
+    ContractProducts?: ContractProductCreateNestedManyWithoutPackInput
   }
 
   export type PackUncheckedCreateInput = {
@@ -22994,6 +23163,7 @@ export namespace Prisma {
     active?: boolean
     status: string
     deleted?: boolean
+    ContractProducts?: ContractProductUncheckedCreateNestedManyWithoutPackInput
   }
 
   export type PackUpdateInput = {
@@ -23007,6 +23177,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    ContractProducts?: ContractProductUpdateManyWithoutPackNestedInput
   }
 
   export type PackUncheckedUpdateInput = {
@@ -23021,6 +23192,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    ContractProducts?: ContractProductUncheckedUpdateManyWithoutPackNestedInput
   }
 
   export type PackCreateManyInput = {
@@ -24715,10 +24887,16 @@ export namespace Prisma {
     isNot?: ProductWhereInput
   }
 
+  export type PackNullableScalarRelationFilter = {
+    is?: PackWhereInput | null
+    isNot?: PackWhereInput | null
+  }
+
   export type ContractProductCountOrderByAggregateInput = {
     id?: SortOrder
     contract_id?: SortOrder
     product_id?: SortOrder
+    pack_id?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
     createdAt?: SortOrder
@@ -24731,6 +24909,7 @@ export namespace Prisma {
     id?: SortOrder
     contract_id?: SortOrder
     product_id?: SortOrder
+    pack_id?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
   }
@@ -24739,6 +24918,7 @@ export namespace Prisma {
     id?: SortOrder
     contract_id?: SortOrder
     product_id?: SortOrder
+    pack_id?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
     createdAt?: SortOrder
@@ -24751,6 +24931,7 @@ export namespace Prisma {
     id?: SortOrder
     contract_id?: SortOrder
     product_id?: SortOrder
+    pack_id?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
     createdAt?: SortOrder
@@ -24763,6 +24944,7 @@ export namespace Prisma {
     id?: SortOrder
     contract_id?: SortOrder
     product_id?: SortOrder
+    pack_id?: SortOrder
     price?: SortOrder
     quantity?: SortOrder
   }
@@ -25892,6 +26074,12 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput
   }
 
+  export type PackCreateNestedOneWithoutContractProductsInput = {
+    create?: XOR<PackCreateWithoutContractProductsInput, PackUncheckedCreateWithoutContractProductsInput>
+    connectOrCreate?: PackCreateOrConnectWithoutContractProductsInput
+    connect?: PackWhereUniqueInput
+  }
+
   export type NullableFloatFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -25914,6 +26102,58 @@ export namespace Prisma {
     upsert?: ProductUpsertWithoutContractProductInput
     connect?: ProductWhereUniqueInput
     update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutContractProductInput, ProductUpdateWithoutContractProductInput>, ProductUncheckedUpdateWithoutContractProductInput>
+  }
+
+  export type PackUpdateOneWithoutContractProductsNestedInput = {
+    create?: XOR<PackCreateWithoutContractProductsInput, PackUncheckedCreateWithoutContractProductsInput>
+    connectOrCreate?: PackCreateOrConnectWithoutContractProductsInput
+    upsert?: PackUpsertWithoutContractProductsInput
+    disconnect?: PackWhereInput | boolean
+    delete?: PackWhereInput | boolean
+    connect?: PackWhereUniqueInput
+    update?: XOR<XOR<PackUpdateToOneWithWhereWithoutContractProductsInput, PackUpdateWithoutContractProductsInput>, PackUncheckedUpdateWithoutContractProductsInput>
+  }
+
+  export type ContractProductCreateNestedManyWithoutPackInput = {
+    create?: XOR<ContractProductCreateWithoutPackInput, ContractProductUncheckedCreateWithoutPackInput> | ContractProductCreateWithoutPackInput[] | ContractProductUncheckedCreateWithoutPackInput[]
+    connectOrCreate?: ContractProductCreateOrConnectWithoutPackInput | ContractProductCreateOrConnectWithoutPackInput[]
+    createMany?: ContractProductCreateManyPackInputEnvelope
+    connect?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+  }
+
+  export type ContractProductUncheckedCreateNestedManyWithoutPackInput = {
+    create?: XOR<ContractProductCreateWithoutPackInput, ContractProductUncheckedCreateWithoutPackInput> | ContractProductCreateWithoutPackInput[] | ContractProductUncheckedCreateWithoutPackInput[]
+    connectOrCreate?: ContractProductCreateOrConnectWithoutPackInput | ContractProductCreateOrConnectWithoutPackInput[]
+    createMany?: ContractProductCreateManyPackInputEnvelope
+    connect?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+  }
+
+  export type ContractProductUpdateManyWithoutPackNestedInput = {
+    create?: XOR<ContractProductCreateWithoutPackInput, ContractProductUncheckedCreateWithoutPackInput> | ContractProductCreateWithoutPackInput[] | ContractProductUncheckedCreateWithoutPackInput[]
+    connectOrCreate?: ContractProductCreateOrConnectWithoutPackInput | ContractProductCreateOrConnectWithoutPackInput[]
+    upsert?: ContractProductUpsertWithWhereUniqueWithoutPackInput | ContractProductUpsertWithWhereUniqueWithoutPackInput[]
+    createMany?: ContractProductCreateManyPackInputEnvelope
+    set?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+    disconnect?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+    delete?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+    connect?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+    update?: ContractProductUpdateWithWhereUniqueWithoutPackInput | ContractProductUpdateWithWhereUniqueWithoutPackInput[]
+    updateMany?: ContractProductUpdateManyWithWhereWithoutPackInput | ContractProductUpdateManyWithWhereWithoutPackInput[]
+    deleteMany?: ContractProductScalarWhereInput | ContractProductScalarWhereInput[]
+  }
+
+  export type ContractProductUncheckedUpdateManyWithoutPackNestedInput = {
+    create?: XOR<ContractProductCreateWithoutPackInput, ContractProductUncheckedCreateWithoutPackInput> | ContractProductCreateWithoutPackInput[] | ContractProductUncheckedCreateWithoutPackInput[]
+    connectOrCreate?: ContractProductCreateOrConnectWithoutPackInput | ContractProductCreateOrConnectWithoutPackInput[]
+    upsert?: ContractProductUpsertWithWhereUniqueWithoutPackInput | ContractProductUpsertWithWhereUniqueWithoutPackInput[]
+    createMany?: ContractProductCreateManyPackInputEnvelope
+    set?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+    disconnect?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+    delete?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+    connect?: ContractProductWhereUniqueInput | ContractProductWhereUniqueInput[]
+    update?: ContractProductUpdateWithWhereUniqueWithoutPackInput | ContractProductUpdateWithWhereUniqueWithoutPackInput[]
+    updateMany?: ContractProductUpdateManyWithWhereWithoutPackInput | ContractProductUpdateManyWithWhereWithoutPackInput[]
+    deleteMany?: ContractProductScalarWhereInput | ContractProductScalarWhereInput[]
   }
 
   export type CustomerCreatephoneInput = {
@@ -27579,11 +27819,13 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Product: ProductCreateNestedOneWithoutContractProductInput
+    Pack?: PackCreateNestedOneWithoutContractProductsInput
   }
 
   export type ContractProductUncheckedCreateWithoutContractInput = {
     id?: number
     product_id: number
+    pack_id?: number | null
     price?: number | null
     quantity?: number | null
     createdAt?: Date | string
@@ -27887,6 +28129,7 @@ export namespace Prisma {
     id?: IntFilter<"ContractProduct"> | number
     contract_id?: IntFilter<"ContractProduct"> | number
     product_id?: IntFilter<"ContractProduct"> | number
+    pack_id?: IntNullableFilter<"ContractProduct"> | number | null
     price?: FloatNullableFilter<"ContractProduct"> | number | null
     quantity?: FloatNullableFilter<"ContractProduct"> | number | null
     createdAt?: DateTimeFilter<"ContractProduct"> | Date | string
@@ -28209,6 +28452,38 @@ export namespace Prisma {
     create: XOR<ProductCreateWithoutContractProductInput, ProductUncheckedCreateWithoutContractProductInput>
   }
 
+  export type PackCreateWithoutContractProductsInput = {
+    name: string
+    pack_type?: string | null
+    quantity_per_pack?: number | null
+    quantity_per_container?: number | null
+    container_type?: string | null
+    description?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type PackUncheckedCreateWithoutContractProductsInput = {
+    id?: number
+    name: string
+    pack_type?: string | null
+    quantity_per_pack?: number | null
+    quantity_per_container?: number | null
+    container_type?: string | null
+    description?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type PackCreateOrConnectWithoutContractProductsInput = {
+    where: PackWhereUniqueInput
+    create: XOR<PackCreateWithoutContractProductsInput, PackUncheckedCreateWithoutContractProductsInput>
+  }
+
   export type ContractUpsertWithoutContractProductInput = {
     update: XOR<ContractUpdateWithoutContractProductInput, ContractUncheckedUpdateWithoutContractProductInput>
     create: XOR<ContractCreateWithoutContractProductInput, ContractUncheckedCreateWithoutContractProductInput>
@@ -28415,6 +28690,93 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contract?: ContractUncheckedUpdateManyWithoutProductNestedInput
     File?: FileUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type PackUpsertWithoutContractProductsInput = {
+    update: XOR<PackUpdateWithoutContractProductsInput, PackUncheckedUpdateWithoutContractProductsInput>
+    create: XOR<PackCreateWithoutContractProductsInput, PackUncheckedCreateWithoutContractProductsInput>
+    where?: PackWhereInput
+  }
+
+  export type PackUpdateToOneWithWhereWithoutContractProductsInput = {
+    where?: PackWhereInput
+    data: XOR<PackUpdateWithoutContractProductsInput, PackUncheckedUpdateWithoutContractProductsInput>
+  }
+
+  export type PackUpdateWithoutContractProductsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    pack_type?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity_per_pack?: NullableFloatFieldUpdateOperationsInput | number | null
+    quantity_per_container?: NullableFloatFieldUpdateOperationsInput | number | null
+    container_type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PackUncheckedUpdateWithoutContractProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    pack_type?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity_per_pack?: NullableFloatFieldUpdateOperationsInput | number | null
+    quantity_per_container?: NullableFloatFieldUpdateOperationsInput | number | null
+    container_type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ContractProductCreateWithoutPackInput = {
+    price?: number | null
+    quantity?: number | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    Contract: ContractCreateNestedOneWithoutContractProductInput
+    Product: ProductCreateNestedOneWithoutContractProductInput
+  }
+
+  export type ContractProductUncheckedCreateWithoutPackInput = {
+    id?: number
+    contract_id: number
+    product_id: number
+    price?: number | null
+    quantity?: number | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type ContractProductCreateOrConnectWithoutPackInput = {
+    where: ContractProductWhereUniqueInput
+    create: XOR<ContractProductCreateWithoutPackInput, ContractProductUncheckedCreateWithoutPackInput>
+  }
+
+  export type ContractProductCreateManyPackInputEnvelope = {
+    data: ContractProductCreateManyPackInput | ContractProductCreateManyPackInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ContractProductUpsertWithWhereUniqueWithoutPackInput = {
+    where: ContractProductWhereUniqueInput
+    update: XOR<ContractProductUpdateWithoutPackInput, ContractProductUncheckedUpdateWithoutPackInput>
+    create: XOR<ContractProductCreateWithoutPackInput, ContractProductUncheckedCreateWithoutPackInput>
+  }
+
+  export type ContractProductUpdateWithWhereUniqueWithoutPackInput = {
+    where: ContractProductWhereUniqueInput
+    data: XOR<ContractProductUpdateWithoutPackInput, ContractProductUncheckedUpdateWithoutPackInput>
+  }
+
+  export type ContractProductUpdateManyWithWhereWithoutPackInput = {
+    where: ContractProductScalarWhereInput
+    data: XOR<ContractProductUpdateManyMutationInput, ContractProductUncheckedUpdateManyWithoutPackInput>
   }
 
   export type ContactCreateWithoutCustomerInput = {
@@ -28966,11 +29328,13 @@ export namespace Prisma {
     status: string
     deleted?: boolean
     Contract: ContractCreateNestedOneWithoutContractProductInput
+    Pack?: PackCreateNestedOneWithoutContractProductsInput
   }
 
   export type ContractProductUncheckedCreateWithoutProductInput = {
     id?: number
     contract_id: number
+    pack_id?: number | null
     price?: number | null
     quantity?: number | null
     createdAt?: Date | string
@@ -29863,6 +30227,7 @@ export namespace Prisma {
   export type ContractProductCreateManyContractInput = {
     id?: number
     product_id: number
+    pack_id?: number | null
     price?: number | null
     quantity?: number | null
     createdAt?: Date | string
@@ -29920,11 +30285,13 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Product?: ProductUpdateOneRequiredWithoutContractProductNestedInput
+    Pack?: PackUpdateOneWithoutContractProductsNestedInput
   }
 
   export type ContractProductUncheckedUpdateWithoutContractInput = {
     id?: IntFieldUpdateOperationsInput | number
     product_id?: IntFieldUpdateOperationsInput | number
+    pack_id?: NullableIntFieldUpdateOperationsInput | number | null
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     quantity?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29936,6 +30303,7 @@ export namespace Prisma {
   export type ContractProductUncheckedUpdateManyWithoutContractInput = {
     id?: IntFieldUpdateOperationsInput | number
     product_id?: IntFieldUpdateOperationsInput | number
+    pack_id?: NullableIntFieldUpdateOperationsInput | number | null
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     quantity?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30122,6 +30490,53 @@ export namespace Prisma {
     note?: StringFieldUpdateOperationsInput | string
     attachments?: SpecialConditionUpdateattachmentsInput | string[]
     order?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ContractProductCreateManyPackInput = {
+    id?: number
+    contract_id: number
+    product_id: number
+    price?: number | null
+    quantity?: number | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type ContractProductUpdateWithoutPackInput = {
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    Contract?: ContractUpdateOneRequiredWithoutContractProductNestedInput
+    Product?: ProductUpdateOneRequiredWithoutContractProductNestedInput
+  }
+
+  export type ContractProductUncheckedUpdateWithoutPackInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contract_id?: IntFieldUpdateOperationsInput | number
+    product_id?: IntFieldUpdateOperationsInput | number
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ContractProductUncheckedUpdateManyWithoutPackInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contract_id?: IntFieldUpdateOperationsInput | number
+    product_id?: IntFieldUpdateOperationsInput | number
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    quantity?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -30684,6 +31099,7 @@ export namespace Prisma {
   export type ContractProductCreateManyProductInput = {
     id?: number
     contract_id: number
+    pack_id?: number | null
     price?: number | null
     quantity?: number | null
     createdAt?: Date | string
@@ -30714,11 +31130,13 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
     Contract?: ContractUpdateOneRequiredWithoutContractProductNestedInput
+    Pack?: PackUpdateOneWithoutContractProductsNestedInput
   }
 
   export type ContractProductUncheckedUpdateWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
     contract_id?: IntFieldUpdateOperationsInput | number
+    pack_id?: NullableIntFieldUpdateOperationsInput | number | null
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     quantity?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30730,6 +31148,7 @@ export namespace Prisma {
   export type ContractProductUncheckedUpdateManyWithoutProductInput = {
     id?: IntFieldUpdateOperationsInput | number
     contract_id?: IntFieldUpdateOperationsInput | number
+    pack_id?: NullableIntFieldUpdateOperationsInput | number | null
     price?: NullableFloatFieldUpdateOperationsInput | number | null
     quantity?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

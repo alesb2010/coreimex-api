@@ -148,6 +148,7 @@ model ContractProduct {
   id          Int      @id @default(autoincrement())
   contract_id Int
   product_id  Int
+  pack_id     Int? // optional reference to Pack used for this product in this contract
   price       Float? // price for this product in this contract
   quantity    Float? // quantity of this product in this contract
   createdAt   DateTime @default(now())
@@ -156,20 +157,22 @@ model ContractProduct {
   deleted     Boolean  @default(false)
   Contract    Contract @relation(fields: [contract_id], references: [id])
   Product     Product  @relation(fields: [product_id], references: [id])
+  Pack        Pack?    @relation(fields: [pack_id], references: [id])
 }
 
 model Pack {
-  id                     Int      @id @default(autoincrement())
+  id                     Int               @id @default(autoincrement())
   name                   String
   pack_type              String?
   quantity_per_pack      Float?
   quantity_per_container Float?
   container_type         String?
   description            String?
-  createdAt              DateTime @default(now())
-  active                 Boolean  @default(true)
+  createdAt              DateTime          @default(now())
+  active                 Boolean           @default(true)
   status                 String
-  deleted                Boolean  @default(false)
+  deleted                Boolean           @default(false)
+  ContractProducts       ContractProduct[]
 }
 
 model Customer {
