@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model BankAccount
+ * 
+ */
+export type BankAccount = $Result.DefaultSelection<Prisma.$BankAccountPayload>
+/**
  * Model ArbitrationRule
  * 
  */
@@ -38,6 +43,11 @@ export type Contact = $Result.DefaultSelection<Prisma.$ContactPayload>
  * 
  */
 export type Contract = $Result.DefaultSelection<Prisma.$ContractPayload>
+/**
+ * Model ContractActivityLog
+ * 
+ */
+export type ContractActivityLog = $Result.DefaultSelection<Prisma.$ContractActivityLogPayload>
 /**
  * Model ContractProduct
  * 
@@ -91,8 +101,8 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more ArbitrationRules
- * const arbitrationRules = await prisma.arbitrationRule.findMany()
+ * // Fetch zero or more BankAccounts
+ * const bankAccounts = await prisma.bankAccount.findMany()
  * ```
  *
  *
@@ -112,8 +122,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more ArbitrationRules
-   * const arbitrationRules = await prisma.arbitrationRule.findMany()
+   * // Fetch zero or more BankAccounts
+   * const bankAccounts = await prisma.bankAccount.findMany()
    * ```
    *
    *
@@ -203,6 +213,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.bankAccount`: Exposes CRUD operations for the **BankAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BankAccounts
+    * const bankAccounts = await prisma.bankAccount.findMany()
+    * ```
+    */
+  get bankAccount(): Prisma.BankAccountDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.arbitrationRule`: Exposes CRUD operations for the **ArbitrationRule** model.
     * Example usage:
     * ```ts
@@ -251,6 +271,16 @@ export class PrismaClient<
     * ```
     */
   get contract(): Prisma.ContractDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contractActivityLog`: Exposes CRUD operations for the **ContractActivityLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ContractActivityLogs
+    * const contractActivityLogs = await prisma.contractActivityLog.findMany()
+    * ```
+    */
+  get contractActivityLog(): Prisma.ContractActivityLogDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.contractProduct`: Exposes CRUD operations for the **ContractProduct** model.
@@ -782,11 +812,13 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    BankAccount: 'BankAccount',
     ArbitrationRule: 'ArbitrationRule',
     BrokerageInvoice: 'BrokerageInvoice',
     BrokerageInvoiceLine: 'BrokerageInvoiceLine',
     Contact: 'Contact',
     Contract: 'Contract',
+    ContractActivityLog: 'ContractActivityLog',
     ContractProduct: 'ContractProduct',
     Pack: 'Pack',
     Customer: 'Customer',
@@ -814,10 +846,84 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "arbitrationRule" | "brokerageInvoice" | "brokerageInvoiceLine" | "contact" | "contract" | "contractProduct" | "pack" | "customer" | "file" | "product" | "seller" | "specialCondition" | "role" | "user"
+      modelProps: "bankAccount" | "arbitrationRule" | "brokerageInvoice" | "brokerageInvoiceLine" | "contact" | "contract" | "contractActivityLog" | "contractProduct" | "pack" | "customer" | "file" | "product" | "seller" | "specialCondition" | "role" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      BankAccount: {
+        payload: Prisma.$BankAccountPayload<ExtArgs>
+        fields: Prisma.BankAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BankAccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BankAccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.BankAccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BankAccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload>
+          }
+          findMany: {
+            args: Prisma.BankAccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload>[]
+          }
+          create: {
+            args: Prisma.BankAccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload>
+          }
+          createMany: {
+            args: Prisma.BankAccountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BankAccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload>[]
+          }
+          delete: {
+            args: Prisma.BankAccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload>
+          }
+          update: {
+            args: Prisma.BankAccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.BankAccountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BankAccountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BankAccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload>[]
+          }
+          upsert: {
+            args: Prisma.BankAccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BankAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.BankAccountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBankAccount>
+          }
+          groupBy: {
+            args: Prisma.BankAccountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BankAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BankAccountCountArgs<ExtArgs>
+            result: $Utils.Optional<BankAccountCountAggregateOutputType> | number
+          }
+        }
+      }
       ArbitrationRule: {
         payload: Prisma.$ArbitrationRulePayload<ExtArgs>
         fields: Prisma.ArbitrationRuleFieldRefs
@@ -1185,6 +1291,80 @@ export namespace Prisma {
           count: {
             args: Prisma.ContractCountArgs<ExtArgs>
             result: $Utils.Optional<ContractCountAggregateOutputType> | number
+          }
+        }
+      }
+      ContractActivityLog: {
+        payload: Prisma.$ContractActivityLogPayload<ExtArgs>
+        fields: Prisma.ContractActivityLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContractActivityLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContractActivityLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload>
+          }
+          findFirst: {
+            args: Prisma.ContractActivityLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContractActivityLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload>
+          }
+          findMany: {
+            args: Prisma.ContractActivityLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload>[]
+          }
+          create: {
+            args: Prisma.ContractActivityLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload>
+          }
+          createMany: {
+            args: Prisma.ContractActivityLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContractActivityLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload>[]
+          }
+          delete: {
+            args: Prisma.ContractActivityLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload>
+          }
+          update: {
+            args: Prisma.ContractActivityLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContractActivityLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContractActivityLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContractActivityLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContractActivityLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractActivityLogPayload>
+          }
+          aggregate: {
+            args: Prisma.ContractActivityLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContractActivityLog>
+          }
+          groupBy: {
+            args: Prisma.ContractActivityLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContractActivityLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContractActivityLogCountArgs<ExtArgs>
+            result: $Utils.Optional<ContractActivityLogCountAggregateOutputType> | number
           }
         }
       }
@@ -1950,11 +2130,13 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    bankAccount?: BankAccountOmit
     arbitrationRule?: ArbitrationRuleOmit
     brokerageInvoice?: BrokerageInvoiceOmit
     brokerageInvoiceLine?: BrokerageInvoiceLineOmit
     contact?: ContactOmit
     contract?: ContractOmit
+    contractActivityLog?: ContractActivityLogOmit
     contractProduct?: ContractProductOmit
     pack?: PackOmit
     customer?: CustomerOmit
@@ -2040,6 +2222,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type BankAccountCountOutputType
+   */
+
+  export type BankAccountCountOutputType = {
+    BrokerageInvoices: number
+  }
+
+  export type BankAccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BrokerageInvoices?: boolean | BankAccountCountOutputTypeCountBrokerageInvoicesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BankAccountCountOutputType without action
+   */
+  export type BankAccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccountCountOutputType
+     */
+    select?: BankAccountCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BankAccountCountOutputType without action
+   */
+  export type BankAccountCountOutputTypeCountBrokerageInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BrokerageInvoiceWhereInput
+  }
+
+
+  /**
    * Count Type ArbitrationRuleCountOutputType
    */
 
@@ -2111,6 +2324,7 @@ export namespace Prisma {
     ArbitrationRule: number
     Product: number
     SpecialCondition: number
+    ActivityLogs: number
   }
 
   export type ContractCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2119,6 +2333,7 @@ export namespace Prisma {
     ArbitrationRule?: boolean | ContractCountOutputTypeCountArbitrationRuleArgs
     Product?: boolean | ContractCountOutputTypeCountProductArgs
     SpecialCondition?: boolean | ContractCountOutputTypeCountSpecialConditionArgs
+    ActivityLogs?: boolean | ContractCountOutputTypeCountActivityLogsArgs
   }
 
   // Custom InputTypes
@@ -2165,6 +2380,13 @@ export namespace Prisma {
    */
   export type ContractCountOutputTypeCountSpecialConditionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SpecialConditionWhereInput
+  }
+
+  /**
+   * ContractCountOutputType without action
+   */
+  export type ContractCountOutputTypeCountActivityLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContractActivityLogWhereInput
   }
 
 
@@ -2371,6 +2593,1240 @@ export namespace Prisma {
   /**
    * Models
    */
+
+  /**
+   * Model BankAccount
+   */
+
+  export type AggregateBankAccount = {
+    _count: BankAccountCountAggregateOutputType | null
+    _avg: BankAccountAvgAggregateOutputType | null
+    _sum: BankAccountSumAggregateOutputType | null
+    _min: BankAccountMinAggregateOutputType | null
+    _max: BankAccountMaxAggregateOutputType | null
+  }
+
+  export type BankAccountAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type BankAccountSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type BankAccountMinAggregateOutputType = {
+    id: number | null
+    bank_name: string | null
+    account_holder: string | null
+    account_number: string | null
+    agency: string | null
+    account_type: string | null
+    swift_bic: string | null
+    iban: string | null
+    pix_key: string | null
+    currency: string | null
+    notes: string | null
+    createdAt: Date | null
+    active: boolean | null
+    status: string | null
+    deleted: boolean | null
+  }
+
+  export type BankAccountMaxAggregateOutputType = {
+    id: number | null
+    bank_name: string | null
+    account_holder: string | null
+    account_number: string | null
+    agency: string | null
+    account_type: string | null
+    swift_bic: string | null
+    iban: string | null
+    pix_key: string | null
+    currency: string | null
+    notes: string | null
+    createdAt: Date | null
+    active: boolean | null
+    status: string | null
+    deleted: boolean | null
+  }
+
+  export type BankAccountCountAggregateOutputType = {
+    id: number
+    bank_name: number
+    account_holder: number
+    account_number: number
+    agency: number
+    account_type: number
+    swift_bic: number
+    iban: number
+    pix_key: number
+    currency: number
+    notes: number
+    createdAt: number
+    active: number
+    status: number
+    deleted: number
+    _all: number
+  }
+
+
+  export type BankAccountAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type BankAccountSumAggregateInputType = {
+    id?: true
+  }
+
+  export type BankAccountMinAggregateInputType = {
+    id?: true
+    bank_name?: true
+    account_holder?: true
+    account_number?: true
+    agency?: true
+    account_type?: true
+    swift_bic?: true
+    iban?: true
+    pix_key?: true
+    currency?: true
+    notes?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+  }
+
+  export type BankAccountMaxAggregateInputType = {
+    id?: true
+    bank_name?: true
+    account_holder?: true
+    account_number?: true
+    agency?: true
+    account_type?: true
+    swift_bic?: true
+    iban?: true
+    pix_key?: true
+    currency?: true
+    notes?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+  }
+
+  export type BankAccountCountAggregateInputType = {
+    id?: true
+    bank_name?: true
+    account_holder?: true
+    account_number?: true
+    agency?: true
+    account_type?: true
+    swift_bic?: true
+    iban?: true
+    pix_key?: true
+    currency?: true
+    notes?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+    _all?: true
+  }
+
+  export type BankAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BankAccount to aggregate.
+     */
+    where?: BankAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankAccounts to fetch.
+     */
+    orderBy?: BankAccountOrderByWithRelationInput | BankAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BankAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BankAccounts
+    **/
+    _count?: true | BankAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BankAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BankAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BankAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BankAccountMaxAggregateInputType
+  }
+
+  export type GetBankAccountAggregateType<T extends BankAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateBankAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBankAccount[P]>
+      : GetScalarType<T[P], AggregateBankAccount[P]>
+  }
+
+
+
+
+  export type BankAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BankAccountWhereInput
+    orderBy?: BankAccountOrderByWithAggregationInput | BankAccountOrderByWithAggregationInput[]
+    by: BankAccountScalarFieldEnum[] | BankAccountScalarFieldEnum
+    having?: BankAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BankAccountCountAggregateInputType | true
+    _avg?: BankAccountAvgAggregateInputType
+    _sum?: BankAccountSumAggregateInputType
+    _min?: BankAccountMinAggregateInputType
+    _max?: BankAccountMaxAggregateInputType
+  }
+
+  export type BankAccountGroupByOutputType = {
+    id: number
+    bank_name: string
+    account_holder: string
+    account_number: string | null
+    agency: string | null
+    account_type: string
+    swift_bic: string | null
+    iban: string | null
+    pix_key: string | null
+    currency: string
+    notes: string | null
+    createdAt: Date
+    active: boolean
+    status: string
+    deleted: boolean
+    _count: BankAccountCountAggregateOutputType | null
+    _avg: BankAccountAvgAggregateOutputType | null
+    _sum: BankAccountSumAggregateOutputType | null
+    _min: BankAccountMinAggregateOutputType | null
+    _max: BankAccountMaxAggregateOutputType | null
+  }
+
+  type GetBankAccountGroupByPayload<T extends BankAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BankAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BankAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BankAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], BankAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BankAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bank_name?: boolean
+    account_holder?: boolean
+    account_number?: boolean
+    agency?: boolean
+    account_type?: boolean
+    swift_bic?: boolean
+    iban?: boolean
+    pix_key?: boolean
+    currency?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+    BrokerageInvoices?: boolean | BankAccount$BrokerageInvoicesArgs<ExtArgs>
+    _count?: boolean | BankAccountCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bankAccount"]>
+
+  export type BankAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bank_name?: boolean
+    account_holder?: boolean
+    account_number?: boolean
+    agency?: boolean
+    account_type?: boolean
+    swift_bic?: boolean
+    iban?: boolean
+    pix_key?: boolean
+    currency?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["bankAccount"]>
+
+  export type BankAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bank_name?: boolean
+    account_holder?: boolean
+    account_number?: boolean
+    agency?: boolean
+    account_type?: boolean
+    swift_bic?: boolean
+    iban?: boolean
+    pix_key?: boolean
+    currency?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["bankAccount"]>
+
+  export type BankAccountSelectScalar = {
+    id?: boolean
+    bank_name?: boolean
+    account_holder?: boolean
+    account_number?: boolean
+    agency?: boolean
+    account_type?: boolean
+    swift_bic?: boolean
+    iban?: boolean
+    pix_key?: boolean
+    currency?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }
+
+  export type BankAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "bank_name" | "account_holder" | "account_number" | "agency" | "account_type" | "swift_bic" | "iban" | "pix_key" | "currency" | "notes" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["bankAccount"]>
+  export type BankAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BrokerageInvoices?: boolean | BankAccount$BrokerageInvoicesArgs<ExtArgs>
+    _count?: boolean | BankAccountCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BankAccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type BankAccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $BankAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BankAccount"
+    objects: {
+      BrokerageInvoices: Prisma.$BrokerageInvoicePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      bank_name: string
+      account_holder: string
+      account_number: string | null
+      agency: string | null
+      account_type: string
+      swift_bic: string | null
+      iban: string | null
+      pix_key: string | null
+      currency: string
+      notes: string | null
+      createdAt: Date
+      active: boolean
+      status: string
+      deleted: boolean
+    }, ExtArgs["result"]["bankAccount"]>
+    composites: {}
+  }
+
+  type BankAccountGetPayload<S extends boolean | null | undefined | BankAccountDefaultArgs> = $Result.GetResult<Prisma.$BankAccountPayload, S>
+
+  type BankAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BankAccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BankAccountCountAggregateInputType | true
+    }
+
+  export interface BankAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BankAccount'], meta: { name: 'BankAccount' } }
+    /**
+     * Find zero or one BankAccount that matches the filter.
+     * @param {BankAccountFindUniqueArgs} args - Arguments to find a BankAccount
+     * @example
+     * // Get one BankAccount
+     * const bankAccount = await prisma.bankAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BankAccountFindUniqueArgs>(args: SelectSubset<T, BankAccountFindUniqueArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BankAccount that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BankAccountFindUniqueOrThrowArgs} args - Arguments to find a BankAccount
+     * @example
+     * // Get one BankAccount
+     * const bankAccount = await prisma.bankAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BankAccountFindUniqueOrThrowArgs>(args: SelectSubset<T, BankAccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BankAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankAccountFindFirstArgs} args - Arguments to find a BankAccount
+     * @example
+     * // Get one BankAccount
+     * const bankAccount = await prisma.bankAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BankAccountFindFirstArgs>(args?: SelectSubset<T, BankAccountFindFirstArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BankAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankAccountFindFirstOrThrowArgs} args - Arguments to find a BankAccount
+     * @example
+     * // Get one BankAccount
+     * const bankAccount = await prisma.bankAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BankAccountFindFirstOrThrowArgs>(args?: SelectSubset<T, BankAccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BankAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankAccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BankAccounts
+     * const bankAccounts = await prisma.bankAccount.findMany()
+     * 
+     * // Get first 10 BankAccounts
+     * const bankAccounts = await prisma.bankAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bankAccountWithIdOnly = await prisma.bankAccount.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BankAccountFindManyArgs>(args?: SelectSubset<T, BankAccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BankAccount.
+     * @param {BankAccountCreateArgs} args - Arguments to create a BankAccount.
+     * @example
+     * // Create one BankAccount
+     * const BankAccount = await prisma.bankAccount.create({
+     *   data: {
+     *     // ... data to create a BankAccount
+     *   }
+     * })
+     * 
+     */
+    create<T extends BankAccountCreateArgs>(args: SelectSubset<T, BankAccountCreateArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BankAccounts.
+     * @param {BankAccountCreateManyArgs} args - Arguments to create many BankAccounts.
+     * @example
+     * // Create many BankAccounts
+     * const bankAccount = await prisma.bankAccount.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BankAccountCreateManyArgs>(args?: SelectSubset<T, BankAccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BankAccounts and returns the data saved in the database.
+     * @param {BankAccountCreateManyAndReturnArgs} args - Arguments to create many BankAccounts.
+     * @example
+     * // Create many BankAccounts
+     * const bankAccount = await prisma.bankAccount.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BankAccounts and only return the `id`
+     * const bankAccountWithIdOnly = await prisma.bankAccount.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BankAccountCreateManyAndReturnArgs>(args?: SelectSubset<T, BankAccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BankAccount.
+     * @param {BankAccountDeleteArgs} args - Arguments to delete one BankAccount.
+     * @example
+     * // Delete one BankAccount
+     * const BankAccount = await prisma.bankAccount.delete({
+     *   where: {
+     *     // ... filter to delete one BankAccount
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BankAccountDeleteArgs>(args: SelectSubset<T, BankAccountDeleteArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BankAccount.
+     * @param {BankAccountUpdateArgs} args - Arguments to update one BankAccount.
+     * @example
+     * // Update one BankAccount
+     * const bankAccount = await prisma.bankAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BankAccountUpdateArgs>(args: SelectSubset<T, BankAccountUpdateArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BankAccounts.
+     * @param {BankAccountDeleteManyArgs} args - Arguments to filter BankAccounts to delete.
+     * @example
+     * // Delete a few BankAccounts
+     * const { count } = await prisma.bankAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BankAccountDeleteManyArgs>(args?: SelectSubset<T, BankAccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BankAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BankAccounts
+     * const bankAccount = await prisma.bankAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BankAccountUpdateManyArgs>(args: SelectSubset<T, BankAccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BankAccounts and returns the data updated in the database.
+     * @param {BankAccountUpdateManyAndReturnArgs} args - Arguments to update many BankAccounts.
+     * @example
+     * // Update many BankAccounts
+     * const bankAccount = await prisma.bankAccount.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BankAccounts and only return the `id`
+     * const bankAccountWithIdOnly = await prisma.bankAccount.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BankAccountUpdateManyAndReturnArgs>(args: SelectSubset<T, BankAccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BankAccount.
+     * @param {BankAccountUpsertArgs} args - Arguments to update or create a BankAccount.
+     * @example
+     * // Update or create a BankAccount
+     * const bankAccount = await prisma.bankAccount.upsert({
+     *   create: {
+     *     // ... data to create a BankAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BankAccount we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BankAccountUpsertArgs>(args: SelectSubset<T, BankAccountUpsertArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BankAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankAccountCountArgs} args - Arguments to filter BankAccounts to count.
+     * @example
+     * // Count the number of BankAccounts
+     * const count = await prisma.bankAccount.count({
+     *   where: {
+     *     // ... the filter for the BankAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends BankAccountCountArgs>(
+      args?: Subset<T, BankAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BankAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BankAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BankAccountAggregateArgs>(args: Subset<T, BankAccountAggregateArgs>): Prisma.PrismaPromise<GetBankAccountAggregateType<T>>
+
+    /**
+     * Group by BankAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BankAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BankAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BankAccountGroupByArgs['orderBy'] }
+        : { orderBy?: BankAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BankAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBankAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BankAccount model
+   */
+  readonly fields: BankAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BankAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BankAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    BrokerageInvoices<T extends BankAccount$BrokerageInvoicesArgs<ExtArgs> = {}>(args?: Subset<T, BankAccount$BrokerageInvoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrokerageInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BankAccount model
+   */
+  interface BankAccountFieldRefs {
+    readonly id: FieldRef<"BankAccount", 'Int'>
+    readonly bank_name: FieldRef<"BankAccount", 'String'>
+    readonly account_holder: FieldRef<"BankAccount", 'String'>
+    readonly account_number: FieldRef<"BankAccount", 'String'>
+    readonly agency: FieldRef<"BankAccount", 'String'>
+    readonly account_type: FieldRef<"BankAccount", 'String'>
+    readonly swift_bic: FieldRef<"BankAccount", 'String'>
+    readonly iban: FieldRef<"BankAccount", 'String'>
+    readonly pix_key: FieldRef<"BankAccount", 'String'>
+    readonly currency: FieldRef<"BankAccount", 'String'>
+    readonly notes: FieldRef<"BankAccount", 'String'>
+    readonly createdAt: FieldRef<"BankAccount", 'DateTime'>
+    readonly active: FieldRef<"BankAccount", 'Boolean'>
+    readonly status: FieldRef<"BankAccount", 'String'>
+    readonly deleted: FieldRef<"BankAccount", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BankAccount findUnique
+   */
+  export type BankAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which BankAccount to fetch.
+     */
+    where: BankAccountWhereUniqueInput
+  }
+
+  /**
+   * BankAccount findUniqueOrThrow
+   */
+  export type BankAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which BankAccount to fetch.
+     */
+    where: BankAccountWhereUniqueInput
+  }
+
+  /**
+   * BankAccount findFirst
+   */
+  export type BankAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which BankAccount to fetch.
+     */
+    where?: BankAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankAccounts to fetch.
+     */
+    orderBy?: BankAccountOrderByWithRelationInput | BankAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BankAccounts.
+     */
+    cursor?: BankAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BankAccounts.
+     */
+    distinct?: BankAccountScalarFieldEnum | BankAccountScalarFieldEnum[]
+  }
+
+  /**
+   * BankAccount findFirstOrThrow
+   */
+  export type BankAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which BankAccount to fetch.
+     */
+    where?: BankAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankAccounts to fetch.
+     */
+    orderBy?: BankAccountOrderByWithRelationInput | BankAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BankAccounts.
+     */
+    cursor?: BankAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BankAccounts.
+     */
+    distinct?: BankAccountScalarFieldEnum | BankAccountScalarFieldEnum[]
+  }
+
+  /**
+   * BankAccount findMany
+   */
+  export type BankAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which BankAccounts to fetch.
+     */
+    where?: BankAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BankAccounts to fetch.
+     */
+    orderBy?: BankAccountOrderByWithRelationInput | BankAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BankAccounts.
+     */
+    cursor?: BankAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BankAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BankAccounts.
+     */
+    skip?: number
+    distinct?: BankAccountScalarFieldEnum | BankAccountScalarFieldEnum[]
+  }
+
+  /**
+   * BankAccount create
+   */
+  export type BankAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BankAccount.
+     */
+    data: XOR<BankAccountCreateInput, BankAccountUncheckedCreateInput>
+  }
+
+  /**
+   * BankAccount createMany
+   */
+  export type BankAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BankAccounts.
+     */
+    data: BankAccountCreateManyInput | BankAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BankAccount createManyAndReturn
+   */
+  export type BankAccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * The data used to create many BankAccounts.
+     */
+    data: BankAccountCreateManyInput | BankAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BankAccount update
+   */
+  export type BankAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BankAccount.
+     */
+    data: XOR<BankAccountUpdateInput, BankAccountUncheckedUpdateInput>
+    /**
+     * Choose, which BankAccount to update.
+     */
+    where: BankAccountWhereUniqueInput
+  }
+
+  /**
+   * BankAccount updateMany
+   */
+  export type BankAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BankAccounts.
+     */
+    data: XOR<BankAccountUpdateManyMutationInput, BankAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which BankAccounts to update
+     */
+    where?: BankAccountWhereInput
+    /**
+     * Limit how many BankAccounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BankAccount updateManyAndReturn
+   */
+  export type BankAccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * The data used to update BankAccounts.
+     */
+    data: XOR<BankAccountUpdateManyMutationInput, BankAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which BankAccounts to update
+     */
+    where?: BankAccountWhereInput
+    /**
+     * Limit how many BankAccounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BankAccount upsert
+   */
+  export type BankAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BankAccount to update in case it exists.
+     */
+    where: BankAccountWhereUniqueInput
+    /**
+     * In case the BankAccount found by the `where` argument doesn't exist, create a new BankAccount with this data.
+     */
+    create: XOR<BankAccountCreateInput, BankAccountUncheckedCreateInput>
+    /**
+     * In case the BankAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BankAccountUpdateInput, BankAccountUncheckedUpdateInput>
+  }
+
+  /**
+   * BankAccount delete
+   */
+  export type BankAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    /**
+     * Filter which BankAccount to delete.
+     */
+    where: BankAccountWhereUniqueInput
+  }
+
+  /**
+   * BankAccount deleteMany
+   */
+  export type BankAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BankAccounts to delete
+     */
+    where?: BankAccountWhereInput
+    /**
+     * Limit how many BankAccounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BankAccount.BrokerageInvoices
+   */
+  export type BankAccount$BrokerageInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BrokerageInvoice
+     */
+    select?: BrokerageInvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BrokerageInvoice
+     */
+    omit?: BrokerageInvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceInclude<ExtArgs> | null
+    where?: BrokerageInvoiceWhereInput
+    orderBy?: BrokerageInvoiceOrderByWithRelationInput | BrokerageInvoiceOrderByWithRelationInput[]
+    cursor?: BrokerageInvoiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BrokerageInvoiceScalarFieldEnum | BrokerageInvoiceScalarFieldEnum[]
+  }
+
+  /**
+   * BankAccount without action
+   */
+  export type BankAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+  }
+
 
   /**
    * Model ArbitrationRule
@@ -3568,80 +5024,108 @@ export namespace Prisma {
 
   export type BrokerageInvoiceAvgAggregateOutputType = {
     id: number | null
+    bank_account_id: number | null
   }
 
   export type BrokerageInvoiceSumAggregateOutputType = {
     id: number | null
+    bank_account_id: number | null
   }
 
   export type BrokerageInvoiceMinAggregateOutputType = {
     id: number | null
     number: string | null
     invoice_date: Date | null
+    sent_date: Date | null
+    expected_payment_date: Date | null
+    received_date: Date | null
     createdAt: Date | null
     active: boolean | null
     status: string | null
     deleted: boolean | null
+    bank_account_id: number | null
   }
 
   export type BrokerageInvoiceMaxAggregateOutputType = {
     id: number | null
     number: string | null
     invoice_date: Date | null
+    sent_date: Date | null
+    expected_payment_date: Date | null
+    received_date: Date | null
     createdAt: Date | null
     active: boolean | null
     status: string | null
     deleted: boolean | null
+    bank_account_id: number | null
   }
 
   export type BrokerageInvoiceCountAggregateOutputType = {
     id: number
     number: number
     invoice_date: number
+    sent_date: number
+    expected_payment_date: number
+    received_date: number
     createdAt: number
     active: number
     status: number
     deleted: number
+    bank_account_id: number
     _all: number
   }
 
 
   export type BrokerageInvoiceAvgAggregateInputType = {
     id?: true
+    bank_account_id?: true
   }
 
   export type BrokerageInvoiceSumAggregateInputType = {
     id?: true
+    bank_account_id?: true
   }
 
   export type BrokerageInvoiceMinAggregateInputType = {
     id?: true
     number?: true
     invoice_date?: true
+    sent_date?: true
+    expected_payment_date?: true
+    received_date?: true
     createdAt?: true
     active?: true
     status?: true
     deleted?: true
+    bank_account_id?: true
   }
 
   export type BrokerageInvoiceMaxAggregateInputType = {
     id?: true
     number?: true
     invoice_date?: true
+    sent_date?: true
+    expected_payment_date?: true
+    received_date?: true
     createdAt?: true
     active?: true
     status?: true
     deleted?: true
+    bank_account_id?: true
   }
 
   export type BrokerageInvoiceCountAggregateInputType = {
     id?: true
     number?: true
     invoice_date?: true
+    sent_date?: true
+    expected_payment_date?: true
+    received_date?: true
     createdAt?: true
     active?: true
     status?: true
     deleted?: true
+    bank_account_id?: true
     _all?: true
   }
 
@@ -3735,10 +5219,14 @@ export namespace Prisma {
     id: number
     number: string | null
     invoice_date: Date | null
+    sent_date: Date | null
+    expected_payment_date: Date | null
+    received_date: Date | null
     createdAt: Date
     active: boolean
     status: string
     deleted: boolean
+    bank_account_id: number | null
     _count: BrokerageInvoiceCountAggregateOutputType | null
     _avg: BrokerageInvoiceAvgAggregateOutputType | null
     _sum: BrokerageInvoiceSumAggregateOutputType | null
@@ -3764,10 +5252,15 @@ export namespace Prisma {
     id?: boolean
     number?: boolean
     invoice_date?: boolean
+    sent_date?: boolean
+    expected_payment_date?: boolean
+    received_date?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
     deleted?: boolean
+    bank_account_id?: boolean
+    BankAccount?: boolean | BrokerageInvoice$BankAccountArgs<ExtArgs>
     Lines?: boolean | BrokerageInvoice$LinesArgs<ExtArgs>
     _count?: boolean | BrokerageInvoiceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brokerageInvoice"]>
@@ -3776,53 +5269,77 @@ export namespace Prisma {
     id?: boolean
     number?: boolean
     invoice_date?: boolean
+    sent_date?: boolean
+    expected_payment_date?: boolean
+    received_date?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
     deleted?: boolean
+    bank_account_id?: boolean
+    BankAccount?: boolean | BrokerageInvoice$BankAccountArgs<ExtArgs>
   }, ExtArgs["result"]["brokerageInvoice"]>
 
   export type BrokerageInvoiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     number?: boolean
     invoice_date?: boolean
+    sent_date?: boolean
+    expected_payment_date?: boolean
+    received_date?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
     deleted?: boolean
+    bank_account_id?: boolean
+    BankAccount?: boolean | BrokerageInvoice$BankAccountArgs<ExtArgs>
   }, ExtArgs["result"]["brokerageInvoice"]>
 
   export type BrokerageInvoiceSelectScalar = {
     id?: boolean
     number?: boolean
     invoice_date?: boolean
+    sent_date?: boolean
+    expected_payment_date?: boolean
+    received_date?: boolean
     createdAt?: boolean
     active?: boolean
     status?: boolean
     deleted?: boolean
+    bank_account_id?: boolean
   }
 
-  export type BrokerageInvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "number" | "invoice_date" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["brokerageInvoice"]>
+  export type BrokerageInvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "number" | "invoice_date" | "sent_date" | "expected_payment_date" | "received_date" | "createdAt" | "active" | "status" | "deleted" | "bank_account_id", ExtArgs["result"]["brokerageInvoice"]>
   export type BrokerageInvoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BankAccount?: boolean | BrokerageInvoice$BankAccountArgs<ExtArgs>
     Lines?: boolean | BrokerageInvoice$LinesArgs<ExtArgs>
     _count?: boolean | BrokerageInvoiceCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type BrokerageInvoiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type BrokerageInvoiceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type BrokerageInvoiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BankAccount?: boolean | BrokerageInvoice$BankAccountArgs<ExtArgs>
+  }
+  export type BrokerageInvoiceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    BankAccount?: boolean | BrokerageInvoice$BankAccountArgs<ExtArgs>
+  }
 
   export type $BrokerageInvoicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "BrokerageInvoice"
     objects: {
+      BankAccount: Prisma.$BankAccountPayload<ExtArgs> | null
       Lines: Prisma.$BrokerageInvoiceLinePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       number: string | null
       invoice_date: Date | null
+      sent_date: Date | null
+      expected_payment_date: Date | null
+      received_date: Date | null
       createdAt: Date
       active: boolean
       status: string
       deleted: boolean
+      bank_account_id: number | null
     }, ExtArgs["result"]["brokerageInvoice"]>
     composites: {}
   }
@@ -4217,6 +5734,7 @@ export namespace Prisma {
    */
   export interface Prisma__BrokerageInvoiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    BankAccount<T extends BrokerageInvoice$BankAccountArgs<ExtArgs> = {}>(args?: Subset<T, BrokerageInvoice$BankAccountArgs<ExtArgs>>): Prisma__BankAccountClient<$Result.GetResult<Prisma.$BankAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Lines<T extends BrokerageInvoice$LinesArgs<ExtArgs> = {}>(args?: Subset<T, BrokerageInvoice$LinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrokerageInvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4250,10 +5768,14 @@ export namespace Prisma {
     readonly id: FieldRef<"BrokerageInvoice", 'Int'>
     readonly number: FieldRef<"BrokerageInvoice", 'String'>
     readonly invoice_date: FieldRef<"BrokerageInvoice", 'DateTime'>
+    readonly sent_date: FieldRef<"BrokerageInvoice", 'DateTime'>
+    readonly expected_payment_date: FieldRef<"BrokerageInvoice", 'DateTime'>
+    readonly received_date: FieldRef<"BrokerageInvoice", 'DateTime'>
     readonly createdAt: FieldRef<"BrokerageInvoice", 'DateTime'>
     readonly active: FieldRef<"BrokerageInvoice", 'Boolean'>
     readonly status: FieldRef<"BrokerageInvoice", 'String'>
     readonly deleted: FieldRef<"BrokerageInvoice", 'Boolean'>
+    readonly bank_account_id: FieldRef<"BrokerageInvoice", 'Int'>
   }
     
 
@@ -4503,6 +6025,10 @@ export namespace Prisma {
      */
     data: BrokerageInvoiceCreateManyInput | BrokerageInvoiceCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4573,6 +6099,10 @@ export namespace Prisma {
      * Limit how many BrokerageInvoices to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrokerageInvoiceIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4642,6 +6172,25 @@ export namespace Prisma {
   }
 
   /**
+   * BrokerageInvoice.BankAccount
+   */
+  export type BrokerageInvoice$BankAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BankAccount
+     */
+    select?: BankAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BankAccount
+     */
+    omit?: BankAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BankAccountInclude<ExtArgs> | null
+    where?: BankAccountWhereInput
+  }
+
+  /**
    * BrokerageInvoice.Lines
    */
   export type BrokerageInvoice$LinesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4701,6 +6250,8 @@ export namespace Prisma {
     brokerage_invoice_id: number | null
     contract_id: number | null
     comission_total_usd: number | null
+    ptax: number | null
+    comission_total_brl: number | null
   }
 
   export type BrokerageInvoiceLineSumAggregateOutputType = {
@@ -4708,6 +6259,8 @@ export namespace Prisma {
     brokerage_invoice_id: number | null
     contract_id: number | null
     comission_total_usd: number | null
+    ptax: number | null
+    comission_total_brl: number | null
   }
 
   export type BrokerageInvoiceLineMinAggregateOutputType = {
@@ -4717,6 +6270,10 @@ export namespace Prisma {
     bl_date: Date | null
     bl_number: string | null
     comission_total_usd: number | null
+    ptax: number | null
+    comission_total_brl: number | null
+    description: string | null
+    notes: string | null
     createdAt: Date | null
     active: boolean | null
     status: string | null
@@ -4730,6 +6287,10 @@ export namespace Prisma {
     bl_date: Date | null
     bl_number: string | null
     comission_total_usd: number | null
+    ptax: number | null
+    comission_total_brl: number | null
+    description: string | null
+    notes: string | null
     createdAt: Date | null
     active: boolean | null
     status: string | null
@@ -4744,6 +6305,10 @@ export namespace Prisma {
     bl_number: number
     bl_attachments: number
     comission_total_usd: number
+    ptax: number
+    comission_total_brl: number
+    description: number
+    notes: number
     attachments: number
     createdAt: number
     active: number
@@ -4758,6 +6323,8 @@ export namespace Prisma {
     brokerage_invoice_id?: true
     contract_id?: true
     comission_total_usd?: true
+    ptax?: true
+    comission_total_brl?: true
   }
 
   export type BrokerageInvoiceLineSumAggregateInputType = {
@@ -4765,6 +6332,8 @@ export namespace Prisma {
     brokerage_invoice_id?: true
     contract_id?: true
     comission_total_usd?: true
+    ptax?: true
+    comission_total_brl?: true
   }
 
   export type BrokerageInvoiceLineMinAggregateInputType = {
@@ -4774,6 +6343,10 @@ export namespace Prisma {
     bl_date?: true
     bl_number?: true
     comission_total_usd?: true
+    ptax?: true
+    comission_total_brl?: true
+    description?: true
+    notes?: true
     createdAt?: true
     active?: true
     status?: true
@@ -4787,6 +6360,10 @@ export namespace Prisma {
     bl_date?: true
     bl_number?: true
     comission_total_usd?: true
+    ptax?: true
+    comission_total_brl?: true
+    description?: true
+    notes?: true
     createdAt?: true
     active?: true
     status?: true
@@ -4801,6 +6378,10 @@ export namespace Prisma {
     bl_number?: true
     bl_attachments?: true
     comission_total_usd?: true
+    ptax?: true
+    comission_total_brl?: true
+    description?: true
+    notes?: true
     attachments?: true
     createdAt?: true
     active?: true
@@ -4903,6 +6484,10 @@ export namespace Prisma {
     bl_number: string
     bl_attachments: string[]
     comission_total_usd: number
+    ptax: number
+    comission_total_brl: number
+    description: string
+    notes: string
     attachments: string[]
     createdAt: Date
     active: boolean
@@ -4937,6 +6522,10 @@ export namespace Prisma {
     bl_number?: boolean
     bl_attachments?: boolean
     comission_total_usd?: boolean
+    ptax?: boolean
+    comission_total_brl?: boolean
+    description?: boolean
+    notes?: boolean
     attachments?: boolean
     createdAt?: boolean
     active?: boolean
@@ -4954,6 +6543,10 @@ export namespace Prisma {
     bl_number?: boolean
     bl_attachments?: boolean
     comission_total_usd?: boolean
+    ptax?: boolean
+    comission_total_brl?: boolean
+    description?: boolean
+    notes?: boolean
     attachments?: boolean
     createdAt?: boolean
     active?: boolean
@@ -4971,6 +6564,10 @@ export namespace Prisma {
     bl_number?: boolean
     bl_attachments?: boolean
     comission_total_usd?: boolean
+    ptax?: boolean
+    comission_total_brl?: boolean
+    description?: boolean
+    notes?: boolean
     attachments?: boolean
     createdAt?: boolean
     active?: boolean
@@ -4988,6 +6585,10 @@ export namespace Prisma {
     bl_number?: boolean
     bl_attachments?: boolean
     comission_total_usd?: boolean
+    ptax?: boolean
+    comission_total_brl?: boolean
+    description?: boolean
+    notes?: boolean
     attachments?: boolean
     createdAt?: boolean
     active?: boolean
@@ -4995,7 +6596,7 @@ export namespace Prisma {
     deleted?: boolean
   }
 
-  export type BrokerageInvoiceLineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brokerage_invoice_id" | "contract_id" | "bl_date" | "bl_number" | "bl_attachments" | "comission_total_usd" | "attachments" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["brokerageInvoiceLine"]>
+  export type BrokerageInvoiceLineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brokerage_invoice_id" | "contract_id" | "bl_date" | "bl_number" | "bl_attachments" | "comission_total_usd" | "ptax" | "comission_total_brl" | "description" | "notes" | "attachments" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["brokerageInvoiceLine"]>
   export type BrokerageInvoiceLineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     BrokerageInvoice?: boolean | BrokerageInvoiceDefaultArgs<ExtArgs>
     Contract?: boolean | ContractDefaultArgs<ExtArgs>
@@ -5023,6 +6624,10 @@ export namespace Prisma {
       bl_number: string
       bl_attachments: string[]
       comission_total_usd: number
+      ptax: number
+      comission_total_brl: number
+      description: string
+      notes: string
       attachments: string[]
       createdAt: Date
       active: boolean
@@ -5460,6 +7065,10 @@ export namespace Prisma {
     readonly bl_number: FieldRef<"BrokerageInvoiceLine", 'String'>
     readonly bl_attachments: FieldRef<"BrokerageInvoiceLine", 'String[]'>
     readonly comission_total_usd: FieldRef<"BrokerageInvoiceLine", 'Float'>
+    readonly ptax: FieldRef<"BrokerageInvoiceLine", 'Float'>
+    readonly comission_total_brl: FieldRef<"BrokerageInvoiceLine", 'Float'>
+    readonly description: FieldRef<"BrokerageInvoiceLine", 'String'>
+    readonly notes: FieldRef<"BrokerageInvoiceLine", 'String'>
     readonly attachments: FieldRef<"BrokerageInvoiceLine", 'String[]'>
     readonly createdAt: FieldRef<"BrokerageInvoiceLine", 'DateTime'>
     readonly active: FieldRef<"BrokerageInvoiceLine", 'Boolean'>
@@ -7290,6 +8899,8 @@ export namespace Prisma {
     customer_party_b_id: number | null
     bording_date: Date | null
     mt_value: number | null
+    origin_country: string | null
+    origin_port: string | null
     destination_country: string | null
     destination_port: string | null
     shipping_company: string | null
@@ -7329,6 +8940,8 @@ export namespace Prisma {
     customer_party_b_id: number | null
     bording_date: Date | null
     mt_value: number | null
+    origin_country: string | null
+    origin_port: string | null
     destination_country: string | null
     destination_port: string | null
     shipping_company: string | null
@@ -7369,6 +8982,8 @@ export namespace Prisma {
     products_id: number
     bording_date: number
     mt_value: number
+    origin_country: number
+    origin_port: number
     destination_country: number
     destination_port: number
     shipping_company: number
@@ -7450,6 +9065,8 @@ export namespace Prisma {
     customer_party_b_id?: true
     bording_date?: true
     mt_value?: true
+    origin_country?: true
+    origin_port?: true
     destination_country?: true
     destination_port?: true
     shipping_company?: true
@@ -7489,6 +9106,8 @@ export namespace Prisma {
     customer_party_b_id?: true
     bording_date?: true
     mt_value?: true
+    origin_country?: true
+    origin_port?: true
     destination_country?: true
     destination_port?: true
     shipping_company?: true
@@ -7529,6 +9148,8 @@ export namespace Prisma {
     products_id?: true
     bording_date?: true
     mt_value?: true
+    origin_country?: true
+    origin_port?: true
     destination_country?: true
     destination_port?: true
     shipping_company?: true
@@ -7672,6 +9293,8 @@ export namespace Prisma {
     products_id: number[]
     bording_date: Date | null
     mt_value: number
+    origin_country: string | null
+    origin_port: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -7747,6 +9370,8 @@ export namespace Prisma {
     products_id?: boolean
     bording_date?: boolean
     mt_value?: boolean
+    origin_country?: boolean
+    origin_port?: boolean
     destination_country?: boolean
     destination_port?: boolean
     shipping_company?: boolean
@@ -7791,6 +9416,7 @@ export namespace Prisma {
     ArbitrationRule?: boolean | Contract$ArbitrationRuleArgs<ExtArgs>
     Product?: boolean | Contract$ProductArgs<ExtArgs>
     SpecialCondition?: boolean | Contract$SpecialConditionArgs<ExtArgs>
+    ActivityLogs?: boolean | Contract$ActivityLogsArgs<ExtArgs>
     _count?: boolean | ContractCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contract"]>
 
@@ -7811,6 +9437,8 @@ export namespace Prisma {
     products_id?: boolean
     bording_date?: boolean
     mt_value?: boolean
+    origin_country?: boolean
+    origin_port?: boolean
     destination_country?: boolean
     destination_port?: boolean
     shipping_company?: boolean
@@ -7869,6 +9497,8 @@ export namespace Prisma {
     products_id?: boolean
     bording_date?: boolean
     mt_value?: boolean
+    origin_country?: boolean
+    origin_port?: boolean
     destination_country?: boolean
     destination_port?: boolean
     shipping_company?: boolean
@@ -7927,6 +9557,8 @@ export namespace Prisma {
     products_id?: boolean
     bording_date?: boolean
     mt_value?: boolean
+    origin_country?: boolean
+    origin_port?: boolean
     destination_country?: boolean
     destination_port?: boolean
     shipping_company?: boolean
@@ -7966,7 +9598,7 @@ export namespace Prisma {
     deleted?: boolean
   }
 
-  export type ContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "date_creation" | "date_expiration" | "date_signature" | "date_expiration_signature" | "date_signature_party_a" | "date_expiration_signature_party_a" | "date_signature_party_b" | "date_expiration_signature_party_b" | "customer_party_a_id" | "customer_party_b_id" | "products_id" | "bording_date" | "mt_value" | "destination_country" | "destination_port" | "shipping_company" | "shipment_date" | "si_sent" | "packing" | "incoterm" | "payment_terms" | "payment_method" | "payment_currency" | "payment_amount" | "payment_date" | "payment_status" | "payment_notes" | "payment_attachments" | "payment_notes_party_a" | "payment_attachments_party_a" | "payment_notes_party_b" | "payment_attachments_party_b" | "special_terms" | "business_terms" | "legal_terms" | "other_terms" | "other_terms_party_a" | "other_terms_party_b" | "other_terms_party_a_party_b" | "other_terms_party_a_party_b_party_a" | "other_terms_party_b_party_a" | "other_terms_party_b_party_a_party_b" | "commission_party_a" | "commission_party_b" | "comission_total" | "attachments" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["contract"]>
+  export type ContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "date_creation" | "date_expiration" | "date_signature" | "date_expiration_signature" | "date_signature_party_a" | "date_expiration_signature_party_a" | "date_signature_party_b" | "date_expiration_signature_party_b" | "customer_party_a_id" | "customer_party_b_id" | "products_id" | "bording_date" | "mt_value" | "origin_country" | "origin_port" | "destination_country" | "destination_port" | "shipping_company" | "shipment_date" | "si_sent" | "packing" | "incoterm" | "payment_terms" | "payment_method" | "payment_currency" | "payment_amount" | "payment_date" | "payment_status" | "payment_notes" | "payment_attachments" | "payment_notes_party_a" | "payment_attachments_party_a" | "payment_notes_party_b" | "payment_attachments_party_b" | "special_terms" | "business_terms" | "legal_terms" | "other_terms" | "other_terms_party_a" | "other_terms_party_b" | "other_terms_party_a_party_b" | "other_terms_party_a_party_b_party_a" | "other_terms_party_b_party_a" | "other_terms_party_b_party_a_party_b" | "commission_party_a" | "commission_party_b" | "comission_total" | "attachments" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["contract"]>
   export type ContractInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     BrokerageInvoiceLines?: boolean | Contract$BrokerageInvoiceLinesArgs<ExtArgs>
     PartyA?: boolean | CustomerDefaultArgs<ExtArgs>
@@ -7975,6 +9607,7 @@ export namespace Prisma {
     ArbitrationRule?: boolean | Contract$ArbitrationRuleArgs<ExtArgs>
     Product?: boolean | Contract$ProductArgs<ExtArgs>
     SpecialCondition?: boolean | Contract$SpecialConditionArgs<ExtArgs>
+    ActivityLogs?: boolean | Contract$ActivityLogsArgs<ExtArgs>
     _count?: boolean | ContractCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ContractIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7996,6 +9629,7 @@ export namespace Prisma {
       ArbitrationRule: Prisma.$ArbitrationRulePayload<ExtArgs>[]
       Product: Prisma.$ProductPayload<ExtArgs>[]
       SpecialCondition: Prisma.$SpecialConditionPayload<ExtArgs>[]
+      ActivityLogs: Prisma.$ContractActivityLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -8014,6 +9648,8 @@ export namespace Prisma {
       products_id: number[]
       bording_date: Date | null
       mt_value: number
+      origin_country: string | null
+      origin_port: string | null
       destination_country: string
       destination_port: string
       shipping_company: string
@@ -8452,6 +10088,7 @@ export namespace Prisma {
     ArbitrationRule<T extends Contract$ArbitrationRuleArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ArbitrationRuleArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArbitrationRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Product<T extends Contract$ProductArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     SpecialCondition<T extends Contract$SpecialConditionArgs<ExtArgs> = {}>(args?: Subset<T, Contract$SpecialConditionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SpecialConditionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ActivityLogs<T extends Contract$ActivityLogsArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ActivityLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8497,6 +10134,8 @@ export namespace Prisma {
     readonly products_id: FieldRef<"Contract", 'Int[]'>
     readonly bording_date: FieldRef<"Contract", 'DateTime'>
     readonly mt_value: FieldRef<"Contract", 'Float'>
+    readonly origin_country: FieldRef<"Contract", 'String'>
+    readonly origin_port: FieldRef<"Contract", 'String'>
     readonly destination_country: FieldRef<"Contract", 'String'>
     readonly destination_port: FieldRef<"Contract", 'String'>
     readonly shipping_company: FieldRef<"Contract", 'String'>
@@ -9050,6 +10689,30 @@ export namespace Prisma {
   }
 
   /**
+   * Contract.ActivityLogs
+   */
+  export type Contract$ActivityLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    where?: ContractActivityLogWhereInput
+    orderBy?: ContractActivityLogOrderByWithRelationInput | ContractActivityLogOrderByWithRelationInput[]
+    cursor?: ContractActivityLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContractActivityLogScalarFieldEnum | ContractActivityLogScalarFieldEnum[]
+  }
+
+  /**
    * Contract without action
    */
   export type ContractDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9065,6 +10728,1167 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ContractInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ContractActivityLog
+   */
+
+  export type AggregateContractActivityLog = {
+    _count: ContractActivityLogCountAggregateOutputType | null
+    _avg: ContractActivityLogAvgAggregateOutputType | null
+    _sum: ContractActivityLogSumAggregateOutputType | null
+    _min: ContractActivityLogMinAggregateOutputType | null
+    _max: ContractActivityLogMaxAggregateOutputType | null
+  }
+
+  export type ContractActivityLogAvgAggregateOutputType = {
+    id: number | null
+    contract_id: number | null
+    actorUserId: number | null
+  }
+
+  export type ContractActivityLogSumAggregateOutputType = {
+    id: number | null
+    contract_id: number | null
+    actorUserId: number | null
+  }
+
+  export type ContractActivityLogMinAggregateOutputType = {
+    id: number | null
+    contract_id: number | null
+    action: string | null
+    details: string | null
+    reference: string | null
+    actorSuperTokensUserId: string | null
+    actorUserId: number | null
+    actorEmail: string | null
+    createdAt: Date | null
+  }
+
+  export type ContractActivityLogMaxAggregateOutputType = {
+    id: number | null
+    contract_id: number | null
+    action: string | null
+    details: string | null
+    reference: string | null
+    actorSuperTokensUserId: string | null
+    actorUserId: number | null
+    actorEmail: string | null
+    createdAt: Date | null
+  }
+
+  export type ContractActivityLogCountAggregateOutputType = {
+    id: number
+    contract_id: number
+    action: number
+    details: number
+    reference: number
+    payload: number
+    actorSuperTokensUserId: number
+    actorUserId: number
+    actorEmail: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ContractActivityLogAvgAggregateInputType = {
+    id?: true
+    contract_id?: true
+    actorUserId?: true
+  }
+
+  export type ContractActivityLogSumAggregateInputType = {
+    id?: true
+    contract_id?: true
+    actorUserId?: true
+  }
+
+  export type ContractActivityLogMinAggregateInputType = {
+    id?: true
+    contract_id?: true
+    action?: true
+    details?: true
+    reference?: true
+    actorSuperTokensUserId?: true
+    actorUserId?: true
+    actorEmail?: true
+    createdAt?: true
+  }
+
+  export type ContractActivityLogMaxAggregateInputType = {
+    id?: true
+    contract_id?: true
+    action?: true
+    details?: true
+    reference?: true
+    actorSuperTokensUserId?: true
+    actorUserId?: true
+    actorEmail?: true
+    createdAt?: true
+  }
+
+  export type ContractActivityLogCountAggregateInputType = {
+    id?: true
+    contract_id?: true
+    action?: true
+    details?: true
+    reference?: true
+    payload?: true
+    actorSuperTokensUserId?: true
+    actorUserId?: true
+    actorEmail?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ContractActivityLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContractActivityLog to aggregate.
+     */
+    where?: ContractActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContractActivityLogs to fetch.
+     */
+    orderBy?: ContractActivityLogOrderByWithRelationInput | ContractActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContractActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContractActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContractActivityLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ContractActivityLogs
+    **/
+    _count?: true | ContractActivityLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ContractActivityLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ContractActivityLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContractActivityLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContractActivityLogMaxAggregateInputType
+  }
+
+  export type GetContractActivityLogAggregateType<T extends ContractActivityLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateContractActivityLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContractActivityLog[P]>
+      : GetScalarType<T[P], AggregateContractActivityLog[P]>
+  }
+
+
+
+
+  export type ContractActivityLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContractActivityLogWhereInput
+    orderBy?: ContractActivityLogOrderByWithAggregationInput | ContractActivityLogOrderByWithAggregationInput[]
+    by: ContractActivityLogScalarFieldEnum[] | ContractActivityLogScalarFieldEnum
+    having?: ContractActivityLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContractActivityLogCountAggregateInputType | true
+    _avg?: ContractActivityLogAvgAggregateInputType
+    _sum?: ContractActivityLogSumAggregateInputType
+    _min?: ContractActivityLogMinAggregateInputType
+    _max?: ContractActivityLogMaxAggregateInputType
+  }
+
+  export type ContractActivityLogGroupByOutputType = {
+    id: number
+    contract_id: number
+    action: string
+    details: string | null
+    reference: string | null
+    payload: JsonValue | null
+    actorSuperTokensUserId: string | null
+    actorUserId: number | null
+    actorEmail: string | null
+    createdAt: Date
+    _count: ContractActivityLogCountAggregateOutputType | null
+    _avg: ContractActivityLogAvgAggregateOutputType | null
+    _sum: ContractActivityLogSumAggregateOutputType | null
+    _min: ContractActivityLogMinAggregateOutputType | null
+    _max: ContractActivityLogMaxAggregateOutputType | null
+  }
+
+  type GetContractActivityLogGroupByPayload<T extends ContractActivityLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContractActivityLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContractActivityLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContractActivityLogGroupByOutputType[P]>
+            : GetScalarType<T[P], ContractActivityLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContractActivityLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    contract_id?: boolean
+    action?: boolean
+    details?: boolean
+    reference?: boolean
+    payload?: boolean
+    actorSuperTokensUserId?: boolean
+    actorUserId?: boolean
+    actorEmail?: boolean
+    createdAt?: boolean
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contractActivityLog"]>
+
+  export type ContractActivityLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    contract_id?: boolean
+    action?: boolean
+    details?: boolean
+    reference?: boolean
+    payload?: boolean
+    actorSuperTokensUserId?: boolean
+    actorUserId?: boolean
+    actorEmail?: boolean
+    createdAt?: boolean
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contractActivityLog"]>
+
+  export type ContractActivityLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    contract_id?: boolean
+    action?: boolean
+    details?: boolean
+    reference?: boolean
+    payload?: boolean
+    actorSuperTokensUserId?: boolean
+    actorUserId?: boolean
+    actorEmail?: boolean
+    createdAt?: boolean
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contractActivityLog"]>
+
+  export type ContractActivityLogSelectScalar = {
+    id?: boolean
+    contract_id?: boolean
+    action?: boolean
+    details?: boolean
+    reference?: boolean
+    payload?: boolean
+    actorSuperTokensUserId?: boolean
+    actorUserId?: boolean
+    actorEmail?: boolean
+    createdAt?: boolean
+  }
+
+  export type ContractActivityLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "contract_id" | "action" | "details" | "reference" | "payload" | "actorSuperTokensUserId" | "actorUserId" | "actorEmail" | "createdAt", ExtArgs["result"]["contractActivityLog"]>
+  export type ContractActivityLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }
+  export type ContractActivityLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }
+  export type ContractActivityLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Contract?: boolean | ContractDefaultArgs<ExtArgs>
+  }
+
+  export type $ContractActivityLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContractActivityLog"
+    objects: {
+      Contract: Prisma.$ContractPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      contract_id: number
+      action: string
+      details: string | null
+      reference: string | null
+      payload: Prisma.JsonValue | null
+      actorSuperTokensUserId: string | null
+      actorUserId: number | null
+      actorEmail: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["contractActivityLog"]>
+    composites: {}
+  }
+
+  type ContractActivityLogGetPayload<S extends boolean | null | undefined | ContractActivityLogDefaultArgs> = $Result.GetResult<Prisma.$ContractActivityLogPayload, S>
+
+  type ContractActivityLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContractActivityLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContractActivityLogCountAggregateInputType | true
+    }
+
+  export interface ContractActivityLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContractActivityLog'], meta: { name: 'ContractActivityLog' } }
+    /**
+     * Find zero or one ContractActivityLog that matches the filter.
+     * @param {ContractActivityLogFindUniqueArgs} args - Arguments to find a ContractActivityLog
+     * @example
+     * // Get one ContractActivityLog
+     * const contractActivityLog = await prisma.contractActivityLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContractActivityLogFindUniqueArgs>(args: SelectSubset<T, ContractActivityLogFindUniqueArgs<ExtArgs>>): Prisma__ContractActivityLogClient<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContractActivityLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContractActivityLogFindUniqueOrThrowArgs} args - Arguments to find a ContractActivityLog
+     * @example
+     * // Get one ContractActivityLog
+     * const contractActivityLog = await prisma.contractActivityLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContractActivityLogFindUniqueOrThrowArgs>(args: SelectSubset<T, ContractActivityLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContractActivityLogClient<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContractActivityLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractActivityLogFindFirstArgs} args - Arguments to find a ContractActivityLog
+     * @example
+     * // Get one ContractActivityLog
+     * const contractActivityLog = await prisma.contractActivityLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContractActivityLogFindFirstArgs>(args?: SelectSubset<T, ContractActivityLogFindFirstArgs<ExtArgs>>): Prisma__ContractActivityLogClient<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContractActivityLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractActivityLogFindFirstOrThrowArgs} args - Arguments to find a ContractActivityLog
+     * @example
+     * // Get one ContractActivityLog
+     * const contractActivityLog = await prisma.contractActivityLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContractActivityLogFindFirstOrThrowArgs>(args?: SelectSubset<T, ContractActivityLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContractActivityLogClient<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ContractActivityLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractActivityLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContractActivityLogs
+     * const contractActivityLogs = await prisma.contractActivityLog.findMany()
+     * 
+     * // Get first 10 ContractActivityLogs
+     * const contractActivityLogs = await prisma.contractActivityLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contractActivityLogWithIdOnly = await prisma.contractActivityLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContractActivityLogFindManyArgs>(args?: SelectSubset<T, ContractActivityLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContractActivityLog.
+     * @param {ContractActivityLogCreateArgs} args - Arguments to create a ContractActivityLog.
+     * @example
+     * // Create one ContractActivityLog
+     * const ContractActivityLog = await prisma.contractActivityLog.create({
+     *   data: {
+     *     // ... data to create a ContractActivityLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContractActivityLogCreateArgs>(args: SelectSubset<T, ContractActivityLogCreateArgs<ExtArgs>>): Prisma__ContractActivityLogClient<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ContractActivityLogs.
+     * @param {ContractActivityLogCreateManyArgs} args - Arguments to create many ContractActivityLogs.
+     * @example
+     * // Create many ContractActivityLogs
+     * const contractActivityLog = await prisma.contractActivityLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContractActivityLogCreateManyArgs>(args?: SelectSubset<T, ContractActivityLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ContractActivityLogs and returns the data saved in the database.
+     * @param {ContractActivityLogCreateManyAndReturnArgs} args - Arguments to create many ContractActivityLogs.
+     * @example
+     * // Create many ContractActivityLogs
+     * const contractActivityLog = await prisma.contractActivityLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ContractActivityLogs and only return the `id`
+     * const contractActivityLogWithIdOnly = await prisma.contractActivityLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContractActivityLogCreateManyAndReturnArgs>(args?: SelectSubset<T, ContractActivityLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ContractActivityLog.
+     * @param {ContractActivityLogDeleteArgs} args - Arguments to delete one ContractActivityLog.
+     * @example
+     * // Delete one ContractActivityLog
+     * const ContractActivityLog = await prisma.contractActivityLog.delete({
+     *   where: {
+     *     // ... filter to delete one ContractActivityLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContractActivityLogDeleteArgs>(args: SelectSubset<T, ContractActivityLogDeleteArgs<ExtArgs>>): Prisma__ContractActivityLogClient<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContractActivityLog.
+     * @param {ContractActivityLogUpdateArgs} args - Arguments to update one ContractActivityLog.
+     * @example
+     * // Update one ContractActivityLog
+     * const contractActivityLog = await prisma.contractActivityLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContractActivityLogUpdateArgs>(args: SelectSubset<T, ContractActivityLogUpdateArgs<ExtArgs>>): Prisma__ContractActivityLogClient<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ContractActivityLogs.
+     * @param {ContractActivityLogDeleteManyArgs} args - Arguments to filter ContractActivityLogs to delete.
+     * @example
+     * // Delete a few ContractActivityLogs
+     * const { count } = await prisma.contractActivityLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContractActivityLogDeleteManyArgs>(args?: SelectSubset<T, ContractActivityLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContractActivityLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractActivityLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContractActivityLogs
+     * const contractActivityLog = await prisma.contractActivityLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContractActivityLogUpdateManyArgs>(args: SelectSubset<T, ContractActivityLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContractActivityLogs and returns the data updated in the database.
+     * @param {ContractActivityLogUpdateManyAndReturnArgs} args - Arguments to update many ContractActivityLogs.
+     * @example
+     * // Update many ContractActivityLogs
+     * const contractActivityLog = await prisma.contractActivityLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ContractActivityLogs and only return the `id`
+     * const contractActivityLogWithIdOnly = await prisma.contractActivityLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContractActivityLogUpdateManyAndReturnArgs>(args: SelectSubset<T, ContractActivityLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ContractActivityLog.
+     * @param {ContractActivityLogUpsertArgs} args - Arguments to update or create a ContractActivityLog.
+     * @example
+     * // Update or create a ContractActivityLog
+     * const contractActivityLog = await prisma.contractActivityLog.upsert({
+     *   create: {
+     *     // ... data to create a ContractActivityLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContractActivityLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContractActivityLogUpsertArgs>(args: SelectSubset<T, ContractActivityLogUpsertArgs<ExtArgs>>): Prisma__ContractActivityLogClient<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ContractActivityLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractActivityLogCountArgs} args - Arguments to filter ContractActivityLogs to count.
+     * @example
+     * // Count the number of ContractActivityLogs
+     * const count = await prisma.contractActivityLog.count({
+     *   where: {
+     *     // ... the filter for the ContractActivityLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContractActivityLogCountArgs>(
+      args?: Subset<T, ContractActivityLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContractActivityLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContractActivityLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractActivityLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContractActivityLogAggregateArgs>(args: Subset<T, ContractActivityLogAggregateArgs>): Prisma.PrismaPromise<GetContractActivityLogAggregateType<T>>
+
+    /**
+     * Group by ContractActivityLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractActivityLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContractActivityLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContractActivityLogGroupByArgs['orderBy'] }
+        : { orderBy?: ContractActivityLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContractActivityLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContractActivityLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContractActivityLog model
+   */
+  readonly fields: ContractActivityLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContractActivityLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContractActivityLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Contract<T extends ContractDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContractDefaultArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContractActivityLog model
+   */
+  interface ContractActivityLogFieldRefs {
+    readonly id: FieldRef<"ContractActivityLog", 'Int'>
+    readonly contract_id: FieldRef<"ContractActivityLog", 'Int'>
+    readonly action: FieldRef<"ContractActivityLog", 'String'>
+    readonly details: FieldRef<"ContractActivityLog", 'String'>
+    readonly reference: FieldRef<"ContractActivityLog", 'String'>
+    readonly payload: FieldRef<"ContractActivityLog", 'Json'>
+    readonly actorSuperTokensUserId: FieldRef<"ContractActivityLog", 'String'>
+    readonly actorUserId: FieldRef<"ContractActivityLog", 'Int'>
+    readonly actorEmail: FieldRef<"ContractActivityLog", 'String'>
+    readonly createdAt: FieldRef<"ContractActivityLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContractActivityLog findUnique
+   */
+  export type ContractActivityLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ContractActivityLog to fetch.
+     */
+    where: ContractActivityLogWhereUniqueInput
+  }
+
+  /**
+   * ContractActivityLog findUniqueOrThrow
+   */
+  export type ContractActivityLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ContractActivityLog to fetch.
+     */
+    where: ContractActivityLogWhereUniqueInput
+  }
+
+  /**
+   * ContractActivityLog findFirst
+   */
+  export type ContractActivityLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ContractActivityLog to fetch.
+     */
+    where?: ContractActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContractActivityLogs to fetch.
+     */
+    orderBy?: ContractActivityLogOrderByWithRelationInput | ContractActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContractActivityLogs.
+     */
+    cursor?: ContractActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContractActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContractActivityLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContractActivityLogs.
+     */
+    distinct?: ContractActivityLogScalarFieldEnum | ContractActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * ContractActivityLog findFirstOrThrow
+   */
+  export type ContractActivityLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ContractActivityLog to fetch.
+     */
+    where?: ContractActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContractActivityLogs to fetch.
+     */
+    orderBy?: ContractActivityLogOrderByWithRelationInput | ContractActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContractActivityLogs.
+     */
+    cursor?: ContractActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContractActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContractActivityLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContractActivityLogs.
+     */
+    distinct?: ContractActivityLogScalarFieldEnum | ContractActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * ContractActivityLog findMany
+   */
+  export type ContractActivityLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ContractActivityLogs to fetch.
+     */
+    where?: ContractActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContractActivityLogs to fetch.
+     */
+    orderBy?: ContractActivityLogOrderByWithRelationInput | ContractActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContractActivityLogs.
+     */
+    cursor?: ContractActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContractActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContractActivityLogs.
+     */
+    skip?: number
+    distinct?: ContractActivityLogScalarFieldEnum | ContractActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * ContractActivityLog create
+   */
+  export type ContractActivityLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ContractActivityLog.
+     */
+    data: XOR<ContractActivityLogCreateInput, ContractActivityLogUncheckedCreateInput>
+  }
+
+  /**
+   * ContractActivityLog createMany
+   */
+  export type ContractActivityLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContractActivityLogs.
+     */
+    data: ContractActivityLogCreateManyInput | ContractActivityLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContractActivityLog createManyAndReturn
+   */
+  export type ContractActivityLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many ContractActivityLogs.
+     */
+    data: ContractActivityLogCreateManyInput | ContractActivityLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ContractActivityLog update
+   */
+  export type ContractActivityLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ContractActivityLog.
+     */
+    data: XOR<ContractActivityLogUpdateInput, ContractActivityLogUncheckedUpdateInput>
+    /**
+     * Choose, which ContractActivityLog to update.
+     */
+    where: ContractActivityLogWhereUniqueInput
+  }
+
+  /**
+   * ContractActivityLog updateMany
+   */
+  export type ContractActivityLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContractActivityLogs.
+     */
+    data: XOR<ContractActivityLogUpdateManyMutationInput, ContractActivityLogUncheckedUpdateManyInput>
+    /**
+     * Filter which ContractActivityLogs to update
+     */
+    where?: ContractActivityLogWhereInput
+    /**
+     * Limit how many ContractActivityLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContractActivityLog updateManyAndReturn
+   */
+  export type ContractActivityLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * The data used to update ContractActivityLogs.
+     */
+    data: XOR<ContractActivityLogUpdateManyMutationInput, ContractActivityLogUncheckedUpdateManyInput>
+    /**
+     * Filter which ContractActivityLogs to update
+     */
+    where?: ContractActivityLogWhereInput
+    /**
+     * Limit how many ContractActivityLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ContractActivityLog upsert
+   */
+  export type ContractActivityLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ContractActivityLog to update in case it exists.
+     */
+    where: ContractActivityLogWhereUniqueInput
+    /**
+     * In case the ContractActivityLog found by the `where` argument doesn't exist, create a new ContractActivityLog with this data.
+     */
+    create: XOR<ContractActivityLogCreateInput, ContractActivityLogUncheckedCreateInput>
+    /**
+     * In case the ContractActivityLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContractActivityLogUpdateInput, ContractActivityLogUncheckedUpdateInput>
+  }
+
+  /**
+   * ContractActivityLog delete
+   */
+  export type ContractActivityLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
+    /**
+     * Filter which ContractActivityLog to delete.
+     */
+    where: ContractActivityLogWhereUniqueInput
+  }
+
+  /**
+   * ContractActivityLog deleteMany
+   */
+  export type ContractActivityLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContractActivityLogs to delete
+     */
+    where?: ContractActivityLogWhereInput
+    /**
+     * Limit how many ContractActivityLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContractActivityLog without action
+   */
+  export type ContractActivityLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractActivityLog
+     */
+    select?: ContractActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractActivityLog
+     */
+    omit?: ContractActivityLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractActivityLogInclude<ExtArgs> | null
   }
 
 
@@ -20130,6 +22954,27 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const BankAccountScalarFieldEnum: {
+    id: 'id',
+    bank_name: 'bank_name',
+    account_holder: 'account_holder',
+    account_number: 'account_number',
+    agency: 'agency',
+    account_type: 'account_type',
+    swift_bic: 'swift_bic',
+    iban: 'iban',
+    pix_key: 'pix_key',
+    currency: 'currency',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    active: 'active',
+    status: 'status',
+    deleted: 'deleted'
+  };
+
+  export type BankAccountScalarFieldEnum = (typeof BankAccountScalarFieldEnum)[keyof typeof BankAccountScalarFieldEnum]
+
+
   export const ArbitrationRuleScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -20151,10 +22996,14 @@ export namespace Prisma {
     id: 'id',
     number: 'number',
     invoice_date: 'invoice_date',
+    sent_date: 'sent_date',
+    expected_payment_date: 'expected_payment_date',
+    received_date: 'received_date',
     createdAt: 'createdAt',
     active: 'active',
     status: 'status',
-    deleted: 'deleted'
+    deleted: 'deleted',
+    bank_account_id: 'bank_account_id'
   };
 
   export type BrokerageInvoiceScalarFieldEnum = (typeof BrokerageInvoiceScalarFieldEnum)[keyof typeof BrokerageInvoiceScalarFieldEnum]
@@ -20168,6 +23017,10 @@ export namespace Prisma {
     bl_number: 'bl_number',
     bl_attachments: 'bl_attachments',
     comission_total_usd: 'comission_total_usd',
+    ptax: 'ptax',
+    comission_total_brl: 'comission_total_brl',
+    description: 'description',
+    notes: 'notes',
     attachments: 'attachments',
     createdAt: 'createdAt',
     active: 'active',
@@ -20223,6 +23076,8 @@ export namespace Prisma {
     products_id: 'products_id',
     bording_date: 'bording_date',
     mt_value: 'mt_value',
+    origin_country: 'origin_country',
+    origin_port: 'origin_port',
     destination_country: 'destination_country',
     destination_port: 'destination_port',
     shipping_company: 'shipping_company',
@@ -20263,6 +23118,22 @@ export namespace Prisma {
   };
 
   export type ContractScalarFieldEnum = (typeof ContractScalarFieldEnum)[keyof typeof ContractScalarFieldEnum]
+
+
+  export const ContractActivityLogScalarFieldEnum: {
+    id: 'id',
+    contract_id: 'contract_id',
+    action: 'action',
+    details: 'details',
+    reference: 'reference',
+    payload: 'payload',
+    actorSuperTokensUserId: 'actorSuperTokensUserId',
+    actorUserId: 'actorUserId',
+    actorEmail: 'actorEmail',
+    createdAt: 'createdAt'
+  };
+
+  export type ContractActivityLogScalarFieldEnum = (typeof ContractActivityLogScalarFieldEnum)[keyof typeof ContractActivityLogScalarFieldEnum]
 
 
   export const ContractProductScalarFieldEnum: {
@@ -20569,6 +23440,113 @@ export namespace Prisma {
    */
 
 
+  export type BankAccountWhereInput = {
+    AND?: BankAccountWhereInput | BankAccountWhereInput[]
+    OR?: BankAccountWhereInput[]
+    NOT?: BankAccountWhereInput | BankAccountWhereInput[]
+    id?: IntFilter<"BankAccount"> | number
+    bank_name?: StringFilter<"BankAccount"> | string
+    account_holder?: StringFilter<"BankAccount"> | string
+    account_number?: StringNullableFilter<"BankAccount"> | string | null
+    agency?: StringNullableFilter<"BankAccount"> | string | null
+    account_type?: StringFilter<"BankAccount"> | string
+    swift_bic?: StringNullableFilter<"BankAccount"> | string | null
+    iban?: StringNullableFilter<"BankAccount"> | string | null
+    pix_key?: StringNullableFilter<"BankAccount"> | string | null
+    currency?: StringFilter<"BankAccount"> | string
+    notes?: StringNullableFilter<"BankAccount"> | string | null
+    createdAt?: DateTimeFilter<"BankAccount"> | Date | string
+    active?: BoolFilter<"BankAccount"> | boolean
+    status?: StringFilter<"BankAccount"> | string
+    deleted?: BoolFilter<"BankAccount"> | boolean
+    BrokerageInvoices?: BrokerageInvoiceListRelationFilter
+  }
+
+  export type BankAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    bank_name?: SortOrder
+    account_holder?: SortOrder
+    account_number?: SortOrderInput | SortOrder
+    agency?: SortOrderInput | SortOrder
+    account_type?: SortOrder
+    swift_bic?: SortOrderInput | SortOrder
+    iban?: SortOrderInput | SortOrder
+    pix_key?: SortOrderInput | SortOrder
+    currency?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+    BrokerageInvoices?: BrokerageInvoiceOrderByRelationAggregateInput
+  }
+
+  export type BankAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BankAccountWhereInput | BankAccountWhereInput[]
+    OR?: BankAccountWhereInput[]
+    NOT?: BankAccountWhereInput | BankAccountWhereInput[]
+    bank_name?: StringFilter<"BankAccount"> | string
+    account_holder?: StringFilter<"BankAccount"> | string
+    account_number?: StringNullableFilter<"BankAccount"> | string | null
+    agency?: StringNullableFilter<"BankAccount"> | string | null
+    account_type?: StringFilter<"BankAccount"> | string
+    swift_bic?: StringNullableFilter<"BankAccount"> | string | null
+    iban?: StringNullableFilter<"BankAccount"> | string | null
+    pix_key?: StringNullableFilter<"BankAccount"> | string | null
+    currency?: StringFilter<"BankAccount"> | string
+    notes?: StringNullableFilter<"BankAccount"> | string | null
+    createdAt?: DateTimeFilter<"BankAccount"> | Date | string
+    active?: BoolFilter<"BankAccount"> | boolean
+    status?: StringFilter<"BankAccount"> | string
+    deleted?: BoolFilter<"BankAccount"> | boolean
+    BrokerageInvoices?: BrokerageInvoiceListRelationFilter
+  }, "id">
+
+  export type BankAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    bank_name?: SortOrder
+    account_holder?: SortOrder
+    account_number?: SortOrderInput | SortOrder
+    agency?: SortOrderInput | SortOrder
+    account_type?: SortOrder
+    swift_bic?: SortOrderInput | SortOrder
+    iban?: SortOrderInput | SortOrder
+    pix_key?: SortOrderInput | SortOrder
+    currency?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+    _count?: BankAccountCountOrderByAggregateInput
+    _avg?: BankAccountAvgOrderByAggregateInput
+    _max?: BankAccountMaxOrderByAggregateInput
+    _min?: BankAccountMinOrderByAggregateInput
+    _sum?: BankAccountSumOrderByAggregateInput
+  }
+
+  export type BankAccountScalarWhereWithAggregatesInput = {
+    AND?: BankAccountScalarWhereWithAggregatesInput | BankAccountScalarWhereWithAggregatesInput[]
+    OR?: BankAccountScalarWhereWithAggregatesInput[]
+    NOT?: BankAccountScalarWhereWithAggregatesInput | BankAccountScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BankAccount"> | number
+    bank_name?: StringWithAggregatesFilter<"BankAccount"> | string
+    account_holder?: StringWithAggregatesFilter<"BankAccount"> | string
+    account_number?: StringNullableWithAggregatesFilter<"BankAccount"> | string | null
+    agency?: StringNullableWithAggregatesFilter<"BankAccount"> | string | null
+    account_type?: StringWithAggregatesFilter<"BankAccount"> | string
+    swift_bic?: StringNullableWithAggregatesFilter<"BankAccount"> | string | null
+    iban?: StringNullableWithAggregatesFilter<"BankAccount"> | string | null
+    pix_key?: StringNullableWithAggregatesFilter<"BankAccount"> | string | null
+    currency?: StringWithAggregatesFilter<"BankAccount"> | string
+    notes?: StringNullableWithAggregatesFilter<"BankAccount"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"BankAccount"> | Date | string
+    active?: BoolWithAggregatesFilter<"BankAccount"> | boolean
+    status?: StringWithAggregatesFilter<"BankAccount"> | string
+    deleted?: BoolWithAggregatesFilter<"BankAccount"> | boolean
+  }
+
   export type ArbitrationRuleWhereInput = {
     AND?: ArbitrationRuleWhereInput | ArbitrationRuleWhereInput[]
     OR?: ArbitrationRuleWhereInput[]
@@ -20663,10 +23641,15 @@ export namespace Prisma {
     id?: IntFilter<"BrokerageInvoice"> | number
     number?: StringNullableFilter<"BrokerageInvoice"> | string | null
     invoice_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    sent_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    expected_payment_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    received_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
     createdAt?: DateTimeFilter<"BrokerageInvoice"> | Date | string
     active?: BoolFilter<"BrokerageInvoice"> | boolean
     status?: StringFilter<"BrokerageInvoice"> | string
     deleted?: BoolFilter<"BrokerageInvoice"> | boolean
+    bank_account_id?: IntNullableFilter<"BrokerageInvoice"> | number | null
+    BankAccount?: XOR<BankAccountNullableScalarRelationFilter, BankAccountWhereInput> | null
     Lines?: BrokerageInvoiceLineListRelationFilter
   }
 
@@ -20674,10 +23657,15 @@ export namespace Prisma {
     id?: SortOrder
     number?: SortOrderInput | SortOrder
     invoice_date?: SortOrderInput | SortOrder
+    sent_date?: SortOrderInput | SortOrder
+    expected_payment_date?: SortOrderInput | SortOrder
+    received_date?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
     deleted?: SortOrder
+    bank_account_id?: SortOrderInput | SortOrder
+    BankAccount?: BankAccountOrderByWithRelationInput
     Lines?: BrokerageInvoiceLineOrderByRelationAggregateInput
   }
 
@@ -20688,10 +23676,15 @@ export namespace Prisma {
     NOT?: BrokerageInvoiceWhereInput | BrokerageInvoiceWhereInput[]
     number?: StringNullableFilter<"BrokerageInvoice"> | string | null
     invoice_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    sent_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    expected_payment_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    received_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
     createdAt?: DateTimeFilter<"BrokerageInvoice"> | Date | string
     active?: BoolFilter<"BrokerageInvoice"> | boolean
     status?: StringFilter<"BrokerageInvoice"> | string
     deleted?: BoolFilter<"BrokerageInvoice"> | boolean
+    bank_account_id?: IntNullableFilter<"BrokerageInvoice"> | number | null
+    BankAccount?: XOR<BankAccountNullableScalarRelationFilter, BankAccountWhereInput> | null
     Lines?: BrokerageInvoiceLineListRelationFilter
   }, "id">
 
@@ -20699,10 +23692,14 @@ export namespace Prisma {
     id?: SortOrder
     number?: SortOrderInput | SortOrder
     invoice_date?: SortOrderInput | SortOrder
+    sent_date?: SortOrderInput | SortOrder
+    expected_payment_date?: SortOrderInput | SortOrder
+    received_date?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
     deleted?: SortOrder
+    bank_account_id?: SortOrderInput | SortOrder
     _count?: BrokerageInvoiceCountOrderByAggregateInput
     _avg?: BrokerageInvoiceAvgOrderByAggregateInput
     _max?: BrokerageInvoiceMaxOrderByAggregateInput
@@ -20717,10 +23714,14 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"BrokerageInvoice"> | number
     number?: StringNullableWithAggregatesFilter<"BrokerageInvoice"> | string | null
     invoice_date?: DateTimeNullableWithAggregatesFilter<"BrokerageInvoice"> | Date | string | null
+    sent_date?: DateTimeNullableWithAggregatesFilter<"BrokerageInvoice"> | Date | string | null
+    expected_payment_date?: DateTimeNullableWithAggregatesFilter<"BrokerageInvoice"> | Date | string | null
+    received_date?: DateTimeNullableWithAggregatesFilter<"BrokerageInvoice"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"BrokerageInvoice"> | Date | string
     active?: BoolWithAggregatesFilter<"BrokerageInvoice"> | boolean
     status?: StringWithAggregatesFilter<"BrokerageInvoice"> | string
     deleted?: BoolWithAggregatesFilter<"BrokerageInvoice"> | boolean
+    bank_account_id?: IntNullableWithAggregatesFilter<"BrokerageInvoice"> | number | null
   }
 
   export type BrokerageInvoiceLineWhereInput = {
@@ -20734,6 +23735,10 @@ export namespace Prisma {
     bl_number?: StringFilter<"BrokerageInvoiceLine"> | string
     bl_attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
     comission_total_usd?: FloatFilter<"BrokerageInvoiceLine"> | number
+    ptax?: FloatFilter<"BrokerageInvoiceLine"> | number
+    comission_total_brl?: FloatFilter<"BrokerageInvoiceLine"> | number
+    description?: StringFilter<"BrokerageInvoiceLine"> | string
+    notes?: StringFilter<"BrokerageInvoiceLine"> | string
     attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
     createdAt?: DateTimeFilter<"BrokerageInvoiceLine"> | Date | string
     active?: BoolFilter<"BrokerageInvoiceLine"> | boolean
@@ -20751,6 +23756,10 @@ export namespace Prisma {
     bl_number?: SortOrder
     bl_attachments?: SortOrder
     comission_total_usd?: SortOrder
+    ptax?: SortOrder
+    comission_total_brl?: SortOrder
+    description?: SortOrder
+    notes?: SortOrder
     attachments?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
@@ -20772,6 +23781,10 @@ export namespace Prisma {
     bl_number?: StringFilter<"BrokerageInvoiceLine"> | string
     bl_attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
     comission_total_usd?: FloatFilter<"BrokerageInvoiceLine"> | number
+    ptax?: FloatFilter<"BrokerageInvoiceLine"> | number
+    comission_total_brl?: FloatFilter<"BrokerageInvoiceLine"> | number
+    description?: StringFilter<"BrokerageInvoiceLine"> | string
+    notes?: StringFilter<"BrokerageInvoiceLine"> | string
     attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
     createdAt?: DateTimeFilter<"BrokerageInvoiceLine"> | Date | string
     active?: BoolFilter<"BrokerageInvoiceLine"> | boolean
@@ -20789,6 +23802,10 @@ export namespace Prisma {
     bl_number?: SortOrder
     bl_attachments?: SortOrder
     comission_total_usd?: SortOrder
+    ptax?: SortOrder
+    comission_total_brl?: SortOrder
+    description?: SortOrder
+    notes?: SortOrder
     attachments?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
@@ -20812,6 +23829,10 @@ export namespace Prisma {
     bl_number?: StringWithAggregatesFilter<"BrokerageInvoiceLine"> | string
     bl_attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
     comission_total_usd?: FloatWithAggregatesFilter<"BrokerageInvoiceLine"> | number
+    ptax?: FloatWithAggregatesFilter<"BrokerageInvoiceLine"> | number
+    comission_total_brl?: FloatWithAggregatesFilter<"BrokerageInvoiceLine"> | number
+    description?: StringWithAggregatesFilter<"BrokerageInvoiceLine"> | string
+    notes?: StringWithAggregatesFilter<"BrokerageInvoiceLine"> | string
     attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
     createdAt?: DateTimeWithAggregatesFilter<"BrokerageInvoiceLine"> | Date | string
     active?: BoolWithAggregatesFilter<"BrokerageInvoiceLine"> | boolean
@@ -20984,6 +24005,8 @@ export namespace Prisma {
     products_id?: IntNullableListFilter<"Contract">
     bording_date?: DateTimeNullableFilter<"Contract"> | Date | string | null
     mt_value?: FloatFilter<"Contract"> | number
+    origin_country?: StringNullableFilter<"Contract"> | string | null
+    origin_port?: StringNullableFilter<"Contract"> | string | null
     destination_country?: StringFilter<"Contract"> | string
     destination_port?: StringFilter<"Contract"> | string
     shipping_company?: StringFilter<"Contract"> | string
@@ -21028,6 +24051,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleListRelationFilter
     Product?: ProductListRelationFilter
     SpecialCondition?: SpecialConditionListRelationFilter
+    ActivityLogs?: ContractActivityLogListRelationFilter
   }
 
   export type ContractOrderByWithRelationInput = {
@@ -21047,6 +24071,8 @@ export namespace Prisma {
     products_id?: SortOrder
     bording_date?: SortOrderInput | SortOrder
     mt_value?: SortOrder
+    origin_country?: SortOrderInput | SortOrder
+    origin_port?: SortOrderInput | SortOrder
     destination_country?: SortOrder
     destination_port?: SortOrder
     shipping_company?: SortOrder
@@ -21091,6 +24117,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleOrderByRelationAggregateInput
     Product?: ProductOrderByRelationAggregateInput
     SpecialCondition?: SpecialConditionOrderByRelationAggregateInput
+    ActivityLogs?: ContractActivityLogOrderByRelationAggregateInput
   }
 
   export type ContractWhereUniqueInput = Prisma.AtLeast<{
@@ -21113,6 +24140,8 @@ export namespace Prisma {
     products_id?: IntNullableListFilter<"Contract">
     bording_date?: DateTimeNullableFilter<"Contract"> | Date | string | null
     mt_value?: FloatFilter<"Contract"> | number
+    origin_country?: StringNullableFilter<"Contract"> | string | null
+    origin_port?: StringNullableFilter<"Contract"> | string | null
     destination_country?: StringFilter<"Contract"> | string
     destination_port?: StringFilter<"Contract"> | string
     shipping_company?: StringFilter<"Contract"> | string
@@ -21157,6 +24186,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleListRelationFilter
     Product?: ProductListRelationFilter
     SpecialCondition?: SpecialConditionListRelationFilter
+    ActivityLogs?: ContractActivityLogListRelationFilter
   }, "id">
 
   export type ContractOrderByWithAggregationInput = {
@@ -21176,6 +24206,8 @@ export namespace Prisma {
     products_id?: SortOrder
     bording_date?: SortOrderInput | SortOrder
     mt_value?: SortOrder
+    origin_country?: SortOrderInput | SortOrder
+    origin_port?: SortOrderInput | SortOrder
     destination_country?: SortOrder
     destination_port?: SortOrder
     shipping_company?: SortOrder
@@ -21240,6 +24272,8 @@ export namespace Prisma {
     products_id?: IntNullableListFilter<"Contract">
     bording_date?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
     mt_value?: FloatWithAggregatesFilter<"Contract"> | number
+    origin_country?: StringNullableWithAggregatesFilter<"Contract"> | string | null
+    origin_port?: StringNullableWithAggregatesFilter<"Contract"> | string | null
     destination_country?: StringWithAggregatesFilter<"Contract"> | string
     destination_port?: StringWithAggregatesFilter<"Contract"> | string
     shipping_company?: StringWithAggregatesFilter<"Contract"> | string
@@ -21277,6 +24311,88 @@ export namespace Prisma {
     active?: BoolWithAggregatesFilter<"Contract"> | boolean
     status?: StringWithAggregatesFilter<"Contract"> | string
     deleted?: BoolWithAggregatesFilter<"Contract"> | boolean
+  }
+
+  export type ContractActivityLogWhereInput = {
+    AND?: ContractActivityLogWhereInput | ContractActivityLogWhereInput[]
+    OR?: ContractActivityLogWhereInput[]
+    NOT?: ContractActivityLogWhereInput | ContractActivityLogWhereInput[]
+    id?: IntFilter<"ContractActivityLog"> | number
+    contract_id?: IntFilter<"ContractActivityLog"> | number
+    action?: StringFilter<"ContractActivityLog"> | string
+    details?: StringNullableFilter<"ContractActivityLog"> | string | null
+    reference?: StringNullableFilter<"ContractActivityLog"> | string | null
+    payload?: JsonNullableFilter<"ContractActivityLog">
+    actorSuperTokensUserId?: StringNullableFilter<"ContractActivityLog"> | string | null
+    actorUserId?: IntNullableFilter<"ContractActivityLog"> | number | null
+    actorEmail?: StringNullableFilter<"ContractActivityLog"> | string | null
+    createdAt?: DateTimeFilter<"ContractActivityLog"> | Date | string
+    Contract?: XOR<ContractScalarRelationFilter, ContractWhereInput>
+  }
+
+  export type ContractActivityLogOrderByWithRelationInput = {
+    id?: SortOrder
+    contract_id?: SortOrder
+    action?: SortOrder
+    details?: SortOrderInput | SortOrder
+    reference?: SortOrderInput | SortOrder
+    payload?: SortOrderInput | SortOrder
+    actorSuperTokensUserId?: SortOrderInput | SortOrder
+    actorUserId?: SortOrderInput | SortOrder
+    actorEmail?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    Contract?: ContractOrderByWithRelationInput
+  }
+
+  export type ContractActivityLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ContractActivityLogWhereInput | ContractActivityLogWhereInput[]
+    OR?: ContractActivityLogWhereInput[]
+    NOT?: ContractActivityLogWhereInput | ContractActivityLogWhereInput[]
+    contract_id?: IntFilter<"ContractActivityLog"> | number
+    action?: StringFilter<"ContractActivityLog"> | string
+    details?: StringNullableFilter<"ContractActivityLog"> | string | null
+    reference?: StringNullableFilter<"ContractActivityLog"> | string | null
+    payload?: JsonNullableFilter<"ContractActivityLog">
+    actorSuperTokensUserId?: StringNullableFilter<"ContractActivityLog"> | string | null
+    actorUserId?: IntNullableFilter<"ContractActivityLog"> | number | null
+    actorEmail?: StringNullableFilter<"ContractActivityLog"> | string | null
+    createdAt?: DateTimeFilter<"ContractActivityLog"> | Date | string
+    Contract?: XOR<ContractScalarRelationFilter, ContractWhereInput>
+  }, "id">
+
+  export type ContractActivityLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    contract_id?: SortOrder
+    action?: SortOrder
+    details?: SortOrderInput | SortOrder
+    reference?: SortOrderInput | SortOrder
+    payload?: SortOrderInput | SortOrder
+    actorSuperTokensUserId?: SortOrderInput | SortOrder
+    actorUserId?: SortOrderInput | SortOrder
+    actorEmail?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ContractActivityLogCountOrderByAggregateInput
+    _avg?: ContractActivityLogAvgOrderByAggregateInput
+    _max?: ContractActivityLogMaxOrderByAggregateInput
+    _min?: ContractActivityLogMinOrderByAggregateInput
+    _sum?: ContractActivityLogSumOrderByAggregateInput
+  }
+
+  export type ContractActivityLogScalarWhereWithAggregatesInput = {
+    AND?: ContractActivityLogScalarWhereWithAggregatesInput | ContractActivityLogScalarWhereWithAggregatesInput[]
+    OR?: ContractActivityLogScalarWhereWithAggregatesInput[]
+    NOT?: ContractActivityLogScalarWhereWithAggregatesInput | ContractActivityLogScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ContractActivityLog"> | number
+    contract_id?: IntWithAggregatesFilter<"ContractActivityLog"> | number
+    action?: StringWithAggregatesFilter<"ContractActivityLog"> | string
+    details?: StringNullableWithAggregatesFilter<"ContractActivityLog"> | string | null
+    reference?: StringNullableWithAggregatesFilter<"ContractActivityLog"> | string | null
+    payload?: JsonNullableWithAggregatesFilter<"ContractActivityLog">
+    actorSuperTokensUserId?: StringNullableWithAggregatesFilter<"ContractActivityLog"> | string | null
+    actorUserId?: IntNullableWithAggregatesFilter<"ContractActivityLog"> | number | null
+    actorEmail?: StringNullableWithAggregatesFilter<"ContractActivityLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ContractActivityLog"> | Date | string
   }
 
   export type ContractProductWhereInput = {
@@ -22205,6 +25321,133 @@ export namespace Prisma {
     deleted?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
+  export type BankAccountCreateInput = {
+    bank_name: string
+    account_holder: string
+    account_number?: string | null
+    agency?: string | null
+    account_type?: string
+    swift_bic?: string | null
+    iban?: string | null
+    pix_key?: string | null
+    currency?: string
+    notes?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status?: string
+    deleted?: boolean
+    BrokerageInvoices?: BrokerageInvoiceCreateNestedManyWithoutBankAccountInput
+  }
+
+  export type BankAccountUncheckedCreateInput = {
+    id?: number
+    bank_name: string
+    account_holder: string
+    account_number?: string | null
+    agency?: string | null
+    account_type?: string
+    swift_bic?: string | null
+    iban?: string | null
+    pix_key?: string | null
+    currency?: string
+    notes?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status?: string
+    deleted?: boolean
+    BrokerageInvoices?: BrokerageInvoiceUncheckedCreateNestedManyWithoutBankAccountInput
+  }
+
+  export type BankAccountUpdateInput = {
+    bank_name?: StringFieldUpdateOperationsInput | string
+    account_holder?: StringFieldUpdateOperationsInput | string
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agency?: NullableStringFieldUpdateOperationsInput | string | null
+    account_type?: StringFieldUpdateOperationsInput | string
+    swift_bic?: NullableStringFieldUpdateOperationsInput | string | null
+    iban?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_key?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoices?: BrokerageInvoiceUpdateManyWithoutBankAccountNestedInput
+  }
+
+  export type BankAccountUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bank_name?: StringFieldUpdateOperationsInput | string
+    account_holder?: StringFieldUpdateOperationsInput | string
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agency?: NullableStringFieldUpdateOperationsInput | string | null
+    account_type?: StringFieldUpdateOperationsInput | string
+    swift_bic?: NullableStringFieldUpdateOperationsInput | string | null
+    iban?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_key?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoices?: BrokerageInvoiceUncheckedUpdateManyWithoutBankAccountNestedInput
+  }
+
+  export type BankAccountCreateManyInput = {
+    id?: number
+    bank_name: string
+    account_holder: string
+    account_number?: string | null
+    agency?: string | null
+    account_type?: string
+    swift_bic?: string | null
+    iban?: string | null
+    pix_key?: string | null
+    currency?: string
+    notes?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status?: string
+    deleted?: boolean
+  }
+
+  export type BankAccountUpdateManyMutationInput = {
+    bank_name?: StringFieldUpdateOperationsInput | string
+    account_holder?: StringFieldUpdateOperationsInput | string
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agency?: NullableStringFieldUpdateOperationsInput | string | null
+    account_type?: StringFieldUpdateOperationsInput | string
+    swift_bic?: NullableStringFieldUpdateOperationsInput | string | null
+    iban?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_key?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BankAccountUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bank_name?: StringFieldUpdateOperationsInput | string
+    account_holder?: StringFieldUpdateOperationsInput | string
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agency?: NullableStringFieldUpdateOperationsInput | string | null
+    account_type?: StringFieldUpdateOperationsInput | string
+    swift_bic?: NullableStringFieldUpdateOperationsInput | string | null
+    iban?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_key?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type ArbitrationRuleCreateInput = {
     name: string
     description: string
@@ -22307,10 +25550,14 @@ export namespace Prisma {
   export type BrokerageInvoiceCreateInput = {
     number?: string | null
     invoice_date?: Date | string | null
+    sent_date?: Date | string | null
+    expected_payment_date?: Date | string | null
+    received_date?: Date | string | null
     createdAt?: Date | string
     active?: boolean
     status: string
     deleted?: boolean
+    BankAccount?: BankAccountCreateNestedOneWithoutBrokerageInvoicesInput
     Lines?: BrokerageInvoiceLineCreateNestedManyWithoutBrokerageInvoiceInput
   }
 
@@ -22318,20 +25565,28 @@ export namespace Prisma {
     id?: number
     number?: string | null
     invoice_date?: Date | string | null
+    sent_date?: Date | string | null
+    expected_payment_date?: Date | string | null
+    received_date?: Date | string | null
     createdAt?: Date | string
     active?: boolean
     status: string
     deleted?: boolean
+    bank_account_id?: number | null
     Lines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutBrokerageInvoiceInput
   }
 
   export type BrokerageInvoiceUpdateInput = {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sent_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expected_payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    received_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    BankAccount?: BankAccountUpdateOneWithoutBrokerageInvoicesNestedInput
     Lines?: BrokerageInvoiceLineUpdateManyWithoutBrokerageInvoiceNestedInput
   }
 
@@ -22339,10 +25594,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     number?: NullableStringFieldUpdateOperationsInput | string | null
     invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sent_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expected_payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    received_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    bank_account_id?: NullableIntFieldUpdateOperationsInput | number | null
     Lines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutBrokerageInvoiceNestedInput
   }
 
@@ -22350,15 +25609,22 @@ export namespace Prisma {
     id?: number
     number?: string | null
     invoice_date?: Date | string | null
+    sent_date?: Date | string | null
+    expected_payment_date?: Date | string | null
+    received_date?: Date | string | null
     createdAt?: Date | string
     active?: boolean
     status: string
     deleted?: boolean
+    bank_account_id?: number | null
   }
 
   export type BrokerageInvoiceUpdateManyMutationInput = {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sent_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expected_payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    received_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -22369,10 +25635,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     number?: NullableStringFieldUpdateOperationsInput | string | null
     invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sent_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expected_payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    received_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    bank_account_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type BrokerageInvoiceLineCreateInput = {
@@ -22380,6 +25650,10 @@ export namespace Prisma {
     bl_number: string
     bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
     comission_total_usd: number
+    ptax?: number
+    comission_total_brl?: number
+    description?: string
+    notes?: string
     attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
@@ -22397,6 +25671,10 @@ export namespace Prisma {
     bl_number: string
     bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
     comission_total_usd: number
+    ptax?: number
+    comission_total_brl?: number
+    description?: string
+    notes?: string
     attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
@@ -22409,6 +25687,10 @@ export namespace Prisma {
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -22426,6 +25708,10 @@ export namespace Prisma {
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -22441,6 +25727,10 @@ export namespace Prisma {
     bl_number: string
     bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
     comission_total_usd: number
+    ptax?: number
+    comission_total_brl?: number
+    description?: string
+    notes?: string
     attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
@@ -22453,6 +25743,10 @@ export namespace Prisma {
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -22468,6 +25762,10 @@ export namespace Prisma {
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -22659,6 +25957,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -22703,6 +26003,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
 
   export type ContractUncheckedCreateInput = {
@@ -22722,6 +26023,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -22764,6 +26067,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
 
   export type ContractUpdateInput = {
@@ -22780,6 +26084,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -22824,6 +26130,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateInput = {
@@ -22843,6 +26150,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -22885,6 +26194,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
 
   export type ContractCreateManyInput = {
@@ -22904,6 +26214,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -22957,6 +26269,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -23013,6 +26327,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -23050,6 +26366,93 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ContractActivityLogCreateInput = {
+    action: string
+    details?: string | null
+    reference?: string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: string | null
+    actorUserId?: number | null
+    actorEmail?: string | null
+    createdAt?: Date | string
+    Contract: ContractCreateNestedOneWithoutActivityLogsInput
+  }
+
+  export type ContractActivityLogUncheckedCreateInput = {
+    id?: number
+    contract_id: number
+    action: string
+    details?: string | null
+    reference?: string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: string | null
+    actorUserId?: number | null
+    actorEmail?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ContractActivityLogUpdateInput = {
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    actorUserId?: NullableIntFieldUpdateOperationsInput | number | null
+    actorEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Contract?: ContractUpdateOneRequiredWithoutActivityLogsNestedInput
+  }
+
+  export type ContractActivityLogUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contract_id?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    actorUserId?: NullableIntFieldUpdateOperationsInput | number | null
+    actorEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractActivityLogCreateManyInput = {
+    id?: number
+    contract_id: number
+    action: string
+    details?: string | null
+    reference?: string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: string | null
+    actorUserId?: number | null
+    actorEmail?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ContractActivityLogUpdateManyMutationInput = {
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    actorUserId?: NullableIntFieldUpdateOperationsInput | number | null
+    actorEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractActivityLogUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contract_id?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    actorUserId?: NullableIntFieldUpdateOperationsInput | number | null
+    actorEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ContractProductCreateInput = {
@@ -24143,12 +27546,19 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -24165,6 +27575,165 @@ export namespace Prisma {
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type BrokerageInvoiceListRelationFilter = {
+    every?: BrokerageInvoiceWhereInput
+    some?: BrokerageInvoiceWhereInput
+    none?: BrokerageInvoiceWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type BrokerageInvoiceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BankAccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    bank_name?: SortOrder
+    account_holder?: SortOrder
+    account_number?: SortOrder
+    agency?: SortOrder
+    account_type?: SortOrder
+    swift_bic?: SortOrder
+    iban?: SortOrder
+    pix_key?: SortOrder
+    currency?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type BankAccountAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type BankAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    bank_name?: SortOrder
+    account_holder?: SortOrder
+    account_number?: SortOrder
+    agency?: SortOrder
+    account_type?: SortOrder
+    swift_bic?: SortOrder
+    iban?: SortOrder
+    pix_key?: SortOrder
+    currency?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type BankAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    bank_name?: SortOrder
+    account_holder?: SortOrder
+    account_number?: SortOrder
+    agency?: SortOrder
+    account_type?: SortOrder
+    swift_bic?: SortOrder
+    iban?: SortOrder
+    pix_key?: SortOrder
+    currency?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type BankAccountSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
   }
 
   export type ContractListRelationFilter = {
@@ -24227,77 +27796,6 @@ export namespace Prisma {
     order?: SortOrder
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -24309,15 +27807,26 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type BankAccountNullableScalarRelationFilter = {
+    is?: BankAccountWhereInput | null
+    isNot?: BankAccountWhereInput | null
+  }
+
   export type BrokerageInvoiceLineListRelationFilter = {
     every?: BrokerageInvoiceLineWhereInput
     some?: BrokerageInvoiceLineWhereInput
     none?: BrokerageInvoiceLineWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type BrokerageInvoiceLineOrderByRelationAggregateInput = {
@@ -24328,56 +27837,52 @@ export namespace Prisma {
     id?: SortOrder
     number?: SortOrder
     invoice_date?: SortOrder
+    sent_date?: SortOrder
+    expected_payment_date?: SortOrder
+    received_date?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
     deleted?: SortOrder
+    bank_account_id?: SortOrder
   }
 
   export type BrokerageInvoiceAvgOrderByAggregateInput = {
     id?: SortOrder
+    bank_account_id?: SortOrder
   }
 
   export type BrokerageInvoiceMaxOrderByAggregateInput = {
     id?: SortOrder
     number?: SortOrder
     invoice_date?: SortOrder
+    sent_date?: SortOrder
+    expected_payment_date?: SortOrder
+    received_date?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
     deleted?: SortOrder
+    bank_account_id?: SortOrder
   }
 
   export type BrokerageInvoiceMinOrderByAggregateInput = {
     id?: SortOrder
     number?: SortOrder
     invoice_date?: SortOrder
+    sent_date?: SortOrder
+    expected_payment_date?: SortOrder
+    received_date?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
     deleted?: SortOrder
+    bank_account_id?: SortOrder
   }
 
   export type BrokerageInvoiceSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
+    bank_account_id?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -24392,6 +27897,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -24428,6 +27949,10 @@ export namespace Prisma {
     bl_number?: SortOrder
     bl_attachments?: SortOrder
     comission_total_usd?: SortOrder
+    ptax?: SortOrder
+    comission_total_brl?: SortOrder
+    description?: SortOrder
+    notes?: SortOrder
     attachments?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
@@ -24440,6 +27965,8 @@ export namespace Prisma {
     brokerage_invoice_id?: SortOrder
     contract_id?: SortOrder
     comission_total_usd?: SortOrder
+    ptax?: SortOrder
+    comission_total_brl?: SortOrder
   }
 
   export type BrokerageInvoiceLineMaxOrderByAggregateInput = {
@@ -24449,6 +27976,10 @@ export namespace Prisma {
     bl_date?: SortOrder
     bl_number?: SortOrder
     comission_total_usd?: SortOrder
+    ptax?: SortOrder
+    comission_total_brl?: SortOrder
+    description?: SortOrder
+    notes?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
@@ -24462,6 +27993,10 @@ export namespace Prisma {
     bl_date?: SortOrder
     bl_number?: SortOrder
     comission_total_usd?: SortOrder
+    ptax?: SortOrder
+    comission_total_brl?: SortOrder
+    description?: SortOrder
+    notes?: SortOrder
     createdAt?: SortOrder
     active?: SortOrder
     status?: SortOrder
@@ -24473,6 +28008,8 @@ export namespace Prisma {
     brokerage_invoice_id?: SortOrder
     contract_id?: SortOrder
     comission_total_usd?: SortOrder
+    ptax?: SortOrder
+    comission_total_brl?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -24489,17 +28026,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -24617,22 +28143,6 @@ export namespace Prisma {
     customer_id?: SortOrder
     seller_id?: SortOrder
   }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
@@ -24697,6 +28207,12 @@ export namespace Prisma {
     none?: SpecialConditionWhereInput
   }
 
+  export type ContractActivityLogListRelationFilter = {
+    every?: ContractActivityLogWhereInput
+    some?: ContractActivityLogWhereInput
+    none?: ContractActivityLogWhereInput
+  }
+
   export type ContractProductOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -24710,6 +28226,10 @@ export namespace Prisma {
   }
 
   export type SpecialConditionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ContractActivityLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24730,6 +28250,8 @@ export namespace Prisma {
     products_id?: SortOrder
     bording_date?: SortOrder
     mt_value?: SortOrder
+    origin_country?: SortOrder
+    origin_port?: SortOrder
     destination_country?: SortOrder
     destination_port?: SortOrder
     shipping_company?: SortOrder
@@ -24797,6 +28319,8 @@ export namespace Prisma {
     customer_party_b_id?: SortOrder
     bording_date?: SortOrder
     mt_value?: SortOrder
+    origin_country?: SortOrder
+    origin_port?: SortOrder
     destination_country?: SortOrder
     destination_port?: SortOrder
     shipping_company?: SortOrder
@@ -24836,6 +28360,8 @@ export namespace Prisma {
     customer_party_b_id?: SortOrder
     bording_date?: SortOrder
     mt_value?: SortOrder
+    origin_country?: SortOrder
+    origin_port?: SortOrder
     destination_country?: SortOrder
     destination_port?: SortOrder
     shipping_company?: SortOrder
@@ -24869,6 +28395,55 @@ export namespace Prisma {
     commission_party_a?: SortOrder
     commission_party_b?: SortOrder
     comission_total?: SortOrder
+  }
+
+  export type ContractActivityLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    contract_id?: SortOrder
+    action?: SortOrder
+    details?: SortOrder
+    reference?: SortOrder
+    payload?: SortOrder
+    actorSuperTokensUserId?: SortOrder
+    actorUserId?: SortOrder
+    actorEmail?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ContractActivityLogAvgOrderByAggregateInput = {
+    id?: SortOrder
+    contract_id?: SortOrder
+    actorUserId?: SortOrder
+  }
+
+  export type ContractActivityLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    contract_id?: SortOrder
+    action?: SortOrder
+    details?: SortOrder
+    reference?: SortOrder
+    actorSuperTokensUserId?: SortOrder
+    actorUserId?: SortOrder
+    actorEmail?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ContractActivityLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    contract_id?: SortOrder
+    action?: SortOrder
+    details?: SortOrder
+    reference?: SortOrder
+    actorSuperTokensUserId?: SortOrder
+    actorUserId?: SortOrder
+    actorEmail?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ContractActivityLogSumOrderByAggregateInput = {
+    id?: SortOrder
+    contract_id?: SortOrder
+    actorUserId?: SortOrder
   }
 
   export type FloatNullableFilter<$PrismaModel = never> = {
@@ -25472,6 +29047,72 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type BrokerageInvoiceCreateNestedManyWithoutBankAccountInput = {
+    create?: XOR<BrokerageInvoiceCreateWithoutBankAccountInput, BrokerageInvoiceUncheckedCreateWithoutBankAccountInput> | BrokerageInvoiceCreateWithoutBankAccountInput[] | BrokerageInvoiceUncheckedCreateWithoutBankAccountInput[]
+    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutBankAccountInput | BrokerageInvoiceCreateOrConnectWithoutBankAccountInput[]
+    createMany?: BrokerageInvoiceCreateManyBankAccountInputEnvelope
+    connect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+  }
+
+  export type BrokerageInvoiceUncheckedCreateNestedManyWithoutBankAccountInput = {
+    create?: XOR<BrokerageInvoiceCreateWithoutBankAccountInput, BrokerageInvoiceUncheckedCreateWithoutBankAccountInput> | BrokerageInvoiceCreateWithoutBankAccountInput[] | BrokerageInvoiceUncheckedCreateWithoutBankAccountInput[]
+    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutBankAccountInput | BrokerageInvoiceCreateOrConnectWithoutBankAccountInput[]
+    createMany?: BrokerageInvoiceCreateManyBankAccountInputEnvelope
+    connect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type BrokerageInvoiceUpdateManyWithoutBankAccountNestedInput = {
+    create?: XOR<BrokerageInvoiceCreateWithoutBankAccountInput, BrokerageInvoiceUncheckedCreateWithoutBankAccountInput> | BrokerageInvoiceCreateWithoutBankAccountInput[] | BrokerageInvoiceUncheckedCreateWithoutBankAccountInput[]
+    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutBankAccountInput | BrokerageInvoiceCreateOrConnectWithoutBankAccountInput[]
+    upsert?: BrokerageInvoiceUpsertWithWhereUniqueWithoutBankAccountInput | BrokerageInvoiceUpsertWithWhereUniqueWithoutBankAccountInput[]
+    createMany?: BrokerageInvoiceCreateManyBankAccountInputEnvelope
+    set?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+    disconnect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+    delete?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+    connect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+    update?: BrokerageInvoiceUpdateWithWhereUniqueWithoutBankAccountInput | BrokerageInvoiceUpdateWithWhereUniqueWithoutBankAccountInput[]
+    updateMany?: BrokerageInvoiceUpdateManyWithWhereWithoutBankAccountInput | BrokerageInvoiceUpdateManyWithWhereWithoutBankAccountInput[]
+    deleteMany?: BrokerageInvoiceScalarWhereInput | BrokerageInvoiceScalarWhereInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type BrokerageInvoiceUncheckedUpdateManyWithoutBankAccountNestedInput = {
+    create?: XOR<BrokerageInvoiceCreateWithoutBankAccountInput, BrokerageInvoiceUncheckedCreateWithoutBankAccountInput> | BrokerageInvoiceCreateWithoutBankAccountInput[] | BrokerageInvoiceUncheckedCreateWithoutBankAccountInput[]
+    connectOrCreate?: BrokerageInvoiceCreateOrConnectWithoutBankAccountInput | BrokerageInvoiceCreateOrConnectWithoutBankAccountInput[]
+    upsert?: BrokerageInvoiceUpsertWithWhereUniqueWithoutBankAccountInput | BrokerageInvoiceUpsertWithWhereUniqueWithoutBankAccountInput[]
+    createMany?: BrokerageInvoiceCreateManyBankAccountInputEnvelope
+    set?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+    disconnect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+    delete?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+    connect?: BrokerageInvoiceWhereUniqueInput | BrokerageInvoiceWhereUniqueInput[]
+    update?: BrokerageInvoiceUpdateWithWhereUniqueWithoutBankAccountInput | BrokerageInvoiceUpdateWithWhereUniqueWithoutBankAccountInput[]
+    updateMany?: BrokerageInvoiceUpdateManyWithWhereWithoutBankAccountInput | BrokerageInvoiceUpdateManyWithWhereWithoutBankAccountInput[]
+    deleteMany?: BrokerageInvoiceScalarWhereInput | BrokerageInvoiceScalarWhereInput[]
+  }
+
   export type ArbitrationRuleCreateattachmentsInput = {
     set: string[]
   }
@@ -25488,29 +29129,9 @@ export namespace Prisma {
     connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type ArbitrationRuleUpdateattachmentsInput = {
     set?: string[]
     push?: string | string[]
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type ContractUpdateManyWithoutArbitrationRuleNestedInput = {
@@ -25539,6 +29160,12 @@ export namespace Prisma {
     deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
   }
 
+  export type BankAccountCreateNestedOneWithoutBrokerageInvoicesInput = {
+    create?: XOR<BankAccountCreateWithoutBrokerageInvoicesInput, BankAccountUncheckedCreateWithoutBrokerageInvoicesInput>
+    connectOrCreate?: BankAccountCreateOrConnectWithoutBrokerageInvoicesInput
+    connect?: BankAccountWhereUniqueInput
+  }
+
   export type BrokerageInvoiceLineCreateNestedManyWithoutBrokerageInvoiceInput = {
     create?: XOR<BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput, BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput> | BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput[] | BrokerageInvoiceLineUncheckedCreateWithoutBrokerageInvoiceInput[]
     connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput | BrokerageInvoiceLineCreateOrConnectWithoutBrokerageInvoiceInput[]
@@ -25553,12 +29180,18 @@ export namespace Prisma {
     connect?: BrokerageInvoiceLineWhereUniqueInput | BrokerageInvoiceLineWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type BankAccountUpdateOneWithoutBrokerageInvoicesNestedInput = {
+    create?: XOR<BankAccountCreateWithoutBrokerageInvoicesInput, BankAccountUncheckedCreateWithoutBrokerageInvoicesInput>
+    connectOrCreate?: BankAccountCreateOrConnectWithoutBrokerageInvoicesInput
+    upsert?: BankAccountUpsertWithoutBrokerageInvoicesInput
+    disconnect?: BankAccountWhereInput | boolean
+    delete?: BankAccountWhereInput | boolean
+    connect?: BankAccountWhereUniqueInput
+    update?: XOR<XOR<BankAccountUpdateToOneWithWhereWithoutBrokerageInvoicesInput, BankAccountUpdateWithoutBrokerageInvoicesInput>, BankAccountUncheckedUpdateWithoutBrokerageInvoicesInput>
   }
 
   export type BrokerageInvoiceLineUpdateManyWithoutBrokerageInvoiceNestedInput = {
@@ -25573,6 +29206,14 @@ export namespace Prisma {
     update?: BrokerageInvoiceLineUpdateWithWhereUniqueWithoutBrokerageInvoiceInput | BrokerageInvoiceLineUpdateWithWhereUniqueWithoutBrokerageInvoiceInput[]
     updateMany?: BrokerageInvoiceLineUpdateManyWithWhereWithoutBrokerageInvoiceInput | BrokerageInvoiceLineUpdateManyWithWhereWithoutBrokerageInvoiceInput[]
     deleteMany?: BrokerageInvoiceLineScalarWhereInput | BrokerageInvoiceLineScalarWhereInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type BrokerageInvoiceLineUncheckedUpdateManyWithoutBrokerageInvoiceNestedInput = {
@@ -25673,14 +29314,6 @@ export namespace Prisma {
     delete?: SellerWhereInput | boolean
     connect?: SellerWhereUniqueInput
     update?: XOR<XOR<SellerUpdateToOneWithWhereWithoutContactInput, SellerUpdateWithoutContactInput>, SellerUncheckedUpdateWithoutContactInput>
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type ContractCreateproducts_idInput = {
@@ -25795,6 +29428,13 @@ export namespace Prisma {
     connect?: SpecialConditionWhereUniqueInput | SpecialConditionWhereUniqueInput[]
   }
 
+  export type ContractActivityLogCreateNestedManyWithoutContractInput = {
+    create?: XOR<ContractActivityLogCreateWithoutContractInput, ContractActivityLogUncheckedCreateWithoutContractInput> | ContractActivityLogCreateWithoutContractInput[] | ContractActivityLogUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: ContractActivityLogCreateOrConnectWithoutContractInput | ContractActivityLogCreateOrConnectWithoutContractInput[]
+    createMany?: ContractActivityLogCreateManyContractInputEnvelope
+    connect?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
+  }
+
   export type BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput = {
     create?: XOR<BrokerageInvoiceLineCreateWithoutContractInput, BrokerageInvoiceLineUncheckedCreateWithoutContractInput> | BrokerageInvoiceLineCreateWithoutContractInput[] | BrokerageInvoiceLineUncheckedCreateWithoutContractInput[]
     connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutContractInput | BrokerageInvoiceLineCreateOrConnectWithoutContractInput[]
@@ -25825,6 +29465,13 @@ export namespace Prisma {
     create?: XOR<SpecialConditionCreateWithoutContractInput, SpecialConditionUncheckedCreateWithoutContractInput> | SpecialConditionCreateWithoutContractInput[] | SpecialConditionUncheckedCreateWithoutContractInput[]
     connectOrCreate?: SpecialConditionCreateOrConnectWithoutContractInput | SpecialConditionCreateOrConnectWithoutContractInput[]
     connect?: SpecialConditionWhereUniqueInput | SpecialConditionWhereUniqueInput[]
+  }
+
+  export type ContractActivityLogUncheckedCreateNestedManyWithoutContractInput = {
+    create?: XOR<ContractActivityLogCreateWithoutContractInput, ContractActivityLogUncheckedCreateWithoutContractInput> | ContractActivityLogCreateWithoutContractInput[] | ContractActivityLogUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: ContractActivityLogCreateOrConnectWithoutContractInput | ContractActivityLogCreateOrConnectWithoutContractInput[]
+    createMany?: ContractActivityLogCreateManyContractInputEnvelope
+    connect?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
   }
 
   export type ContractUpdateproducts_idInput = {
@@ -25995,6 +29642,20 @@ export namespace Prisma {
     deleteMany?: SpecialConditionScalarWhereInput | SpecialConditionScalarWhereInput[]
   }
 
+  export type ContractActivityLogUpdateManyWithoutContractNestedInput = {
+    create?: XOR<ContractActivityLogCreateWithoutContractInput, ContractActivityLogUncheckedCreateWithoutContractInput> | ContractActivityLogCreateWithoutContractInput[] | ContractActivityLogUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: ContractActivityLogCreateOrConnectWithoutContractInput | ContractActivityLogCreateOrConnectWithoutContractInput[]
+    upsert?: ContractActivityLogUpsertWithWhereUniqueWithoutContractInput | ContractActivityLogUpsertWithWhereUniqueWithoutContractInput[]
+    createMany?: ContractActivityLogCreateManyContractInputEnvelope
+    set?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
+    disconnect?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
+    delete?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
+    connect?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
+    update?: ContractActivityLogUpdateWithWhereUniqueWithoutContractInput | ContractActivityLogUpdateWithWhereUniqueWithoutContractInput[]
+    updateMany?: ContractActivityLogUpdateManyWithWhereWithoutContractInput | ContractActivityLogUpdateManyWithWhereWithoutContractInput[]
+    deleteMany?: ContractActivityLogScalarWhereInput | ContractActivityLogScalarWhereInput[]
+  }
+
   export type BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput = {
     create?: XOR<BrokerageInvoiceLineCreateWithoutContractInput, BrokerageInvoiceLineUncheckedCreateWithoutContractInput> | BrokerageInvoiceLineCreateWithoutContractInput[] | BrokerageInvoiceLineUncheckedCreateWithoutContractInput[]
     connectOrCreate?: BrokerageInvoiceLineCreateOrConnectWithoutContractInput | BrokerageInvoiceLineCreateOrConnectWithoutContractInput[]
@@ -26060,6 +29721,34 @@ export namespace Prisma {
     update?: SpecialConditionUpdateWithWhereUniqueWithoutContractInput | SpecialConditionUpdateWithWhereUniqueWithoutContractInput[]
     updateMany?: SpecialConditionUpdateManyWithWhereWithoutContractInput | SpecialConditionUpdateManyWithWhereWithoutContractInput[]
     deleteMany?: SpecialConditionScalarWhereInput | SpecialConditionScalarWhereInput[]
+  }
+
+  export type ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput = {
+    create?: XOR<ContractActivityLogCreateWithoutContractInput, ContractActivityLogUncheckedCreateWithoutContractInput> | ContractActivityLogCreateWithoutContractInput[] | ContractActivityLogUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: ContractActivityLogCreateOrConnectWithoutContractInput | ContractActivityLogCreateOrConnectWithoutContractInput[]
+    upsert?: ContractActivityLogUpsertWithWhereUniqueWithoutContractInput | ContractActivityLogUpsertWithWhereUniqueWithoutContractInput[]
+    createMany?: ContractActivityLogCreateManyContractInputEnvelope
+    set?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
+    disconnect?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
+    delete?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
+    connect?: ContractActivityLogWhereUniqueInput | ContractActivityLogWhereUniqueInput[]
+    update?: ContractActivityLogUpdateWithWhereUniqueWithoutContractInput | ContractActivityLogUpdateWithWhereUniqueWithoutContractInput[]
+    updateMany?: ContractActivityLogUpdateManyWithWhereWithoutContractInput | ContractActivityLogUpdateManyWithWhereWithoutContractInput[]
+    deleteMany?: ContractActivityLogScalarWhereInput | ContractActivityLogScalarWhereInput[]
+  }
+
+  export type ContractCreateNestedOneWithoutActivityLogsInput = {
+    create?: XOR<ContractCreateWithoutActivityLogsInput, ContractUncheckedCreateWithoutActivityLogsInput>
+    connectOrCreate?: ContractCreateOrConnectWithoutActivityLogsInput
+    connect?: ContractWhereUniqueInput
+  }
+
+  export type ContractUpdateOneRequiredWithoutActivityLogsNestedInput = {
+    create?: XOR<ContractCreateWithoutActivityLogsInput, ContractUncheckedCreateWithoutActivityLogsInput>
+    connectOrCreate?: ContractCreateOrConnectWithoutActivityLogsInput
+    upsert?: ContractUpsertWithoutActivityLogsInput
+    connect?: ContractWhereUniqueInput
+    update?: XOR<XOR<ContractUpdateToOneWithWhereWithoutActivityLogsInput, ContractUpdateWithoutActivityLogsInput>, ContractUncheckedUpdateWithoutActivityLogsInput>
   }
 
   export type ContractCreateNestedOneWithoutContractProductInput = {
@@ -26673,6 +30362,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -26733,53 +30436,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -26808,6 +30464,39 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -26820,22 +30509,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -26863,6 +30536,22 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -26904,6 +30593,76 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
+  export type BrokerageInvoiceCreateWithoutBankAccountInput = {
+    number?: string | null
+    invoice_date?: Date | string | null
+    sent_date?: Date | string | null
+    expected_payment_date?: Date | string | null
+    received_date?: Date | string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    Lines?: BrokerageInvoiceLineCreateNestedManyWithoutBrokerageInvoiceInput
+  }
+
+  export type BrokerageInvoiceUncheckedCreateWithoutBankAccountInput = {
+    id?: number
+    number?: string | null
+    invoice_date?: Date | string | null
+    sent_date?: Date | string | null
+    expected_payment_date?: Date | string | null
+    received_date?: Date | string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    Lines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutBrokerageInvoiceInput
+  }
+
+  export type BrokerageInvoiceCreateOrConnectWithoutBankAccountInput = {
+    where: BrokerageInvoiceWhereUniqueInput
+    create: XOR<BrokerageInvoiceCreateWithoutBankAccountInput, BrokerageInvoiceUncheckedCreateWithoutBankAccountInput>
+  }
+
+  export type BrokerageInvoiceCreateManyBankAccountInputEnvelope = {
+    data: BrokerageInvoiceCreateManyBankAccountInput | BrokerageInvoiceCreateManyBankAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BrokerageInvoiceUpsertWithWhereUniqueWithoutBankAccountInput = {
+    where: BrokerageInvoiceWhereUniqueInput
+    update: XOR<BrokerageInvoiceUpdateWithoutBankAccountInput, BrokerageInvoiceUncheckedUpdateWithoutBankAccountInput>
+    create: XOR<BrokerageInvoiceCreateWithoutBankAccountInput, BrokerageInvoiceUncheckedCreateWithoutBankAccountInput>
+  }
+
+  export type BrokerageInvoiceUpdateWithWhereUniqueWithoutBankAccountInput = {
+    where: BrokerageInvoiceWhereUniqueInput
+    data: XOR<BrokerageInvoiceUpdateWithoutBankAccountInput, BrokerageInvoiceUncheckedUpdateWithoutBankAccountInput>
+  }
+
+  export type BrokerageInvoiceUpdateManyWithWhereWithoutBankAccountInput = {
+    where: BrokerageInvoiceScalarWhereInput
+    data: XOR<BrokerageInvoiceUpdateManyMutationInput, BrokerageInvoiceUncheckedUpdateManyWithoutBankAccountInput>
+  }
+
+  export type BrokerageInvoiceScalarWhereInput = {
+    AND?: BrokerageInvoiceScalarWhereInput | BrokerageInvoiceScalarWhereInput[]
+    OR?: BrokerageInvoiceScalarWhereInput[]
+    NOT?: BrokerageInvoiceScalarWhereInput | BrokerageInvoiceScalarWhereInput[]
+    id?: IntFilter<"BrokerageInvoice"> | number
+    number?: StringNullableFilter<"BrokerageInvoice"> | string | null
+    invoice_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    sent_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    expected_payment_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    received_date?: DateTimeNullableFilter<"BrokerageInvoice"> | Date | string | null
+    createdAt?: DateTimeFilter<"BrokerageInvoice"> | Date | string
+    active?: BoolFilter<"BrokerageInvoice"> | boolean
+    status?: StringFilter<"BrokerageInvoice"> | string
+    deleted?: BoolFilter<"BrokerageInvoice"> | boolean
+    bank_account_id?: IntNullableFilter<"BrokerageInvoice"> | number | null
+  }
+
   export type ContractCreateWithoutArbitrationRuleInput = {
     name: string
     description: string
@@ -26918,6 +30677,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -26961,6 +30722,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
 
   export type ContractUncheckedCreateWithoutArbitrationRuleInput = {
@@ -26980,6 +30742,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -27021,6 +30785,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
 
   export type ContractCreateOrConnectWithoutArbitrationRuleInput = {
@@ -27064,6 +30829,8 @@ export namespace Prisma {
     products_id?: IntNullableListFilter<"Contract">
     bording_date?: DateTimeNullableFilter<"Contract"> | Date | string | null
     mt_value?: FloatFilter<"Contract"> | number
+    origin_country?: StringNullableFilter<"Contract"> | string | null
+    origin_port?: StringNullableFilter<"Contract"> | string | null
     destination_country?: StringFilter<"Contract"> | string
     destination_port?: StringFilter<"Contract"> | string
     shipping_company?: StringFilter<"Contract"> | string
@@ -27103,11 +30870,55 @@ export namespace Prisma {
     deleted?: BoolFilter<"Contract"> | boolean
   }
 
+  export type BankAccountCreateWithoutBrokerageInvoicesInput = {
+    bank_name: string
+    account_holder: string
+    account_number?: string | null
+    agency?: string | null
+    account_type?: string
+    swift_bic?: string | null
+    iban?: string | null
+    pix_key?: string | null
+    currency?: string
+    notes?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status?: string
+    deleted?: boolean
+  }
+
+  export type BankAccountUncheckedCreateWithoutBrokerageInvoicesInput = {
+    id?: number
+    bank_name: string
+    account_holder: string
+    account_number?: string | null
+    agency?: string | null
+    account_type?: string
+    swift_bic?: string | null
+    iban?: string | null
+    pix_key?: string | null
+    currency?: string
+    notes?: string | null
+    createdAt?: Date | string
+    active?: boolean
+    status?: string
+    deleted?: boolean
+  }
+
+  export type BankAccountCreateOrConnectWithoutBrokerageInvoicesInput = {
+    where: BankAccountWhereUniqueInput
+    create: XOR<BankAccountCreateWithoutBrokerageInvoicesInput, BankAccountUncheckedCreateWithoutBrokerageInvoicesInput>
+  }
+
   export type BrokerageInvoiceLineCreateWithoutBrokerageInvoiceInput = {
     bl_date: Date | string
     bl_number: string
     bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
     comission_total_usd: number
+    ptax?: number
+    comission_total_brl?: number
+    description?: string
+    notes?: string
     attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
@@ -27123,6 +30934,10 @@ export namespace Prisma {
     bl_number: string
     bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
     comission_total_usd: number
+    ptax?: number
+    comission_total_brl?: number
+    description?: string
+    notes?: string
     attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
@@ -27138,6 +30953,52 @@ export namespace Prisma {
   export type BrokerageInvoiceLineCreateManyBrokerageInvoiceInputEnvelope = {
     data: BrokerageInvoiceLineCreateManyBrokerageInvoiceInput | BrokerageInvoiceLineCreateManyBrokerageInvoiceInput[]
     skipDuplicates?: boolean
+  }
+
+  export type BankAccountUpsertWithoutBrokerageInvoicesInput = {
+    update: XOR<BankAccountUpdateWithoutBrokerageInvoicesInput, BankAccountUncheckedUpdateWithoutBrokerageInvoicesInput>
+    create: XOR<BankAccountCreateWithoutBrokerageInvoicesInput, BankAccountUncheckedCreateWithoutBrokerageInvoicesInput>
+    where?: BankAccountWhereInput
+  }
+
+  export type BankAccountUpdateToOneWithWhereWithoutBrokerageInvoicesInput = {
+    where?: BankAccountWhereInput
+    data: XOR<BankAccountUpdateWithoutBrokerageInvoicesInput, BankAccountUncheckedUpdateWithoutBrokerageInvoicesInput>
+  }
+
+  export type BankAccountUpdateWithoutBrokerageInvoicesInput = {
+    bank_name?: StringFieldUpdateOperationsInput | string
+    account_holder?: StringFieldUpdateOperationsInput | string
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agency?: NullableStringFieldUpdateOperationsInput | string | null
+    account_type?: StringFieldUpdateOperationsInput | string
+    swift_bic?: NullableStringFieldUpdateOperationsInput | string | null
+    iban?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_key?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type BankAccountUncheckedUpdateWithoutBrokerageInvoicesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    bank_name?: StringFieldUpdateOperationsInput | string
+    account_holder?: StringFieldUpdateOperationsInput | string
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
+    agency?: NullableStringFieldUpdateOperationsInput | string | null
+    account_type?: StringFieldUpdateOperationsInput | string
+    swift_bic?: NullableStringFieldUpdateOperationsInput | string | null
+    iban?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_key?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrokerageInvoiceLineUpsertWithWhereUniqueWithoutBrokerageInvoiceInput = {
@@ -27167,6 +31028,10 @@ export namespace Prisma {
     bl_number?: StringFilter<"BrokerageInvoiceLine"> | string
     bl_attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
     comission_total_usd?: FloatFilter<"BrokerageInvoiceLine"> | number
+    ptax?: FloatFilter<"BrokerageInvoiceLine"> | number
+    comission_total_brl?: FloatFilter<"BrokerageInvoiceLine"> | number
+    description?: StringFilter<"BrokerageInvoiceLine"> | string
+    notes?: StringFilter<"BrokerageInvoiceLine"> | string
     attachments?: StringNullableListFilter<"BrokerageInvoiceLine">
     createdAt?: DateTimeFilter<"BrokerageInvoiceLine"> | Date | string
     active?: BoolFilter<"BrokerageInvoiceLine"> | boolean
@@ -27177,20 +31042,28 @@ export namespace Prisma {
   export type BrokerageInvoiceCreateWithoutLinesInput = {
     number?: string | null
     invoice_date?: Date | string | null
+    sent_date?: Date | string | null
+    expected_payment_date?: Date | string | null
+    received_date?: Date | string | null
     createdAt?: Date | string
     active?: boolean
     status: string
     deleted?: boolean
+    BankAccount?: BankAccountCreateNestedOneWithoutBrokerageInvoicesInput
   }
 
   export type BrokerageInvoiceUncheckedCreateWithoutLinesInput = {
     id?: number
     number?: string | null
     invoice_date?: Date | string | null
+    sent_date?: Date | string | null
+    expected_payment_date?: Date | string | null
+    received_date?: Date | string | null
     createdAt?: Date | string
     active?: boolean
     status: string
     deleted?: boolean
+    bank_account_id?: number | null
   }
 
   export type BrokerageInvoiceCreateOrConnectWithoutLinesInput = {
@@ -27212,6 +31085,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -27255,6 +31130,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
 
   export type ContractUncheckedCreateWithoutBrokerageInvoiceLinesInput = {
@@ -27274,6 +31150,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -27315,6 +31193,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
 
   export type ContractCreateOrConnectWithoutBrokerageInvoiceLinesInput = {
@@ -27336,20 +31215,28 @@ export namespace Prisma {
   export type BrokerageInvoiceUpdateWithoutLinesInput = {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sent_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expected_payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    received_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    BankAccount?: BankAccountUpdateOneWithoutBrokerageInvoicesNestedInput
   }
 
   export type BrokerageInvoiceUncheckedUpdateWithoutLinesInput = {
     id?: IntFieldUpdateOperationsInput | number
     number?: NullableStringFieldUpdateOperationsInput | string | null
     invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sent_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expected_payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    received_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    bank_account_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ContractUpsertWithoutBrokerageInvoiceLinesInput = {
@@ -27377,6 +31264,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -27420,6 +31309,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateWithoutBrokerageInvoiceLinesInput = {
@@ -27439,6 +31329,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -27480,6 +31372,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
 
   export type CustomerCreateWithoutContactInput = {
@@ -27683,6 +31576,10 @@ export namespace Prisma {
     bl_number: string
     bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
     comission_total_usd: number
+    ptax?: number
+    comission_total_brl?: number
+    description?: string
+    notes?: string
     attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
@@ -27698,6 +31595,10 @@ export namespace Prisma {
     bl_number: string
     bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
     comission_total_usd: number
+    ptax?: number
+    comission_total_brl?: number
+    description?: string
+    notes?: string
     attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
@@ -27982,6 +31883,39 @@ export namespace Prisma {
     create: XOR<SpecialConditionCreateWithoutContractInput, SpecialConditionUncheckedCreateWithoutContractInput>
   }
 
+  export type ContractActivityLogCreateWithoutContractInput = {
+    action: string
+    details?: string | null
+    reference?: string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: string | null
+    actorUserId?: number | null
+    actorEmail?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ContractActivityLogUncheckedCreateWithoutContractInput = {
+    id?: number
+    action: string
+    details?: string | null
+    reference?: string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: string | null
+    actorUserId?: number | null
+    actorEmail?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ContractActivityLogCreateOrConnectWithoutContractInput = {
+    where: ContractActivityLogWhereUniqueInput
+    create: XOR<ContractActivityLogCreateWithoutContractInput, ContractActivityLogUncheckedCreateWithoutContractInput>
+  }
+
+  export type ContractActivityLogCreateManyContractInputEnvelope = {
+    data: ContractActivityLogCreateManyContractInput | ContractActivityLogCreateManyContractInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BrokerageInvoiceLineUpsertWithWhereUniqueWithoutContractInput = {
     where: BrokerageInvoiceLineWhereUniqueInput
     update: XOR<BrokerageInvoiceLineUpdateWithoutContractInput, BrokerageInvoiceLineUncheckedUpdateWithoutContractInput>
@@ -28256,6 +32190,304 @@ export namespace Prisma {
     deleted?: BoolFilter<"SpecialCondition"> | boolean
   }
 
+  export type ContractActivityLogUpsertWithWhereUniqueWithoutContractInput = {
+    where: ContractActivityLogWhereUniqueInput
+    update: XOR<ContractActivityLogUpdateWithoutContractInput, ContractActivityLogUncheckedUpdateWithoutContractInput>
+    create: XOR<ContractActivityLogCreateWithoutContractInput, ContractActivityLogUncheckedCreateWithoutContractInput>
+  }
+
+  export type ContractActivityLogUpdateWithWhereUniqueWithoutContractInput = {
+    where: ContractActivityLogWhereUniqueInput
+    data: XOR<ContractActivityLogUpdateWithoutContractInput, ContractActivityLogUncheckedUpdateWithoutContractInput>
+  }
+
+  export type ContractActivityLogUpdateManyWithWhereWithoutContractInput = {
+    where: ContractActivityLogScalarWhereInput
+    data: XOR<ContractActivityLogUpdateManyMutationInput, ContractActivityLogUncheckedUpdateManyWithoutContractInput>
+  }
+
+  export type ContractActivityLogScalarWhereInput = {
+    AND?: ContractActivityLogScalarWhereInput | ContractActivityLogScalarWhereInput[]
+    OR?: ContractActivityLogScalarWhereInput[]
+    NOT?: ContractActivityLogScalarWhereInput | ContractActivityLogScalarWhereInput[]
+    id?: IntFilter<"ContractActivityLog"> | number
+    contract_id?: IntFilter<"ContractActivityLog"> | number
+    action?: StringFilter<"ContractActivityLog"> | string
+    details?: StringNullableFilter<"ContractActivityLog"> | string | null
+    reference?: StringNullableFilter<"ContractActivityLog"> | string | null
+    payload?: JsonNullableFilter<"ContractActivityLog">
+    actorSuperTokensUserId?: StringNullableFilter<"ContractActivityLog"> | string | null
+    actorUserId?: IntNullableFilter<"ContractActivityLog"> | number | null
+    actorEmail?: StringNullableFilter<"ContractActivityLog"> | string | null
+    createdAt?: DateTimeFilter<"ContractActivityLog"> | Date | string
+  }
+
+  export type ContractCreateWithoutActivityLogsInput = {
+    name: string
+    description: string
+    date_creation?: Date | string | null
+    date_expiration?: Date | string | null
+    date_signature?: Date | string | null
+    date_expiration_signature?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    products_id?: ContractCreateproducts_idInput | number[]
+    bording_date?: Date | string | null
+    mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
+    destination_country: string
+    destination_port: string
+    shipping_company: string
+    shipment_date?: Date | string | null
+    si_sent: boolean
+    packing?: ContractCreatepackingInput | string[]
+    incoterm?: ContractCreateincotermInput | string[]
+    payment_terms: string
+    payment_method: string
+    payment_currency: string
+    payment_amount: number
+    payment_date?: Date | string | null
+    payment_status: string
+    payment_notes: string
+    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractCreatespecial_termsInput | string[]
+    business_terms?: ContractCreatebusiness_termsInput | string[]
+    legal_terms?: ContractCreatelegal_termsInput | string[]
+    other_terms?: ContractCreateother_termsInput | string[]
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
+    comission_total: number
+    attachments?: ContractCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineCreateNestedManyWithoutContractInput
+    PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
+    PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
+    ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
+    ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    Product?: ProductCreateNestedManyWithoutContractInput
+    SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+  }
+
+  export type ContractUncheckedCreateWithoutActivityLogsInput = {
+    id?: number
+    name: string
+    description: string
+    date_creation?: Date | string | null
+    date_expiration?: Date | string | null
+    date_signature?: Date | string | null
+    date_expiration_signature?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    customer_party_b_id: number
+    products_id?: ContractCreateproducts_idInput | number[]
+    bording_date?: Date | string | null
+    mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
+    destination_country: string
+    destination_port: string
+    shipping_company: string
+    shipment_date?: Date | string | null
+    si_sent: boolean
+    packing?: ContractCreatepackingInput | string[]
+    incoterm?: ContractCreateincotermInput | string[]
+    payment_terms: string
+    payment_method: string
+    payment_currency: string
+    payment_amount: number
+    payment_date?: Date | string | null
+    payment_status: string
+    payment_notes: string
+    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractCreatespecial_termsInput | string[]
+    business_terms?: ContractCreatebusiness_termsInput | string[]
+    legal_terms?: ContractCreatelegal_termsInput | string[]
+    other_terms?: ContractCreateother_termsInput | string[]
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
+    comission_total: number
+    attachments?: ContractCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
+    ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
+    ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    Product?: ProductUncheckedCreateNestedManyWithoutContractInput
+    SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+  }
+
+  export type ContractCreateOrConnectWithoutActivityLogsInput = {
+    where: ContractWhereUniqueInput
+    create: XOR<ContractCreateWithoutActivityLogsInput, ContractUncheckedCreateWithoutActivityLogsInput>
+  }
+
+  export type ContractUpsertWithoutActivityLogsInput = {
+    update: XOR<ContractUpdateWithoutActivityLogsInput, ContractUncheckedUpdateWithoutActivityLogsInput>
+    create: XOR<ContractCreateWithoutActivityLogsInput, ContractUncheckedCreateWithoutActivityLogsInput>
+    where?: ContractWhereInput
+  }
+
+  export type ContractUpdateToOneWithWhereWithoutActivityLogsInput = {
+    where?: ContractWhereInput
+    data: XOR<ContractUpdateWithoutActivityLogsInput, ContractUncheckedUpdateWithoutActivityLogsInput>
+  }
+
+  export type ContractUpdateWithoutActivityLogsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    products_id?: ContractUpdateproducts_idInput | number[]
+    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_country?: StringFieldUpdateOperationsInput | string
+    destination_port?: StringFieldUpdateOperationsInput | string
+    shipping_company?: StringFieldUpdateOperationsInput | string
+    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    si_sent?: BoolFieldUpdateOperationsInput | boolean
+    packing?: ContractUpdatepackingInput | string[]
+    incoterm?: ContractUpdateincotermInput | string[]
+    payment_terms?: StringFieldUpdateOperationsInput | string
+    payment_method?: StringFieldUpdateOperationsInput | string
+    payment_currency?: StringFieldUpdateOperationsInput | string
+    payment_amount?: FloatFieldUpdateOperationsInput | number
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment_status?: StringFieldUpdateOperationsInput | string
+    payment_notes?: StringFieldUpdateOperationsInput | string
+    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractUpdatespecial_termsInput | string[]
+    business_terms?: ContractUpdatebusiness_termsInput | string[]
+    legal_terms?: ContractUpdatelegal_termsInput | string[]
+    other_terms?: ContractUpdateother_termsInput | string[]
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
+    comission_total?: FloatFieldUpdateOperationsInput | number
+    attachments?: ContractUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUpdateManyWithoutContractNestedInput
+    PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
+    PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
+    ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
+    ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    Product?: ProductUpdateManyWithoutContractNestedInput
+    SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+  }
+
+  export type ContractUncheckedUpdateWithoutActivityLogsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
+    products_id?: ContractUpdateproducts_idInput | number[]
+    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_country?: StringFieldUpdateOperationsInput | string
+    destination_port?: StringFieldUpdateOperationsInput | string
+    shipping_company?: StringFieldUpdateOperationsInput | string
+    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    si_sent?: BoolFieldUpdateOperationsInput | boolean
+    packing?: ContractUpdatepackingInput | string[]
+    incoterm?: ContractUpdateincotermInput | string[]
+    payment_terms?: StringFieldUpdateOperationsInput | string
+    payment_method?: StringFieldUpdateOperationsInput | string
+    payment_currency?: StringFieldUpdateOperationsInput | string
+    payment_amount?: FloatFieldUpdateOperationsInput | number
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment_status?: StringFieldUpdateOperationsInput | string
+    payment_notes?: StringFieldUpdateOperationsInput | string
+    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractUpdatespecial_termsInput | string[]
+    business_terms?: ContractUpdatebusiness_termsInput | string[]
+    legal_terms?: ContractUpdatelegal_termsInput | string[]
+    other_terms?: ContractUpdateother_termsInput | string[]
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
+    comission_total?: FloatFieldUpdateOperationsInput | number
+    attachments?: ContractUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
+    ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
+    ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
+    SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+  }
+
   export type ContractCreateWithoutContractProductInput = {
     name: string
     description: string
@@ -28270,6 +32502,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -28313,6 +32547,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
 
   export type ContractUncheckedCreateWithoutContractProductInput = {
@@ -28332,6 +32567,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -28373,6 +32610,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
 
   export type ContractCreateOrConnectWithoutContractProductInput = {
@@ -28509,6 +32747,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -28552,6 +32792,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateWithoutContractProductInput = {
@@ -28571,6 +32812,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -28612,6 +32855,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
 
   export type ProductUpsertWithoutContractProductInput = {
@@ -28850,6 +33094,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -28893,6 +33139,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
 
   export type ContractUncheckedCreateWithoutPartyAInput = {
@@ -28911,6 +33158,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -28953,6 +33202,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
 
   export type ContractCreateOrConnectWithoutPartyAInput = {
@@ -28979,6 +33229,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -29022,6 +33274,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
 
   export type ContractUncheckedCreateWithoutPartyBInput = {
@@ -29040,6 +33293,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -29082,6 +33337,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
 
   export type ContractCreateOrConnectWithoutPartyBInput = {
@@ -29411,6 +33667,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -29454,6 +33712,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
 
   export type ContractUncheckedCreateWithoutProductInput = {
@@ -29473,6 +33732,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -29514,6 +33775,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
 
   export type ContractCreateOrConnectWithoutProductInput = {
@@ -29854,6 +34116,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -29897,6 +34161,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
 
   export type ContractUncheckedCreateWithoutSpecialConditionInput = {
@@ -29916,6 +34181,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -29957,6 +34224,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
 
   export type ContractCreateOrConnectWithoutSpecialConditionInput = {
@@ -29980,6 +34248,59 @@ export namespace Prisma {
     data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutSpecialConditionInput>
   }
 
+  export type BrokerageInvoiceCreateManyBankAccountInput = {
+    id?: number
+    number?: string | null
+    invoice_date?: Date | string | null
+    sent_date?: Date | string | null
+    expected_payment_date?: Date | string | null
+    received_date?: Date | string | null
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type BrokerageInvoiceUpdateWithoutBankAccountInput = {
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sent_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expected_payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    received_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    Lines?: BrokerageInvoiceLineUpdateManyWithoutBrokerageInvoiceNestedInput
+  }
+
+  export type BrokerageInvoiceUncheckedUpdateWithoutBankAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sent_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expected_payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    received_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    Lines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutBrokerageInvoiceNestedInput
+  }
+
+  export type BrokerageInvoiceUncheckedUpdateManyWithoutBankAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    number?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sent_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expected_payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    received_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type ContractUpdateWithoutArbitrationRuleInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -29994,6 +34315,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -30037,6 +34360,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateWithoutArbitrationRuleInput = {
@@ -30056,6 +34380,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -30097,6 +34423,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateManyWithoutArbitrationRuleInput = {
@@ -30116,6 +34443,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -30162,6 +34491,10 @@ export namespace Prisma {
     bl_number: string
     bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
     comission_total_usd: number
+    ptax?: number
+    comission_total_brl?: number
+    description?: string
+    notes?: string
     attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
@@ -30174,6 +34507,10 @@ export namespace Prisma {
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -30189,6 +34526,10 @@ export namespace Prisma {
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -30203,6 +34544,10 @@ export namespace Prisma {
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -30217,6 +34562,10 @@ export namespace Prisma {
     bl_number: string
     bl_attachments?: BrokerageInvoiceLineCreatebl_attachmentsInput | string[]
     comission_total_usd: number
+    ptax?: number
+    comission_total_brl?: number
+    description?: string
+    notes?: string
     attachments?: BrokerageInvoiceLineCreateattachmentsInput | string[]
     createdAt?: Date | string
     active?: boolean
@@ -30236,11 +34585,27 @@ export namespace Prisma {
     deleted?: boolean
   }
 
+  export type ContractActivityLogCreateManyContractInput = {
+    id?: number
+    action: string
+    details?: string | null
+    reference?: string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: string | null
+    actorUserId?: number | null
+    actorEmail?: string | null
+    createdAt?: Date | string
+  }
+
   export type BrokerageInvoiceLineUpdateWithoutContractInput = {
     bl_date?: DateTimeFieldUpdateOperationsInput | Date | string
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -30256,6 +34621,10 @@ export namespace Prisma {
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -30270,6 +34639,10 @@ export namespace Prisma {
     bl_number?: StringFieldUpdateOperationsInput | string
     bl_attachments?: BrokerageInvoiceLineUpdatebl_attachmentsInput | string[]
     comission_total_usd?: FloatFieldUpdateOperationsInput | number
+    ptax?: FloatFieldUpdateOperationsInput | number
+    comission_total_brl?: FloatFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    notes?: StringFieldUpdateOperationsInput | string
     attachments?: BrokerageInvoiceLineUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -30496,6 +34869,41 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type ContractActivityLogUpdateWithoutContractInput = {
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    actorUserId?: NullableIntFieldUpdateOperationsInput | number | null
+    actorEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractActivityLogUncheckedUpdateWithoutContractInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    actorUserId?: NullableIntFieldUpdateOperationsInput | number | null
+    actorEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractActivityLogUncheckedUpdateManyWithoutContractInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    reference?: NullableStringFieldUpdateOperationsInput | string | null
+    payload?: NullableJsonNullValueInput | InputJsonValue
+    actorSuperTokensUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    actorUserId?: NullableIntFieldUpdateOperationsInput | number | null
+    actorEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ContractProductCreateManyPackInput = {
     id?: number
     contract_id: number
@@ -30583,6 +34991,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -30638,6 +35048,8 @@ export namespace Prisma {
     products_id?: ContractCreateproducts_idInput | number[]
     bording_date?: Date | string | null
     mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
     destination_country: string
     destination_port: string
     shipping_company: string
@@ -30762,6 +35174,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -30805,6 +35219,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateWithoutPartyAInput = {
@@ -30823,6 +35238,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -30865,6 +35282,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateManyWithoutPartyAInput = {
@@ -30883,6 +35301,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -30936,6 +35356,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -30979,6 +35401,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateWithoutPartyBInput = {
@@ -30997,6 +35420,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -31039,6 +35464,7 @@ export namespace Prisma {
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateManyWithoutPartyBInput = {
@@ -31057,6 +35483,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -31171,6 +35599,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -31214,6 +35644,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateWithoutProductInput = {
@@ -31233,6 +35664,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -31274,6 +35707,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateManyWithoutProductInput = {
@@ -31293,6 +35727,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -31611,6 +36047,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -31654,6 +36092,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateWithoutSpecialConditionInput = {
@@ -31673,6 +36112,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string
@@ -31714,6 +36155,7 @@ export namespace Prisma {
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateManyWithoutSpecialConditionInput = {
@@ -31733,6 +36175,8 @@ export namespace Prisma {
     products_id?: ContractUpdateproducts_idInput | number[]
     bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
     destination_country?: StringFieldUpdateOperationsInput | string
     destination_port?: StringFieldUpdateOperationsInput | string
     shipping_company?: StringFieldUpdateOperationsInput | string

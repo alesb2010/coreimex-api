@@ -93,6 +93,7 @@ await fastify.register(import('@fastify/swagger'), {
       { name: 'Brokerage Invoices', description: 'Brokerage invoice management endpoints' },
       { name: 'Arbitration Rules', description: 'Arbitration rule management endpoints' },
       { name: 'Special Conditions', description: 'Special condition management endpoints' },
+      { name: 'Bank Accounts', description: 'Bank account management endpoints' },
       { name: 'Files', description: 'File upload and management endpoints' },
       { name: 'Authentication', description: 'Authentication endpoints' }
     ]
@@ -197,7 +198,9 @@ await fastify.register(import('./routers/packs.js'), { prefix: '/api/v1/', prism
 await fastify.register(import('./routers/brokerageInvoices.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/arbitrationRules.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/specialConditions.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/bankAccounts.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/files.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/userManagement.js'), { prefix: '/api/v1/', prisma });
 
 const PORT = process.env.PORT || 4000;
 fastify.listen({ port: PORT, host: "0.0.0.0" }, (err, address) => {

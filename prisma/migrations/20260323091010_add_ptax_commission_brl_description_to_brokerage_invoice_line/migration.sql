@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "BrokerageInvoiceLine" ADD COLUMN     "comission_total_brl" DOUBLE PRECISION NOT NULL DEFAULT 0,
+ADD COLUMN     "description" TEXT NOT NULL DEFAULT '',
+ADD COLUMN     "ptax" DOUBLE PRECISION NOT NULL DEFAULT 0;

@@ -121,6 +121,24 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.BankAccountScalarFieldEnum = {
+  id: 'id',
+  bank_name: 'bank_name',
+  account_holder: 'account_holder',
+  account_number: 'account_number',
+  agency: 'agency',
+  account_type: 'account_type',
+  swift_bic: 'swift_bic',
+  iban: 'iban',
+  pix_key: 'pix_key',
+  currency: 'currency',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  deleted: 'deleted'
+};
+
 exports.Prisma.ArbitrationRuleScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -139,10 +157,14 @@ exports.Prisma.BrokerageInvoiceScalarFieldEnum = {
   id: 'id',
   number: 'number',
   invoice_date: 'invoice_date',
+  sent_date: 'sent_date',
+  expected_payment_date: 'expected_payment_date',
+  received_date: 'received_date',
   createdAt: 'createdAt',
   active: 'active',
   status: 'status',
-  deleted: 'deleted'
+  deleted: 'deleted',
+  bank_account_id: 'bank_account_id'
 };
 
 exports.Prisma.BrokerageInvoiceLineScalarFieldEnum = {
@@ -153,6 +175,10 @@ exports.Prisma.BrokerageInvoiceLineScalarFieldEnum = {
   bl_number: 'bl_number',
   bl_attachments: 'bl_attachments',
   comission_total_usd: 'comission_total_usd',
+  ptax: 'ptax',
+  comission_total_brl: 'comission_total_brl',
+  description: 'description',
+  notes: 'notes',
   attachments: 'attachments',
   createdAt: 'createdAt',
   active: 'active',
@@ -202,6 +228,8 @@ exports.Prisma.ContractScalarFieldEnum = {
   products_id: 'products_id',
   bording_date: 'bording_date',
   mt_value: 'mt_value',
+  origin_country: 'origin_country',
+  origin_port: 'origin_port',
   destination_country: 'destination_country',
   destination_port: 'destination_port',
   shipping_company: 'shipping_company',
@@ -239,6 +267,19 @@ exports.Prisma.ContractScalarFieldEnum = {
   active: 'active',
   status: 'status',
   deleted: 'deleted'
+};
+
+exports.Prisma.ContractActivityLogScalarFieldEnum = {
+  id: 'id',
+  contract_id: 'contract_id',
+  action: 'action',
+  details: 'details',
+  reference: 'reference',
+  payload: 'payload',
+  actorSuperTokensUserId: 'actorSuperTokensUserId',
+  actorUserId: 'actorUserId',
+  actorEmail: 'actorEmail',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.ContractProductScalarFieldEnum = {
@@ -420,11 +461,13 @@ exports.Prisma.JsonNullValueFilter = {
 
 
 exports.Prisma.ModelName = {
+  BankAccount: 'BankAccount',
   ArbitrationRule: 'ArbitrationRule',
   BrokerageInvoice: 'BrokerageInvoice',
   BrokerageInvoiceLine: 'BrokerageInvoiceLine',
   Contact: 'Contact',
   Contract: 'Contract',
+  ContractActivityLog: 'ContractActivityLog',
   ContractProduct: 'ContractProduct',
   Pack: 'Pack',
   Customer: 'Customer',

@@ -9,6 +9,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model BankAccount {
+  id             Int      @id @default(autoincrement())
+  bank_name      String
+  account_holder String
+  account_number String?
+  agency         String?
+  account_type   String   @default("checking")
+  swift_bic      String?
+  iban           String?
+  pix_key        String?
+  currency          String            @default("BRL")
+  notes             String?
+  createdAt         DateTime          @default(now())
+  active            Boolean           @default(true)
+  status            String            @default("active")
+  deleted           Boolean           @default(false)
+  BrokerageInvoices BrokerageInvoice[]
+}
+
 model ArbitrationRule {
   id          Int        @id @default(autoincrement())
   name        String
@@ -25,14 +44,19 @@ model ArbitrationRule {
 }
 
 model BrokerageInvoice {
-  id           Int                    @id @default(autoincrement())
-  number       String?
-  invoice_date DateTime?
-  createdAt    DateTime               @default(now())
-  active       Boolean                @default(true)
-  status       String
-  deleted      Boolean                @default(false)
-  Lines        BrokerageInvoiceLine[]
+  id                    Int                    @id @default(autoincrement())
+  number                String?
+  invoice_date          DateTime?
+  sent_date             DateTime?
+  expected_payment_date DateTime?
+  received_date         DateTime?
+  createdAt             DateTime               @default(now())
+  active                Boolean                @default(true)
+  status                String
+  deleted               Boolean                @default(false)
+  bank_account_id       Int?
+  BankAccount           BankAccount?           @relation(fields: [bank_account_id], references: [id], onDelete: SetNull)
+  Lines                 BrokerageInvoiceLine[]
 }
 
 model BrokerageInvoiceLine {
@@ -43,6 +67,10 @@ model BrokerageInvoiceLine {
   bl_number            String
   bl_attachments       String[]
   comission_total_usd  Float
+  ptax                 Float            @default(0)
+  comission_total_brl  Float            @default(0)
+  description          String           @default("")
+  notes                String           @default("")
   attachments          String[]
   createdAt            DateTime         @default(now())
   active               Boolean          @default(true)
@@ -98,6 +126,8 @@ model Contract {
   products_id                         Int[]
   bording_date                        DateTime?
   mt_value                            Float
+  origin_country                      String?
+  origin_port                         String?
   destination_country                 String
   destination_port                    String
   shipping_company                    String
@@ -142,6 +172,30 @@ model Contract {
   ArbitrationRule                     ArbitrationRule[]
   Product                             Product[]              @relation("ContractProduct")
   SpecialCondition                    SpecialCondition[]
+  ActivityLogs                        ContractActivityLog[]
+
+  @@index([customer_party_a_id])
+  @@index([customer_party_b_id])
+  @@index([date_creation])
+  @@index([status])
+}
+
+model ContractActivityLog {
+  id                     Int      @id @default(autoincrement())
+  contract_id            Int
+  action                 String
+  details                String?
+  reference              String?
+  payload                Json?
+  actorSuperTokensUserId String?
+  actorUserId            Int?
+  actorEmail             String?
+  createdAt              DateTime @default(now())
+
+  Contract               Contract @relation(fields: [contract_id], references: [id], onDelete: Cascade)
+
+  @@index([contract_id, createdAt])
+  @@index([actorSuperTokensUserId, createdAt])
 }
 
 model ContractProduct {
@@ -158,6 +212,9 @@ model ContractProduct {
   Contract    Contract @relation(fields: [contract_id], references: [id])
   Product     Product  @relation(fields: [product_id], references: [id])
   Pack        Pack?    @relation(fields: [pack_id], references: [id])
+
+  @@index([contract_id])
+  @@index([product_id])
 }
 
 model Pack {

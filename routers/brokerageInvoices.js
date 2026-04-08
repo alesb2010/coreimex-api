@@ -1,4 +1,5 @@
 const linesInclude = { include: { Contract: true } };
+const invoiceInclude = { Lines: linesInclude, BankAccount: true };
 
 function normalizeLineInput(line) {
   const l = { ...line };
@@ -6,6 +7,42 @@ function normalizeLineInput(line) {
     l.bl_date = new Date(l.bl_date);
   }
   return l;
+}
+
+/**
+ * Resolve bank_account_id from the request body.
+ * Returns:
+ *   { set: null }   — caller explicitly passed null → clear the link
+ *   { set: <id> }   — valid DB integer ID → save the link
+ *   null            — invalid / unresolvable value (timestamp overflow, not found) → skip field entirely
+ */
+async function resolveBankAccountId(prisma, raw) {
+  if (raw === null || raw === undefined || raw === '' || raw === 'null') return { set: null };
+  const parsed = parseInt(raw, 10);
+  // Reject timestamp-style IDs that overflow INT4 (Date.now() from old localStorage impl)
+  if (!Number.isFinite(parsed) || parsed < 1) return { invalid: raw };
+  if (parsed > 2147483647) return { outOfRange: parsed };
+  const exists = await prisma.bankAccount.findFirst({ where: { id: parsed, deleted: false }, select: { id: true } });
+  if (!exists) return { notFound: parsed };
+  return { set: parsed };
+}
+
+function pickRawBankAccountId(body) {
+  if (!body || typeof body !== 'object') return undefined;
+  if (body.bank_account_id !== undefined) return body.bank_account_id;
+  if (body.bankAccountId !== undefined) return body.bankAccountId;
+  if (body.bank_account !== undefined) return body.bank_account?.id;
+  if (body.bankAccount !== undefined) return body.bankAccount?.id;
+  return undefined;
+}
+
+function applyBankAccountWrite(data, resolved) {
+  if (resolved == null) return;
+  if (resolved.set == null) {
+    data.BankAccount = { disconnect: true };
+    return;
+  }
+  data.BankAccount = { connect: { id: resolved.set } };
 }
 
 /** Guarantee a number for comission_total_usd (accepts both spellings), never null/undefined/NaN */
@@ -28,7 +65,7 @@ async function brokerageInvoicesRoutes(fastify, options) {
     }
   }, async (request, reply) => {
     return prisma.brokerageInvoice.findMany({
-      include: { Lines: linesInclude },
+      include: invoiceInclude,
     });
   });
 
@@ -43,7 +80,7 @@ async function brokerageInvoicesRoutes(fastify, options) {
     const { id } = request.params;
     const invoice = await prisma.brokerageInvoice.findUnique({
       where: { id: parseInt(id) },
-      include: { Lines: linesInclude },
+      include: invoiceInclude,
     });
     if (!invoice) {
       reply.code(404).send({ error: "Brokerage invoice not found" });
@@ -62,6 +99,7 @@ async function brokerageInvoicesRoutes(fastify, options) {
   }, async (request, reply) => {
     const body = request.body || {};
     const { lines, number, invoice_date, active, status } = body;
+    const bank_account_id = pickRawBankAccountId(body);
     const masterData = {};
     if (number !== undefined) masterData.number = number;
     if (invoice_date != null) {
@@ -69,30 +107,55 @@ async function brokerageInvoicesRoutes(fastify, options) {
     }
     if (active !== undefined) masterData.active = active;
     if (status !== undefined) masterData.status = status;
+    if (bank_account_id !== undefined) {
+      const resolved = await resolveBankAccountId(prisma, bank_account_id);
+      if (resolved?.outOfRange) {
+        reply.code(400).send({
+          error: `Invalid bank_account_id ${resolved.outOfRange} (out of range)`,
+          hint: 'Send the numeric BankAccount.id from GET /api/v1/bank-accounts (autoincrement int), not a timestamp/localStorage id.',
+        });
+        return;
+      }
+      if (resolved?.invalid) {
+        reply.code(400).send({
+          error: `Invalid bank_account_id ${JSON.stringify(resolved.invalid)}`,
+          hint: 'Send the numeric BankAccount.id from GET /api/v1/bank-accounts.',
+        });
+        return;
+      }
+      if (resolved?.notFound) {
+        reply.code(400).send({
+          error: `Bank account ${resolved.notFound} not found`,
+          hint: 'Create a bank account first (POST /api/v1/bank-accounts) or pick an existing one (GET /api/v1/bank-accounts).',
+        });
+        return;
+      }
+      applyBankAccountWrite(masterData, resolved);
+    }
     const invoice = await prisma.brokerageInvoice.create({
       data: {
         ...masterData,
         status: masterData.status ?? 'active',
         ...(Array.isArray(lines) && lines.length > 0
           ? {
-              Lines: {
-                create: lines.map((line) => {
-                  const l = normalizeLineInput(line);
-                  return {
-                    contract_id: parseInt(l.contract_id, 10),
-                    bl_date: l.bl_date,
-                    bl_number: String(l.bl_number ?? ''),
-                    bl_attachments: Array.isArray(l.bl_attachments) ? l.bl_attachments : [],
-                    comission_total_usd: Number(l.comission_total_usd ?? l.commission_total_usd ?? 0) || 0,
-                    attachments: Array.isArray(l.attachments) ? l.attachments : [],
-                    status: l.status ?? 'active',
-                  };
-                }),
-              },
-            }
+            Lines: {
+              create: lines.map((line) => {
+                const l = normalizeLineInput(line);
+                return {
+                  contract_id: parseInt(l.contract_id, 10),
+                  bl_date: l.bl_date,
+                  bl_number: String(l.bl_number ?? ''),
+                  bl_attachments: Array.isArray(l.bl_attachments) ? l.bl_attachments : [],
+                  comission_total_usd: Number(l.comission_total_usd ?? l.commission_total_usd ?? 0) || 0,
+                  attachments: Array.isArray(l.attachments) ? l.attachments : [],
+                  status: l.status ?? 'active',
+                };
+              }),
+            },
+          }
           : {}),
       },
-      include: { Lines: linesInclude },
+      include: invoiceInclude,
     });
     reply.code(201).send(invoice);
   });
@@ -108,6 +171,7 @@ async function brokerageInvoicesRoutes(fastify, options) {
     const { id } = request.params;
     const body = request.body || {};
     const { lines, number, invoice_date, active, status } = body;
+    const bank_account_id = pickRawBankAccountId(body);
     const data = {};
     if (number !== undefined) data.number = number;
     if (invoice_date !== undefined) {
@@ -115,6 +179,31 @@ async function brokerageInvoicesRoutes(fastify, options) {
     }
     if (active !== undefined) data.active = active;
     if (status !== undefined) data.status = status;
+    if (bank_account_id !== undefined) {
+      const resolved = await resolveBankAccountId(prisma, bank_account_id);
+      if (resolved?.outOfRange) {
+        reply.code(400).send({
+          error: `Invalid bank_account_id ${resolved.outOfRange} (out of range)`,
+          hint: 'Send the numeric BankAccount.id from GET /api/v1/bank-accounts (autoincrement int), not a timestamp/localStorage id.',
+        });
+        return;
+      }
+      if (resolved?.invalid) {
+        reply.code(400).send({
+          error: `Invalid bank_account_id ${JSON.stringify(resolved.invalid)}`,
+          hint: 'Send the numeric BankAccount.id from GET /api/v1/bank-accounts.',
+        });
+        return;
+      }
+      if (resolved?.notFound) {
+        reply.code(400).send({
+          error: `Bank account ${resolved.notFound} not found`,
+          hint: 'Create a bank account first (POST /api/v1/bank-accounts) or pick an existing one (GET /api/v1/bank-accounts).',
+        });
+        return;
+      }
+      applyBankAccountWrite(data, resolved);
+    }
     try {
       if (Array.isArray(lines)) {
         const invoiceId = parseInt(id, 10);
@@ -124,6 +213,10 @@ async function brokerageInvoicesRoutes(fastify, options) {
           bl_number: String(l.bl_number ?? ''),
           bl_attachments: Array.isArray(l.bl_attachments) ? l.bl_attachments : [],
           comission_total_usd: lineComissionUsd(l),
+          ptax: l.ptax ?? 0,
+          comission_total_brl: l.comission_total_brl ?? 0,
+          description: l.description ?? '',
+          notes: l.notes ?? '',
           attachments: Array.isArray(l.attachments) ? l.attachments : [],
           status: l.status ?? 'active',
           deleted: false,
@@ -157,7 +250,7 @@ async function brokerageInvoicesRoutes(fastify, options) {
       const invoice = await prisma.brokerageInvoice.update({
         where: { id: parseInt(id, 10) },
         data,
-        include: { Lines: linesInclude },
+        include: invoiceInclude,
       });
       return invoice;
     } catch (error) {
