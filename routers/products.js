@@ -8,6 +8,97 @@ function mapFileToWithUrl(file) {
     };
 }
 
+const PRODUCT_INCLUDE = {
+    ProductVariation: {
+        where: { deleted: false },
+        orderBy: { id: 'asc' },
+    },
+};
+
+const VARIATION_FIELDS = ['name', 'type', 'lot', 'details', 'notes', 'regulatory', 'active', 'status'];
+
+function normalizeVariationInput(variation) {
+    if (!variation || typeof variation !== 'object') return null;
+
+    const data = {};
+    for (const field of VARIATION_FIELDS) {
+        if (field in variation) {
+            data[field] = variation[field];
+        }
+    }
+
+    if (!data.name?.trim()) {
+        data.name = 'Grade 1';
+    }
+
+    if (!('type' in data)) data.type = '';
+    if (!('lot' in data)) data.lot = '';
+    if (!('details' in data)) data.details = '';
+    if (!('notes' in data)) data.notes = '';
+    if (!('regulatory' in data)) data.regulatory = '';
+    if (!('status' in data)) data.status = 'active';
+    if (!('active' in data)) data.active = true;
+
+    return data;
+}
+
+function extractVariationsFromBody(body) {
+    if (!body || typeof body !== 'object') return null;
+    if (Array.isArray(body.variations)) return body.variations;
+    if (Array.isArray(body.ProductVariation)) return body.ProductVariation;
+    return null;
+}
+
+function stripVariationFieldsFromProductData(data) {
+    delete data.variations;
+    delete data.ProductVariation;
+    delete data.attached_files;
+    delete data.File;
+}
+
+async function syncProductVariations(prisma, productId, variationsInput) {
+    if (!Array.isArray(variationsInput)) return;
+
+    const existing = await prisma.productVariation.findMany({
+        where: { product_id: productId, deleted: false },
+        select: { id: true },
+    });
+    const existingIds = new Set(existing.map((v) => v.id));
+    const incomingIds = new Set();
+
+    for (const raw of variationsInput) {
+        const data = normalizeVariationInput(raw);
+        if (!data) continue;
+
+        if (raw.id) {
+            const variationId = parseInt(raw.id, 10);
+            if (!Number.isFinite(variationId)) continue;
+
+            const updated = await prisma.productVariation.updateMany({
+                where: { id: variationId, product_id: productId },
+                data,
+            });
+            if (updated.count > 0) {
+                incomingIds.add(variationId);
+            }
+        } else {
+            await prisma.productVariation.create({
+                data: {
+                    ...data,
+                    product_id: productId,
+                },
+            });
+        }
+    }
+
+    const idsToRemove = [...existingIds].filter((id) => !incomingIds.has(id));
+    if (idsToRemove.length > 0) {
+        await prisma.productVariation.deleteMany({
+            where: { id: { in: idsToRemove }, product_id: productId },
+        });
+    }
+}
+
 async function productsRoutes(fastify, options) {
     const { prisma } = options;
 
@@ -20,7 +111,8 @@ async function productsRoutes(fastify, options) {
         }
     }, async (request, reply) => {
         const products = await prisma.product.findMany({
-            where: { deleted: false }
+            where: { deleted: false },
+            include: PRODUCT_INCLUDE,
         });
         return products;
     });
@@ -35,7 +127,8 @@ async function productsRoutes(fastify, options) {
     }, async (request, reply) => {
         const { id } = request.params;
         const product = await prisma.product.findUnique({
-            where: { id: parseInt(id), deleted: false }
+            where: { id: parseInt(id), deleted: false },
+            include: PRODUCT_INCLUDE,
         });
         if (!product) {
             reply.code(404).send({ error: "Product not found" });
@@ -52,15 +145,27 @@ async function productsRoutes(fastify, options) {
             security: [{ bearerAuth: [] }]
         }
     }, async (request, reply) => {
-        const data = { ...request.body };
-        delete data.attached_files; // attachments are now via File relation
-        delete data.File; // relation, not a create field
+        const body = { ...request.body };
+        const variationsInput = extractVariationsFromBody(body);
+        stripVariationFieldsFromProductData(body);
+
         // Convert sellersId 0 or falsy to null (optional relation)
-        if (!data.sellersId) {
-            data.sellersId = null;
+        if (!body.sellersId) {
+            body.sellersId = null;
         }
+
+        const variationCreates = Array.isArray(variationsInput)
+            ? variationsInput.map((v) => normalizeVariationInput(v)).filter(Boolean)
+            : [];
+
         const product = await prisma.product.create({
-            data,
+            data: {
+                ...body,
+                ProductVariation: variationCreates.length > 0
+                    ? { create: variationCreates }
+                    : undefined,
+            },
+            include: PRODUCT_INCLUDE,
         });
         reply.code(201).send(product);
     });
@@ -74,7 +179,9 @@ async function productsRoutes(fastify, options) {
         }
     }, async (request, reply) => {
         const { id } = request.params;
+        const productId = parseInt(id, 10);
         const body = request.body;
+        const variationsInput = extractVariationsFromBody(body);
 
         // Only pick valid Product fields from schema
         const allowedFields = [
@@ -103,10 +210,20 @@ async function productsRoutes(fastify, options) {
         }
         try {
             const product = await prisma.product.update({
-                where: { id: parseInt(id) },
+                where: { id: productId },
                 data,
             });
-            return product;
+
+            if (variationsInput !== null) {
+                await syncProductVariations(prisma, productId, variationsInput);
+            }
+
+            const productWithVariations = await prisma.product.findUnique({
+                where: { id: productId },
+                include: PRODUCT_INCLUDE,
+            });
+
+            return productWithVariations;
         } catch (error) {
             if (error.code === 'P2025') {
                 reply.code(404).send({ error: "Product not found" });
@@ -143,4 +260,3 @@ async function productsRoutes(fastify, options) {
 }
 
 export default productsRoutes;
-

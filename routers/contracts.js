@@ -27,7 +27,19 @@ async function contractsRoutes(fastify, options) {
         return [];
     }
 
-    // Map ContractProduct[] to products array format: [{ product_id, price, quantity, pack_id }]
+    function mapProductRow(p) {
+        return {
+            product_id: Number(p.product_id),
+            price: p.price != null ? Number(p.price) : null,
+            quantity: p.quantity != null ? Number(p.quantity) : null,
+            pack_id: p.pack_id != null ? Number(p.pack_id) : null,
+            product_variation_id: p.product_variation_id != null ? Number(p.product_variation_id) : null,
+            status: 'active',
+            deleted: false,
+        };
+    }
+
+    // Map ContractProduct[] to products array format
     function mapContractProductsToProducts(contractProducts) {
         if (!contractProducts || !Array.isArray(contractProducts)) return [];
         return contractProducts
@@ -37,6 +49,7 @@ async function contractsRoutes(fastify, options) {
                 price: cp.price,
                 quantity: cp.quantity,
                 pack_id: cp.pack_id,
+                product_variation_id: cp.product_variation_id,
             }));
     }
 
@@ -295,13 +308,8 @@ async function contractsRoutes(fastify, options) {
                 const c = await tx.contract.create({ data });
                 if (productsInput.length > 0) {
                     const rows = productsInput.map(p => ({
+                        ...mapProductRow(p),
                         contract_id: c.id,
-                        product_id: Number(p.product_id),
-                        price: p.price != null ? Number(p.price) : null,
-                        quantity: p.quantity != null ? Number(p.quantity) : null,
-                        pack_id: p.pack_id != null ? Number(p.pack_id) : null,
-                        status: 'active',
-                        deleted: false
                     }));
                     request.log.info({
                         location: 'contracts.post.createMany.rows',
@@ -427,13 +435,8 @@ async function contractsRoutes(fastify, options) {
                     await tx.contractProduct.deleteMany({ where: { contract_id: contractId } });
                     if (productsInput.length > 0) {
                         const rows = productsInput.map(p => ({
+                            ...mapProductRow(p),
                             contract_id: contractId,
-                            product_id: Number(p.product_id),
-                            price: p.price != null ? Number(p.price) : null,
-                            quantity: p.quantity != null ? Number(p.quantity) : null,
-                            pack_id: p.pack_id != null ? Number(p.pack_id) : null,
-                            status: 'active',
-                            deleted: false
                         }));
                         request.log.info({
                             location: 'contracts.put.createMany.rows',
@@ -544,13 +547,8 @@ async function contractsRoutes(fastify, options) {
                 await tx.contractProduct.deleteMany({ where: { contract_id: contractId } });
                 await tx.contractProduct.createMany({
                     data: products.map(p => ({
+                        ...mapProductRow(p),
                         contract_id: contractId,
-                        product_id: Number(p.product_id),
-                        price: p.price != null ? Number(p.price) : null,
-                        quantity: p.quantity != null ? Number(p.quantity) : null,
-                        pack_id: p.pack_id != null ? Number(p.pack_id) : null,
-                        status: 'active',
-                        deleted: false
                     }))
                 });
 

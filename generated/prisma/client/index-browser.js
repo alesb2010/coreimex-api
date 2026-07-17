@@ -286,6 +286,7 @@ exports.Prisma.ContractProductScalarFieldEnum = {
   id: 'id',
   contract_id: 'contract_id',
   product_id: 'product_id',
+  product_variation_id: 'product_variation_id',
   pack_id: 'pack_id',
   price: 'price',
   quantity: 'quantity',
@@ -373,6 +374,21 @@ exports.Prisma.ProductScalarFieldEnum = {
   status: 'status',
   currency: 'currency',
   sellersId: 'sellersId',
+  deleted: 'deleted'
+};
+
+exports.Prisma.ProductVariationScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  name: 'name',
+  type: 'type',
+  lot: 'lot',
+  details: 'details',
+  notes: 'notes',
+  regulatory: 'regulatory',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
   deleted: 'deleted'
 };
 
@@ -473,6 +489,7 @@ exports.Prisma.ModelName = {
   Customer: 'Customer',
   File: 'File',
   Product: 'Product',
+  ProductVariation: 'ProductVariation',
   Seller: 'Seller',
   SpecialCondition: 'SpecialCondition',
   Role: 'Role',

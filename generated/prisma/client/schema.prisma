@@ -199,22 +199,25 @@ model ContractActivityLog {
 }
 
 model ContractProduct {
-  id          Int      @id @default(autoincrement())
-  contract_id Int
-  product_id  Int
-  pack_id     Int? // optional reference to Pack used for this product in this contract
-  price       Float? // price for this product in this contract
-  quantity    Float? // quantity of this product in this contract
-  createdAt   DateTime @default(now())
-  active      Boolean  @default(true)
-  status      String
-  deleted     Boolean  @default(false)
-  Contract    Contract @relation(fields: [contract_id], references: [id])
-  Product     Product  @relation(fields: [product_id], references: [id])
-  Pack        Pack?    @relation(fields: [pack_id], references: [id])
+  id                   Int               @id @default(autoincrement())
+  contract_id          Int
+  product_id           Int
+  product_variation_id Int?
+  pack_id              Int? // optional reference to Pack used for this product in this contract
+  price                Float? // price for this product in this contract
+  quantity             Float? // quantity of this product in this contract
+  createdAt            DateTime          @default(now())
+  active               Boolean           @default(true)
+  status               String
+  deleted              Boolean           @default(false)
+  Contract             Contract          @relation(fields: [contract_id], references: [id])
+  Product              Product           @relation(fields: [product_id], references: [id])
+  ProductVariation     ProductVariation? @relation(fields: [product_variation_id], references: [id])
+  Pack                 Pack?             @relation(fields: [pack_id], references: [id])
 
   @@index([contract_id])
   @@index([product_id])
+  @@index([product_variation_id])
 }
 
 model Pack {
@@ -274,7 +277,7 @@ model File {
 }
 
 model Product {
-  id                     Int               @id @default(autoincrement())
+  id                     Int                @id @default(autoincrement())
   sku                    String
   name                   String
   comercial_name         String
@@ -297,16 +300,36 @@ model Product {
   documents_required     String[]
   record_owner           String
   observation            String
-  createdAt              DateTime          @default(now())
-  active                 Boolean           @default(true)
+  createdAt              DateTime           @default(now())
+  active                 Boolean            @default(true)
   status                 String
   currency               String
   sellersId              Int?
-  deleted                Boolean           @default(false)
+  deleted                Boolean            @default(false)
   ContractProduct        ContractProduct[]
-  Seller                 Seller?           @relation(fields: [sellersId], references: [id])
-  Contract               Contract[]        @relation("ContractProduct")
+  Seller                 Seller?            @relation(fields: [sellersId], references: [id])
+  Contract               Contract[]         @relation("ContractProduct")
   File                   File[]
+  ProductVariation       ProductVariation[]
+}
+
+model ProductVariation {
+  id               Int               @id @default(autoincrement())
+  product_id       Int
+  name             String
+  type             String            @default("")
+  lot              String            @default("")
+  details          String            @default("")
+  notes            String            @default("")
+  regulatory       String            @default("")
+  createdAt        DateTime          @default(now())
+  active           Boolean           @default(true)
+  status           String            @default("active")
+  deleted          Boolean           @default(false)
+  Product          Product           @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  ContractProducts ContractProduct[]
+
+  @@index([product_id])
 }
 
 model Seller {
