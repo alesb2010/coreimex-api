@@ -53,6 +53,76 @@ async function contractsRoutes(fastify, options) {
             }));
     }
 
+    function sumContractProductLineTotal(products) {
+        if (!Array.isArray(products)) return 0;
+        return products.reduce(
+            (sum, p) => sum + (Number(p.price) || 0) * (Number(p.quantity) || 0),
+            0
+        );
+    }
+
+    /** Strip IEEE-754 noise (e.g. 52.800000000000004 → 52.8). */
+    function roundMtQuantity(value) {
+        const n = Number(value);
+        if (!Number.isFinite(n)) return 0;
+        return Math.round(n * 1e6) / 1e6;
+    }
+
+    function sumContractProductQuantity(products) {
+        if (!Array.isArray(products)) return 0;
+        return roundMtQuantity(
+            products.reduce((sum, p) => sum + (Number(p.quantity) || 0), 0)
+        );
+    }
+
+    /**
+     * Derive mt_value / payment_amount / comission_total from product lines.
+     * mt_value = sum(quantity); total = sum(price × quantity); no extra scale factor.
+     */
+    function applyProductLineTotalsToData(data, productsInput, commissionSource = data) {
+        if (!Array.isArray(productsInput) || productsInput.length === 0) return;
+        const mtValue = sumContractProductQuantity(productsInput);
+        const lineTotal = sumContractProductLineTotal(productsInput);
+        data.mt_value = mtValue;
+        if (lineTotal <= 0) return;
+        const commissionPct =
+            (Number(commissionSource.commission_party_a) || 0) +
+            (Number(commissionSource.commission_party_b) || 0);
+        data.payment_amount = lineTotal;
+        data.comission_total = lineTotal * (commissionPct / 100);
+    }
+
+    /** Contract total = sum of (price × quantity) for all product lines. */
+    function mapContractWithLineTotals(contract) {
+        const { ContractProduct, ...rest } = contract;
+        const products = mapContractProductsToProducts(ContractProduct);
+        const lineTotal = sumContractProductLineTotal(products);
+        const mtFromProducts = sumContractProductQuantity(products);
+        const commissionPct =
+            (Number(rest.commission_party_a) || 0) + (Number(rest.commission_party_b) || 0);
+
+        const total_contract_value = lineTotal > 0 ? lineTotal : (Number(rest.payment_amount) || 0);
+        const comission_total =
+            lineTotal > 0
+                ? lineTotal * (commissionPct / 100)
+                : (Number(rest.comission_total) || 0);
+        const mt_value =
+            products.length > 0 ? mtFromProducts : (Number(rest.mt_value) || 0);
+
+        return {
+            ...rest,
+            products,
+            mt_value,
+            total_contract_value,
+            payment_amount: total_contract_value,
+            comission_total,
+        };
+    }
+
+    const contractProductsInclude = {
+        ContractProduct: { where: { deleted: false } },
+    };
+
     const CONTRACT_LIST_SORT_FIELDS = new Set(['id', 'name', 'date_creation', 'status']);
 
     function parseOptionalPositiveInt(value) {
@@ -135,7 +205,7 @@ async function contractsRoutes(fastify, options) {
                     date_creation_from: { type: 'string' },
                     date_creation_to: { type: 'string' },
                     page: { type: 'integer', minimum: 1, default: 1 },
-                    pageSize: { type: 'integer', minimum: 1, maximum: 100, default: 20 },
+                    pageSize: { type: 'integer', minimum: 1, maximum: 500, default: 20 },
                     sortBy: { type: 'string' },
                     sortOrder: { type: 'string', enum: ['asc', 'desc'] }
                 }
@@ -145,7 +215,7 @@ async function contractsRoutes(fastify, options) {
         const q = request.query || {};
 
         const page = Math.max(1, parseInt(q.page, 10) || 1);
-        const pageSize = Math.min(100, Math.max(1, parseInt(q.pageSize, 10) || 20));
+        const pageSize = Math.min(500, Math.max(1, parseInt(q.pageSize, 10) || 20));
         const skip = (page - 1) * pageSize;
 
         let sortBy = typeof q.sortBy === 'string' ? q.sortBy.trim() : '';
@@ -199,7 +269,7 @@ async function contractsRoutes(fastify, options) {
         const where = and.length > 0 ? { AND: and } : {};
 
         const listInclude = {
-            ContractProduct: true,
+            ...contractProductsInclude,
             PartyA: { select: { id: true, name: true, full_name: true } },
             PartyB: { select: { id: true, name: true, full_name: true } }
         };
@@ -215,10 +285,7 @@ async function contractsRoutes(fastify, options) {
             })
         ]);
 
-        const items = contracts.map(c => {
-            const { ContractProduct, ...rest } = c;
-            return { ...rest, products: mapContractProductsToProducts(ContractProduct) };
-        });
+        const items = contracts.map(mapContractWithLineTotals);
 
         const totalPages = pageSize > 0 ? Math.ceil(total / pageSize) : 0;
 
@@ -242,14 +309,13 @@ async function contractsRoutes(fastify, options) {
         const { id } = request.params;
         const contract = await prisma.contract.findUnique({
             where: { id: parseInt(id) },
-            include: { ContractProduct: true }
+            include: contractProductsInclude
         });
         if (!contract) {
             reply.code(404).send({ error: "Contract not found" });
             return;
         }
-        const { ContractProduct, ...rest } = contract;
-        return { ...rest, products: mapContractProductsToProducts(ContractProduct) };
+        return mapContractWithLineTotals(contract);
     });
 
     // POST create contract
@@ -303,6 +369,9 @@ async function contractsRoutes(fastify, options) {
             }
         }
 
+        // Always derive totals from product lines when present (ignore client scale mistakes)
+        applyProductLineTotalsToData(data, productsInput, body);
+
         try {
             const contract = await prisma.$transaction(async (tx) => {
                 const c = await tx.contract.create({ data });
@@ -339,10 +408,9 @@ async function contractsRoutes(fastify, options) {
             });
             const created = await prisma.contract.findUnique({
                 where: { id: contract.id },
-                include: { ContractProduct: true }
+                include: contractProductsInclude
             });
-            const { ContractProduct, ...rest } = created;
-            reply.code(201).send({ ...rest, products: mapContractProductsToProducts(ContractProduct) });
+            reply.code(201).send(mapContractWithLineTotals(created));
         } catch (error) {
             request.log.error(error);
             if (error.code === 'P2002') {
@@ -417,6 +485,34 @@ async function contractsRoutes(fastify, options) {
                 }
             }
         }
+
+        // When products are sent, recompute totals from lines (price × quantity)
+        if (productsInput !== null) {
+            const commissionSource = {
+                commission_party_a:
+                    data.commission_party_a ?? body.commission_party_a,
+                commission_party_b:
+                    data.commission_party_b ?? body.commission_party_b,
+            };
+            // Fall back to existing DB commission % if not in this request
+            if (
+                commissionSource.commission_party_a == null ||
+                commissionSource.commission_party_b == null
+            ) {
+                const existing = await prisma.contract.findUnique({
+                    where: { id: contractId },
+                    select: { commission_party_a: true, commission_party_b: true },
+                });
+                if (commissionSource.commission_party_a == null) {
+                    commissionSource.commission_party_a = existing?.commission_party_a;
+                }
+                if (commissionSource.commission_party_b == null) {
+                    commissionSource.commission_party_b = existing?.commission_party_b;
+                }
+            }
+            applyProductLineTotalsToData(data, productsInput, commissionSource);
+        }
+
         const updatedFieldNames = Object.keys(data);
 
         if (Object.keys(data).length === 0 && productsInput === null) {
@@ -488,10 +584,9 @@ async function contractsRoutes(fastify, options) {
             });
             const contract = await prisma.contract.findUnique({
                 where: { id: contractId },
-                include: { ContractProduct: true }
+                include: contractProductsInclude
             });
-            const { ContractProduct, ...rest } = contract;
-            return { ...rest, products: mapContractProductsToProducts(ContractProduct) };
+            return mapContractWithLineTotals(contract);
         } catch (error) {
             request.log.error({
                 error: error,
@@ -552,22 +647,30 @@ async function contractsRoutes(fastify, options) {
                     }))
                 });
 
+                const totals = {};
+                applyProductLineTotalsToData(totals, products, exists);
+                if (Object.keys(totals).length > 0) {
+                    await tx.contract.update({
+                        where: { id: contractId },
+                        data: totals,
+                    });
+                }
+
                 await createContractActivityLog(tx, {
                     contractId,
                     request,
                     action: 'CONTRACT_PRODUCTS_UPDATE',
                     details: `Replaced ${products.length} contract product line(s)`,
                     reference: String(contractId),
-                    payload: { products }
+                    payload: { products, ...totals }
                 });
             });
 
             const contract = await prisma.contract.findUnique({
                 where: { id: contractId },
-                include: { ContractProduct: true }
+                include: contractProductsInclude
             });
-            const { ContractProduct, ...rest } = contract;
-            return { ...rest, products: mapContractProductsToProducts(ContractProduct) };
+            return mapContractWithLineTotals(contract);
         } catch (error) {
             request.log.error(error);
             if (error.code === 'P2003') {
