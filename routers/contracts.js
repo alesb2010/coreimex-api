@@ -207,7 +207,8 @@ async function contractsRoutes(fastify, options) {
                     page: { type: 'integer', minimum: 1, default: 1 },
                     pageSize: { type: 'integer', minimum: 1, maximum: 500, default: 20 },
                     sortBy: { type: 'string' },
-                    sortOrder: { type: 'string', enum: ['asc', 'desc'] }
+                    sortOrder: { type: 'string', enum: ['asc', 'desc'] },
+                    lite: { type: 'string' }
                 }
             }
         }
@@ -274,15 +275,71 @@ async function contractsRoutes(fastify, options) {
             PartyB: { select: { id: true, name: true, full_name: true } }
         };
 
+        const liteRaw = q.lite;
+        const lite =
+            liteRaw === true ||
+            liteRaw === 1 ||
+            (typeof liteRaw === 'string' &&
+                ['true', '1', 'yes'].includes(liteRaw.trim().toLowerCase()));
+
+        const dashboardListSelect = {
+            id: true,
+            name: true,
+            status: true,
+            deleted: true,
+            active: true,
+            date_creation: true,
+            createdAt: true,
+            date_expiration: true,
+            payment_amount: true,
+            payment_status: true,
+            payment_date: true,
+            payment_currency: true,
+            mt_value: true,
+            comission_total: true,
+            commission_party_a: true,
+            commission_party_b: true,
+            customer_party_a_id: true,
+            customer_party_b_id: true,
+            destination_country: true,
+            origin_country: true,
+            shipment_date: true,
+            bording_date: true,
+            si_sent: true,
+            ContractProduct: {
+                where: { deleted: false },
+                select: {
+                    product_id: true,
+                    price: true,
+                    quantity: true,
+                    pack_id: true,
+                    product_variation_id: true,
+                    deleted: true,
+                },
+            },
+            PartyA: { select: { id: true, name: true, full_name: true } },
+            PartyB: { select: { id: true, name: true, full_name: true } },
+        };
+
         const [total, contracts] = await Promise.all([
             prisma.contract.count({ where }),
-            prisma.contract.findMany({
-                where,
-                skip,
-                take: pageSize,
-                orderBy,
-                include: listInclude
-            })
+            prisma.contract.findMany(
+                lite
+                    ? {
+                          where,
+                          skip,
+                          take: pageSize,
+                          orderBy,
+                          select: dashboardListSelect,
+                      }
+                    : {
+                          where,
+                          skip,
+                          take: pageSize,
+                          orderBy,
+                          include: listInclude,
+                      }
+            )
         ]);
 
         const items = contracts.map(mapContractWithLineTotals);
@@ -718,6 +775,99 @@ async function contractsRoutes(fastify, options) {
                 request.log.error(error);
                 reply.code(400).send({ error: error.message || "Failed to delete contract" });
             }
+        }
+    });
+
+    // PUT contract product quantities only (preserves payment_amount / price)
+    fastify.put("/contracts/:id/quantities", {
+        preHandler: [fastify.authenticate],
+        schema: {
+            tags: ['Contracts'],
+            security: [{ bearerAuth: [] }]
+        }
+    }, async (request, reply) => {
+        const contractId = parseInt(request.params.id);
+        if (isNaN(contractId)) {
+            return reply.code(400).send({ error: "Invalid contract ID" });
+        }
+
+        const body = getBody(request);
+        const lines = parseProductsInput(body.products);
+        if (lines.length === 0) {
+            return reply.code(400).send({ error: "products array is required with quantity values" });
+        }
+
+        const contract = await prisma.contract.findUnique({
+            where: { id: contractId },
+            include: { ContractProduct: { where: { deleted: false } } }
+        });
+        if (!contract) {
+            return reply.code(404).send({ error: "Contract not found" });
+        }
+
+        try {
+            await prisma.$transaction(async (tx) => {
+                for (const line of lines) {
+                    const quantity = line.quantity != null ? Number(line.quantity) : null;
+                    if (quantity == null || !Number.isFinite(quantity)) continue;
+
+                    const cpId = line.id != null ? Number(line.id) : null;
+                    if (cpId) {
+                        await tx.contractProduct.update({
+                            where: { id: cpId },
+                            data: { quantity }
+                        });
+                        continue;
+                    }
+
+                    if (line.product_id == null) continue;
+
+                    const where = {
+                        contract_id: contractId,
+                        product_id: Number(line.product_id),
+                        deleted: false,
+                    };
+                    if (line.product_variation_id != null) {
+                        where.product_variation_id = Number(line.product_variation_id);
+                    }
+
+                    await tx.contractProduct.updateMany({
+                        where,
+                        data: { quantity }
+                    });
+                }
+
+                const products = await tx.contractProduct.findMany({
+                    where: { contract_id: contractId, deleted: false }
+                });
+                const mtValue = sumContractProductQuantity(products);
+
+                await tx.contract.update({
+                    where: { id: contractId },
+                    data: { mt_value: mtValue }
+                });
+
+                await createContractActivityLog(tx, {
+                    contractId,
+                    request,
+                    action: 'CONTRACT_QUANTITIES_UPDATE',
+                    details: `Updated contract quantities (mt_value=${mtValue})`,
+                    reference: String(contractId),
+                    payload: { lines, mt_value: mtValue }
+                });
+            });
+
+            const updated = await prisma.contract.findUnique({
+                where: { id: contractId },
+                include: contractProductsInclude
+            });
+            return mapContractWithLineTotals(updated);
+        } catch (error) {
+            request.log.error(error);
+            if (error.code === 'P2025') {
+                return reply.code(404).send({ error: "Contract product not found" });
+            }
+            return reply.code(400).send({ error: error.message || "Failed to update quantities" });
         }
     });
 
