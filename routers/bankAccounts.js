@@ -1,5 +1,3 @@
-const MAX_BANK_ACCOUNTS = 3;
-
 async function bankAccountsRoutes(fastify, options) {
   const { prisma } = options;
 
@@ -36,7 +34,7 @@ async function bankAccountsRoutes(fastify, options) {
     return account;
   });
 
-  // POST create bank account (max 3)
+  // POST create bank account
   fastify.post("/bank-accounts", {
     preHandler: [fastify.authenticate],
     schema: {
@@ -44,12 +42,6 @@ async function bankAccountsRoutes(fastify, options) {
       security: [{ bearerAuth: [] }]
     }
   }, async (request, reply) => {
-    const count = await prisma.bankAccount.count({ where: { deleted: false } });
-    if (count >= MAX_BANK_ACCOUNTS) {
-      reply.code(422).send({ error: `Maximum of ${MAX_BANK_ACCOUNTS} bank accounts allowed` });
-      return;
-    }
-
     const body = request.body || {};
     const {
       bank_name,
@@ -80,7 +72,7 @@ async function bankAccountsRoutes(fastify, options) {
         account_holder: String(account_holder).trim(),
         account_number: account_number ? String(account_number).trim() : null,
         agency: agency ? String(agency).trim() : null,
-        account_type: account_type ? String(account_type) : 'checking',
+        account_type: account_type ? String(account_type) : 'business',
         swift_bic: swift_bic ? String(swift_bic).trim() : null,
         iban: iban ? String(iban).trim() : null,
         pix_key: pix_key ? String(pix_key).trim() : null,

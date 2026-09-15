@@ -1,5 +1,6 @@
 import EmailPassword from "supertokens-node/recipe/emailpassword";
 import Session from "supertokens-node/recipe/session";
+import { ROLES, formatAuthUser } from "../lib/roles.js";
 
 async function authRoutes(fastify, options) {
     const { prisma } = options;
@@ -35,12 +36,7 @@ async function authRoutes(fastify, options) {
 
                 return reply.send({
                     status: "OK",
-                    user: user ? {
-                        id: user.id,
-                        email: user.email,
-                        name: user.name,
-                        role: user.role
-                    } : null
+                    user: await formatAuthUser(prisma, user)
                 });
             } else if (signInResponse.status === "WRONG_CREDENTIALS_ERROR") {
                 return reply.code(401).send({
@@ -88,6 +84,7 @@ async function authRoutes(fastify, options) {
         }
     }, async (request, reply) => {
         const { email, password, name, role } = request.body;
+        const assignedRole = role || ROLES.NORMAL_USER;
 
         try {
             // Correct SuperTokens signUp usage - pass tenantId, email, password
@@ -106,18 +103,13 @@ async function authRoutes(fastify, options) {
                             superTokensUserId: signUpResponse.user.id,
                             email: email,
                             name: name,
-                            role: role
+                            role: assignedRole
                         }
                     });
 
                     return reply.send({
                         status: "OK",
-                        user: {
-                            id: user.id,
-                            email: user.email,
-                            name: user.name,
-                            role: user.role
-                        }
+                        user: await formatAuthUser(prisma, user)
                     });
                 } catch (dbError) {
                     const existingUser = await prisma.user.findUnique({
@@ -127,12 +119,7 @@ async function authRoutes(fastify, options) {
                     if (existingUser) {
                         return reply.send({
                             status: "OK",
-                            user: {
-                                id: existingUser.id,
-                                email: existingUser.email,
-                                name: existingUser.name,
-                                role: existingUser.role
-                            }
+                            user: await formatAuthUser(prisma, existingUser)
                         });
                     }
 
@@ -230,7 +217,7 @@ async function authRoutes(fastify, options) {
                 return reply.code(404).send({ error: 'User not found' });
             }
 
-            return reply.send(user);
+            return reply.send(await formatAuthUser(prisma, user));
         } catch (error) {
             if (reply.sent) {
                 return;

@@ -384,7 +384,7 @@ model User {
   id                Int      @id @default(autoincrement())
   email             String   @unique
   name              String?
-  role              String   @default("user")
+  role              String   @default("normal_user")
   active            Boolean  @default(true)
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt

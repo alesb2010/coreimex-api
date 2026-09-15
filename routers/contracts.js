@@ -84,12 +84,12 @@ async function contractsRoutes(fastify, options) {
         const mtValue = sumContractProductQuantity(productsInput);
         const lineTotal = sumContractProductLineTotal(productsInput);
         data.mt_value = mtValue;
-        if (lineTotal <= 0) return;
         const commissionPct =
             (Number(commissionSource.commission_party_a) || 0) +
             (Number(commissionSource.commission_party_b) || 0);
-        data.payment_amount = lineTotal;
         data.comission_total = lineTotal * (commissionPct / 100);
+        if (lineTotal <= 0) return;
+        data.payment_amount = lineTotal;
     }
 
     /** Contract total = sum of (price × quantity) for all product lines. */

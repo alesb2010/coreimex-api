@@ -53,6 +53,37 @@ function lineComissionUsd(l) {
   return Number.isFinite(n) ? n : 0;
 }
 
+function linePtax(l) {
+  const n = Number(l.ptax);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function lineComissionBrl(l, usd, ptax) {
+  if (l.comission_total_brl != null && l.comission_total_brl !== '') {
+    const n = Number(l.comission_total_brl);
+    if (Number.isFinite(n)) return n;
+  }
+  return ptax ? usd * ptax : 0;
+}
+
+/** Scalar fields persisted on BrokerageInvoiceLine create/update */
+function lineWriteData(l) {
+  const comissionUsd = lineComissionUsd(l);
+  const ptax = linePtax(l);
+  return {
+    bl_date: l.bl_date ?? new Date(),
+    bl_number: String(l.bl_number ?? ''),
+    bl_attachments: Array.isArray(l.bl_attachments) ? l.bl_attachments : [],
+    comission_total_usd: comissionUsd,
+    ptax,
+    comission_total_brl: lineComissionBrl(l, comissionUsd, ptax),
+    description: l.description ?? '',
+    notes: l.notes ?? '',
+    attachments: Array.isArray(l.attachments) ? l.attachments : [],
+    status: l.status ?? 'active',
+  };
+}
+
 async function brokerageInvoicesRoutes(fastify, options) {
   const { prisma } = options;
 
@@ -140,15 +171,17 @@ async function brokerageInvoicesRoutes(fastify, options) {
           ? {
             Lines: {
               create: lines.map((line) => {
-                const l = normalizeLineInput(line);
+                const l = normalizeLineInput({
+                  ...line,
+                  bl_date: line.bl_date ?? body.bl_date,
+                  bl_number: line.bl_number ?? body.bl_number,
+                  ptax: line.ptax ?? body.ptax,
+                  comission_total_brl: line.comission_total_brl ?? body.comission_total_brl,
+                  bl_attachments: line.bl_attachments ?? body.bl_attachments,
+                });
                 return {
                   contract_id: parseInt(l.contract_id, 10),
-                  bl_date: l.bl_date,
-                  bl_number: String(l.bl_number ?? ''),
-                  bl_attachments: Array.isArray(l.bl_attachments) ? l.bl_attachments : [],
-                  comission_total_usd: Number(l.comission_total_usd ?? l.commission_total_usd ?? 0) || 0,
-                  attachments: Array.isArray(l.attachments) ? l.attachments : [],
-                  status: l.status ?? 'active',
+                  ...lineWriteData(l),
                 };
               }),
             },
@@ -209,16 +242,7 @@ async function brokerageInvoicesRoutes(fastify, options) {
         const invoiceId = parseInt(id, 10);
         const requestedContractIds = new Set(lines.map((line) => parseInt(line.contract_id, 10)));
         const lineData = (l) => ({
-          bl_date: l.bl_date,
-          bl_number: String(l.bl_number ?? ''),
-          bl_attachments: Array.isArray(l.bl_attachments) ? l.bl_attachments : [],
-          comission_total_usd: lineComissionUsd(l),
-          ptax: l.ptax ?? 0,
-          comission_total_brl: l.comission_total_brl ?? 0,
-          description: l.description ?? '',
-          notes: l.notes ?? '',
-          attachments: Array.isArray(l.attachments) ? l.attachments : [],
-          status: l.status ?? 'active',
+          ...lineWriteData(l),
           deleted: false,
         });
         for (const line of lines) {
@@ -328,12 +352,7 @@ async function brokerageInvoicesRoutes(fastify, options) {
       data: {
         brokerage_invoice_id: invoiceId,
         contract_id: parseInt(l.contract_id, 10),
-        bl_date: l.bl_date,
-        bl_number: String(l.bl_number ?? ''),
-        bl_attachments: Array.isArray(l.bl_attachments) ? l.bl_attachments : [],
-        comission_total_usd: lineComissionUsd(l),
-        attachments: Array.isArray(l.attachments) ? l.attachments : [],
-        status: l.status ?? 'active',
+        ...lineWriteData(l),
       },
       include: { Contract: true },
     });
@@ -364,9 +383,17 @@ async function brokerageInvoicesRoutes(fastify, options) {
     if (l.bl_date != null) data.bl_date = l.bl_date;
     if (l.bl_number != null) data.bl_number = l.bl_number;
     if (l.bl_attachments != null) data.bl_attachments = l.bl_attachments;
-    if (l.comission_total_usd != null) data.comission_total_usd = l.comission_total_usd;
+    if (l.comission_total_usd != null) data.comission_total_usd = lineComissionUsd(l);
+    if (l.ptax != null) data.ptax = linePtax(l);
+    if (l.comission_total_brl != null) data.comission_total_brl = Number(l.comission_total_brl) || 0;
+    if (l.description != null) data.description = l.description;
+    if (l.notes != null) data.notes = l.notes;
     if (l.attachments != null) data.attachments = l.attachments;
     if (l.status != null) data.status = l.status;
+    if (data.ptax != null && data.comission_total_brl == null) {
+      const usd = data.comission_total_usd != null ? data.comission_total_usd : line.comission_total_usd;
+      data.comission_total_brl = lineComissionBrl(l, usd, data.ptax);
+    }
     const updated = await prisma.brokerageInvoiceLine.update({
       where: { id: lineIdNum },
       data,

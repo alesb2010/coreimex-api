@@ -201,7 +201,7 @@ async function supertokensPlugin(fastify, options) {
                                     superTokensUserId: stUser.id,
                                     email,
                                     name: null,
-                                    role: 'user',
+                                    role: 'normal_user',
                                     active: true,
                                     updatedAt: now
                                 }

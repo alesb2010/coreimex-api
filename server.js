@@ -52,6 +52,7 @@ fastify.setErrorHandler(async (error, request, reply) => {
 await fastify.register(cors, {
   origin: process.env.FRONTEND_URL || "http://localhost:3000",
   credentials: true, // Required for SuperTokens cookies
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
   allowedHeaders: [
     "Content-Type",
     "anti-csrf",
