@@ -153,6 +153,20 @@ exports.Prisma.ArbitrationRuleScalarFieldEnum = {
   deleted: 'deleted'
 };
 
+exports.Prisma.PaymentTermScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  order: 'order',
+  type: 'type',
+  note: 'note',
+  attachments: 'attachments',
+  createdAt: 'createdAt',
+  active: 'active',
+  status: 'status',
+  deleted: 'deleted'
+};
+
 exports.Prisma.BrokerageInvoiceScalarFieldEnum = {
   id: 'id',
   number: 'number',
@@ -479,6 +493,7 @@ exports.Prisma.JsonNullValueFilter = {
 exports.Prisma.ModelName = {
   BankAccount: 'BankAccount',
   ArbitrationRule: 'ArbitrationRule',
+  PaymentTerm: 'PaymentTerm',
   BrokerageInvoice: 'BrokerageInvoice',
   BrokerageInvoiceLine: 'BrokerageInvoiceLine',
   Contact: 'Contact',

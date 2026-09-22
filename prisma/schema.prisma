@@ -43,6 +43,21 @@ model ArbitrationRule {
   Contract    Contract[]
 }
 
+model PaymentTerm {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  order       Int
+  type        String
+  note        String
+  attachments String[]
+  createdAt   DateTime   @default(now())
+  active      Boolean    @default(true)
+  status      String
+  deleted     Boolean    @default(false)
+  Contract    Contract[]
+}
+
 model BrokerageInvoice {
   id                    Int                    @id @default(autoincrement())
   number                String?
@@ -170,6 +185,7 @@ model Contract {
   PartyB                              Customer               @relation("ContractPartyB", fields: [customer_party_b_id], references: [id])
   ContractProduct                     ContractProduct[]
   ArbitrationRule                     ArbitrationRule[]
+  PaymentTerm                         PaymentTerm[]
   Product                             Product[]              @relation("ContractProduct")
   SpecialCondition                    SpecialCondition[]
   ActivityLogs                        ContractActivityLog[]

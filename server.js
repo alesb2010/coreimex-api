@@ -198,6 +198,7 @@ await fastify.register(import('./routers/contracts.js'), { prefix: '/api/v1/', p
 await fastify.register(import('./routers/packs.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/brokerageInvoices.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/arbitrationRules.js'), { prefix: '/api/v1/', prisma });
+await fastify.register(import('./routers/paymentTerms.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/specialConditions.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/bankAccounts.js'), { prefix: '/api/v1/', prisma });
 await fastify.register(import('./routers/files.js'), { prefix: '/api/v1/', prisma });

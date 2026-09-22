@@ -24,6 +24,11 @@ export type BankAccount = $Result.DefaultSelection<Prisma.$BankAccountPayload>
  */
 export type ArbitrationRule = $Result.DefaultSelection<Prisma.$ArbitrationRulePayload>
 /**
+ * Model PaymentTerm
+ * 
+ */
+export type PaymentTerm = $Result.DefaultSelection<Prisma.$PaymentTermPayload>
+/**
  * Model BrokerageInvoice
  * 
  */
@@ -236,6 +241,16 @@ export class PrismaClient<
     * ```
     */
   get arbitrationRule(): Prisma.ArbitrationRuleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.paymentTerm`: Exposes CRUD operations for the **PaymentTerm** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PaymentTerms
+    * const paymentTerms = await prisma.paymentTerm.findMany()
+    * ```
+    */
+  get paymentTerm(): Prisma.PaymentTermDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.brokerageInvoice`: Exposes CRUD operations for the **BrokerageInvoice** model.
@@ -829,6 +844,7 @@ export namespace Prisma {
   export const ModelName: {
     BankAccount: 'BankAccount',
     ArbitrationRule: 'ArbitrationRule',
+    PaymentTerm: 'PaymentTerm',
     BrokerageInvoice: 'BrokerageInvoice',
     BrokerageInvoiceLine: 'BrokerageInvoiceLine',
     Contact: 'Contact',
@@ -862,7 +878,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "bankAccount" | "arbitrationRule" | "brokerageInvoice" | "brokerageInvoiceLine" | "contact" | "contract" | "contractActivityLog" | "contractProduct" | "pack" | "customer" | "file" | "product" | "productVariation" | "seller" | "specialCondition" | "role" | "user"
+      modelProps: "bankAccount" | "arbitrationRule" | "paymentTerm" | "brokerageInvoice" | "brokerageInvoiceLine" | "contact" | "contract" | "contractActivityLog" | "contractProduct" | "pack" | "customer" | "file" | "product" | "productVariation" | "seller" | "specialCondition" | "role" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1011,6 +1027,80 @@ export namespace Prisma {
           count: {
             args: Prisma.ArbitrationRuleCountArgs<ExtArgs>
             result: $Utils.Optional<ArbitrationRuleCountAggregateOutputType> | number
+          }
+        }
+      }
+      PaymentTerm: {
+        payload: Prisma.$PaymentTermPayload<ExtArgs>
+        fields: Prisma.PaymentTermFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PaymentTermFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PaymentTermFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload>
+          }
+          findFirst: {
+            args: Prisma.PaymentTermFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PaymentTermFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload>
+          }
+          findMany: {
+            args: Prisma.PaymentTermFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload>[]
+          }
+          create: {
+            args: Prisma.PaymentTermCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload>
+          }
+          createMany: {
+            args: Prisma.PaymentTermCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PaymentTermCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload>[]
+          }
+          delete: {
+            args: Prisma.PaymentTermDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload>
+          }
+          update: {
+            args: Prisma.PaymentTermUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload>
+          }
+          deleteMany: {
+            args: Prisma.PaymentTermDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PaymentTermUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PaymentTermUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload>[]
+          }
+          upsert: {
+            args: Prisma.PaymentTermUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentTermPayload>
+          }
+          aggregate: {
+            args: Prisma.PaymentTermAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePaymentTerm>
+          }
+          groupBy: {
+            args: Prisma.PaymentTermGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PaymentTermGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PaymentTermCountArgs<ExtArgs>
+            result: $Utils.Optional<PaymentTermCountAggregateOutputType> | number
           }
         }
       }
@@ -2222,6 +2312,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     bankAccount?: BankAccountOmit
     arbitrationRule?: ArbitrationRuleOmit
+    paymentTerm?: PaymentTermOmit
     brokerageInvoice?: BrokerageInvoiceOmit
     brokerageInvoiceLine?: BrokerageInvoiceLineOmit
     contact?: ContactOmit
@@ -2375,6 +2466,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type PaymentTermCountOutputType
+   */
+
+  export type PaymentTermCountOutputType = {
+    Contract: number
+  }
+
+  export type PaymentTermCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Contract?: boolean | PaymentTermCountOutputTypeCountContractArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PaymentTermCountOutputType without action
+   */
+  export type PaymentTermCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTermCountOutputType
+     */
+    select?: PaymentTermCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PaymentTermCountOutputType without action
+   */
+  export type PaymentTermCountOutputTypeCountContractArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContractWhereInput
+  }
+
+
+  /**
    * Count Type BrokerageInvoiceCountOutputType
    */
 
@@ -2413,6 +2535,7 @@ export namespace Prisma {
     BrokerageInvoiceLines: number
     ContractProduct: number
     ArbitrationRule: number
+    PaymentTerm: number
     Product: number
     SpecialCondition: number
     ActivityLogs: number
@@ -2422,6 +2545,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: boolean | ContractCountOutputTypeCountBrokerageInvoiceLinesArgs
     ContractProduct?: boolean | ContractCountOutputTypeCountContractProductArgs
     ArbitrationRule?: boolean | ContractCountOutputTypeCountArbitrationRuleArgs
+    PaymentTerm?: boolean | ContractCountOutputTypeCountPaymentTermArgs
     Product?: boolean | ContractCountOutputTypeCountProductArgs
     SpecialCondition?: boolean | ContractCountOutputTypeCountSpecialConditionArgs
     ActivityLogs?: boolean | ContractCountOutputTypeCountActivityLogsArgs
@@ -2457,6 +2581,13 @@ export namespace Prisma {
    */
   export type ContractCountOutputTypeCountArbitrationRuleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ArbitrationRuleWhereInput
+  }
+
+  /**
+   * ContractCountOutputType without action
+   */
+  export type ContractCountOutputTypeCountPaymentTermArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaymentTermWhereInput
   }
 
   /**
@@ -5138,6 +5269,1188 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ArbitrationRuleInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PaymentTerm
+   */
+
+  export type AggregatePaymentTerm = {
+    _count: PaymentTermCountAggregateOutputType | null
+    _avg: PaymentTermAvgAggregateOutputType | null
+    _sum: PaymentTermSumAggregateOutputType | null
+    _min: PaymentTermMinAggregateOutputType | null
+    _max: PaymentTermMaxAggregateOutputType | null
+  }
+
+  export type PaymentTermAvgAggregateOutputType = {
+    id: number | null
+    order: number | null
+  }
+
+  export type PaymentTermSumAggregateOutputType = {
+    id: number | null
+    order: number | null
+  }
+
+  export type PaymentTermMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    order: number | null
+    type: string | null
+    note: string | null
+    createdAt: Date | null
+    active: boolean | null
+    status: string | null
+    deleted: boolean | null
+  }
+
+  export type PaymentTermMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    order: number | null
+    type: string | null
+    note: string | null
+    createdAt: Date | null
+    active: boolean | null
+    status: string | null
+    deleted: boolean | null
+  }
+
+  export type PaymentTermCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    order: number
+    type: number
+    note: number
+    attachments: number
+    createdAt: number
+    active: number
+    status: number
+    deleted: number
+    _all: number
+  }
+
+
+  export type PaymentTermAvgAggregateInputType = {
+    id?: true
+    order?: true
+  }
+
+  export type PaymentTermSumAggregateInputType = {
+    id?: true
+    order?: true
+  }
+
+  export type PaymentTermMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    order?: true
+    type?: true
+    note?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+  }
+
+  export type PaymentTermMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    order?: true
+    type?: true
+    note?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+  }
+
+  export type PaymentTermCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    order?: true
+    type?: true
+    note?: true
+    attachments?: true
+    createdAt?: true
+    active?: true
+    status?: true
+    deleted?: true
+    _all?: true
+  }
+
+  export type PaymentTermAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaymentTerm to aggregate.
+     */
+    where?: PaymentTermWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentTerms to fetch.
+     */
+    orderBy?: PaymentTermOrderByWithRelationInput | PaymentTermOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PaymentTermWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentTerms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentTerms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PaymentTerms
+    **/
+    _count?: true | PaymentTermCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PaymentTermAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PaymentTermSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PaymentTermMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PaymentTermMaxAggregateInputType
+  }
+
+  export type GetPaymentTermAggregateType<T extends PaymentTermAggregateArgs> = {
+        [P in keyof T & keyof AggregatePaymentTerm]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePaymentTerm[P]>
+      : GetScalarType<T[P], AggregatePaymentTerm[P]>
+  }
+
+
+
+
+  export type PaymentTermGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaymentTermWhereInput
+    orderBy?: PaymentTermOrderByWithAggregationInput | PaymentTermOrderByWithAggregationInput[]
+    by: PaymentTermScalarFieldEnum[] | PaymentTermScalarFieldEnum
+    having?: PaymentTermScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PaymentTermCountAggregateInputType | true
+    _avg?: PaymentTermAvgAggregateInputType
+    _sum?: PaymentTermSumAggregateInputType
+    _min?: PaymentTermMinAggregateInputType
+    _max?: PaymentTermMaxAggregateInputType
+  }
+
+  export type PaymentTermGroupByOutputType = {
+    id: number
+    name: string
+    description: string
+    order: number
+    type: string
+    note: string
+    attachments: string[]
+    createdAt: Date
+    active: boolean
+    status: string
+    deleted: boolean
+    _count: PaymentTermCountAggregateOutputType | null
+    _avg: PaymentTermAvgAggregateOutputType | null
+    _sum: PaymentTermSumAggregateOutputType | null
+    _min: PaymentTermMinAggregateOutputType | null
+    _max: PaymentTermMaxAggregateOutputType | null
+  }
+
+  type GetPaymentTermGroupByPayload<T extends PaymentTermGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PaymentTermGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PaymentTermGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PaymentTermGroupByOutputType[P]>
+            : GetScalarType<T[P], PaymentTermGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PaymentTermSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    order?: boolean
+    type?: boolean
+    note?: boolean
+    attachments?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+    Contract?: boolean | PaymentTerm$ContractArgs<ExtArgs>
+    _count?: boolean | PaymentTermCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["paymentTerm"]>
+
+  export type PaymentTermSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    order?: boolean
+    type?: boolean
+    note?: boolean
+    attachments?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["paymentTerm"]>
+
+  export type PaymentTermSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    order?: boolean
+    type?: boolean
+    note?: boolean
+    attachments?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }, ExtArgs["result"]["paymentTerm"]>
+
+  export type PaymentTermSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    order?: boolean
+    type?: boolean
+    note?: boolean
+    attachments?: boolean
+    createdAt?: boolean
+    active?: boolean
+    status?: boolean
+    deleted?: boolean
+  }
+
+  export type PaymentTermOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "order" | "type" | "note" | "attachments" | "createdAt" | "active" | "status" | "deleted", ExtArgs["result"]["paymentTerm"]>
+  export type PaymentTermInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Contract?: boolean | PaymentTerm$ContractArgs<ExtArgs>
+    _count?: boolean | PaymentTermCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PaymentTermIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type PaymentTermIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $PaymentTermPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PaymentTerm"
+    objects: {
+      Contract: Prisma.$ContractPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      description: string
+      order: number
+      type: string
+      note: string
+      attachments: string[]
+      createdAt: Date
+      active: boolean
+      status: string
+      deleted: boolean
+    }, ExtArgs["result"]["paymentTerm"]>
+    composites: {}
+  }
+
+  type PaymentTermGetPayload<S extends boolean | null | undefined | PaymentTermDefaultArgs> = $Result.GetResult<Prisma.$PaymentTermPayload, S>
+
+  type PaymentTermCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PaymentTermFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PaymentTermCountAggregateInputType | true
+    }
+
+  export interface PaymentTermDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PaymentTerm'], meta: { name: 'PaymentTerm' } }
+    /**
+     * Find zero or one PaymentTerm that matches the filter.
+     * @param {PaymentTermFindUniqueArgs} args - Arguments to find a PaymentTerm
+     * @example
+     * // Get one PaymentTerm
+     * const paymentTerm = await prisma.paymentTerm.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PaymentTermFindUniqueArgs>(args: SelectSubset<T, PaymentTermFindUniqueArgs<ExtArgs>>): Prisma__PaymentTermClient<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PaymentTerm that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PaymentTermFindUniqueOrThrowArgs} args - Arguments to find a PaymentTerm
+     * @example
+     * // Get one PaymentTerm
+     * const paymentTerm = await prisma.paymentTerm.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PaymentTermFindUniqueOrThrowArgs>(args: SelectSubset<T, PaymentTermFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PaymentTermClient<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PaymentTerm that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentTermFindFirstArgs} args - Arguments to find a PaymentTerm
+     * @example
+     * // Get one PaymentTerm
+     * const paymentTerm = await prisma.paymentTerm.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PaymentTermFindFirstArgs>(args?: SelectSubset<T, PaymentTermFindFirstArgs<ExtArgs>>): Prisma__PaymentTermClient<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PaymentTerm that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentTermFindFirstOrThrowArgs} args - Arguments to find a PaymentTerm
+     * @example
+     * // Get one PaymentTerm
+     * const paymentTerm = await prisma.paymentTerm.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PaymentTermFindFirstOrThrowArgs>(args?: SelectSubset<T, PaymentTermFindFirstOrThrowArgs<ExtArgs>>): Prisma__PaymentTermClient<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PaymentTerms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentTermFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PaymentTerms
+     * const paymentTerms = await prisma.paymentTerm.findMany()
+     * 
+     * // Get first 10 PaymentTerms
+     * const paymentTerms = await prisma.paymentTerm.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const paymentTermWithIdOnly = await prisma.paymentTerm.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PaymentTermFindManyArgs>(args?: SelectSubset<T, PaymentTermFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PaymentTerm.
+     * @param {PaymentTermCreateArgs} args - Arguments to create a PaymentTerm.
+     * @example
+     * // Create one PaymentTerm
+     * const PaymentTerm = await prisma.paymentTerm.create({
+     *   data: {
+     *     // ... data to create a PaymentTerm
+     *   }
+     * })
+     * 
+     */
+    create<T extends PaymentTermCreateArgs>(args: SelectSubset<T, PaymentTermCreateArgs<ExtArgs>>): Prisma__PaymentTermClient<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PaymentTerms.
+     * @param {PaymentTermCreateManyArgs} args - Arguments to create many PaymentTerms.
+     * @example
+     * // Create many PaymentTerms
+     * const paymentTerm = await prisma.paymentTerm.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PaymentTermCreateManyArgs>(args?: SelectSubset<T, PaymentTermCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PaymentTerms and returns the data saved in the database.
+     * @param {PaymentTermCreateManyAndReturnArgs} args - Arguments to create many PaymentTerms.
+     * @example
+     * // Create many PaymentTerms
+     * const paymentTerm = await prisma.paymentTerm.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PaymentTerms and only return the `id`
+     * const paymentTermWithIdOnly = await prisma.paymentTerm.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PaymentTermCreateManyAndReturnArgs>(args?: SelectSubset<T, PaymentTermCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PaymentTerm.
+     * @param {PaymentTermDeleteArgs} args - Arguments to delete one PaymentTerm.
+     * @example
+     * // Delete one PaymentTerm
+     * const PaymentTerm = await prisma.paymentTerm.delete({
+     *   where: {
+     *     // ... filter to delete one PaymentTerm
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PaymentTermDeleteArgs>(args: SelectSubset<T, PaymentTermDeleteArgs<ExtArgs>>): Prisma__PaymentTermClient<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PaymentTerm.
+     * @param {PaymentTermUpdateArgs} args - Arguments to update one PaymentTerm.
+     * @example
+     * // Update one PaymentTerm
+     * const paymentTerm = await prisma.paymentTerm.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PaymentTermUpdateArgs>(args: SelectSubset<T, PaymentTermUpdateArgs<ExtArgs>>): Prisma__PaymentTermClient<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PaymentTerms.
+     * @param {PaymentTermDeleteManyArgs} args - Arguments to filter PaymentTerms to delete.
+     * @example
+     * // Delete a few PaymentTerms
+     * const { count } = await prisma.paymentTerm.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PaymentTermDeleteManyArgs>(args?: SelectSubset<T, PaymentTermDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PaymentTerms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentTermUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PaymentTerms
+     * const paymentTerm = await prisma.paymentTerm.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PaymentTermUpdateManyArgs>(args: SelectSubset<T, PaymentTermUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PaymentTerms and returns the data updated in the database.
+     * @param {PaymentTermUpdateManyAndReturnArgs} args - Arguments to update many PaymentTerms.
+     * @example
+     * // Update many PaymentTerms
+     * const paymentTerm = await prisma.paymentTerm.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PaymentTerms and only return the `id`
+     * const paymentTermWithIdOnly = await prisma.paymentTerm.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PaymentTermUpdateManyAndReturnArgs>(args: SelectSubset<T, PaymentTermUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PaymentTerm.
+     * @param {PaymentTermUpsertArgs} args - Arguments to update or create a PaymentTerm.
+     * @example
+     * // Update or create a PaymentTerm
+     * const paymentTerm = await prisma.paymentTerm.upsert({
+     *   create: {
+     *     // ... data to create a PaymentTerm
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PaymentTerm we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PaymentTermUpsertArgs>(args: SelectSubset<T, PaymentTermUpsertArgs<ExtArgs>>): Prisma__PaymentTermClient<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PaymentTerms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentTermCountArgs} args - Arguments to filter PaymentTerms to count.
+     * @example
+     * // Count the number of PaymentTerms
+     * const count = await prisma.paymentTerm.count({
+     *   where: {
+     *     // ... the filter for the PaymentTerms we want to count
+     *   }
+     * })
+    **/
+    count<T extends PaymentTermCountArgs>(
+      args?: Subset<T, PaymentTermCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PaymentTermCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PaymentTerm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentTermAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PaymentTermAggregateArgs>(args: Subset<T, PaymentTermAggregateArgs>): Prisma.PrismaPromise<GetPaymentTermAggregateType<T>>
+
+    /**
+     * Group by PaymentTerm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentTermGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PaymentTermGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PaymentTermGroupByArgs['orderBy'] }
+        : { orderBy?: PaymentTermGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PaymentTermGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPaymentTermGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PaymentTerm model
+   */
+  readonly fields: PaymentTermFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PaymentTerm.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PaymentTermClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Contract<T extends PaymentTerm$ContractArgs<ExtArgs> = {}>(args?: Subset<T, PaymentTerm$ContractArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PaymentTerm model
+   */
+  interface PaymentTermFieldRefs {
+    readonly id: FieldRef<"PaymentTerm", 'Int'>
+    readonly name: FieldRef<"PaymentTerm", 'String'>
+    readonly description: FieldRef<"PaymentTerm", 'String'>
+    readonly order: FieldRef<"PaymentTerm", 'Int'>
+    readonly type: FieldRef<"PaymentTerm", 'String'>
+    readonly note: FieldRef<"PaymentTerm", 'String'>
+    readonly attachments: FieldRef<"PaymentTerm", 'String[]'>
+    readonly createdAt: FieldRef<"PaymentTerm", 'DateTime'>
+    readonly active: FieldRef<"PaymentTerm", 'Boolean'>
+    readonly status: FieldRef<"PaymentTerm", 'String'>
+    readonly deleted: FieldRef<"PaymentTerm", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PaymentTerm findUnique
+   */
+  export type PaymentTermFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentTerm to fetch.
+     */
+    where: PaymentTermWhereUniqueInput
+  }
+
+  /**
+   * PaymentTerm findUniqueOrThrow
+   */
+  export type PaymentTermFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentTerm to fetch.
+     */
+    where: PaymentTermWhereUniqueInput
+  }
+
+  /**
+   * PaymentTerm findFirst
+   */
+  export type PaymentTermFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentTerm to fetch.
+     */
+    where?: PaymentTermWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentTerms to fetch.
+     */
+    orderBy?: PaymentTermOrderByWithRelationInput | PaymentTermOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaymentTerms.
+     */
+    cursor?: PaymentTermWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentTerms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentTerms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaymentTerms.
+     */
+    distinct?: PaymentTermScalarFieldEnum | PaymentTermScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentTerm findFirstOrThrow
+   */
+  export type PaymentTermFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentTerm to fetch.
+     */
+    where?: PaymentTermWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentTerms to fetch.
+     */
+    orderBy?: PaymentTermOrderByWithRelationInput | PaymentTermOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaymentTerms.
+     */
+    cursor?: PaymentTermWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentTerms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentTerms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaymentTerms.
+     */
+    distinct?: PaymentTermScalarFieldEnum | PaymentTermScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentTerm findMany
+   */
+  export type PaymentTermFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentTerms to fetch.
+     */
+    where?: PaymentTermWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentTerms to fetch.
+     */
+    orderBy?: PaymentTermOrderByWithRelationInput | PaymentTermOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PaymentTerms.
+     */
+    cursor?: PaymentTermWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentTerms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentTerms.
+     */
+    skip?: number
+    distinct?: PaymentTermScalarFieldEnum | PaymentTermScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentTerm create
+   */
+  export type PaymentTermCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PaymentTerm.
+     */
+    data: XOR<PaymentTermCreateInput, PaymentTermUncheckedCreateInput>
+  }
+
+  /**
+   * PaymentTerm createMany
+   */
+  export type PaymentTermCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PaymentTerms.
+     */
+    data: PaymentTermCreateManyInput | PaymentTermCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PaymentTerm createManyAndReturn
+   */
+  export type PaymentTermCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * The data used to create many PaymentTerms.
+     */
+    data: PaymentTermCreateManyInput | PaymentTermCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PaymentTerm update
+   */
+  export type PaymentTermUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PaymentTerm.
+     */
+    data: XOR<PaymentTermUpdateInput, PaymentTermUncheckedUpdateInput>
+    /**
+     * Choose, which PaymentTerm to update.
+     */
+    where: PaymentTermWhereUniqueInput
+  }
+
+  /**
+   * PaymentTerm updateMany
+   */
+  export type PaymentTermUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PaymentTerms.
+     */
+    data: XOR<PaymentTermUpdateManyMutationInput, PaymentTermUncheckedUpdateManyInput>
+    /**
+     * Filter which PaymentTerms to update
+     */
+    where?: PaymentTermWhereInput
+    /**
+     * Limit how many PaymentTerms to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaymentTerm updateManyAndReturn
+   */
+  export type PaymentTermUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * The data used to update PaymentTerms.
+     */
+    data: XOR<PaymentTermUpdateManyMutationInput, PaymentTermUncheckedUpdateManyInput>
+    /**
+     * Filter which PaymentTerms to update
+     */
+    where?: PaymentTermWhereInput
+    /**
+     * Limit how many PaymentTerms to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaymentTerm upsert
+   */
+  export type PaymentTermUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PaymentTerm to update in case it exists.
+     */
+    where: PaymentTermWhereUniqueInput
+    /**
+     * In case the PaymentTerm found by the `where` argument doesn't exist, create a new PaymentTerm with this data.
+     */
+    create: XOR<PaymentTermCreateInput, PaymentTermUncheckedCreateInput>
+    /**
+     * In case the PaymentTerm was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PaymentTermUpdateInput, PaymentTermUncheckedUpdateInput>
+  }
+
+  /**
+   * PaymentTerm delete
+   */
+  export type PaymentTermDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    /**
+     * Filter which PaymentTerm to delete.
+     */
+    where: PaymentTermWhereUniqueInput
+  }
+
+  /**
+   * PaymentTerm deleteMany
+   */
+  export type PaymentTermDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaymentTerms to delete
+     */
+    where?: PaymentTermWhereInput
+    /**
+     * Limit how many PaymentTerms to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaymentTerm.Contract
+   */
+  export type PaymentTerm$ContractArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contract
+     */
+    omit?: ContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    where?: ContractWhereInput
+    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    cursor?: ContractWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentTerm without action
+   */
+  export type PaymentTermDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
   }
 
 
@@ -9545,6 +10858,7 @@ export namespace Prisma {
     PartyB?: boolean | CustomerDefaultArgs<ExtArgs>
     ContractProduct?: boolean | Contract$ContractProductArgs<ExtArgs>
     ArbitrationRule?: boolean | Contract$ArbitrationRuleArgs<ExtArgs>
+    PaymentTerm?: boolean | Contract$PaymentTermArgs<ExtArgs>
     Product?: boolean | Contract$ProductArgs<ExtArgs>
     SpecialCondition?: boolean | Contract$SpecialConditionArgs<ExtArgs>
     ActivityLogs?: boolean | Contract$ActivityLogsArgs<ExtArgs>
@@ -9736,6 +11050,7 @@ export namespace Prisma {
     PartyB?: boolean | CustomerDefaultArgs<ExtArgs>
     ContractProduct?: boolean | Contract$ContractProductArgs<ExtArgs>
     ArbitrationRule?: boolean | Contract$ArbitrationRuleArgs<ExtArgs>
+    PaymentTerm?: boolean | Contract$PaymentTermArgs<ExtArgs>
     Product?: boolean | Contract$ProductArgs<ExtArgs>
     SpecialCondition?: boolean | Contract$SpecialConditionArgs<ExtArgs>
     ActivityLogs?: boolean | Contract$ActivityLogsArgs<ExtArgs>
@@ -9758,6 +11073,7 @@ export namespace Prisma {
       PartyB: Prisma.$CustomerPayload<ExtArgs>
       ContractProduct: Prisma.$ContractProductPayload<ExtArgs>[]
       ArbitrationRule: Prisma.$ArbitrationRulePayload<ExtArgs>[]
+      PaymentTerm: Prisma.$PaymentTermPayload<ExtArgs>[]
       Product: Prisma.$ProductPayload<ExtArgs>[]
       SpecialCondition: Prisma.$SpecialConditionPayload<ExtArgs>[]
       ActivityLogs: Prisma.$ContractActivityLogPayload<ExtArgs>[]
@@ -10217,6 +11533,7 @@ export namespace Prisma {
     PartyB<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     ContractProduct<T extends Contract$ContractProductArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ContractProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ArbitrationRule<T extends Contract$ArbitrationRuleArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ArbitrationRuleArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArbitrationRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    PaymentTerm<T extends Contract$PaymentTermArgs<ExtArgs> = {}>(args?: Subset<T, Contract$PaymentTermArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentTermPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Product<T extends Contract$ProductArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     SpecialCondition<T extends Contract$SpecialConditionArgs<ExtArgs> = {}>(args?: Subset<T, Contract$SpecialConditionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SpecialConditionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ActivityLogs<T extends Contract$ActivityLogsArgs<ExtArgs> = {}>(args?: Subset<T, Contract$ActivityLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -10769,6 +12086,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ArbitrationRuleScalarFieldEnum | ArbitrationRuleScalarFieldEnum[]
+  }
+
+  /**
+   * Contract.PaymentTerm
+   */
+  export type Contract$PaymentTermArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentTerm
+     */
+    select?: PaymentTermSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentTerm
+     */
+    omit?: PaymentTermOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentTermInclude<ExtArgs> | null
+    where?: PaymentTermWhereInput
+    orderBy?: PaymentTermOrderByWithRelationInput | PaymentTermOrderByWithRelationInput[]
+    cursor?: PaymentTermWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaymentTermScalarFieldEnum | PaymentTermScalarFieldEnum[]
   }
 
   /**
@@ -24412,6 +25753,23 @@ export namespace Prisma {
   export type ArbitrationRuleScalarFieldEnum = (typeof ArbitrationRuleScalarFieldEnum)[keyof typeof ArbitrationRuleScalarFieldEnum]
 
 
+  export const PaymentTermScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    order: 'order',
+    type: 'type',
+    note: 'note',
+    attachments: 'attachments',
+    createdAt: 'createdAt',
+    active: 'active',
+    status: 'status',
+    deleted: 'deleted'
+  };
+
+  export type PaymentTermScalarFieldEnum = (typeof PaymentTermScalarFieldEnum)[keyof typeof PaymentTermScalarFieldEnum]
+
+
   export const BrokerageInvoiceScalarFieldEnum: {
     id: 'id',
     number: 'number',
@@ -25073,6 +26431,93 @@ export namespace Prisma {
     deleted?: BoolWithAggregatesFilter<"ArbitrationRule"> | boolean
   }
 
+  export type PaymentTermWhereInput = {
+    AND?: PaymentTermWhereInput | PaymentTermWhereInput[]
+    OR?: PaymentTermWhereInput[]
+    NOT?: PaymentTermWhereInput | PaymentTermWhereInput[]
+    id?: IntFilter<"PaymentTerm"> | number
+    name?: StringFilter<"PaymentTerm"> | string
+    description?: StringFilter<"PaymentTerm"> | string
+    order?: IntFilter<"PaymentTerm"> | number
+    type?: StringFilter<"PaymentTerm"> | string
+    note?: StringFilter<"PaymentTerm"> | string
+    attachments?: StringNullableListFilter<"PaymentTerm">
+    createdAt?: DateTimeFilter<"PaymentTerm"> | Date | string
+    active?: BoolFilter<"PaymentTerm"> | boolean
+    status?: StringFilter<"PaymentTerm"> | string
+    deleted?: BoolFilter<"PaymentTerm"> | boolean
+    Contract?: ContractListRelationFilter
+  }
+
+  export type PaymentTermOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    order?: SortOrder
+    type?: SortOrder
+    note?: SortOrder
+    attachments?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+    Contract?: ContractOrderByRelationAggregateInput
+  }
+
+  export type PaymentTermWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PaymentTermWhereInput | PaymentTermWhereInput[]
+    OR?: PaymentTermWhereInput[]
+    NOT?: PaymentTermWhereInput | PaymentTermWhereInput[]
+    name?: StringFilter<"PaymentTerm"> | string
+    description?: StringFilter<"PaymentTerm"> | string
+    order?: IntFilter<"PaymentTerm"> | number
+    type?: StringFilter<"PaymentTerm"> | string
+    note?: StringFilter<"PaymentTerm"> | string
+    attachments?: StringNullableListFilter<"PaymentTerm">
+    createdAt?: DateTimeFilter<"PaymentTerm"> | Date | string
+    active?: BoolFilter<"PaymentTerm"> | boolean
+    status?: StringFilter<"PaymentTerm"> | string
+    deleted?: BoolFilter<"PaymentTerm"> | boolean
+    Contract?: ContractListRelationFilter
+  }, "id">
+
+  export type PaymentTermOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    order?: SortOrder
+    type?: SortOrder
+    note?: SortOrder
+    attachments?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+    _count?: PaymentTermCountOrderByAggregateInput
+    _avg?: PaymentTermAvgOrderByAggregateInput
+    _max?: PaymentTermMaxOrderByAggregateInput
+    _min?: PaymentTermMinOrderByAggregateInput
+    _sum?: PaymentTermSumOrderByAggregateInput
+  }
+
+  export type PaymentTermScalarWhereWithAggregatesInput = {
+    AND?: PaymentTermScalarWhereWithAggregatesInput | PaymentTermScalarWhereWithAggregatesInput[]
+    OR?: PaymentTermScalarWhereWithAggregatesInput[]
+    NOT?: PaymentTermScalarWhereWithAggregatesInput | PaymentTermScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PaymentTerm"> | number
+    name?: StringWithAggregatesFilter<"PaymentTerm"> | string
+    description?: StringWithAggregatesFilter<"PaymentTerm"> | string
+    order?: IntWithAggregatesFilter<"PaymentTerm"> | number
+    type?: StringWithAggregatesFilter<"PaymentTerm"> | string
+    note?: StringWithAggregatesFilter<"PaymentTerm"> | string
+    attachments?: StringNullableListFilter<"PaymentTerm">
+    createdAt?: DateTimeWithAggregatesFilter<"PaymentTerm"> | Date | string
+    active?: BoolWithAggregatesFilter<"PaymentTerm"> | boolean
+    status?: StringWithAggregatesFilter<"PaymentTerm"> | string
+    deleted?: BoolWithAggregatesFilter<"PaymentTerm"> | boolean
+  }
+
   export type BrokerageInvoiceWhereInput = {
     AND?: BrokerageInvoiceWhereInput | BrokerageInvoiceWhereInput[]
     OR?: BrokerageInvoiceWhereInput[]
@@ -25488,6 +26933,7 @@ export namespace Prisma {
     PartyB?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     ContractProduct?: ContractProductListRelationFilter
     ArbitrationRule?: ArbitrationRuleListRelationFilter
+    PaymentTerm?: PaymentTermListRelationFilter
     Product?: ProductListRelationFilter
     SpecialCondition?: SpecialConditionListRelationFilter
     ActivityLogs?: ContractActivityLogListRelationFilter
@@ -25554,6 +27000,7 @@ export namespace Prisma {
     PartyB?: CustomerOrderByWithRelationInput
     ContractProduct?: ContractProductOrderByRelationAggregateInput
     ArbitrationRule?: ArbitrationRuleOrderByRelationAggregateInput
+    PaymentTerm?: PaymentTermOrderByRelationAggregateInput
     Product?: ProductOrderByRelationAggregateInput
     SpecialCondition?: SpecialConditionOrderByRelationAggregateInput
     ActivityLogs?: ContractActivityLogOrderByRelationAggregateInput
@@ -25623,6 +27070,7 @@ export namespace Prisma {
     PartyB?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     ContractProduct?: ContractProductListRelationFilter
     ArbitrationRule?: ArbitrationRuleListRelationFilter
+    PaymentTerm?: PaymentTermListRelationFilter
     Product?: ProductListRelationFilter
     SpecialCondition?: SpecialConditionListRelationFilter
     ActivityLogs?: ContractActivityLogListRelationFilter
@@ -27092,6 +28540,105 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type PaymentTermCreateInput = {
+    name: string
+    description: string
+    order: number
+    type: string
+    note: string
+    attachments?: PaymentTermCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    Contract?: ContractCreateNestedManyWithoutPaymentTermInput
+  }
+
+  export type PaymentTermUncheckedCreateInput = {
+    id?: number
+    name: string
+    description: string
+    order: number
+    type: string
+    note: string
+    attachments?: PaymentTermCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    Contract?: ContractUncheckedCreateNestedManyWithoutPaymentTermInput
+  }
+
+  export type PaymentTermUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    note?: StringFieldUpdateOperationsInput | string
+    attachments?: PaymentTermUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    Contract?: ContractUpdateManyWithoutPaymentTermNestedInput
+  }
+
+  export type PaymentTermUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    note?: StringFieldUpdateOperationsInput | string
+    attachments?: PaymentTermUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    Contract?: ContractUncheckedUpdateManyWithoutPaymentTermNestedInput
+  }
+
+  export type PaymentTermCreateManyInput = {
+    id?: number
+    name: string
+    description: string
+    order: number
+    type: string
+    note: string
+    attachments?: PaymentTermCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type PaymentTermUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    note?: StringFieldUpdateOperationsInput | string
+    attachments?: PaymentTermUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PaymentTermUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    note?: StringFieldUpdateOperationsInput | string
+    attachments?: PaymentTermUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type BrokerageInvoiceCreateInput = {
     number?: string | null
     invoice_date?: Date | string | null
@@ -27546,6 +29093,7 @@ export namespace Prisma {
     PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
@@ -27610,6 +29158,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
@@ -27673,6 +29222,7 @@ export namespace Prisma {
     PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
@@ -27737,6 +29287,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
@@ -29456,6 +31007,56 @@ export namespace Prisma {
     order?: SortOrder
   }
 
+  export type PaymentTermCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    order?: SortOrder
+    type?: SortOrder
+    note?: SortOrder
+    attachments?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type PaymentTermAvgOrderByAggregateInput = {
+    id?: SortOrder
+    order?: SortOrder
+  }
+
+  export type PaymentTermMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    order?: SortOrder
+    type?: SortOrder
+    note?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type PaymentTermMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    order?: SortOrder
+    type?: SortOrder
+    note?: SortOrder
+    createdAt?: SortOrder
+    active?: SortOrder
+    status?: SortOrder
+    deleted?: SortOrder
+  }
+
+  export type PaymentTermSumOrderByAggregateInput = {
+    id?: SortOrder
+    order?: SortOrder
+  }
+
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -29855,6 +31456,12 @@ export namespace Prisma {
     none?: ArbitrationRuleWhereInput
   }
 
+  export type PaymentTermListRelationFilter = {
+    every?: PaymentTermWhereInput
+    some?: PaymentTermWhereInput
+    none?: PaymentTermWhereInput
+  }
+
   export type ProductListRelationFilter = {
     every?: ProductWhereInput
     some?: ProductWhereInput
@@ -29878,6 +31485,10 @@ export namespace Prisma {
   }
 
   export type ArbitrationRuleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PaymentTermOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -30895,6 +32506,53 @@ export namespace Prisma {
     deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
   }
 
+  export type PaymentTermCreateattachmentsInput = {
+    set: string[]
+  }
+
+  export type ContractCreateNestedManyWithoutPaymentTermInput = {
+    create?: XOR<ContractCreateWithoutPaymentTermInput, ContractUncheckedCreateWithoutPaymentTermInput> | ContractCreateWithoutPaymentTermInput[] | ContractUncheckedCreateWithoutPaymentTermInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPaymentTermInput | ContractCreateOrConnectWithoutPaymentTermInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+  }
+
+  export type ContractUncheckedCreateNestedManyWithoutPaymentTermInput = {
+    create?: XOR<ContractCreateWithoutPaymentTermInput, ContractUncheckedCreateWithoutPaymentTermInput> | ContractCreateWithoutPaymentTermInput[] | ContractUncheckedCreateWithoutPaymentTermInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPaymentTermInput | ContractCreateOrConnectWithoutPaymentTermInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+  }
+
+  export type PaymentTermUpdateattachmentsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ContractUpdateManyWithoutPaymentTermNestedInput = {
+    create?: XOR<ContractCreateWithoutPaymentTermInput, ContractUncheckedCreateWithoutPaymentTermInput> | ContractCreateWithoutPaymentTermInput[] | ContractUncheckedCreateWithoutPaymentTermInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPaymentTermInput | ContractCreateOrConnectWithoutPaymentTermInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutPaymentTermInput | ContractUpsertWithWhereUniqueWithoutPaymentTermInput[]
+    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutPaymentTermInput | ContractUpdateWithWhereUniqueWithoutPaymentTermInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutPaymentTermInput | ContractUpdateManyWithWhereWithoutPaymentTermInput[]
+    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  }
+
+  export type ContractUncheckedUpdateManyWithoutPaymentTermNestedInput = {
+    create?: XOR<ContractCreateWithoutPaymentTermInput, ContractUncheckedCreateWithoutPaymentTermInput> | ContractCreateWithoutPaymentTermInput[] | ContractUncheckedCreateWithoutPaymentTermInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutPaymentTermInput | ContractCreateOrConnectWithoutPaymentTermInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutPaymentTermInput | ContractUpsertWithWhereUniqueWithoutPaymentTermInput[]
+    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutPaymentTermInput | ContractUpdateWithWhereUniqueWithoutPaymentTermInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutPaymentTermInput | ContractUpdateManyWithWhereWithoutPaymentTermInput[]
+    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  }
+
   export type BankAccountCreateNestedOneWithoutBrokerageInvoicesInput = {
     create?: XOR<BankAccountCreateWithoutBrokerageInvoicesInput, BankAccountUncheckedCreateWithoutBrokerageInvoicesInput>
     connectOrCreate?: BankAccountCreateOrConnectWithoutBrokerageInvoicesInput
@@ -31151,6 +32809,12 @@ export namespace Prisma {
     connect?: ArbitrationRuleWhereUniqueInput | ArbitrationRuleWhereUniqueInput[]
   }
 
+  export type PaymentTermCreateNestedManyWithoutContractInput = {
+    create?: XOR<PaymentTermCreateWithoutContractInput, PaymentTermUncheckedCreateWithoutContractInput> | PaymentTermCreateWithoutContractInput[] | PaymentTermUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: PaymentTermCreateOrConnectWithoutContractInput | PaymentTermCreateOrConnectWithoutContractInput[]
+    connect?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
+  }
+
   export type ProductCreateNestedManyWithoutContractInput = {
     create?: XOR<ProductCreateWithoutContractInput, ProductUncheckedCreateWithoutContractInput> | ProductCreateWithoutContractInput[] | ProductUncheckedCreateWithoutContractInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutContractInput | ProductCreateOrConnectWithoutContractInput[]
@@ -31188,6 +32852,12 @@ export namespace Prisma {
     create?: XOR<ArbitrationRuleCreateWithoutContractInput, ArbitrationRuleUncheckedCreateWithoutContractInput> | ArbitrationRuleCreateWithoutContractInput[] | ArbitrationRuleUncheckedCreateWithoutContractInput[]
     connectOrCreate?: ArbitrationRuleCreateOrConnectWithoutContractInput | ArbitrationRuleCreateOrConnectWithoutContractInput[]
     connect?: ArbitrationRuleWhereUniqueInput | ArbitrationRuleWhereUniqueInput[]
+  }
+
+  export type PaymentTermUncheckedCreateNestedManyWithoutContractInput = {
+    create?: XOR<PaymentTermCreateWithoutContractInput, PaymentTermUncheckedCreateWithoutContractInput> | PaymentTermCreateWithoutContractInput[] | PaymentTermUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: PaymentTermCreateOrConnectWithoutContractInput | PaymentTermCreateOrConnectWithoutContractInput[]
+    connect?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
   }
 
   export type ProductUncheckedCreateNestedManyWithoutContractInput = {
@@ -31351,6 +33021,19 @@ export namespace Prisma {
     deleteMany?: ArbitrationRuleScalarWhereInput | ArbitrationRuleScalarWhereInput[]
   }
 
+  export type PaymentTermUpdateManyWithoutContractNestedInput = {
+    create?: XOR<PaymentTermCreateWithoutContractInput, PaymentTermUncheckedCreateWithoutContractInput> | PaymentTermCreateWithoutContractInput[] | PaymentTermUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: PaymentTermCreateOrConnectWithoutContractInput | PaymentTermCreateOrConnectWithoutContractInput[]
+    upsert?: PaymentTermUpsertWithWhereUniqueWithoutContractInput | PaymentTermUpsertWithWhereUniqueWithoutContractInput[]
+    set?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
+    disconnect?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
+    delete?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
+    connect?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
+    update?: PaymentTermUpdateWithWhereUniqueWithoutContractInput | PaymentTermUpdateWithWhereUniqueWithoutContractInput[]
+    updateMany?: PaymentTermUpdateManyWithWhereWithoutContractInput | PaymentTermUpdateManyWithWhereWithoutContractInput[]
+    deleteMany?: PaymentTermScalarWhereInput | PaymentTermScalarWhereInput[]
+  }
+
   export type ProductUpdateManyWithoutContractNestedInput = {
     create?: XOR<ProductCreateWithoutContractInput, ProductUncheckedCreateWithoutContractInput> | ProductCreateWithoutContractInput[] | ProductUncheckedCreateWithoutContractInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutContractInput | ProductCreateOrConnectWithoutContractInput[]
@@ -31430,6 +33113,19 @@ export namespace Prisma {
     update?: ArbitrationRuleUpdateWithWhereUniqueWithoutContractInput | ArbitrationRuleUpdateWithWhereUniqueWithoutContractInput[]
     updateMany?: ArbitrationRuleUpdateManyWithWhereWithoutContractInput | ArbitrationRuleUpdateManyWithWhereWithoutContractInput[]
     deleteMany?: ArbitrationRuleScalarWhereInput | ArbitrationRuleScalarWhereInput[]
+  }
+
+  export type PaymentTermUncheckedUpdateManyWithoutContractNestedInput = {
+    create?: XOR<PaymentTermCreateWithoutContractInput, PaymentTermUncheckedCreateWithoutContractInput> | PaymentTermCreateWithoutContractInput[] | PaymentTermUncheckedCreateWithoutContractInput[]
+    connectOrCreate?: PaymentTermCreateOrConnectWithoutContractInput | PaymentTermCreateOrConnectWithoutContractInput[]
+    upsert?: PaymentTermUpsertWithWhereUniqueWithoutContractInput | PaymentTermUpsertWithWhereUniqueWithoutContractInput[]
+    set?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
+    disconnect?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
+    delete?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
+    connect?: PaymentTermWhereUniqueInput | PaymentTermWhereUniqueInput[]
+    update?: PaymentTermUpdateWithWhereUniqueWithoutContractInput | PaymentTermUpdateWithWhereUniqueWithoutContractInput[]
+    updateMany?: PaymentTermUpdateManyWithWhereWithoutContractInput | PaymentTermUpdateManyWithWhereWithoutContractInput[]
+    deleteMany?: PaymentTermScalarWhereInput | PaymentTermScalarWhereInput[]
   }
 
   export type ProductUncheckedUpdateManyWithoutContractNestedInput = {
@@ -32569,6 +34265,7 @@ export namespace Prisma {
     PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
     PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
@@ -32632,6 +34329,7 @@ export namespace Prisma {
     deleted?: boolean
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
@@ -32717,6 +34415,154 @@ export namespace Prisma {
     active?: BoolFilter<"Contract"> | boolean
     status?: StringFilter<"Contract"> | string
     deleted?: BoolFilter<"Contract"> | boolean
+  }
+
+  export type ContractCreateWithoutPaymentTermInput = {
+    name: string
+    description: string
+    date_creation?: Date | string | null
+    date_expiration?: Date | string | null
+    date_signature?: Date | string | null
+    date_expiration_signature?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    products_id?: ContractCreateproducts_idInput | number[]
+    bording_date?: Date | string | null
+    mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
+    destination_country: string
+    destination_port: string
+    shipping_company: string
+    shipment_date?: Date | string | null
+    si_sent: boolean
+    packing?: ContractCreatepackingInput | string[]
+    incoterm?: ContractCreateincotermInput | string[]
+    payment_terms: string
+    payment_method: string
+    payment_currency: string
+    payment_amount: number
+    payment_date?: Date | string | null
+    payment_status: string
+    payment_notes: string
+    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractCreatespecial_termsInput | string[]
+    business_terms?: ContractCreatebusiness_termsInput | string[]
+    legal_terms?: ContractCreatelegal_termsInput | string[]
+    other_terms?: ContractCreateother_termsInput | string[]
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
+    comission_total: number
+    attachments?: ContractCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineCreateNestedManyWithoutContractInput
+    PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
+    PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
+    ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
+    ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    Product?: ProductCreateNestedManyWithoutContractInput
+    SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
+  }
+
+  export type ContractUncheckedCreateWithoutPaymentTermInput = {
+    id?: number
+    name: string
+    description: string
+    date_creation?: Date | string | null
+    date_expiration?: Date | string | null
+    date_signature?: Date | string | null
+    date_expiration_signature?: Date | string | null
+    date_signature_party_a?: Date | string | null
+    date_expiration_signature_party_a?: Date | string | null
+    date_signature_party_b?: Date | string | null
+    date_expiration_signature_party_b?: Date | string | null
+    customer_party_a_id: number
+    customer_party_b_id: number
+    products_id?: ContractCreateproducts_idInput | number[]
+    bording_date?: Date | string | null
+    mt_value: number
+    origin_country?: string | null
+    origin_port?: string | null
+    destination_country: string
+    destination_port: string
+    shipping_company: string
+    shipment_date?: Date | string | null
+    si_sent: boolean
+    packing?: ContractCreatepackingInput | string[]
+    incoterm?: ContractCreateincotermInput | string[]
+    payment_terms: string
+    payment_method: string
+    payment_currency: string
+    payment_amount: number
+    payment_date?: Date | string | null
+    payment_status: string
+    payment_notes: string
+    payment_attachments?: ContractCreatepayment_attachmentsInput | string[]
+    payment_notes_party_a: string
+    payment_attachments_party_a?: ContractCreatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b: string
+    payment_attachments_party_b?: ContractCreatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractCreatespecial_termsInput | string[]
+    business_terms?: ContractCreatebusiness_termsInput | string[]
+    legal_terms?: ContractCreatelegal_termsInput | string[]
+    other_terms?: ContractCreateother_termsInput | string[]
+    other_terms_party_a?: ContractCreateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractCreateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractCreateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractCreateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractCreateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractCreateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a: number
+    commission_party_b: number
+    comission_total: number
+    attachments?: ContractCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
+    ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
+    ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    Product?: ProductUncheckedCreateNestedManyWithoutContractInput
+    SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
+    ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
+  }
+
+  export type ContractCreateOrConnectWithoutPaymentTermInput = {
+    where: ContractWhereUniqueInput
+    create: XOR<ContractCreateWithoutPaymentTermInput, ContractUncheckedCreateWithoutPaymentTermInput>
+  }
+
+  export type ContractUpsertWithWhereUniqueWithoutPaymentTermInput = {
+    where: ContractWhereUniqueInput
+    update: XOR<ContractUpdateWithoutPaymentTermInput, ContractUncheckedUpdateWithoutPaymentTermInput>
+    create: XOR<ContractCreateWithoutPaymentTermInput, ContractUncheckedCreateWithoutPaymentTermInput>
+  }
+
+  export type ContractUpdateWithWhereUniqueWithoutPaymentTermInput = {
+    where: ContractWhereUniqueInput
+    data: XOR<ContractUpdateWithoutPaymentTermInput, ContractUncheckedUpdateWithoutPaymentTermInput>
+  }
+
+  export type ContractUpdateManyWithWhereWithoutPaymentTermInput = {
+    where: ContractScalarWhereInput
+    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutPaymentTermInput>
   }
 
   export type BankAccountCreateWithoutBrokerageInvoicesInput = {
@@ -32977,6 +34823,7 @@ export namespace Prisma {
     PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
@@ -33040,6 +34887,7 @@ export namespace Prisma {
     deleted?: boolean
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
@@ -33156,6 +35004,7 @@ export namespace Prisma {
     PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
@@ -33219,6 +35068,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
@@ -33628,6 +35478,38 @@ export namespace Prisma {
     create: XOR<ArbitrationRuleCreateWithoutContractInput, ArbitrationRuleUncheckedCreateWithoutContractInput>
   }
 
+  export type PaymentTermCreateWithoutContractInput = {
+    name: string
+    description: string
+    order: number
+    type: string
+    note: string
+    attachments?: PaymentTermCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type PaymentTermUncheckedCreateWithoutContractInput = {
+    id?: number
+    name: string
+    description: string
+    order: number
+    type: string
+    note: string
+    attachments?: PaymentTermCreateattachmentsInput | string[]
+    createdAt?: Date | string
+    active?: boolean
+    status: string
+    deleted?: boolean
+  }
+
+  export type PaymentTermCreateOrConnectWithoutContractInput = {
+    where: PaymentTermWhereUniqueInput
+    create: XOR<PaymentTermCreateWithoutContractInput, PaymentTermUncheckedCreateWithoutContractInput>
+  }
+
   export type ProductCreateWithoutContractInput = {
     sku: string
     name: string
@@ -33959,6 +35841,39 @@ export namespace Prisma {
     deleted?: BoolFilter<"ArbitrationRule"> | boolean
   }
 
+  export type PaymentTermUpsertWithWhereUniqueWithoutContractInput = {
+    where: PaymentTermWhereUniqueInput
+    update: XOR<PaymentTermUpdateWithoutContractInput, PaymentTermUncheckedUpdateWithoutContractInput>
+    create: XOR<PaymentTermCreateWithoutContractInput, PaymentTermUncheckedCreateWithoutContractInput>
+  }
+
+  export type PaymentTermUpdateWithWhereUniqueWithoutContractInput = {
+    where: PaymentTermWhereUniqueInput
+    data: XOR<PaymentTermUpdateWithoutContractInput, PaymentTermUncheckedUpdateWithoutContractInput>
+  }
+
+  export type PaymentTermUpdateManyWithWhereWithoutContractInput = {
+    where: PaymentTermScalarWhereInput
+    data: XOR<PaymentTermUpdateManyMutationInput, PaymentTermUncheckedUpdateManyWithoutContractInput>
+  }
+
+  export type PaymentTermScalarWhereInput = {
+    AND?: PaymentTermScalarWhereInput | PaymentTermScalarWhereInput[]
+    OR?: PaymentTermScalarWhereInput[]
+    NOT?: PaymentTermScalarWhereInput | PaymentTermScalarWhereInput[]
+    id?: IntFilter<"PaymentTerm"> | number
+    name?: StringFilter<"PaymentTerm"> | string
+    description?: StringFilter<"PaymentTerm"> | string
+    order?: IntFilter<"PaymentTerm"> | number
+    type?: StringFilter<"PaymentTerm"> | string
+    note?: StringFilter<"PaymentTerm"> | string
+    attachments?: StringNullableListFilter<"PaymentTerm">
+    createdAt?: DateTimeFilter<"PaymentTerm"> | Date | string
+    active?: BoolFilter<"PaymentTerm"> | boolean
+    status?: StringFilter<"PaymentTerm"> | string
+    deleted?: BoolFilter<"PaymentTerm"> | boolean
+  }
+
   export type ProductUpsertWithWhereUniqueWithoutContractInput = {
     where: ProductWhereUniqueInput
     update: XOR<ProductUpdateWithoutContractInput, ProductUncheckedUpdateWithoutContractInput>
@@ -34134,6 +36049,7 @@ export namespace Prisma {
     PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
   }
@@ -34197,6 +36113,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
   }
@@ -34275,6 +36192,7 @@ export namespace Prisma {
     PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
   }
@@ -34338,6 +36256,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
   }
@@ -34399,6 +36318,7 @@ export namespace Prisma {
     PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
     PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
@@ -34462,6 +36382,7 @@ export namespace Prisma {
     deleted?: boolean
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
@@ -34680,6 +36601,7 @@ export namespace Prisma {
     PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
     PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
@@ -34743,6 +36665,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
@@ -35071,6 +36994,7 @@ export namespace Prisma {
     PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
@@ -35134,6 +37058,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
@@ -35206,6 +37131,7 @@ export namespace Prisma {
     PartyA: CustomerCreateNestedOneWithoutContractsAsPartyAInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
@@ -35269,6 +37195,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
@@ -35651,6 +37578,7 @@ export namespace Prisma {
     PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
@@ -35714,6 +37642,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermUncheckedCreateNestedManyWithoutContractInput
     SpecialCondition?: SpecialConditionUncheckedCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
@@ -36380,6 +38309,7 @@ export namespace Prisma {
     PartyB: CustomerCreateNestedOneWithoutContractsAsPartyBInput
     ContractProduct?: ContractProductCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermCreateNestedManyWithoutContractInput
     Product?: ProductCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogCreateNestedManyWithoutContractInput
   }
@@ -36443,6 +38373,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedCreateNestedManyWithoutContractInput
     ContractProduct?: ContractProductUncheckedCreateNestedManyWithoutContractInput
     ArbitrationRule?: ArbitrationRuleUncheckedCreateNestedManyWithoutContractInput
+    PaymentTerm?: PaymentTermUncheckedCreateNestedManyWithoutContractInput
     Product?: ProductUncheckedCreateNestedManyWithoutContractInput
     ActivityLogs?: ContractActivityLogUncheckedCreateNestedManyWithoutContractInput
   }
@@ -36578,6 +38509,7 @@ export namespace Prisma {
     PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
     PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
@@ -36641,12 +38573,198 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
 
   export type ContractUncheckedUpdateManyWithoutArbitrationRuleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
+    products_id?: ContractUpdateproducts_idInput | number[]
+    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_country?: StringFieldUpdateOperationsInput | string
+    destination_port?: StringFieldUpdateOperationsInput | string
+    shipping_company?: StringFieldUpdateOperationsInput | string
+    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    si_sent?: BoolFieldUpdateOperationsInput | boolean
+    packing?: ContractUpdatepackingInput | string[]
+    incoterm?: ContractUpdateincotermInput | string[]
+    payment_terms?: StringFieldUpdateOperationsInput | string
+    payment_method?: StringFieldUpdateOperationsInput | string
+    payment_currency?: StringFieldUpdateOperationsInput | string
+    payment_amount?: FloatFieldUpdateOperationsInput | number
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment_status?: StringFieldUpdateOperationsInput | string
+    payment_notes?: StringFieldUpdateOperationsInput | string
+    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractUpdatespecial_termsInput | string[]
+    business_terms?: ContractUpdatebusiness_termsInput | string[]
+    legal_terms?: ContractUpdatelegal_termsInput | string[]
+    other_terms?: ContractUpdateother_termsInput | string[]
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
+    comission_total?: FloatFieldUpdateOperationsInput | number
+    attachments?: ContractUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ContractUpdateWithoutPaymentTermInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    products_id?: ContractUpdateproducts_idInput | number[]
+    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_country?: StringFieldUpdateOperationsInput | string
+    destination_port?: StringFieldUpdateOperationsInput | string
+    shipping_company?: StringFieldUpdateOperationsInput | string
+    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    si_sent?: BoolFieldUpdateOperationsInput | boolean
+    packing?: ContractUpdatepackingInput | string[]
+    incoterm?: ContractUpdateincotermInput | string[]
+    payment_terms?: StringFieldUpdateOperationsInput | string
+    payment_method?: StringFieldUpdateOperationsInput | string
+    payment_currency?: StringFieldUpdateOperationsInput | string
+    payment_amount?: FloatFieldUpdateOperationsInput | number
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment_status?: StringFieldUpdateOperationsInput | string
+    payment_notes?: StringFieldUpdateOperationsInput | string
+    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractUpdatespecial_termsInput | string[]
+    business_terms?: ContractUpdatebusiness_termsInput | string[]
+    legal_terms?: ContractUpdatelegal_termsInput | string[]
+    other_terms?: ContractUpdateother_termsInput | string[]
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
+    comission_total?: FloatFieldUpdateOperationsInput | number
+    attachments?: ContractUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUpdateManyWithoutContractNestedInput
+    PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
+    PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
+    ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
+    ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    Product?: ProductUpdateManyWithoutContractNestedInput
+    SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
+  }
+
+  export type ContractUncheckedUpdateWithoutPaymentTermInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_a?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    date_expiration_signature_party_b?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    customer_party_a_id?: IntFieldUpdateOperationsInput | number
+    customer_party_b_id?: IntFieldUpdateOperationsInput | number
+    products_id?: ContractUpdateproducts_idInput | number[]
+    bording_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mt_value?: FloatFieldUpdateOperationsInput | number
+    origin_country?: NullableStringFieldUpdateOperationsInput | string | null
+    origin_port?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_country?: StringFieldUpdateOperationsInput | string
+    destination_port?: StringFieldUpdateOperationsInput | string
+    shipping_company?: StringFieldUpdateOperationsInput | string
+    shipment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    si_sent?: BoolFieldUpdateOperationsInput | boolean
+    packing?: ContractUpdatepackingInput | string[]
+    incoterm?: ContractUpdateincotermInput | string[]
+    payment_terms?: StringFieldUpdateOperationsInput | string
+    payment_method?: StringFieldUpdateOperationsInput | string
+    payment_currency?: StringFieldUpdateOperationsInput | string
+    payment_amount?: FloatFieldUpdateOperationsInput | number
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment_status?: StringFieldUpdateOperationsInput | string
+    payment_notes?: StringFieldUpdateOperationsInput | string
+    payment_attachments?: ContractUpdatepayment_attachmentsInput | string[]
+    payment_notes_party_a?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_a?: ContractUpdatepayment_attachments_party_aInput | string[]
+    payment_notes_party_b?: StringFieldUpdateOperationsInput | string
+    payment_attachments_party_b?: ContractUpdatepayment_attachments_party_bInput | string[]
+    special_terms?: ContractUpdatespecial_termsInput | string[]
+    business_terms?: ContractUpdatebusiness_termsInput | string[]
+    legal_terms?: ContractUpdatelegal_termsInput | string[]
+    other_terms?: ContractUpdateother_termsInput | string[]
+    other_terms_party_a?: ContractUpdateother_terms_party_aInput | string[]
+    other_terms_party_b?: ContractUpdateother_terms_party_bInput | string[]
+    other_terms_party_a_party_b?: ContractUpdateother_terms_party_a_party_bInput | string[]
+    other_terms_party_a_party_b_party_a?: ContractUpdateother_terms_party_a_party_b_party_aInput | string[]
+    other_terms_party_b_party_a?: ContractUpdateother_terms_party_b_party_aInput | string[]
+    other_terms_party_b_party_a_party_b?: ContractUpdateother_terms_party_b_party_a_party_bInput | string[]
+    commission_party_a?: FloatFieldUpdateOperationsInput | number
+    commission_party_b?: FloatFieldUpdateOperationsInput | number
+    comission_total?: FloatFieldUpdateOperationsInput | number
+    attachments?: ContractUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
+    ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
+    ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
+    SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
+    ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
+  }
+
+  export type ContractUncheckedUpdateManyWithoutPaymentTermInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -36944,6 +39062,47 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     note?: StringFieldUpdateOperationsInput | string
     attachments?: ArbitrationRuleUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PaymentTermUpdateWithoutContractInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    note?: StringFieldUpdateOperationsInput | string
+    attachments?: PaymentTermUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PaymentTermUncheckedUpdateWithoutContractInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    note?: StringFieldUpdateOperationsInput | string
+    attachments?: PaymentTermUpdateattachmentsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PaymentTermUncheckedUpdateManyWithoutContractInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    note?: StringFieldUpdateOperationsInput | string
+    attachments?: PaymentTermUpdateattachmentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     status?: StringFieldUpdateOperationsInput | string
@@ -37447,6 +39606,7 @@ export namespace Prisma {
     PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
@@ -37510,6 +39670,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
@@ -37629,6 +39790,7 @@ export namespace Prisma {
     PartyA?: CustomerUpdateOneRequiredWithoutContractsAsPartyANestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
@@ -37692,6 +39854,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
@@ -37891,6 +40054,7 @@ export namespace Prisma {
     PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
@@ -37954,6 +40118,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUncheckedUpdateManyWithoutContractNestedInput
     SpecialCondition?: SpecialConditionUncheckedUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }
@@ -38435,6 +40600,7 @@ export namespace Prisma {
     PartyB?: CustomerUpdateOneRequiredWithoutContractsAsPartyBNestedInput
     ContractProduct?: ContractProductUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUpdateManyWithoutContractNestedInput
     Product?: ProductUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUpdateManyWithoutContractNestedInput
   }
@@ -38498,6 +40664,7 @@ export namespace Prisma {
     BrokerageInvoiceLines?: BrokerageInvoiceLineUncheckedUpdateManyWithoutContractNestedInput
     ContractProduct?: ContractProductUncheckedUpdateManyWithoutContractNestedInput
     ArbitrationRule?: ArbitrationRuleUncheckedUpdateManyWithoutContractNestedInput
+    PaymentTerm?: PaymentTermUncheckedUpdateManyWithoutContractNestedInput
     Product?: ProductUncheckedUpdateManyWithoutContractNestedInput
     ActivityLogs?: ContractActivityLogUncheckedUpdateManyWithoutContractNestedInput
   }

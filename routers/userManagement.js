@@ -101,7 +101,7 @@ async function userManagementRoutes(fastify, options) {
         }
     }, async (request, reply) => {
         const { id } = request.params;
-        const { roles, name, active, ...rest } = request.body || {};
+        const { roles, name, active } = request.body || {};
 
         if (roles && (!Array.isArray(roles) || roles.length === 0)) {
             return reply.code(400).send({
@@ -114,8 +114,14 @@ async function userManagementRoutes(fastify, options) {
             ...(roles && roles.length > 0 ? { role: roles[0] } : {}),
             ...(typeof name !== "undefined" ? { name } : {}),
             ...(typeof active !== "undefined" ? { active } : {}),
-            ...(Object.keys(rest).length > 0 ? rest : {})
         };
+
+        if (Object.keys(data).length === 0) {
+            return reply.code(400).send({
+                error: "Bad Request",
+                message: "No fields to update"
+            });
+        }
 
         try {
             const updated = await prisma.user.update({
