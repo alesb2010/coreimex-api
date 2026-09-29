@@ -153,6 +153,13 @@ async function contractsRoutes(fastify, options) {
         return new Date(start.getTime() + 24 * 60 * 60 * 1000 - 1);
     }
 
+    function parseOptionalInt(value) {
+        if (value == null || value === '') return null;
+        const n = Number(value);
+        if (!Number.isFinite(n)) return null;
+        return Math.trunc(n);
+    }
+
     // Helper function to parse date strings to ISO-8601 DateTime format
     function parseDateTime(value) {
         if (!value || value === '' || value === null || value === undefined) {
@@ -204,6 +211,7 @@ async function contractsRoutes(fastify, options) {
                     status: { type: 'string' },
                     date_creation_from: { type: 'string' },
                     date_creation_to: { type: 'string' },
+                    po_number: { type: 'integer' },
                     page: { type: 'integer', minimum: 1, default: 1 },
                     pageSize: { type: 'integer', minimum: 1, maximum: 500, default: 20 },
                     sortBy: { type: 'string' },
@@ -265,6 +273,11 @@ async function contractsRoutes(fastify, options) {
         const toDateEnd = parseDateOnlyUtcEndInclusive(q.date_creation_to);
         if (toDateEnd) {
             and.push({ date_creation: { lte: toDateEnd } });
+        }
+
+        const poNumber = parseOptionalPositiveInt(q.po_number);
+        if (poNumber != null) {
+            and.push({ po_number: poNumber });
         }
 
         const where = and.length > 0 ? { AND: and } : {};
@@ -404,7 +417,7 @@ async function contractsRoutes(fastify, options) {
             'name', 'description', 'date_creation', 'date_expiration', 'date_signature',
             'date_expiration_signature', 'date_signature_party_a', 'date_expiration_signature_party_a',
             'date_signature_party_b', 'date_expiration_signature_party_b',
-            'customer_party_a_id', 'customer_party_b_id', 'products_id', 'bording_date', 'mt_value',
+            'customer_party_a_id', 'customer_party_b_id', 'products_id', 'po_number', 'bording_date', 'mt_value',
             'origin_country', 'origin_port', 'destination_country', 'destination_port', 'shipping_company', 'shipment_date', 'si_sent',
             'packing', 'incoterm', 'payment_terms', 'payment_method', 'payment_currency', 'payment_amount',
             'payment_date', 'payment_status', 'payment_notes', 'payment_attachments',
@@ -420,6 +433,8 @@ async function contractsRoutes(fastify, options) {
                 const value = body[field];
                 if (dateTimeFields.includes(field)) {
                     data[field] = parseDateTime(value);
+                } else if (field === 'po_number') {
+                    data[field] = parseOptionalInt(value);
                 } else {
                     data[field] = value;
                 }
@@ -521,7 +536,7 @@ async function contractsRoutes(fastify, options) {
             'name', 'description', 'date_creation', 'date_expiration', 'date_signature',
             'date_expiration_signature', 'date_signature_party_a', 'date_expiration_signature_party_a',
             'date_signature_party_b', 'date_expiration_signature_party_b',
-            'customer_party_a_id', 'customer_party_b_id', 'products_id', 'bording_date', 'mt_value',
+            'customer_party_a_id', 'customer_party_b_id', 'products_id', 'po_number', 'bording_date', 'mt_value',
             'origin_country', 'origin_port', 'destination_country', 'destination_port', 'shipping_company', 'shipment_date', 'si_sent',
             'packing', 'incoterm', 'payment_terms', 'payment_method', 'payment_currency', 'payment_amount',
             'payment_date', 'payment_status', 'payment_notes', 'payment_attachments',
@@ -537,6 +552,8 @@ async function contractsRoutes(fastify, options) {
                 const value = body[field];
                 if (dateTimeFields.includes(field)) {
                     data[field] = parseDateTime(value);
+                } else if (field === 'po_number') {
+                    data[field] = parseOptionalInt(value);
                 } else {
                     data[field] = value;
                 }

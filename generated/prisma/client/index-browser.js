@@ -230,6 +230,7 @@ exports.Prisma.ContractScalarFieldEnum = {
   name: 'name',
   description: 'description',
   date_creation: 'date_creation',
+  po_number: 'po_number',
   date_expiration: 'date_expiration',
   date_signature: 'date_signature',
   date_expiration_signature: 'date_expiration_signature',
