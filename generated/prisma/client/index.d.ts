@@ -10305,7 +10305,6 @@ export namespace Prisma {
 
   export type ContractAvgAggregateOutputType = {
     id: number | null
-    po_number: number | null
     customer_party_a_id: number | null
     customer_party_b_id: number | null
     products_id: number | null
@@ -10318,7 +10317,6 @@ export namespace Prisma {
 
   export type ContractSumAggregateOutputType = {
     id: number | null
-    po_number: number | null
     customer_party_a_id: number | null
     customer_party_b_id: number | null
     products_id: number[]
@@ -10334,7 +10332,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     date_creation: Date | null
-    po_number: number | null
+    po_number: string | null
     date_expiration: Date | null
     date_signature: Date | null
     date_expiration_signature: Date | null
@@ -10376,7 +10374,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     date_creation: Date | null
-    po_number: number | null
+    po_number: string | null
     date_expiration: Date | null
     date_signature: Date | null
     date_expiration_signature: Date | null
@@ -10476,7 +10474,6 @@ export namespace Prisma {
 
   export type ContractAvgAggregateInputType = {
     id?: true
-    po_number?: true
     customer_party_a_id?: true
     customer_party_b_id?: true
     products_id?: true
@@ -10489,7 +10486,6 @@ export namespace Prisma {
 
   export type ContractSumAggregateInputType = {
     id?: true
-    po_number?: true
     customer_party_a_id?: true
     customer_party_b_id?: true
     products_id?: true
@@ -10735,7 +10731,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation: Date | null
-    po_number: number | null
+    po_number: string | null
     date_expiration: Date | null
     date_signature: Date | null
     date_expiration_signature: Date | null
@@ -11098,7 +11094,7 @@ export namespace Prisma {
       name: string
       description: string
       date_creation: Date | null
-      po_number: number | null
+      po_number: string | null
       date_expiration: Date | null
       date_signature: Date | null
       date_expiration_signature: Date | null
@@ -11586,7 +11582,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Contract", 'String'>
     readonly description: FieldRef<"Contract", 'String'>
     readonly date_creation: FieldRef<"Contract", 'DateTime'>
-    readonly po_number: FieldRef<"Contract", 'Int'>
+    readonly po_number: FieldRef<"Contract", 'String'>
     readonly date_expiration: FieldRef<"Contract", 'DateTime'>
     readonly date_signature: FieldRef<"Contract", 'DateTime'>
     readonly date_expiration_signature: FieldRef<"Contract", 'DateTime'>
@@ -26895,7 +26891,7 @@ export namespace Prisma {
     name?: StringFilter<"Contract"> | string
     description?: StringFilter<"Contract"> | string
     date_creation?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    po_number?: IntNullableFilter<"Contract"> | number | null
+    po_number?: StringNullableFilter<"Contract"> | string | null
     date_expiration?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_expiration_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
@@ -27034,7 +27030,7 @@ export namespace Prisma {
     name?: StringFilter<"Contract"> | string
     description?: StringFilter<"Contract"> | string
     date_creation?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    po_number?: IntNullableFilter<"Contract"> | number | null
+    po_number?: StringNullableFilter<"Contract"> | string | null
     date_expiration?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_expiration_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
@@ -27169,7 +27165,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Contract"> | string
     description?: StringWithAggregatesFilter<"Contract"> | string
     date_creation?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
-    po_number?: IntNullableWithAggregatesFilter<"Contract"> | number | null
+    po_number?: StringNullableWithAggregatesFilter<"Contract"> | string | null
     date_expiration?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
     date_signature?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
     date_expiration_signature?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
@@ -29062,7 +29058,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -29128,7 +29124,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -29193,7 +29189,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29259,7 +29255,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29325,7 +29321,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -29383,7 +29379,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29440,7 +29436,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31595,7 +31591,6 @@ export namespace Prisma {
 
   export type ContractAvgOrderByAggregateInput = {
     id?: SortOrder
-    po_number?: SortOrder
     customer_party_a_id?: SortOrder
     customer_party_b_id?: SortOrder
     products_id?: SortOrder
@@ -31692,7 +31687,6 @@ export namespace Prisma {
 
   export type ContractSumOrderByAggregateInput = {
     id?: SortOrder
-    po_number?: SortOrder
     customer_party_a_id?: SortOrder
     customer_party_b_id?: SortOrder
     products_id?: SortOrder
@@ -34247,7 +34241,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -34312,7 +34306,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -34401,7 +34395,7 @@ export namespace Prisma {
     name?: StringFilter<"Contract"> | string
     description?: StringFilter<"Contract"> | string
     date_creation?: DateTimeNullableFilter<"Contract"> | Date | string | null
-    po_number?: IntNullableFilter<"Contract"> | number | null
+    po_number?: StringNullableFilter<"Contract"> | string | null
     date_expiration?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
     date_expiration_signature?: DateTimeNullableFilter<"Contract"> | Date | string | null
@@ -34459,7 +34453,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -34524,7 +34518,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -34810,7 +34804,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -34875,7 +34869,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -34993,7 +34987,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -35058,7 +35052,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36039,7 +36033,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -36104,7 +36098,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -36184,7 +36178,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36249,7 +36243,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36313,7 +36307,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -36378,7 +36372,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -36598,7 +36592,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36663,7 +36657,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36993,7 +36987,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -37058,7 +37052,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -37132,7 +37126,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -37197,7 +37191,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -37580,7 +37574,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -37645,7 +37639,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -38313,7 +38307,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -38378,7 +38372,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -38516,7 +38510,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -38581,7 +38575,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -38646,7 +38640,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -38704,7 +38698,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -38769,7 +38763,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -38834,7 +38828,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39435,7 +39429,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -39493,7 +39487,7 @@ export namespace Prisma {
     name: string
     description: string
     date_creation?: Date | string | null
-    po_number?: number | null
+    po_number?: string | null
     date_expiration?: Date | string | null
     date_signature?: Date | string | null
     date_expiration_signature?: Date | string | null
@@ -39621,7 +39615,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39686,7 +39680,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39751,7 +39745,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39808,7 +39802,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39873,7 +39867,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39938,7 +39932,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -40074,7 +40068,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -40139,7 +40133,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -40204,7 +40198,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -40623,7 +40617,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -40688,7 +40682,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -40753,7 +40747,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     date_creation?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    po_number?: NullableIntFieldUpdateOperationsInput | number | null
+    po_number?: NullableStringFieldUpdateOperationsInput | string | null
     date_expiration?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date_expiration_signature?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

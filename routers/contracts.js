@@ -120,7 +120,28 @@ async function contractsRoutes(fastify, options) {
     }
 
     const contractProductsInclude = {
-        ContractProduct: { where: { deleted: false } },
+        ContractProduct: {
+            where: { deleted: false },
+            include: {
+                Product: {
+                    select: { id: true, name: true, comercial_name: true },
+                },
+                ProductVariation: {
+                    select: { id: true, name: true, type: true },
+                },
+                Pack: {
+                    select: {
+                        id: true,
+                        name: true,
+                        pack_type: true,
+                        description: true,
+                        quantity_per_pack: true,
+                    },
+                },
+            },
+        },
+        PartyA: true,
+        PartyB: true,
     };
 
     const CONTRACT_LIST_SORT_FIELDS = new Set(['id', 'name', 'date_creation', 'status']);
@@ -153,11 +174,10 @@ async function contractsRoutes(fastify, options) {
         return new Date(start.getTime() + 24 * 60 * 60 * 1000 - 1);
     }
 
-    function parseOptionalInt(value) {
-        if (value == null || value === '') return null;
-        const n = Number(value);
-        if (!Number.isFinite(n)) return null;
-        return Math.trunc(n);
+    function parseOptionalPoNumber(value) {
+        if (value == null) return null;
+        const text = String(value).trim();
+        return text === '' ? null : text;
     }
 
     // Helper function to parse date strings to ISO-8601 DateTime format
@@ -211,7 +231,7 @@ async function contractsRoutes(fastify, options) {
                     status: { type: 'string' },
                     date_creation_from: { type: 'string' },
                     date_creation_to: { type: 'string' },
-                    po_number: { type: 'integer' },
+                    po_number: { type: 'string' },
                     page: { type: 'integer', minimum: 1, default: 1 },
                     pageSize: { type: 'integer', minimum: 1, maximum: 500, default: 20 },
                     sortBy: { type: 'string' },
@@ -275,17 +295,35 @@ async function contractsRoutes(fastify, options) {
             and.push({ date_creation: { lte: toDateEnd } });
         }
 
-        const poNumber = parseOptionalPositiveInt(q.po_number);
+        const poNumber = parseOptionalPoNumber(q.po_number);
         if (poNumber != null) {
-            and.push({ po_number: poNumber });
+            and.push({ po_number: { equals: poNumber, mode: 'insensitive' } });
         }
 
         const where = and.length > 0 ? { AND: and } : {};
 
         const listInclude = {
             ...contractProductsInclude,
-            PartyA: { select: { id: true, name: true, full_name: true } },
-            PartyB: { select: { id: true, name: true, full_name: true } }
+            PartyA: {
+                select: {
+                    id: true,
+                    name: true,
+                    full_name: true,
+                    full_address: true,
+                    country: true,
+                    tax_id: true,
+                },
+            },
+            PartyB: {
+                select: {
+                    id: true,
+                    name: true,
+                    full_name: true,
+                    full_address: true,
+                    country: true,
+                    tax_id: true,
+                },
+            },
         };
 
         const liteRaw = q.lite;
@@ -434,7 +472,7 @@ async function contractsRoutes(fastify, options) {
                 if (dateTimeFields.includes(field)) {
                     data[field] = parseDateTime(value);
                 } else if (field === 'po_number') {
-                    data[field] = parseOptionalInt(value);
+                    data[field] = parseOptionalPoNumber(value);
                 } else {
                     data[field] = value;
                 }
@@ -553,7 +591,7 @@ async function contractsRoutes(fastify, options) {
                 if (dateTimeFields.includes(field)) {
                     data[field] = parseDateTime(value);
                 } else if (field === 'po_number') {
-                    data[field] = parseOptionalInt(value);
+                    data[field] = parseOptionalPoNumber(value);
                 } else {
                     data[field] = value;
                 }

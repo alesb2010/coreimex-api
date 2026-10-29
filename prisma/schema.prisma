@@ -129,7 +129,7 @@ model Contract {
   name                                String
   description                         String
   date_creation                       DateTime?
-  po_number                           Int?
+  po_number                           String?
   date_expiration                     DateTime?
   date_signature                      DateTime?
   date_expiration_signature           DateTime?
